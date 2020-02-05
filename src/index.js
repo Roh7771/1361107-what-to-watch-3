@@ -10,5 +10,4 @@ const Settings = {
   }
 };
 
-ReactDOM.render(<App promoFilm={Settings.PROMO_FILM} />, document.getElementById(`root`)
-);
+ReactDOM.render(<App promoFilm={Settings.PROMO_FILM} />, document.getElementById(`root`));
