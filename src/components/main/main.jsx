@@ -1,8 +1,5 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import id from "../../mocks/mock-id";
-
-let filmListId = id;
 
 const Main = ({promoFilm, filmsList}) => {
   const {promoFilmTitle, promoFilmReleaseYear, promoFilmGenre} = promoFilm;
@@ -104,12 +101,12 @@ const Main = ({promoFilm, filmsList}) => {
           <div className="catalog__movies-list">
             {filmsList.map((el) => {
               return (
-                <article key={filmListId++} className="small-movie-card catalog__movies-card">
+                <article key={el.id} className="small-movie-card catalog__movies-card">
                   <div className="small-movie-card__image">
                     <img src="" alt="" width="280" height="175" />
                   </div>
                   <h3 className="small-movie-card__title">
-                    <a className="small-movie-card__link" href="movie-page.html">{el}</a>
+                    <a className="small-movie-card__link" href="movie-page.html">{el.filmTitle}</a>
                   </h3>
                 </article>
               );
@@ -131,7 +128,10 @@ Main.propTypes = {
     promoFilmGenre: PropTypes.string,
     promoFilmReleaseYear: PropTypes.number,
   }).isRequired,
-  filmsList: PropTypes.arrayOf(PropTypes.string).isRequired,
+  filmsList: PropTypes.arrayOf(PropTypes.shape({
+    filmTitle: PropTypes.string,
+    filmId: PropTypes.number,
+  })).isRequired,
 };
 
 export default Main;
