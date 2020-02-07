@@ -101,7 +101,7 @@ const Main = ({promoFilm, filmsList}) => {
           <div className="catalog__movies-list">
             {filmsList.map((el) => {
               return (
-                <article key={el.id} className="small-movie-card catalog__movies-card">
+                <article key={el.filmId} className="small-movie-card catalog__movies-card">
                   <div className="small-movie-card__image">
                     <img src="" alt="" width="280" height="175" />
                   </div>
