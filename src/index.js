@@ -4,10 +4,11 @@ import App from "./components/app/app.jsx";
 
 const Settings = {
   PROMO_FILM: {
-    title: `The Grand Budapest Hotel`,
-    genre: `Drama`,
-    releaseYear: 2014
-  }
+    promoFilmTitle: `The Grand Budapest Hotel`,
+    promoFilmGenre: `Drama`,
+    promoFilmReleaseYear: 2014
+  },
+  FILMS_LIST: [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`],
 };
 
-ReactDOM.render(<App promoFilm={Settings.PROMO_FILM} />, document.getElementById(`root`));
+ReactDOM.render(<App filmsList= {Settings.FILMS_LIST} promoFilm={Settings.PROMO_FILM} />, document.getElementById(`root`));
