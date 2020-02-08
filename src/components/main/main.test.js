@@ -26,11 +26,12 @@ const Settings = {
   ]
 };
 
-it(`<Albums /> should render Cinderella`, () => {
+it(`<Main /> should render correctly`, () => {
   const tree = renderer
     .create(<Main
       filmsList={Settings.FILMS_LIST}
       promoFilm={Settings.PROMO_FILM}
+      onTitleButtonClick={() => {}}
     />)
     .toJSON();
 

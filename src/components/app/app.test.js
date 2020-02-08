@@ -26,7 +26,7 @@ const Settings = {
   ]
 };
 
-it(`<Albums /> should render Cinderella`, () => {
+it(`<App /> should render correctly`, () => {
   const tree = renderer
     .create(<App
       filmsList={Settings.FILMS_LIST}
