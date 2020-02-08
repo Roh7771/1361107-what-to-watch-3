@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 
-const Main = ({promoFilm, filmsList}) => {
+const Main = ({promoFilm, filmsList, onTitleButtonClick}) => {
   const {promoFilmTitle, promoFilmReleaseYear, promoFilmGenre} = promoFilm;
 
   return (
@@ -106,7 +106,7 @@ const Main = ({promoFilm, filmsList}) => {
                     <img src="" alt="" width="280" height="175" />
                   </div>
                   <h3 className="small-movie-card__title">
-                    <a className="small-movie-card__link" href="movie-page.html">{el.filmTitle}</a>
+                    <a onClick={onTitleButtonClick} className="small-movie-card__link" href="movie-page.html">{el.filmTitle}</a>
                   </h3>
                 </article>
               );
@@ -132,6 +132,7 @@ Main.propTypes = {
     filmTitle: PropTypes.string,
     filmId: PropTypes.number,
   })).isRequired,
+  onTitleButtonClick: PropTypes.func.isRequired
 };
 
 export default Main;
