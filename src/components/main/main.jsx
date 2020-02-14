@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import MovieList from "../movie-list/movie-list.jsx";
 
 const Main = ({promoFilm, filmsList, onTitleButtonClick}) => {
   const {promoFilmTitle, promoFilmReleaseYear, promoFilmGenre} = promoFilm;
@@ -99,18 +100,7 @@ const Main = ({promoFilm, filmsList, onTitleButtonClick}) => {
           </ul>
 
           <div className="catalog__movies-list">
-            {filmsList.map((el) => {
-              return (
-                <article key={el.filmId} className="small-movie-card catalog__movies-card">
-                  <div className="small-movie-card__image">
-                    <img src="" alt="" width="280" height="175" />
-                  </div>
-                  <h3 className="small-movie-card__title">
-                    <a onClick={onTitleButtonClick} className="small-movie-card__link" href="movie-page.html">{el.filmTitle}</a>
-                  </h3>
-                </article>
-              );
-            })}
+            <MovieList filmsList={filmsList} onTitleButtonClick={onTitleButtonClick}/>
           </div>
 
           <div className="catalog__more">
@@ -129,8 +119,9 @@ Main.propTypes = {
     promoFilmReleaseYear: PropTypes.number,
   }).isRequired,
   filmsList: PropTypes.arrayOf(PropTypes.shape({
-    filmTitle: PropTypes.string,
-    filmId: PropTypes.number,
+    title: PropTypes.string,
+    imgSrc: PropTypes.string,
+    id: PropTypes.id,
   })).isRequired,
   onTitleButtonClick: PropTypes.func.isRequired
 };
