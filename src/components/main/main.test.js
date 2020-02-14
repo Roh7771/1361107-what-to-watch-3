@@ -2,35 +2,31 @@ import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main";
 
-let testId = 10;
-
-const Settings = {
-  PROMO_FILM: {
+const mock = {
+  promoFilm: {
     promoFilmTitle: `Promo Film`,
     promoFilmGenre: `Comedy`,
     promoFilmReleaseYear: 2020,
   },
-  FILMS_LIST: [
+  filmsList: [
     {
-      filmTitle: `First Film`,
-      filmId: testId++
+      title: `Any Cool Film`,
+      imgSrc: `Some path`,
+      id: 5
     },
     {
-      filmTitle: `Second Film`,
-      filmId: testId++
+      title: `Another Cool Film`,
+      imgSrc: `Some path`,
+      id: 9
     },
-    {
-      filmTitle: `Third Film`,
-      filmId: testId++
-    }
   ]
 };
 
 it(`<Main /> should render correctly`, () => {
   const tree = renderer
     .create(<Main
-      filmsList={Settings.FILMS_LIST}
-      promoFilm={Settings.PROMO_FILM}
+      filmsList={mock.filmsList}
+      promoFilm={mock.promoFilm}
       onTitleButtonClick={() => {}}
     />)
     .toJSON();
