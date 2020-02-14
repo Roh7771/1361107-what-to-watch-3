@@ -1,16 +1,25 @@
 import React from "react";
 import Main from "../main/main.jsx";
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import PropTypes from "prop-types";
 
 const handlerTitleButtonClick = () => {};
 
 const App = ({promoFilm, filmsList}) => {
   return (
-    <Main
-      filmsList={filmsList}
-      promoFilm={promoFilm}
-      onTitleButtonClick={handlerTitleButtonClick}
-    />
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <Main
+            filmsList={filmsList}
+            promoFilm={promoFilm}
+            onTitleButtonClick={handlerTitleButtonClick}
+          />
+        </Route>
+        <Route exact path="/dev-component">
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 };
 
