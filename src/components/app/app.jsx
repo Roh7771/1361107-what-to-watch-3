@@ -2,6 +2,7 @@ import React from "react";
 import Main from "../main/main.jsx";
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import PropTypes from "prop-types";
+import MoviePage from "../movie-page/movie-page.jsx";
 
 const handlerTitleButtonClick = () => {};
 
@@ -16,7 +17,8 @@ const App = ({promoFilm, filmsList}) => {
             onTitleButtonClick={handlerTitleButtonClick}
           />
         </Route>
-        <Route exact path="/dev-component">
+        <Route exact path="/dev-movie-page">
+          <MoviePage/>
         </Route>
       </Switch>
     </BrowserRouter>
