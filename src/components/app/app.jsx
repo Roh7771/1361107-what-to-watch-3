@@ -44,7 +44,8 @@ class App extends React.PureComponent {
           <Route exact path="/">
             {this._renderApp()}
           </Route>
-          <Route exact path="/dev-component">
+          <Route exact path="/dev-movie-page">
+            <MoviePage film={this.state.chosenFilm ? this.state.chosenFilm : this.props.filmsList[0]}/>
           </Route>
         </Switch>
       </BrowserRouter>
