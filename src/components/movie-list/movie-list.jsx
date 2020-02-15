@@ -23,7 +23,7 @@ class MovieList extends React.PureComponent {
   }
 
   render() {
-    const {filmsList, onTitleButtonClick} = this.props;
+    const {filmsList, onMovieCardClick} = this.props;
     return (
       filmsList.map((el) => {
         return (
@@ -32,7 +32,7 @@ class MovieList extends React.PureComponent {
             film={el}
             onFilmMouseOut={this._handleMovieCardOut}
             onFilmMouseOver={this._handleMovieCardOver}
-            onTitleButtonClick={onTitleButtonClick}
+            onMovieCardClick={onMovieCardClick}
           />
         );
       })
@@ -46,7 +46,7 @@ MovieList.propTypes = {
     imgSrc: PropTypes.string,
     id: PropTypes.id,
   })).isRequired,
-  onTitleButtonClick: PropTypes.func.isRequired,
+  onMovieCardClick: PropTypes.func.isRequired,
 };
 
 export default MovieList;

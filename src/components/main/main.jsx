@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import MovieList from "../movie-list/movie-list.jsx";
 
-const Main = ({promoFilm, filmsList, onTitleButtonClick}) => {
+const Main = ({promoFilm, filmsList, onMovieCardClick}) => {
   const {
     promoFilmTitle,
     promoFilmReleaseYear,
@@ -147,7 +147,7 @@ const Main = ({promoFilm, filmsList, onTitleButtonClick}) => {
           <div className="catalog__movies-list">
             <MovieList
               filmsList={filmsList}
-              onTitleButtonClick={onTitleButtonClick}
+              onMovieCardClick={onMovieCardClick}
             />
           </div>
 
@@ -177,7 +177,7 @@ Main.propTypes = {
         id: PropTypes.id
       })
   ).isRequired,
-  onTitleButtonClick: PropTypes.func.isRequired
+  onMovieCardClick: PropTypes.func.isRequired
 };
 
 export default Main;
