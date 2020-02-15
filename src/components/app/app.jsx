@@ -28,17 +28,13 @@ class App extends React.PureComponent {
       );
     }
 
-    if (!chosenFilm) {
-      return (
-        <Main
-          filmsList={filmsList}
-          promoFilm={promoFilm}
-          onMovieCardClick={this._handlerMovieCardClick}
-        />
-      );
-    }
-
-    return <p>Что-то пошло не так :(</p>;
+    return (
+      <Main
+        filmsList={filmsList}
+        promoFilm={promoFilm}
+        onMovieCardClick={this._handlerMovieCardClick}
+      />
+    );
   }
 
   render() {
