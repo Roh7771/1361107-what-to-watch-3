@@ -17,9 +17,9 @@ const mock = {
   ]
 };
 
-it(`<Main /> should render correctly`, () => {
+it(`<MovieList /> should render correctly`, () => {
   const tree = renderer
-    .create(<MovieList filmsList={mock.filmsList} onTitleButtonClick={() => {}}/>)
+    .create(<MovieList filmsList={mock.filmsList} onMovieCardClick={() => {}}/>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -9,8 +9,7 @@ Array [
       className="movie-card__bg"
     >
       <img
-        alt="The Grand Budapest Hotel"
-        src="img/bg-the-grand-budapest-hotel.jpg"
+        alt="Promo Film"
       />
     </div>
     <h1
@@ -69,9 +68,8 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt="The Grand Budapest Hotel poster"
+            alt="Promo Film poster"
             height="327"
-            src="img/the-grand-budapest-hotel-poster.jpg"
             width="218"
           />
         </div>
@@ -259,6 +257,7 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
@@ -286,6 +285,7 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
