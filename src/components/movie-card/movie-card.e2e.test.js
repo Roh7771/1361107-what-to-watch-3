@@ -5,9 +5,20 @@ import MovieCard from "./movie-card";
 
 const mock = {
   film: {
-    title: `Any Cool Film`,
-    imgSrc: `Some path`,
-    id: 5
+    title: `Some Title`,
+    genre: `Comedy`,
+    releaseYear: 2015,
+    imgSrc: `Some Path`,
+    bgSrc: `iSome Path`,
+    posterSrc: `Some Path`,
+    ratingScore: 8.7,
+    ratingCount: 230,
+    description: [
+      `Some description`,
+    ],
+    director: `Some cool directot`,
+    starring: [`Actor1`, `Actor2`],
+    id: 2
   }
 };
 
@@ -15,39 +26,38 @@ Enzyme.configure({
   adapter: new Adapter()
 });
 
-it(`Should title button be pressed`, () => {
-  const handlerTitleButtonClick = jest.fn();
+it(`Should movie card and title be pressed and got correct data`, () => {
+  const handlerMovieCardClick = jest.fn();
 
   const movieCard = shallow(
       <MovieCard
         onFilmMouseOver={() => {}}
         onFilmMouseOut={() => {}}
         film={mock.film}
-        onTitleButtonClick={handlerTitleButtonClick}
+        onMovieCardClick={handlerMovieCardClick}
       />
   );
 
-  const titleButton = movieCard.find(`.small-movie-card__link`);
+  const titleButton = movieCard.find(`a.small-movie-card__link`);
+  const movieCardWrapper = movieCard.find(`article`);
 
-  titleButton.simulate(`click`);
+  titleButton.simulate(`click`, {preventDefault() {}});
+  movieCardWrapper.simulate(`click`);
 
-  expect(handlerTitleButtonClick.mock.calls.length).toBe(1);
+  expect(handlerMovieCardClick.mock.calls.length).toBe(2);
+  expect(handlerMovieCardClick.mock.calls[0][0]).toMatchObject(mock.film);
+  expect(handlerMovieCardClick.mock.calls[1][0]).toMatchObject(mock.film);
 });
 
 it(`HandlerOnMouseEnter get correct data`, () => {
   const handlerOnMouseEnter = jest.fn((...args) => [...args]);
-  const film = {
-    title: `Any Cool Film`,
-    imgSrc: `Some path`,
-    id: 5
-  };
 
   const movieCard = shallow(
       <MovieCard
         film={mock.film}
         onFilmMouseOver={handlerOnMouseEnter}
         onFilmMouseOut={() => {}}
-        onTitleButtonClick={() => {}}
+        onMovieCardClick={() => {}}
       />
   );
 
@@ -55,6 +65,6 @@ it(`HandlerOnMouseEnter get correct data`, () => {
   card.simulate(`mouseEnter`);
 
   expect(handlerOnMouseEnter.mock.calls.length).toBe(1);
-  expect(handlerOnMouseEnter.mock.calls[0][0]).toMatchObject(film);
+  expect(handlerOnMouseEnter.mock.calls[0][0]).toMatchObject(mock.film);
 });
 

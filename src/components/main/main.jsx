@@ -1,15 +1,24 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import MovieList from "../movie-list/movie-list.jsx";
 
-const Main = ({promoFilm, filmsList, onTitleButtonClick}) => {
-  const {promoFilmTitle, promoFilmReleaseYear, promoFilmGenre} = promoFilm;
+const Main = ({promoFilm, filmsList, onMovieCardClick}) => {
+  const {
+    promoFilmTitle,
+    promoFilmReleaseYear,
+    promoFilmGenre,
+    promoFilmBgSrc,
+    promoFilmPosterSrc
+  } = promoFilm;
 
   return (
     <React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img
+            src={promoFilmBgSrc}
+            alt={promoFilmTitle}
+          />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -25,7 +34,12 @@ const Main = ({promoFilm, filmsList, onTitleButtonClick}) => {
 
           <div className="user-block">
             <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              <img
+                src="img/avatar.jpg"
+                alt="User avatar"
+                width="63"
+                height="63"
+              />
             </div>
           </div>
         </header>
@@ -33,7 +47,12 @@ const Main = ({promoFilm, filmsList, onTitleButtonClick}) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img
+                src={promoFilmPosterSrc}
+                alt={`${promoFilmTitle} poster`}
+                width="218"
+                height="327"
+              />
             </div>
 
             <div className="movie-card__desc">
@@ -44,13 +63,19 @@ const Main = ({promoFilm, filmsList, onTitleButtonClick}) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button
+                  className="btn btn--play movie-card__button"
+                  type="button"
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
+                <button
+                  className="btn btn--list movie-card__button"
+                  type="button"
+                >
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
                   </svg>
@@ -68,43 +93,68 @@ const Main = ({promoFilm, filmsList, onTitleButtonClick}) => {
 
           <ul className="catalog__genres-list">
             <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
+              <a href="#" className="catalog__genres-link">
+                All genres
+              </a>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
+              <a href="#" className="catalog__genres-link">
+                Comedies
+              </a>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
+              <a href="#" className="catalog__genres-link">
+                Crime
+              </a>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
+              <a href="#" className="catalog__genres-link">
+                Documentary
+              </a>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
+              <a href="#" className="catalog__genres-link">
+                Dramas
+              </a>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
+              <a href="#" className="catalog__genres-link">
+                Horror
+              </a>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids & Family</a>
+              <a href="#" className="catalog__genres-link">
+                Kids & Family
+              </a>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
+              <a href="#" className="catalog__genres-link">
+                Romance
+              </a>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
+              <a href="#" className="catalog__genres-link">
+                Sci-Fi
+              </a>
             </li>
             <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
+              <a href="#" className="catalog__genres-link">
+                Thrillers
+              </a>
             </li>
           </ul>
 
           <div className="catalog__movies-list">
-            <MovieList filmsList={filmsList} onTitleButtonClick={onTitleButtonClick}/>
+            <MovieList
+              filmsList={filmsList}
+              onMovieCardClick={onMovieCardClick}
+            />
           </div>
 
           <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
+            <button className="catalog__button" type="button">
+              Show more
+            </button>
           </div>
         </section>
       </div>
@@ -117,13 +167,17 @@ Main.propTypes = {
     promoFilmTitle: PropTypes.string,
     promoFilmGenre: PropTypes.string,
     promoFilmReleaseYear: PropTypes.number,
+    promoFilmPosterSrc: PropTypes.string,
+    promoFilmBgSrc: PropTypes.string,
   }).isRequired,
-  filmsList: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string,
-    imgSrc: PropTypes.string,
-    id: PropTypes.id,
-  })).isRequired,
-  onTitleButtonClick: PropTypes.func.isRequired
+  filmsList: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        imgSrc: PropTypes.string,
+        id: PropTypes.id
+      })
+  ).isRequired,
+  onMovieCardClick: PropTypes.func.isRequired
 };
 
 export default Main;

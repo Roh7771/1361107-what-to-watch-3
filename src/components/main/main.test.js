@@ -27,7 +27,7 @@ it(`<Main /> should render correctly`, () => {
     .create(<Main
       filmsList={mock.filmsList}
       promoFilm={mock.promoFilm}
-      onTitleButtonClick={() => {}}
+      onMovieCardClick={() => {}}
     />)
     .toJSON();
 

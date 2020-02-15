@@ -10,14 +10,14 @@ const mock = {
   }
 };
 
-it(`<Main /> should render correctly`, () => {
+it(`<MovieCard /> should render correctly`, () => {
   const tree = renderer
     .create(
         <MovieCard
           film={mock.film}
           onFilmMouseOut={() => {}}
           onFilmMouseOver={() => {}}
-          onTitleButtonClick={() => {}}
+          onMovieCardClick={() => {}}
         />
     )
     .toJSON();
