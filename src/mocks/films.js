@@ -16,6 +16,7 @@ export default [
     ],
     director: `Wes Andreson`,
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    videoScr: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     id: id++
   },
   {
@@ -32,6 +33,7 @@ export default [
     ],
     director: `David Yates`,
     starring: [`Eddie Redmayne`, `Johnny Depp`, `Ezra Miller`, `Carmen Ejogo`],
+    videoScr: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     id: id++
   },
   {
@@ -48,6 +50,7 @@ export default [
     ],
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`, `Ben Hardy`],
+    videoScr: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     id: id++
   },
   {
@@ -64,6 +67,7 @@ export default [
     ],
     director: `Justin Kurzel`,
     starring: [`Michael Fassbender`, `Marion Cotillard`, `Paddy Considine`, `Jack Madigan`],
+    videoScr: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     id: id++
   },
   {
@@ -80,6 +84,7 @@ export default [
     ],
     director: `Martin Scorsese`,
     starring: [`Leonardo DiCaprio`, `Cate Blanchett`, `Kate Beckinsale`, `John C. Reilly`],
+    videoScr: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     id: id++
   },
   {
@@ -96,6 +101,7 @@ export default [
     ],
     director: `Lynne Ramsay`,
     starring: [`Tilda Swinton`, `John C. Reilly`, `Ezra Miller`, `Jasper Newell`],
+    videoScr: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     id: id++
   },
   {
@@ -112,6 +118,7 @@ export default [
     ],
     director: `Jemaine Clement`,
     starring: [`Jemaine Clement`, `Taika Waititi`, `Jonny Brugh`, `Cori Gonzalez-Macuer`],
+    videoScr: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     id: id++
   },
   {
@@ -128,6 +135,7 @@ export default [
     ],
     director: `Alejandro G. Iñárritu`,
     starring: [`Leonardo DiCaprio`, `Tom Hardy`, `Domhnall Gleeson`, `Will Poulter`],
+    videoScr: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     id: id++
   }
 ];
