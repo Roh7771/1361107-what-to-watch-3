@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import VideoPlayer from "../video-player/video-player.jsx";
 
-const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick}) => {
-  const {title, imgSrc} = film;
+const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick, activeCard}) => {
+  const {title, imgSrc, videoScr} = film;
 
   return (
     <article
@@ -18,7 +19,7 @@ const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick}) =>
       className="small-movie-card catalog__movies-card"
     >
       <div className="small-movie-card__image">
-        <img src={imgSrc} alt="" width="280" height="175" />
+        <VideoPlayer isPlaying={activeCard === film} videoSrc={videoScr} posterSrc={imgSrc}/>
       </div>
       <h3 className="small-movie-card__title">
         <a
@@ -41,10 +42,12 @@ MovieCard.propTypes = {
     title: PropTypes.string,
     imgSrc: PropTypes.string,
     id: PropTypes.id,
+    videoScr: PropTypes.string,
   }).isRequired,
   onFilmMouseOver: PropTypes.func.isRequired,
   onMovieCardClick: PropTypes.func.isRequired,
   onFilmMouseOut: PropTypes.func.isRequired,
+  activeCard: PropTypes.object.isRequired,
 };
 
 export default MovieCard;
