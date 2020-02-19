@@ -33,7 +33,7 @@ class VideoPlayer extends PureComponent {
         if (isPlaying) {
           video.play();
         } else {
-          video.current.load();
+          video.load();
         }
       });
     }
