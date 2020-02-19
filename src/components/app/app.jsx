@@ -3,6 +3,7 @@ import Main from "../main/main.jsx";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import PropTypes from "prop-types";
 import MoviePage from "../movie-page/movie-page.jsx";
+import VideoPlayer from "../video-player/video-player.jsx";
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -46,6 +47,9 @@ class App extends React.PureComponent {
           </Route>
           <Route exact path="/dev-movie-page">
             <MoviePage film={this.state.chosenFilm ? this.state.chosenFilm : this.props.filmsList[0]}/>
+          </Route>
+          <Route exact path="/dev-video-player">
+            <VideoPlayer posterSrc="img/revenant.jpg" isPlaying={false} videoSrc="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"/>
           </Route>
         </Switch>
       </BrowserRouter>
