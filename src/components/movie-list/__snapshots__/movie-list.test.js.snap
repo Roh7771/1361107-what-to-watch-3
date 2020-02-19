@@ -11,10 +11,13 @@ Array [
     <div
       className="small-movie-card__image"
     >
-      <img
+      <video
         alt=""
+        className="pause"
         height="175"
-        src="Some path"
+        muted={true}
+        poster="Some Path"
+        src="Some Path"
         width="280"
       />
     </div>
@@ -26,7 +29,7 @@ Array [
         href="movie-page.html"
         onClick={[Function]}
       >
-        Any Cool Film
+        Some Title
       </a>
     </h3>
   </article>,
@@ -39,10 +42,13 @@ Array [
     <div
       className="small-movie-card__image"
     >
-      <img
+      <video
         alt=""
+        className="pause"
         height="175"
-        src="Some path"
+        muted={true}
+        poster="Some Path"
+        src="Some Path"
         width="280"
       />
     </div>
@@ -54,7 +60,7 @@ Array [
         href="movie-page.html"
         onClick={[Function]}
       >
-        Another Cool Film
+        Some Title
       </a>
     </h3>
   </article>,

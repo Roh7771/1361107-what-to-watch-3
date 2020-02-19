@@ -4,9 +4,21 @@ import MovieCard from "./movie-card";
 
 const mock = {
   film: {
-    title: `Any Cool Film`,
-    imgSrc: `Some path`,
-    id: 5
+    title: `Some Title`,
+    genre: `Comedy`,
+    releaseYear: 2015,
+    imgSrc: `Some Path`,
+    bgSrc: `iSome Path`,
+    posterSrc: `Some Path`,
+    ratingScore: 8.7,
+    ratingCount: 230,
+    description: [
+      `Some description`,
+    ],
+    director: `Some cool directot`,
+    starring: [`Actor1`, `Actor2`],
+    id: 2,
+    videoSrc: `Some Path`,
   }
 };
 
@@ -18,7 +30,13 @@ it(`<MovieCard /> should render correctly`, () => {
           onFilmMouseOut={() => {}}
           onFilmMouseOver={() => {}}
           onMovieCardClick={() => {}}
-        />
+          activeCard={mock.film}
+        />,
+        {
+          createNodeMock: () => {
+            return {};
+          }
+        }
     )
     .toJSON();
 

@@ -18,7 +18,8 @@ const mock = {
     ],
     director: `Some cool directot`,
     starring: [`Actor1`, `Actor2`],
-    id: 2
+    id: 2,
+    videoSrc: `Some Path`,
   }
 };
 
@@ -35,6 +36,7 @@ it(`Should movie card and title be pressed and got correct data`, () => {
         onFilmMouseOut={() => {}}
         film={mock.film}
         onMovieCardClick={handlerMovieCardClick}
+        activeCard={mock.film}
       />
   );
 
@@ -58,6 +60,7 @@ it(`HandlerOnMouseEnter get correct data`, () => {
         onFilmMouseOver={handlerOnMouseEnter}
         onFilmMouseOut={() => {}}
         onMovieCardClick={() => {}}
+        activeCard={mock.film}
       />
   );
 
