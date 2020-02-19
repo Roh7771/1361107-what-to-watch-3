@@ -268,7 +268,6 @@ Array [
               alt=""
               className="pause"
               height="175"
-              muted={true}
               poster="Some Path"
               src="Some Path"
               width="280"
@@ -299,7 +298,6 @@ Array [
               alt=""
               className="pause"
               height="175"
-              muted={true}
               poster="Some Path"
               src="Some Path"
               width="280"

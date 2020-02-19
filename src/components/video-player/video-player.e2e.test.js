@@ -30,3 +30,32 @@ it(`Should video player have "play" and "pause" state`, () => {
 
   expect(videoPlayer.find(`.play`).length).toBe(1);
 });
+
+it(`Should video player plays when isPlaying props equals true`, () => {
+  const {videoSrc, posterSrc} = mock;
+  const isPlaying = true;
+
+  const videoPlayer = mount(
+      <VideoPlayer
+        isPlaying={isPlaying}
+        videoSrc={videoSrc}
+        posterSrc={posterSrc}
+      />
+  );
+
+  expect(videoPlayer.state(`isPlaying`)).toBe(true);
+});
+
+it(`Shouldn't video player plays when isPlaying props equals false`, () => {
+  const {isPlaying, videoSrc, posterSrc} = mock;
+
+  const videoPlayer = mount(
+      <VideoPlayer
+        isPlaying={isPlaying}
+        videoSrc={videoSrc}
+        posterSrc={posterSrc}
+      />
+  );
+
+  expect(videoPlayer.state(`isPlaying`)).toBe(false);
+});

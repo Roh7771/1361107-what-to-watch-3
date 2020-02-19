@@ -14,7 +14,6 @@ exports[`<MovieCard /> should render correctly 1`] = `
       alt=""
       className="play"
       height="175"
-      muted={true}
       poster="Some Path"
       src="Some Path"
       width="280"
