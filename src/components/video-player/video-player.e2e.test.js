@@ -4,7 +4,6 @@ import Adapter from "enzyme-adapter-react-16";
 import VideoPlayer from "./video-player";
 
 const mock = {
-  isPlaying: false,
   videoSrc: `somePath`,
   posterSrc: `somePath`
 };
@@ -13,31 +12,18 @@ Enzyme.configure({
   adapter: new Adapter()
 });
 
-it(`Should video player plays when isPlaying props equals true`, () => {
+it(`Should video player change state with different isPlaying props`, () => {
   const {videoSrc, posterSrc} = mock;
-  const isPlaying = true;
 
-  const videoPlayer = mount(
-      <VideoPlayer
-        isPlaying={isPlaying}
-        videoSrc={videoSrc}
-        posterSrc={posterSrc}
-      />
-  );
-
-  expect(videoPlayer.state(`isPlaying`)).toBe(true);
-});
-
-it(`Shouldn't video player plays when isPlaying props equals false`, () => {
-  const {isPlaying, videoSrc, posterSrc} = mock;
-
-  const videoPlayer = mount(
-      <VideoPlayer
-        isPlaying={isPlaying}
-        videoSrc={videoSrc}
-        posterSrc={posterSrc}
-      />
-  );
-
-  expect(videoPlayer.state(`isPlaying`)).toBe(false);
+  const videoPlayerWrapper = (isPlaying) => {
+    return mount(
+        <VideoPlayer
+          isPlaying={isPlaying}
+          videoSrc={videoSrc}
+          posterSrc={posterSrc}
+        />
+    );
+  };
+  expect(videoPlayerWrapper(true).state(`isPlaying`)).toBe(true);
+  expect(videoPlayerWrapper(false).state(`isPlaying`)).toBe(false);
 });
