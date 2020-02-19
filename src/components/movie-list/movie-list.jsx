@@ -7,7 +7,7 @@ let timer;
 class MovieList extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {activeCard: null};
+    this.state = {activeCard: {}};
     this._handleMovieCardOut = this._handleMovieCardOut.bind(this);
     this._handleMovieCardOver = this._handleMovieCardOver.bind(this);
   }
@@ -23,7 +23,7 @@ class MovieList extends React.PureComponent {
   _handleMovieCardOut() {
     clearTimeout(timer);
     this.setState({
-      activeCard: null,
+      activeCard: {},
     });
   }
 

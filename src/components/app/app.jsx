@@ -49,7 +49,7 @@ class App extends React.PureComponent {
             <MoviePage film={this.state.chosenFilm ? this.state.chosenFilm : this.props.filmsList[0]}/>
           </Route>
           <Route exact path="/dev-video-player">
-            <VideoPlayer posterSrc="img/revenant.jpg" videoSrc="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"/>
+            <VideoPlayer posterSrc="img/revenant.jpg" isPlaying={false} videoSrc="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"/>
           </Route>
         </Switch>
       </BrowserRouter>
