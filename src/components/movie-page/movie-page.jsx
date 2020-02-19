@@ -1,24 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-
-const getRatingLevel = (ratingScore) => {
-  if (ratingScore < 3) {
-    return `Bad`;
-  }
-  if (ratingScore >= 3 && ratingScore < 5) {
-    return `Normal`;
-  }
-  if (ratingScore >= 5 && ratingScore < 8) {
-    return `Good`;
-  }
-  if (ratingScore >= 8 && ratingScore < 10) {
-    return `Very good`;
-  }
-  if (ratingScore === 10) {
-    return `Awesome`;
-  }
-  return `No rating`;
-};
+import TabList from "../tab-list/tab-list.jsx";
 
 const MoviePage = ({film}) => {
   return (
@@ -78,42 +60,7 @@ const MoviePage = ({film}) => {
           <div className="movie-card__poster movie-card__poster--big">
             <img src={film.posterSrc} alt={`${film.title} poster`} width="218" height="327" />
           </div>
-
-          <div className="movie-card__desc">
-            <nav className="movie-nav movie-card__nav">
-              <ul className="movie-nav__list">
-                <li className="movie-nav__item movie-nav__item--active">
-                  <a href="#" className="movie-nav__link">Overview</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Details</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Reviews</a>
-                </li>
-              </ul>
-            </nav>
-
-            <div className="movie-rating">
-              <div className="movie-rating__score">{String(film.ratingScore).replace(`.`, `,`)}</div>
-              <p className="movie-rating__meta">
-                <span className="movie-rating__level">{getRatingLevel(film.ratingScore)}</span>
-                <span className="movie-rating__count">{`${film.ratingCount} ratings`}</span>
-              </p>
-            </div>
-
-            <div className="movie-card__text">
-              {film.description.map((el, i) => {
-                return (
-                  <p key={`${i + 1}-descr`}>{el}</p>
-                );
-              })}
-
-              <p className="movie-card__director"><strong>{`Director: ${film.director}`}</strong></p>
-
-              <p className="movie-card__starring"><strong>{`Starring: ${film.starring.reduce((prev, next) => `${prev}, ${next}`)} and other`}</strong></p>
-            </div>
-          </div>
+          <TabList film={film}/>
         </div>
       </div>
     </section>
@@ -133,7 +80,9 @@ MoviePage.propTypes = {
     description: PropTypes.arrayOf(PropTypes.string),
     director: PropTypes.string,
     starring: PropTypes.arrayOf(PropTypes.string),
-    id: PropTypes.number
+    id: PropTypes.number,
+    filmDuration: PropTypes.number,
+    reviews: PropTypes.array,
   })
 };
 
