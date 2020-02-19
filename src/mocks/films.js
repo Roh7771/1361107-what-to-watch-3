@@ -17,7 +17,16 @@ export default [
     director: `Wes Andreson`,
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    id: id++
+    id: id++,
+    filmDuration: 99,
+    reviews: [
+      {
+        rating: 8.9,
+        reviewText: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        reviewer: `Kate Muir`,
+        reviewData: Date.now(),
+      }
+    ]
   },
   {
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -34,7 +43,16 @@ export default [
     director: `David Yates`,
     starring: [`Eddie Redmayne`, `Johnny Depp`, `Ezra Miller`, `Carmen Ejogo`],
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    id: id++
+    id: id++,
+    filmDuration: 99,
+    reviews: [
+      {
+        rating: 8.9,
+        reviewText: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        reviewer: `Kate Muir`,
+        reviewData: Date.now(),
+      }
+    ]
   },
   {
     title: `Bohemian Rhapsody`,
@@ -51,7 +69,16 @@ export default [
     director: `Bryan Singer`,
     starring: [`Rami Malek`, `Lucy Boynton`, `Gwilym Lee`, `Ben Hardy`],
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    id: id++
+    id: id++,
+    filmDuration: 99,
+    reviews: [
+      {
+        rating: 8.9,
+        reviewText: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        reviewer: `Kate Muir`,
+        reviewData: Date.now(),
+      }
+    ]
   },
   {
     title: `Macbeth`,
@@ -68,7 +95,16 @@ export default [
     director: `Justin Kurzel`,
     starring: [`Michael Fassbender`, `Marion Cotillard`, `Paddy Considine`, `Jack Madigan`],
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    id: id++
+    id: id++,
+    filmDuration: 99,
+    reviews: [
+      {
+        rating: 8.9,
+        reviewText: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        reviewer: `Kate Muir`,
+        reviewData: Date.now(),
+      }
+    ]
   },
   {
     title: `Aviator`,
@@ -85,7 +121,16 @@ export default [
     director: `Martin Scorsese`,
     starring: [`Leonardo DiCaprio`, `Cate Blanchett`, `Kate Beckinsale`, `John C. Reilly`],
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    id: id++
+    id: id++,
+    filmDuration: 99,
+    reviews: [
+      {
+        rating: 8.9,
+        reviewText: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        reviewer: `Kate Muir`,
+        reviewData: Date.now(),
+      }
+    ]
   },
   {
     title: `We need to talk about Kevin`,
@@ -102,7 +147,16 @@ export default [
     director: `Lynne Ramsay`,
     starring: [`Tilda Swinton`, `John C. Reilly`, `Ezra Miller`, `Jasper Newell`],
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    id: id++
+    id: id++,
+    filmDuration: 99,
+    reviews: [
+      {
+        rating: 8.9,
+        reviewText: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        reviewer: `Kate Muir`,
+        reviewData: Date.now(),
+      }
+    ]
   },
   {
     title: `What We Do in the Shadows`,
@@ -119,7 +173,16 @@ export default [
     director: `Jemaine Clement`,
     starring: [`Jemaine Clement`, `Taika Waititi`, `Jonny Brugh`, `Cori Gonzalez-Macuer`],
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    id: id++
+    id: id++,
+    filmDuration: 99,
+    reviews: [
+      {
+        rating: 8.9,
+        reviewText: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        reviewer: `Kate Muir`,
+        reviewData: Date.now(),
+      }
+    ]
   },
   {
     title: `Revenant`,
@@ -136,6 +199,15 @@ export default [
     director: `Alejandro G. Iñárritu`,
     starring: [`Leonardo DiCaprio`, `Tom Hardy`, `Domhnall Gleeson`, `Will Poulter`],
     videoSrc: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
-    id: id++
+    id: id++,
+    filmDuration: 99,
+    reviews: [
+      {
+        rating: 8.9,
+        reviewText: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        reviewer: `Kate Muir`,
+        reviewData: Date.now(),
+      }
+    ]
   }
 ];
