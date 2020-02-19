@@ -26,12 +26,15 @@ class VideoPlayer extends PureComponent {
   componentDidUpdate() {
     const video = this._videoRef.current;
 
-    if (this.props.isPlaying) {
-      video.play();
-    } else {
-      video.load();
-      this.setState({
-        isPlaying: false,
+    const {isPlaying} = this.props;
+
+    if (isPlaying !== this.state.isPlaying) {
+      this.setState({isPlaying}, () => {
+        if (isPlaying) {
+          video.play();
+        } else {
+          video.current.load();
+        }
       });
     }
   }
@@ -46,9 +49,8 @@ class VideoPlayer extends PureComponent {
 
   render() {
     const {posterSrc, videoSrc} = this.props;
-    const {isPlaying} = this.state;
     return (
-      <video className={isPlaying ? `play` : `pause`} ref={this._videoRef} poster={posterSrc} src={videoSrc} alt="" width="280" height="175" />
+      <video ref={this._videoRef} poster={posterSrc} src={videoSrc} alt="" width="280" height="175" />
     );
   }
 }
