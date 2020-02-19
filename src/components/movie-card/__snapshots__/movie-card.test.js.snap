@@ -12,7 +12,6 @@ exports[`<MovieCard /> should render correctly 1`] = `
   >
     <video
       alt=""
-      className="play"
       height="175"
       poster="Some Path"
       src="Some Path"

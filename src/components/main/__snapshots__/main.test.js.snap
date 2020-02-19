@@ -266,7 +266,6 @@ Array [
           >
             <video
               alt=""
-              className="pause"
               height="175"
               poster="Some Path"
               src="Some Path"
@@ -296,7 +295,6 @@ Array [
           >
             <video
               alt=""
-              className="pause"
               height="175"
               poster="Some Path"
               src="Some Path"

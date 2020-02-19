@@ -13,24 +13,6 @@ Enzyme.configure({
   adapter: new Adapter()
 });
 
-it(`Should video player have "play" and "pause" state`, () => {
-  const {isPlaying, videoSrc, posterSrc} = mock;
-
-  const videoPlayer = mount(
-      <VideoPlayer
-        isPlaying={isPlaying}
-        videoSrc={videoSrc}
-        posterSrc={posterSrc}
-      />
-  );
-
-  expect(videoPlayer.find(`.pause`).length).toBe(1);
-
-  videoPlayer.setState({isPlaying: true});
-
-  expect(videoPlayer.find(`.play`).length).toBe(1);
-});
-
 it(`Should video player plays when isPlaying props equals true`, () => {
   const {videoSrc, posterSrc} = mock;
   const isPlaying = true;

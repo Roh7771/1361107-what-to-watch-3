@@ -3,7 +3,6 @@
 exports[`<VideoPlayer /> should render correctly 1`] = `
 <video
   alt=""
-  className="play"
   height="175"
   poster="somePath"
   src="somePath"
