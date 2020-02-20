@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MoreLikeThis /> should render correctly 1`] = `
+<div
+  className="page-content"
+>
+  <section
+    className="catalog catalog--like-this"
+  >
+    <h2
+      className="catalog__title"
+    >
+      More like this
+    </h2>
+    <div
+      className="catalog__movies-list"
+    >
+      <p>
+        Sorry, there is no more films :(
+      </p>
+    </div>
+  </section>
+</div>
+`;
