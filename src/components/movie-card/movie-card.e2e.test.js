@@ -20,6 +20,39 @@ const mock = {
     starring: [`Actor1`, `Actor2`],
     id: 2,
     videoSrc: `Some Path`,
+    filmDuration: 99,
+    reviews: [
+      {
+        rating: 8.1,
+        reviewText: `Description`,
+        reviewer: `Kate Muiry`,
+        reviewDate: `2016-12-25`,
+      },
+      {
+        rating: 8.1,
+        reviewText: `Description`,
+        reviewer: `Kate Muiry`,
+        reviewDate: `2016-12-25`,
+      },
+      {
+        rating: 8.1,
+        reviewText: `Description`,
+        reviewer: `Kate Muiry`,
+        reviewDate: `2016-12-25`,
+      },
+      {
+        rating: 8.1,
+        reviewText: `Description`,
+        reviewer: `Kate Muiry`,
+        reviewDate: `2016-12-25`,
+      },
+      {
+        rating: 8.1,
+        reviewText: `Description`,
+        reviewer: `Kate Muiry`,
+        reviewDate: `2016-12-25`,
+      }
+    ]
   }
 };
 

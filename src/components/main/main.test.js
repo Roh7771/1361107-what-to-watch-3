@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main";
+import Main from "./main.jsx";
 
 const mock = {
   promoFilm: {
@@ -25,6 +25,39 @@ const mock = {
       starring: [`Actor1`, `Actor2`],
       id: 2,
       videoSrc: `Some Path`,
+      filmDuration: 99,
+      reviews: [
+        {
+          rating: 8.1,
+          reviewText: `Description`,
+          reviewer: `Kate Muiry`,
+          reviewDate: `2016-12-25`,
+        },
+        {
+          rating: 8.1,
+          reviewText: `Description`,
+          reviewer: `Kate Muiry`,
+          reviewDate: `2016-12-25`,
+        },
+        {
+          rating: 8.1,
+          reviewText: `Description`,
+          reviewer: `Kate Muiry`,
+          reviewDate: `2016-12-25`,
+        },
+        {
+          rating: 8.1,
+          reviewText: `Description`,
+          reviewer: `Kate Muiry`,
+          reviewDate: `2016-12-25`,
+        },
+        {
+          rating: 8.1,
+          reviewText: `Description`,
+          reviewer: `Kate Muiry`,
+          reviewDate: `2016-12-25`,
+        }
+      ]
     },
     {
       title: `Some Title`,
@@ -42,15 +75,49 @@ const mock = {
       starring: [`Actor1`, `Actor2`],
       id: 4,
       videoSrc: `Some Path`,
+      filmDuration: 99,
+      reviews: [
+        {
+          rating: 8.1,
+          reviewText: `Description`,
+          reviewer: `Kate Muiry`,
+          reviewDate: `2016-12-25`,
+        },
+        {
+          rating: 8.1,
+          reviewText: `Description`,
+          reviewer: `Kate Muiry`,
+          reviewDate: `2016-12-25`,
+        },
+        {
+          rating: 8.1,
+          reviewText: `Description`,
+          reviewer: `Kate Muiry`,
+          reviewDate: `2016-12-25`,
+        },
+        {
+          rating: 8.1,
+          reviewText: `Description`,
+          reviewer: `Kate Muiry`,
+          reviewDate: `2016-12-25`,
+        },
+        {
+          rating: 8.1,
+          reviewText: `Description`,
+          reviewer: `Kate Muiry`,
+          reviewDate: `2016-12-25`,
+        }
+      ]
     },
   ]
 };
 
 it(`<Main /> should render correctly`, () => {
+  const {filmsList, promoFilm} = mock;
   const tree = renderer
     .create(<Main
-      filmsList={mock.filmsList}
-      promoFilm={mock.promoFilm}
+      filmsList={filmsList}
+      promoFilm={promoFilm}
       onMovieCardClick={() => {}}
     />, {
       createNodeMock: () => {
