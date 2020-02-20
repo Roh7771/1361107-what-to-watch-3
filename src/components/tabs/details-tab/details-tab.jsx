@@ -11,6 +11,12 @@ const getStarsListHtml = (stars) => {
   return newStarsList;
 };
 
+const convertFilmDuration = (time) => {
+  const hours = Math.floor(time / 60);
+  const minutes = time % 60;
+  return `${hours}h ${minutes}m`;
+};
+
 const DetailsTab = ({film}) => {
   const {director, starring, filmDuration, genre, releaseYear} = film;
   let newStarsList = [];
@@ -37,7 +43,7 @@ const DetailsTab = ({film}) => {
       <div className="movie-card__text-col">
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Run Time</strong>
-          <span className="movie-card__details-value">{filmDuration}</span>
+          <span className="movie-card__details-value">{convertFilmDuration(filmDuration)}</span>
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Genre</strong>
