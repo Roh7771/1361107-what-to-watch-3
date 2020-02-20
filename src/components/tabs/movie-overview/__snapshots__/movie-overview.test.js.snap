@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<InListTab /> should render correctly 1`] = `
+exports[`<MovieOverview /> should render correctly 1`] = `
 Array [
   <div
     className="movie-rating"

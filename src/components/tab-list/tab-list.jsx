@@ -1,15 +1,15 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import InListTab from "../tabs/in-list-tab/in-list-tab.jsx";
-import DetailsTab from "../tabs/details-tab/details-tab.jsx";
-import ReviewsTab from "../tabs/reviews-tab/reviews-tab.jsx";
+import MovieDetails from "../tabs/movie-details/movie-details.jsx";
+import MovieReviews from "../tabs/movie-reviews/movie-reviews.jsx";
+import MovieOverview from "../tabs/movie-overview/movie-overview.jsx";
 
 class TabList extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentTab: `inList`,
+      currentTab: `movieOverview`,
     };
   }
 
@@ -19,14 +19,14 @@ class TabList extends PureComponent {
 
   _renderTab(currentTab, film) {
     switch (currentTab) {
-      case `inList`:
-        return <InListTab film={film}/>;
+      case `movieOverview`:
+        return <MovieOverview film={film}/>;
 
-      case `details`:
-        return <DetailsTab film={film}/>;
+      case `movieDetails`:
+        return <MovieDetails film={film}/>;
 
-      case `reviews`:
-        return <ReviewsTab film={film}/>;
+      case `movieReviews`:
+        return <MovieReviews film={film}/>;
     }
     return <p>Что-то пошло не так :(</p>;
   }
@@ -38,36 +38,36 @@ class TabList extends PureComponent {
       <div className="movie-card__desc">
         <nav className="movie-nav movie-card__nav">
           <ul className="movie-nav__list">
-            <li className={`movie-nav__item${currentTab === `inList` ? ` movie-nav__item--active` : ``}`}>
+            <li className={`movie-nav__item${currentTab === `movieOverview` ? ` movie-nav__item--active` : ``}`}>
               <a
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  this._handleTabClick(`inList`);
+                  this._handleTabClick(`movieOverview`);
                 }}
                 className="movie-nav__link"
               >
                 Overview
               </a>
             </li>
-            <li className={`movie-nav__item${currentTab === `details` ? ` movie-nav__item--active` : ``}`}>
+            <li className={`movie-nav__item${currentTab === `movieDetails` ? ` movie-nav__item--active` : ``}`}>
               <a
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  this._handleTabClick(`details`);
+                  this._handleTabClick(`movieDetails`);
                 }}
                 className="movie-nav__link"
               >
                 Details
               </a>
             </li>
-            <li className={`movie-nav__item${currentTab === `reviews` ? ` movie-nav__item--active` : ``}`}>
+            <li className={`movie-nav__item${currentTab === `movieReviews` ? ` movie-nav__item--active` : ``}`}>
               <a
                 href="#"
                 onClick={(e) => {
                   e.preventDefault();
-                  this._handleTabClick(`reviews`);
+                  this._handleTabClick(`movieReviews`);
                 }}
                 className="movie-nav__link"
               >

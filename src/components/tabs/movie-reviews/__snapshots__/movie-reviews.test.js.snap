@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ReviewsTab /> should render correctly 1`] = `
+exports[`<MovieReviews /> should render correctly 1`] = `
 <div
   className="movie-card__reviews movie-card__row"
 >

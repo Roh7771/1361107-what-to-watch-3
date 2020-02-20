@@ -20,7 +20,7 @@ const getRatingLevel = (ratingScore) => {
   return `No rating`;
 };
 
-const InListTab = ({film}) => {
+const MovieOverview = ({film}) => {
   return (
     <Fragment>
       <div className="movie-rating">
@@ -52,7 +52,7 @@ const InListTab = ({film}) => {
   );
 };
 
-InListTab.propTypes = {
+MovieOverview.propTypes = {
   film: PropTypes.shape({
     title: PropTypes.string,
     genre: PropTypes.string,
@@ -71,4 +71,4 @@ InListTab.propTypes = {
   })
 };
 
-export default InListTab;
+export default MovieOverview;

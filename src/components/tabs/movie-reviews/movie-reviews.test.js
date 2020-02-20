@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import InListTab from "./in-list-tab.jsx";
+import MovieReviews from "./movie-reviews.jsx";
 
 const mock = {
   film: {
@@ -55,10 +55,10 @@ const mock = {
   },
 };
 
-it(`<InListTab /> should render correctly`, () => {
+it(`<MovieReviews /> should render correctly`, () => {
   const {film} = mock;
   const tree = renderer
-    .create(<InListTab film={film}/>)
+    .create(<MovieReviews film={film}/>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

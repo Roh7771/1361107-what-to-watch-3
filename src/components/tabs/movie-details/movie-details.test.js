@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import DetailsTab from "./details-tab.jsx";
+import MovieDetails from "./movie-details.jsx";
 
 const mock = {
   film: {
@@ -55,10 +55,10 @@ const mock = {
   },
 };
 
-it(`<DetailsTab /> should render correctly`, () => {
+it(`<MovieDetails /> should render correctly`, () => {
   const {film} = mock;
   const tree = renderer
-    .create(<DetailsTab film={film}/>)
+    .create(<MovieDetails film={film}/>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

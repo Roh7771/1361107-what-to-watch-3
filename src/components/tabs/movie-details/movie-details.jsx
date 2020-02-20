@@ -17,7 +17,7 @@ const convertFilmDuration = (time) => {
   return `${hours}h ${minutes}m`;
 };
 
-const DetailsTab = ({film}) => {
+const MovieDetails = ({film}) => {
   const {director, starring, filmDuration, genre, releaseYear} = film;
   let newStarsList = [];
   starring.map((star, i) => [`${star}, `, <br key={`${i}-${star}`}></br>]).forEach((arr) => {
@@ -58,7 +58,7 @@ const DetailsTab = ({film}) => {
   );
 };
 
-DetailsTab.propTypes = {
+MovieDetails.propTypes = {
   film: PropTypes.shape({
     title: PropTypes.string,
     genre: PropTypes.string,
@@ -77,4 +77,4 @@ DetailsTab.propTypes = {
   })
 };
 
-export default DetailsTab;
+export default MovieDetails;

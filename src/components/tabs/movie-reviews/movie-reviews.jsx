@@ -7,7 +7,7 @@ const convertDate = (date) => {
   return `${monthsArr[dateArr[1] - 1]} ${dateArr[2]}, ${dateArr[0]}`;
 };
 
-const ReviewsTab = ({film}) => {
+const MovieReviews = ({film}) => {
   const reviewSecondPart = [...film.reviews];
   const reviewsFirstPart = reviewSecondPart.splice(0, Math.ceil(reviewSecondPart.length / 2));
   return (
@@ -54,7 +54,7 @@ const ReviewsTab = ({film}) => {
   );
 };
 
-ReviewsTab.propTypes = {
+MovieReviews.propTypes = {
   film: PropTypes.shape({
     title: PropTypes.string,
     genre: PropTypes.string,
@@ -73,4 +73,4 @@ ReviewsTab.propTypes = {
   })
 };
 
-export default ReviewsTab;
+export default MovieReviews;
