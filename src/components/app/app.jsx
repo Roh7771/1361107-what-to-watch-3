@@ -25,7 +25,7 @@ class App extends React.PureComponent {
 
     if (chosenFilm) {
       return (
-        <MoviePage film={chosenFilm} />
+        <MoviePage film={chosenFilm} onMovieCardClick={this._handlerMovieCardClick} filmsList={filmsList} />
       );
     }
 
@@ -39,6 +39,7 @@ class App extends React.PureComponent {
   }
 
   render() {
+    const {filmsList} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -46,7 +47,7 @@ class App extends React.PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-movie-page">
-            <MoviePage film={this.state.chosenFilm ? this.state.chosenFilm : this.props.filmsList[0]}/>
+            <MoviePage onMovieCardClick={this._handlerMovieCardClick} filmsList={filmsList} film={this.state.chosenFilm ? this.state.chosenFilm : this.props.filmsList[0]}/>
           </Route>
           <Route exact path="/dev-video-player">
             <VideoPlayer posterSrc="img/revenant.jpg" isPlaying={false} videoSrc="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"/>
@@ -63,13 +64,22 @@ App.propTypes = {
     promoFilmGenre: PropTypes.string,
     promoFilmReleaseYear: PropTypes.number
   }).isRequired,
-  filmsList: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string,
-        imgSrc: PropTypes.string,
-        id: PropTypes.id
-      })
-  ).isRequired
+  filmsList: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    genre: PropTypes.string,
+    releaseYear: PropTypes.number,
+    imgSrc: PropTypes.string,
+    bgSrc: PropTypes.string,
+    posterSrc: PropTypes.string,
+    ratingScore: PropTypes.number,
+    ratingCount: PropTypes.number,
+    description: PropTypes.arrayOf(PropTypes.string),
+    director: PropTypes.string,
+    starring: PropTypes.arrayOf(PropTypes.string),
+    id: PropTypes.number,
+    filmDuration: PropTypes.number,
+    reviews: PropTypes.array,
+  })).isRequired,
 };
 
 export default App;

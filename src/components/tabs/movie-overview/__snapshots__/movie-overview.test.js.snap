@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MovieOverview /> should render correctly 1`] = `
+Array [
+  <div
+    className="movie-rating"
+  >
+    <div
+      className="movie-rating__score"
+    >
+      8,7
+    </div>
+    <p
+      className="movie-rating__meta"
+    >
+      <span
+        className="movie-rating__level"
+      >
+        Very good
+      </span>
+      <span
+        className="movie-rating__count"
+      >
+        230 ratings
+      </span>
+    </p>
+  </div>,
+  <div
+    className="movie-card__text"
+  >
+    <p>
+      Some description
+    </p>
+    <p
+      className="movie-card__director"
+    >
+      <strong>
+        Director: Some cool directot
+      </strong>
+    </p>
+    <p
+      className="movie-card__starring"
+    >
+      <strong>
+        Starring: Actor1, Actor2 and other
+      </strong>
+    </p>
+  </div>,
+]
+`;

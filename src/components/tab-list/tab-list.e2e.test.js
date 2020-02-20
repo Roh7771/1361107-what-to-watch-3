@@ -1,6 +1,7 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import MovieCard from "./movie-card.jsx";
+import Enzyme, {shallow} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import TabList from "./tab-list.jsx";
 
 const mock = {
   film: {
@@ -55,23 +56,20 @@ const mock = {
   }
 };
 
-it(`<MovieCard /> should render correctly`, () => {
-  const tree = renderer
-    .create(
-        <MovieCard
-          film={mock.film}
-          onFilmMouseOut={() => {}}
-          onFilmMouseOver={() => {}}
-          onMovieCardClick={() => {}}
-          activeCard={mock.film}
-        />,
-        {
-          createNodeMock: () => {
-            return {};
-          }
-        }
-    )
-    .toJSON();
-
-  expect(tree).toMatchSnapshot();
+Enzyme.configure({
+  adapter: new Adapter()
 });
+
+it(`Should change change tab after tab button click`, () => {
+  const tabList = shallow(
+      <TabList film={mock.film}/>
+  );
+
+  expect(tabList.state(`currentTab`)).toBe(`movieOverview`);
+
+  const secondTabButton = tabList.find(`.movie-nav__link`).at(1);
+  secondTabButton.simulate(`click`, {preventDefault() {}});
+
+  expect(tabList.state(`currentTab`)).toBe(`movieDetails`);
+});
+
