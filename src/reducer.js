@@ -11,7 +11,7 @@ const initialState = {
 
 const ActionTypes = {
   CHANGE_GENRE: `CHANGE_GENRE`,
-  GET_NEW_FILMS_LIST: `SET_NEW_FILMS_LIST`,
+  SET_NEW_FILMS_LIST: `SET_NEW_FILMS_LIST`,
 };
 
 const ActionCreators = {
@@ -21,7 +21,7 @@ const ActionCreators = {
   }),
 
   setNewFilmsList: () => ({
-    type: ActionTypes.GET_NEW_FILMS_LIST
+    type: ActionTypes.SET_NEW_FILMS_LIST
   }),
 };
 
@@ -32,7 +32,7 @@ const reducer = (state = initialState, action) => {
         currentGenre: action.payload,
       });
 
-    case ActionTypes.GET_NEW_FILMS_LIST:
+    case ActionTypes.SET_NEW_FILMS_LIST:
       const {currentGenre, filmsList} = state;
 
       if (currentGenre === `All genres`) {
