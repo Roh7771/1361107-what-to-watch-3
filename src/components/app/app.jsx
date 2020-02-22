@@ -4,6 +4,7 @@ import {BrowserRouter, Switch, Route} from "react-router-dom";
 import PropTypes from "prop-types";
 import MoviePage from "../movie-page/movie-page.jsx";
 import VideoPlayer from "../video-player/video-player.jsx";
+import {connect} from "react-redux";
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -31,7 +32,6 @@ class App extends React.PureComponent {
 
     return (
       <Main
-        filmsList={filmsList}
         promoFilm={promoFilm}
         onMovieCardClick={this._handlerMovieCardClick}
       />
@@ -82,4 +82,11 @@ App.propTypes = {
   })).isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  promoFilm: state.promoFilm,
+  filmsList: state.filmsList
+});
+
+export {App};
+
+export default connect(mapStateToProps)(App);
