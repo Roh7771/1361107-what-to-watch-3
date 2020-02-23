@@ -121,6 +121,7 @@ it(`<App /> should render correctly`, () => {
   const store = mockStore({
     currentGenre: `All genres`,
     filmsToRender: filmsList,
+    filmsToShowCount: 8
   });
   const tree = renderer
     .create(

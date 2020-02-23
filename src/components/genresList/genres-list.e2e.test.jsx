@@ -1,5 +1,4 @@
 import React from "react";
-import renderer from "react-test-renderer";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import {GenresList} from "./genres-list.jsx";
@@ -35,16 +34,4 @@ describe(`<GenreList />`, () => {
     secondButton.simulate(`click`, {preventDefault() {}});
     expect(onGenreButtonClick.mock.calls[0][0]).toBe(secondButton.text());
   });
-});
-
-it(`<GenreList /> should render correctly`, () => {
-  const tree = renderer
-    .create(
-        <GenresList
-          currentGenre={`All genres`}
-          onGenreButtonClick={() => {}}
-        />
-    )
-    .toJSON();
-  expect(tree).toMatchSnapshot();
 });

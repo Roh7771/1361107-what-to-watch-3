@@ -120,7 +120,8 @@ it(`<Main /> should render correctly`, () => {
   const {promoFilm, filmsList} = mock;
   const store = mockStore({
     currentGenre: `All genres`,
-    filmsToRender: filmsList
+    filmsToRender: filmsList,
+    filmsToShowCount: 8
   });
   const tree = renderer
     .create(
