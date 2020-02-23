@@ -1,17 +1,9 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import {Provider} from "react-redux";
-import configureStore from "redux-mock-store";
-import {App} from "./app.jsx";
-
-const mockStore = configureStore([]);
+import Enzyme, {shallow} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import {ShowMoreFilms} from "./show-more-films.jsx";
 
 const mock = {
-  promoFilm: {
-    promoFilmTitle: `Promo Film`,
-    promoFilmGenre: `Comedy`,
-    promoFilmReleaseYear: 2020,
-  },
   filmsList: [
     {
       title: `Some Title`,
@@ -112,30 +104,43 @@ const mock = {
           reviewDate: `2016-12-25`,
         }
       ]
-    },
+    }
   ]
 };
 
-it(`<App /> should render correctly`, () => {
-  const {filmsList, promoFilm} = mock;
-  const store = mockStore({
-    currentGenre: `All genres`,
-    filmsToRender: filmsList,
-    filmsToShowCount: 8
-  });
-  const tree = renderer
-    .create(
-        <Provider store={store}>
-          <App
-            filmsList={filmsList}
-            promoFilm={promoFilm}
-          />
-        </Provider>, {
-          createNodeMock: () => {
-            return {};
-          }
-        })
-    .toJSON();
+Enzyme.configure({
+  adapter: new Adapter()
+});
 
-  expect(tree).toMatchSnapshot();
+describe(`Show more films button`, () => {
+  const showMoreFilmsWrapper = (filmsToShowCount, onMoreFilmsButtonClick, filmsToRender) => {
+    return shallow(
+        <ShowMoreFilms
+          onMoreFilmsButtonClick={onMoreFilmsButtonClick}
+          filmsToRender={filmsToRender}
+          filmsToShowCount={filmsToShowCount}
+        />
+    );
+  };
+
+  it(`exists and works when filmsList length bigger than filmsToShowCount`, () => {
+    const onMoreFilmsButtonClick = jest.fn();
+
+    const showMoreFilms = showMoreFilmsWrapper(1, onMoreFilmsButtonClick, mock.filmsList);
+
+    const showMoreFilmsButton = showMoreFilms.find(`.catalog__button`);
+
+    showMoreFilmsButton.simulate(`click`);
+
+    expect(onMoreFilmsButtonClick.mock.calls.length).toBe(1);
+    expect(showMoreFilmsButton.prop(`style`)).toBeFalsy();
+  });
+
+  it(`shouldn't exist when films list is small`, () => {
+    expect(showMoreFilmsWrapper(8, ()=>{}, mock.filmsList).find(`.catalog__more`).prop(`style`)).toHaveProperty(`display`, `none`);
+  });
+
+  it(`shouldn't exist when films list is empty`, () => {
+    expect(showMoreFilmsWrapper(8, ()=>{}, []).find(`.catalog__more`).prop(`style`)).toHaveProperty(`display`, `none`);
+  });
 });

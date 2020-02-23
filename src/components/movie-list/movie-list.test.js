@@ -110,7 +110,7 @@ const mock = {
 it(`<MovieList /> should render correctly`, () => {
   const tree = renderer
     .create(
-        <MovieList filmsList={mock.filmsList} onMovieCardClick={() => {}} />,
+        <MovieList filmsToShowCount={8} filmsList={mock.filmsList} onMovieCardClick={() => {}} />,
         {
           createNodeMock: () => {
             return {};

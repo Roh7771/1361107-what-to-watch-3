@@ -1,17 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {Provider} from "react-redux";
-import configureStore from "redux-mock-store";
-import {App} from "./app.jsx";
-
-const mockStore = configureStore([]);
+import {ShowMoreFilms} from "./show-more-films.jsx";
 
 const mock = {
-  promoFilm: {
-    promoFilmTitle: `Promo Film`,
-    promoFilmGenre: `Comedy`,
-    promoFilmReleaseYear: 2020,
-  },
   filmsList: [
     {
       title: `Some Title`,
@@ -112,30 +103,19 @@ const mock = {
           reviewDate: `2016-12-25`,
         }
       ]
-    },
+    }
   ]
 };
 
-it(`<App /> should render correctly`, () => {
-  const {filmsList, promoFilm} = mock;
-  const store = mockStore({
-    currentGenre: `All genres`,
-    filmsToRender: filmsList,
-    filmsToShowCount: 8
-  });
+it(`<GenreList /> should render correctly`, () => {
   const tree = renderer
     .create(
-        <Provider store={store}>
-          <App
-            filmsList={filmsList}
-            promoFilm={promoFilm}
-          />
-        </Provider>, {
-          createNodeMock: () => {
-            return {};
-          }
-        })
+        <ShowMoreFilms
+          filmsToShowCount={1}
+          onMoreFilmsButtonClick={() => {}}
+          filmsToRender={mock.filmsList}
+        />
+    )
     .toJSON();
-
   expect(tree).toMatchSnapshot();
 });
