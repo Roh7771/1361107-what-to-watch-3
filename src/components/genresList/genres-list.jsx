@@ -40,6 +40,7 @@ const mapDispatchToProps = (dispatch) => ({
   onGenreButtonClick: (genre) => {
     dispatch(ActionCreators.changeGenre(genre));
     dispatch(ActionCreators.setNewFilmsList());
+    dispatch(ActionCreators.resetFilmsCount());
   }
 });
 

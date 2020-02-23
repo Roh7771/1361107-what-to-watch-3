@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import MovieList from "../movie-list/movie-list.jsx";
 import GenresList from "../genresList/genres-list.jsx";
+import ShowMoreFilms from "../show-more-films/show-more-films.jsx";
 
 const Main = ({promoFilm, onMovieCardClick}) => {
   const {
@@ -100,11 +101,7 @@ const Main = ({promoFilm, onMovieCardClick}) => {
             />
           </div>
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">
-              Show more
-            </button>
-          </div>
+          <ShowMoreFilms/>
         </section>
       </div>
     </React.Fragment>
