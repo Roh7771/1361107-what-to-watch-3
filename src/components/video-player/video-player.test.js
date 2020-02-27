@@ -16,7 +16,9 @@ it(`<VideoPlayer /> should render correctly`, () => {
           isPlaying={isPlaying}
           videoSrc={videoSrc}
           posterSrc={posterSrc}
-        />,
+        >
+          <video/>
+        </VideoPlayer>,
         {
           createNodeMock: () => {
             return {};
