@@ -5,58 +5,40 @@ import PropTypes from "prop-types";
 import MoviePage from "../movie-page/movie-page.jsx";
 import VideoPlayer from "../video-player/video-player.jsx";
 import {connect} from "react-redux";
+import {ActionCreators} from "../../reducer.js";
 
-class App extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {chosenFilm: null};
-    this._renderApp = this._renderApp.bind(this);
-    this._handlerMovieCardClick = this._handlerMovieCardClick.bind(this);
-  }
-
-  _handlerMovieCardClick(chosenFilm) {
-    this.setState({
-      chosenFilm
-    });
-  }
-
-  _renderApp() {
-    const {filmsList, promoFilm} = this.props;
-    const {chosenFilm} = this.state;
-
+const App = ({filmsList, promoFilm, chosenFilm, onMovieCardClick}) => {
+  const renderApp = () => {
     if (chosenFilm) {
       return (
-        <MoviePage film={chosenFilm} onMovieCardClick={this._handlerMovieCardClick} filmsList={filmsList} />
+        <MoviePage film={chosenFilm} onMovieCardClick={onMovieCardClick} filmsList={filmsList} />
       );
     }
 
     return (
       <Main
         promoFilm={promoFilm}
-        onMovieCardClick={this._handlerMovieCardClick}
+        onMovieCardClick={onMovieCardClick}
       />
     );
-  }
+  };
 
-  render() {
-    const {filmsList} = this.props;
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
-          </Route>
-          <Route exact path="/dev-movie-page">
-            <MoviePage onMovieCardClick={this._handlerMovieCardClick} filmsList={filmsList} film={this.state.chosenFilm ? this.state.chosenFilm : this.props.filmsList[0]}/>
-          </Route>
-          <Route exact path="/dev-video-player">
-            <VideoPlayer posterSrc="img/revenant.jpg" isPlaying={false} videoSrc="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"/>
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          {renderApp()}
+        </Route>
+        <Route exact path="/dev-movie-page">
+          <MoviePage onMovieCardClick={onMovieCardClick} filmsList={filmsList} film={chosenFilm ? chosenFilm : filmsList[0]}/>
+        </Route>
+        <Route exact path="/dev-video-player">
+          <VideoPlayer posterSrc="img/revenant.jpg" isPlaying={false} videoSrc="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"/>
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  );
+};
 
 App.propTypes = {
   promoFilm: PropTypes.shape({
@@ -80,13 +62,23 @@ App.propTypes = {
     filmDuration: PropTypes.number,
     reviews: PropTypes.array,
   })).isRequired,
+  chosenFilm: PropTypes.object,
+  onMovieCardClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   promoFilm: state.promoFilm,
-  filmsList: state.filmsList
+  filmsList: state.filmsList,
+  chosenFilm: state.chosenFilm
 });
+
+const mapDispatchToProps = (dispatch) => ({
+  onMovieCardClick: (chosenFilm) => {
+    dispatch(ActionCreators.setChosenFilm(chosenFilm));
+  }
+});
+
 
 export {App};
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

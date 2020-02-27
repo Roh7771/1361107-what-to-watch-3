@@ -116,26 +116,56 @@ const mock = {
   ]
 };
 
-it(`<App /> should render correctly`, () => {
-  const {filmsList, promoFilm} = mock;
-  const store = mockStore({
-    currentGenre: `All genres`,
-    filmsToRender: filmsList,
-    filmsToShowCount: 8
-  });
-  const tree = renderer
-    .create(
-        <Provider store={store}>
-          <App
-            filmsList={filmsList}
-            promoFilm={promoFilm}
-          />
-        </Provider>, {
-          createNodeMock: () => {
-            return {};
-          }
-        })
-    .toJSON();
+describe(`App should`, () => {
+  it(`render main screen`, () => {
+    const {filmsList, promoFilm} = mock;
+    const store = mockStore({
+      currentGenre: `All genres`,
+      filmsToRender: filmsList,
+      filmsToShowCount: 8
+    });
+    const tree = renderer
+      .create(
+          <Provider store={store}>
+            <App
+              filmsList={filmsList}
+              promoFilm={promoFilm}
+              onMovieCardClick={(() => {})}
+              chosenFilm={null}
+            />
+          </Provider>, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
+      .toJSON();
 
-  expect(tree).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`render movie page screen`, () => {
+    const {filmsList, promoFilm} = mock;
+    const store = mockStore({
+      currentGenre: `All genres`,
+      filmsToRender: filmsList,
+      filmsToShowCount: 8
+    });
+    const tree = renderer
+      .create(
+          <Provider store={store}>
+            <App
+              filmsList={filmsList}
+              promoFilm={promoFilm}
+              onMovieCardClick={(() => {})}
+              chosenFilm={filmsList[0]}
+            />
+          </Provider>, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
 });
