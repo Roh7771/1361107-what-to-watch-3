@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import VideoPlayer from "../video-player/video-player.jsx";
+import Player from "../video-player/video-player.jsx";
+import withVideo from "../../hocs/with-video/with-video.js";
+
+const VideoPlayer = withVideo(Player);
 
 let timer;
 
