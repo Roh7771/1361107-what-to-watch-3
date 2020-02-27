@@ -2,6 +2,9 @@ import React, {Fragment} from "react";
 import PropTypes from 'prop-types';
 import TabList from "../tab-list/tab-list.jsx";
 import MoreLikeThis from "../more-like-this/more-like-this.jsx";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+
+const TabListWrapper = withActiveItem(TabList);
 
 const MoviePage = ({film, onMovieCardClick, filmsList}) => {
   return (
@@ -62,7 +65,7 @@ const MoviePage = ({film, onMovieCardClick, filmsList}) => {
             <div className="movie-card__poster movie-card__poster--big">
               <img src={film.posterSrc} alt={`${film.title} poster`} width="218" height="327" />
             </div>
-            <TabList film={film}/>
+            <TabListWrapper activeItem={`movieOverview`} film={film}/>
           </div>
         </div>
       </section>

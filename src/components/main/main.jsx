@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import MovieList from "../movie-list/movie-list.jsx";
 import GenresList from "../genresList/genres-list.jsx";
 import ShowMoreFilms from "../show-more-films/show-more-films.jsx";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+
+const MovieListWrapper = withActiveItem(MovieList);
 
 const Main = ({promoFilm, onMovieCardClick}) => {
   const {
@@ -96,8 +99,9 @@ const Main = ({promoFilm, onMovieCardClick}) => {
           <GenresList />
 
           <div className="catalog__movies-list">
-            <MovieList
+            <MovieListWrapper
               onMovieCardClick={onMovieCardClick}
+              activeItem={{}}
             />
           </div>
 
