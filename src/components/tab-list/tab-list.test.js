@@ -58,7 +58,7 @@ const mock = {
 it(`<TabList /> should render correctly`, () => {
   const {film} = mock;
   const tree = renderer
-    .create(<TabList film={film}/>)
+    .create(<TabList activeItem={``} onActiveItemChange={() => {}} film={film}/>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

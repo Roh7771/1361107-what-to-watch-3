@@ -9,7 +9,8 @@ describe(`Reducer`, () => {
       filmsList: films,
       filmsToRender: films,
       promoFilm: settings.PROMO_FILM,
-      filmsToShowCount: 8
+      filmsToShowCount: 8,
+      chosenFilm: null,
     });
   });
 
@@ -28,6 +29,12 @@ describe(`Reducer`, () => {
   it(`shows more films`, () => {
     expect(reducer({filmsToShowCount: 8}, {type: ActionTypes.SHOW_MORE_FILMS, payload: 8})).toEqual({
       filmsToShowCount: 16
+    });
+  });
+
+  it(`sets chosen film`, () => {
+    expect(reducer({chosenFilm: null}, {type: ActionTypes.SET_CHOSEN_FILM, payload: {title: `Film`}})).toEqual({
+      chosenFilm: {title: `Film`}
     });
   });
 
@@ -153,6 +160,15 @@ describe(`ActionCreators`, () => {
     expect(ActionCreators.setNewFilmsList()).toEqual(
         {
           type: ActionTypes.SET_NEW_FILMS_LIST,
+        }
+    );
+  });
+
+  it(`for setting chosen film returns correct action`, () => {
+    expect(ActionCreators.setChosenFilm(films[0])).toEqual(
+        {
+          type: ActionTypes.SET_CHOSEN_FILM,
+          payload: films[0]
         }
     );
   });

@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MovieList from '../movie-list/movie-list.jsx';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
+
+const MovieListWrapper = withActiveItem(MovieList);
 
 const MoreLikeThis = ({onMovieCardClick, currentFilm, filmsList}) => {
   const filteredFilmsList = filmsList.filter((film) => currentFilm.genre === film.genre && film.title !== currentFilm.title);
@@ -13,7 +16,7 @@ const MoreLikeThis = ({onMovieCardClick, currentFilm, filmsList}) => {
         <h2 className="catalog__title">More like this</h2>
 
         <div className="catalog__movies-list">
-          {filteredFilmsList.length === 0 ? <p>Sorry, there is no more films :(</p> : <MovieList onMovieCardClick={onMovieCardClick} filmsList={filteredFilmsList}/>}
+          {filteredFilmsList.length === 0 ? <p>Sorry, there is no more films :(</p> : <MovieListWrapper activeItem={{}} onMovieCardClick={onMovieCardClick} filmsList={filteredFilmsList}/>}
         </div>
       </section>
     </div>

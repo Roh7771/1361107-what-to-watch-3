@@ -1,6 +1,11 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import VideoPlayer from "../video-player/video-player.jsx";
+import Player from "../video-player/video-player.jsx";
+import withVideo from "../../hocs/with-video/with-video.js";
+
+const VideoPlayer = withVideo(Player);
+
+let timer;
 
 const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick, activeCard}) => {
   const {title, imgSrc, videoSrc} = film;
@@ -8,12 +13,16 @@ const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick, act
   return (
     <article
       onMouseEnter={() => {
-        onFilmMouseOver(film);
+        timer = setTimeout(() => {
+          onFilmMouseOver(film);
+        }, 1000);
       }}
       onMouseLeave={() => {
-        onFilmMouseOut();
+        clearTimeout(timer);
+        onFilmMouseOut({});
       }}
       onClick={() => {
+        clearTimeout(timer);
         onMovieCardClick(film);
       }}
       className="small-movie-card catalog__movies-card"

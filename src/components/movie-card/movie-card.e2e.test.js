@@ -100,7 +100,9 @@ it(`HandlerOnMouseEnter get correct data`, () => {
   const card = movieCard.find(`article`);
   card.simulate(`mouseEnter`);
 
-  expect(handlerOnMouseEnter.mock.calls.length).toBe(1);
-  expect(handlerOnMouseEnter.mock.calls[0][0]).toMatchObject(mock.film);
+  setTimeout(() => {
+    expect(handlerOnMouseEnter.mock.calls.length).toBe(1);
+    expect(handlerOnMouseEnter.mock.calls[0][0]).toMatchObject(mock.film);
+  }, 1100);
 });
 
