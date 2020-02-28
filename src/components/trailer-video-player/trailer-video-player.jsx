@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 
-const VideoPlayer = ({children}) => {
+const TrailerVideoPlayer = ({children}) => {
   return (
     <Fragment>
       {children}
@@ -9,12 +9,12 @@ const VideoPlayer = ({children}) => {
   );
 };
 
-VideoPlayer.propTypes = {
+TrailerVideoPlayer.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.node.isRequired,
     PropTypes.arrayOf(PropTypes.node),
   ]).isRequired,
 };
 
-export default VideoPlayer;
+export default TrailerVideoPlayer;
 

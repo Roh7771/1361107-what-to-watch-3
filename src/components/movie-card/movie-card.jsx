@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import Player from "../video-player/video-player.jsx";
+import Player from "../trailer-video-player/trailer-video-player.jsx";
 import withVideo from "../../hocs/with-video/with-video.js";
 
 const VideoPlayer = withVideo(Player);
@@ -28,7 +28,14 @@ const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick, act
       className="small-movie-card catalog__movies-card"
     >
       <div className="small-movie-card__image">
-        <VideoPlayer isPlaying={activeCard === film} videoSrc={videoSrc} posterSrc={imgSrc}/>
+        <VideoPlayer
+          isPlaying={activeCard === film}
+          videoSrc={videoSrc}
+          posterSrc={imgSrc}
+          isMuted
+          widthAtr={280}
+          heightAtr={175}
+        />
       </div>
       <h3 className="small-movie-card__title">
         <a

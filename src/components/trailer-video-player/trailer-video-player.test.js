@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import VideoPlayer from "./video-player";
+import VideoPlayer from "./trailer-video-player";
 
 const mock = {
   isPlaying: true,
@@ -8,7 +8,7 @@ const mock = {
   posterSrc: `somePath`
 };
 
-it(`<VideoPlayer /> should render correctly`, () => {
+it(`<TrailerVideoPlayer /> should render correctly`, () => {
   const {isPlaying, videoSrc, posterSrc} = mock;
   const tree = renderer
     .create(
