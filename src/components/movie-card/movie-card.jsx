@@ -35,6 +35,7 @@ const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick, act
           isMuted
           widthAtr={280}
           heightAtr={175}
+          type={`trailer`}
         />
       </div>
       <h3 className="small-movie-card__title">
