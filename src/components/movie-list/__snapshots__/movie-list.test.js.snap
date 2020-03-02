@@ -13,10 +13,11 @@ Array [
     >
       <video
         alt=""
-        height="175"
+        className=""
+        height={175}
         poster="Some Path"
         src="Some Path"
-        width="280"
+        width={280}
       />
     </div>
     <h3
@@ -42,10 +43,11 @@ Array [
     >
       <video
         alt=""
-        height="175"
+        className=""
+        height={175}
         poster="Some Path"
         src="Some Path"
-        width="280"
+        width={280}
       />
     </div>
     <h3

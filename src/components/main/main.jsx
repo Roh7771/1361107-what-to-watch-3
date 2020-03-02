@@ -7,13 +7,14 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
 const MovieListWrapper = withActiveItem(MovieList);
 
-const Main = ({promoFilm, onMovieCardClick}) => {
+const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick}) => {
   const {
     promoFilmTitle,
     promoFilmReleaseYear,
     promoFilmGenre,
     promoFilmBgSrc,
-    promoFilmPosterSrc
+    promoFilmPosterSrc,
+    promoFilmVideoSrc
   } = promoFilm;
 
   return (
@@ -69,6 +70,13 @@ const Main = ({promoFilm, onMovieCardClick}) => {
 
               <div className="movie-card__buttons">
                 <button
+                  onClick={() => {
+                    onPlayFilmButtonClick({
+                      title: promoFilmTitle,
+                      posterSrc: promoFilmPosterSrc,
+                      videoSrc: promoFilmVideoSrc
+                    });
+                  }}
                   className="btn btn--play movie-card__button"
                   type="button"
                 >
@@ -102,6 +110,7 @@ const Main = ({promoFilm, onMovieCardClick}) => {
             <MovieListWrapper
               onMovieCardClick={onMovieCardClick}
               activeItem={{}}
+              onPlayFilmButtonClick={() => {}}
             />
           </div>
 
@@ -119,8 +128,10 @@ Main.propTypes = {
     promoFilmReleaseYear: PropTypes.number,
     promoFilmPosterSrc: PropTypes.string,
     promoFilmBgSrc: PropTypes.string,
+    promoFilmVideoSrc: PropTypes.string,
   }).isRequired,
-  onMovieCardClick: PropTypes.func.isRequired
+  onMovieCardClick: PropTypes.func.isRequired,
+  onPlayFilmButtonClick: PropTypes.func.isRequired,
 };
 
 export default Main;

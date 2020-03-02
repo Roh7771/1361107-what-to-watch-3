@@ -6,7 +6,7 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
 const TabListWrapper = withActiveItem(TabList);
 
-const MoviePage = ({film, onMovieCardClick, filmsList}) => {
+const MoviePage = ({film, onMovieCardClick, filmsList, onPlayFilmButtonClick}) => {
   return (
     <Fragment>
       <section className="movie-card movie-card--full">
@@ -42,7 +42,13 @@ const MoviePage = ({film, onMovieCardClick, filmsList}) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button
+                  onClick={() => {
+                    onPlayFilmButtonClick(film);
+                  }}
+                  className="btn btn--play movie-card__button"
+                  type="button"
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -108,6 +114,7 @@ MoviePage.propTypes = {
     filmDuration: PropTypes.number,
     reviews: PropTypes.array,
   })).isRequired,
+  onPlayFilmButtonClick: PropTypes.func.isRequired,
 };
 
 export default MoviePage;

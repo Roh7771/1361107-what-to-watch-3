@@ -11,12 +11,19 @@ describe(`Reducer`, () => {
       promoFilm: settings.PROMO_FILM,
       filmsToShowCount: 8,
       chosenFilm: null,
+      filmToWatch: null
     });
   });
 
   it(`sets currentGenre correctly`, () => {
     expect(reducer({currentGenre: `All genres`}, {type: ActionTypes.CHANGE_GENRE, payload: `Comedies`})).toEqual({
       currentGenre: `Comedies`,
+    });
+  });
+
+  it(`sets film to watch correctly`, () => {
+    expect(reducer({filmToWatch: null}, {type: ActionTypes.SET_FILM_TO_WATCH, payload: {title: `Some Film`}})).toEqual({
+      filmToWatch: {title: `Some Film`},
     });
   });
 
@@ -153,6 +160,13 @@ describe(`ActionCreators`, () => {
     expect(ActionCreators.changeGenre(`Comedies`)).toEqual({
       type: ActionTypes.CHANGE_GENRE,
       payload: `Comedies`,
+    });
+  });
+
+  it(`for setting film to watch returns correct action`, () => {
+    expect(ActionCreators.setFilmToWatch({title: `Some Film`})).toEqual({
+      type: ActionTypes.SET_FILM_TO_WATCH,
+      payload: {title: `Some Film`},
     });
   });
 

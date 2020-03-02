@@ -132,6 +132,7 @@ describe(`App should`, () => {
               promoFilm={promoFilm}
               onMovieCardClick={(() => {})}
               chosenFilm={null}
+              onPlayFilmButtonClick={() => {}}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -156,8 +157,37 @@ describe(`App should`, () => {
             <App
               filmsList={filmsList}
               promoFilm={promoFilm}
-              onMovieCardClick={(() => {})}
+              onMovieCardClick={() => {}}
               chosenFilm={filmsList[0]}
+              onPlayFilmButtonClick={() => {}}
+            />
+          </Provider>, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`render movie video player`, () => {
+    const {filmsList, promoFilm} = mock;
+    const store = mockStore({
+      currentGenre: `All genres`,
+      filmsToRender: filmsList,
+      filmsToShowCount: 8
+    });
+    const tree = renderer
+      .create(
+          <Provider store={store}>
+            <App
+              filmsList={filmsList}
+              promoFilm={promoFilm}
+              onMovieCardClick={() => {}}
+              chosenFilm={filmsList[0]}
+              onPlayFilmButtonClick={() => {}}
+              filmToWatch={filmsList[0]}
             />
           </Provider>, {
             createNodeMock: () => {

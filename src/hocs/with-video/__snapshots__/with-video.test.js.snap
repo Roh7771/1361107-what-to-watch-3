@@ -4,10 +4,11 @@ exports[`withVideo is rendered correctly 1`] = `
 <div>
   <video
     alt=""
-    height="175"
+    className=""
+    height={null}
     poster=""
     src=""
-    width="280"
+    width={null}
   />
 </div>
 `;
