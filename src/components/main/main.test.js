@@ -129,6 +129,7 @@ it(`<Main /> should render correctly`, () => {
           <Main
             promoFilm={promoFilm}
             onMovieCardClick={() => {}}
+            onPlayFilmButtonClick={() => {}}
           />
         </Provider>, {
           createNodeMock: () => {

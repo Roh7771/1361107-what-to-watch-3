@@ -27,6 +27,7 @@ it(`withVideo is rendered correctly`, () => {
       isPlaying={false}
       posterSrc=""
       videoSrc=""
+      type={`movie`}
     />
   ), {
     createNodeMock() {

@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import VideoPlayer from "./trailer-video-player";
+import TrailerVideoPlayer from "./trailer-video-player";
 
 const mock = {
   isPlaying: true,
@@ -12,13 +12,13 @@ it(`<TrailerVideoPlayer /> should render correctly`, () => {
   const {isPlaying, videoSrc, posterSrc} = mock;
   const tree = renderer
     .create(
-        <VideoPlayer
+        <TrailerVideoPlayer
           isPlaying={isPlaying}
           videoSrc={videoSrc}
           posterSrc={posterSrc}
         >
           <video/>
-        </VideoPlayer>,
+        </TrailerVideoPlayer>,
         {
           createNodeMock: () => {
             return {};

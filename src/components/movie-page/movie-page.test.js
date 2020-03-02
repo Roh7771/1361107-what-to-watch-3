@@ -160,7 +160,7 @@ const mock = {
 it(`<MoviePage /> should render correctly`, () => {
   const {film, filmsList} = mock;
   const tree = renderer
-    .create(<MoviePage filmsList={filmsList} onMovieCardClick={() => {}} film={film}/>)
+    .create(<MoviePage onPlayFilmButtonClick={() => {}} filmsList={filmsList} onMovieCardClick={() => {}} film={film}/>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();
