@@ -9,6 +9,7 @@ const initialState = {
   promoFilm: settings.PROMO_FILM,
   filmsToShowCount: 8,
   chosenFilm: null,
+  filmToWatch: null
 };
 
 const ActionTypes = {
@@ -16,10 +17,16 @@ const ActionTypes = {
   SET_NEW_FILMS_LIST: `SET_NEW_FILMS_LIST`,
   SHOW_MORE_FILMS: `SHOW_MORE_FILMS`,
   RESET_FILMS_COUNT: `RESET_FILMS_COUNT`,
-  SET_CHOSEN_FILM: `SET_CHOSEN_FILM`
+  SET_CHOSEN_FILM: `SET_CHOSEN_FILM`,
+  SET_FILM_TO_WATCH: `SET_FILM_TO_WATCH`
 };
 
 const ActionCreators = {
+  setFilmToWatch: (film) => ({
+    type: ActionTypes.SET_FILM_TO_WATCH,
+    payload: film
+  }),
+
   setChosenFilm: (chosenFilm) => ({
     type: ActionTypes.SET_CHOSEN_FILM,
     payload: chosenFilm
@@ -49,6 +56,11 @@ const reducer = (state = initialState, action) => {
     case ActionTypes.RESET_FILMS_COUNT:
       return extend(state, {
         filmsToShowCount: 8
+      });
+
+    case ActionTypes.SET_FILM_TO_WATCH:
+      return extend(state, {
+        filmToWatch: action.payload
       });
 
     case ActionTypes.SHOW_MORE_FILMS:
