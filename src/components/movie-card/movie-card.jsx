@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import Player from "../trailer-video-player/trailer-video-player.jsx";
+import Player from "../movie-video-player/movie-video-player.jsx";
 import withVideo from "../../hocs/with-video/with-video.js";
 
 const VideoPlayer = withVideo(Player);

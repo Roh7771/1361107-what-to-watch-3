@@ -10,7 +10,7 @@ const mock = {
   isFullScreen: false,
 };
 
-it(`<TrailerVideoPlayer /> should render correctly`, () => {
+it(`<MovieVideoPlayer /> should render trailer player`, () => {
   const tree = renderer
     .create(
         <MovieVideoPlayer
@@ -18,6 +18,30 @@ it(`<TrailerVideoPlayer /> should render correctly`, () => {
           onFullScreenButtonClick={() => {}}
           onPlayButtonClick={() => {}}
           onPlayFilmButtonClick={() => {}}
+          type={`trailer`}
+        >
+          <video/>
+        </MovieVideoPlayer>,
+        {
+          createNodeMock: () => {
+            return {};
+          }
+        }
+    )
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+it(`<MovieVideoPlayer /> should render full movie player`, () => {
+  const tree = renderer
+    .create(
+        <MovieVideoPlayer
+          {...mock}
+          onFullScreenButtonClick={() => {}}
+          onPlayButtonClick={() => {}}
+          onPlayFilmButtonClick={() => {}}
+          type={`movie`}
         >
           <video/>
         </MovieVideoPlayer>,

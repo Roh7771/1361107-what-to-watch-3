@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<TrailerVideoPlayer /> should render correctly 1`] = `
+exports[`<MovieVideoPlayer /> should render full movie player 1`] = `
 <div
   className="player"
 >
@@ -91,3 +91,5 @@ exports[`<TrailerVideoPlayer /> should render correctly 1`] = `
   </div>
 </div>
 `;
+
+exports[`<MovieVideoPlayer /> should render trailer player 1`] = `<video />`;
