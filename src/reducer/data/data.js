@@ -1,5 +1,6 @@
 import {extend} from "../../utils";
 import settings from "../../mocks/settings";
+import adaptFilmsData from "./adaptFilmsData";
 
 const initialState = {
   filmsList: [],
@@ -23,7 +24,8 @@ const Operation = {
   loadFilms: () => (dispatch, getState, api) => {
     return api.get(`/films`)
       .then((response) => {
-        dispatch(ActionCreators.loadFilms(response.data));
+        const newData = adaptFilmsData(response.data);
+        dispatch(ActionCreators.loadFilms(newData));
       });
   }
 };

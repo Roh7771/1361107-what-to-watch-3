@@ -28,7 +28,7 @@ export const getMoreLikeThisFilm = createSelector(
     getAllFilms,
     getChosenFilm,
     (films, chosenFilm) => {
-      const filteredFilms = films.filter((film) => chosenFilm.genre === film.genre && film.name !== chosenFilm.name);
+      const filteredFilms = films.filter((film) => chosenFilm.genre === film.genre && film.title !== chosenFilm.title);
       return filteredFilms.slice(0, 4);
     }
 );
