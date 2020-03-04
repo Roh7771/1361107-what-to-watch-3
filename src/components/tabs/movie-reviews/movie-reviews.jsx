@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import mockReviews from '../../../mocks/reviews';
 
 const monthsArr = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
 const convertDate = (date) => {
@@ -8,7 +9,8 @@ const convertDate = (date) => {
 };
 
 const MovieReviews = ({film}) => {
-  const reviewSecondPart = [...film.reviews];
+  const {reviews = mockReviews} = film;
+  const reviewSecondPart = [...reviews];
   const reviewsFirstPart = reviewSecondPart.splice(0, Math.ceil(reviewSecondPart.length / 2));
   return (
     <div className="movie-card__reviews movie-card__row">

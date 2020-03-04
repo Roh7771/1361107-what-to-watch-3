@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import MovieList from "../movie-list/movie-list.jsx";
-import GenresList from "../genresList/genres-list.jsx";
+import GenresList from "../genres-list/genres-list.jsx";
 import ShowMoreFilms from "../show-more-films/show-more-films.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
 const MovieListWrapper = withActiveItem(MovieList);
 
-const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick}) => {
+const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick, filmsToRender}) => {
   const {
     promoFilmTitle,
     promoFilmReleaseYear,
@@ -73,7 +73,7 @@ const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick}) => {
                   onClick={() => {
                     onPlayFilmButtonClick({
                       title: promoFilmTitle,
-                      posterSrc: promoFilmPosterSrc,
+                      imgSrc: promoFilmPosterSrc,
                       videoSrc: promoFilmVideoSrc
                     });
                   }}
@@ -111,6 +111,7 @@ const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick}) => {
               onMovieCardClick={onMovieCardClick}
               activeItem={{}}
               onPlayFilmButtonClick={() => {}}
+              filmsToRender={filmsToRender}
             />
           </div>
 
@@ -132,6 +133,22 @@ Main.propTypes = {
   }).isRequired,
   onMovieCardClick: PropTypes.func.isRequired,
   onPlayFilmButtonClick: PropTypes.func.isRequired,
+  filmsToRender: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    genre: PropTypes.string,
+    releaseYear: PropTypes.number,
+    imgSrc: PropTypes.string,
+    bgSrc: PropTypes.string,
+    posterSrc: PropTypes.string,
+    ratingScore: PropTypes.number,
+    ratingCount: PropTypes.number,
+    description: PropTypes.arrayOf(PropTypes.string),
+    director: PropTypes.string,
+    starring: PropTypes.arrayOf(PropTypes.string),
+    id: PropTypes.number,
+    filmDuration: PropTypes.number,
+    reviews: PropTypes.array,
+  })).isRequired,
 };
 
 export default Main;
