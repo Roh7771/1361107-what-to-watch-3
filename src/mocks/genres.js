@@ -1,1 +1,1 @@
-export default [`All genres`, `Comedies`, `Crime`, `Documentary`, `Dramas`, `Horror`, `Kids & Family`, `Romance`, `Sci-Fi`, `Thrillers`];
+export default [`All genres`, `Comedy`, `Crime`, `Adventure`, `Drama`, `Action`, `Fantasy`, `Romance`, `Sci-Fi`, `Thriller`];
