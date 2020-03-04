@@ -1,4 +1,4 @@
-import {getAllFilms, getFilmsToRender, getMoreLikeThisFilm} from "./selectors";
+import {getAllFilms, getFilmsToRender, getMoreLikeThisFilm, getPromoFilm} from "./selectors";
 
 const filmsList = [
   {
@@ -858,6 +858,10 @@ const filmsList = [
 describe(`Selector`, () => {
   it(`getAllFilms must return all films`, () => {
     expect(getAllFilms({DATA: {filmsList}})).toEqual(filmsList);
+  });
+
+  it(`getPromoFilm must return promo film`, () => {
+    expect(getPromoFilm({DATA: {promoFilm: {title: `promo`}}})).toEqual({title: `promo`});
   });
 
   it(`getFilmsToRender must return clipped films list`, () => {

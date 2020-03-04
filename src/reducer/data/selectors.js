@@ -6,6 +6,10 @@ export const getAllFilms = (state) => {
   return state[NameSpace.DATA].filmsList;
 };
 
+export const getPromoFilm = (state) => {
+  return state[NameSpace.DATA].promoFilm;
+};
+
 export const getFilmsToRender = createSelector(
     getAllFilms,
     getCurrentGenre,
