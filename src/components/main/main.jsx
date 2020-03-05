@@ -139,6 +139,7 @@ Main.propTypes = {
     releaseYear: PropTypes.number,
     imgSrc: PropTypes.string,
     bgSrc: PropTypes.string,
+    videoSrc: PropTypes.string,
     posterSrc: PropTypes.string,
     ratingScore: PropTypes.number,
     ratingCount: PropTypes.number,

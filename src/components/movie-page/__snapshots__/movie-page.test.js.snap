@@ -4,6 +4,11 @@ exports[`<MoviePage /> should render correctly 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
+    style={
+      Object {
+        "backgroundColor": "red",
+      }
+    }
   >
     <div
       className="movie-card__hero"

@@ -2,7 +2,7 @@ import {getAllFilms, getFilmsToRender, getMoreLikeThisFilm, getPromoFilm} from "
 
 const filmsList = [
   {
-    name: `The Grand Budapest Hotel`,
+    title: `The Grand Budapest Hotel`,
     genre: `Comedies`,
     releaseYear: 2014,
     imgSrc: `img/the-grand-budapest-hotel.jpg`,
@@ -12,7 +12,7 @@ const filmsList = [
     ratingCount: 240,
     description: [
       `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s friend and protege.`,
-      `Gustave prides himself on providing first-className service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`
+      `Gustave prides himself on providing first-classtitle service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`
     ],
     director: `Wes Andreson`,
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
@@ -53,7 +53,7 @@ const filmsList = [
     ]
   },
   {
-    name: `Fantastic Beasts: The Crimes of Grindelwald`,
+    title: `Fantastic Beasts: The Crimes of Grindelwald`,
     genre: `Kids & Family`,
     releaseYear: 2018,
     imgSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
@@ -103,7 +103,7 @@ const filmsList = [
     ]
   },
   {
-    name: `Bohemian Rhapsody`,
+    title: `Bohemian Rhapsody`,
     imgSrc: `img/bohemian-rhapsody.jpg`,
     genre: `Dramas`,
     releaseYear: 2018,
@@ -153,7 +153,7 @@ const filmsList = [
     ]
   },
   {
-    name: `Macbeth`,
+    title: `Macbeth`,
     imgSrc: `img/macbeth.jpg`,
     genre: `Dramas`,
     releaseYear: 2015,
@@ -208,7 +208,7 @@ const filmsList = [
     ]
   },
   {
-    name: `Aviator`,
+    title: `Aviator`,
     imgSrc: `img/aviator.jpg`,
     genre: `Dramas`,
     releaseYear: 2004,
@@ -263,7 +263,7 @@ const filmsList = [
     ]
   },
   {
-    name: `We need to talk about Kevin`,
+    title: `We need to talk about Kevin`,
     imgSrc: `img/we-need-to-talk-about-kevin.jpg`,
     genre: `Dramas`,
     releaseYear: 2011,
@@ -318,7 +318,7 @@ const filmsList = [
     ]
   },
   {
-    name: `What We Do in the Shadows`,
+    title: `What We Do in the Shadows`,
     imgSrc: `img/what-we-do-in-the-shadows.jpg`,
     genre: `Comedies`,
     releaseYear: 2019,
@@ -373,7 +373,7 @@ const filmsList = [
     ]
   },
   {
-    name: `Revenant`,
+    title: `Revenant`,
     imgSrc: `img/revenant.jpg`,
     genre: `Dramas`,
     releaseYear: 2015,
@@ -428,7 +428,7 @@ const filmsList = [
     ]
   },
   {
-    name: `The Grand Budapest Hotel`,
+    title: `The Grand Budapest Hotel`,
     genre: `Comedies`,
     releaseYear: 2014,
     imgSrc: `img/the-grand-budapest-hotel.jpg`,
@@ -438,7 +438,7 @@ const filmsList = [
     ratingCount: 240,
     description: [
       `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s friend and protege.`,
-      `Gustave prides himself on providing first-className service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`
+      `Gustave prides himself on providing first-classtitle service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`
     ],
     director: `Wes Andreson`,
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
@@ -479,7 +479,7 @@ const filmsList = [
     ]
   },
   {
-    name: `Fantastic Beasts: The Crimes of Grindelwald`,
+    title: `Fantastic Beasts: The Crimes of Grindelwald`,
     genre: `Kids & Family`,
     releaseYear: 2018,
     imgSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
@@ -529,7 +529,7 @@ const filmsList = [
     ]
   },
   {
-    name: `Bohemian Rhapsody`,
+    title: `Bohemian Rhapsody`,
     imgSrc: `img/bohemian-rhapsody.jpg`,
     genre: `Dramas`,
     releaseYear: 2018,
@@ -579,7 +579,7 @@ const filmsList = [
     ]
   },
   {
-    name: `Macbeth`,
+    title: `Macbeth`,
     imgSrc: `img/macbeth.jpg`,
     genre: `Dramas`,
     releaseYear: 2015,
@@ -634,7 +634,7 @@ const filmsList = [
     ]
   },
   {
-    name: `Aviator`,
+    title: `Aviator`,
     imgSrc: `img/aviator.jpg`,
     genre: `Dramas`,
     releaseYear: 2004,
@@ -689,7 +689,7 @@ const filmsList = [
     ]
   },
   {
-    name: `We need to talk about Kevin`,
+    title: `We need to talk about Kevin`,
     imgSrc: `img/we-need-to-talk-about-kevin.jpg`,
     genre: `Dramas`,
     releaseYear: 2011,
@@ -744,7 +744,7 @@ const filmsList = [
     ]
   },
   {
-    name: `What We Do in the Shadows`,
+    title: `What We Do in the Shadows`,
     imgSrc: `img/what-we-do-in-the-shadows.jpg`,
     genre: `Comedies`,
     releaseYear: 2019,
@@ -799,7 +799,7 @@ const filmsList = [
     ]
   },
   {
-    name: `Revenant`,
+    title: `Revenant`,
     imgSrc: `img/revenant.jpg`,
     genre: `Dramas`,
     releaseYear: 2015,
@@ -867,7 +867,7 @@ describe(`Selector`, () => {
   it(`getFilmsToRender must return clipped films list`, () => {
     expect(getFilmsToRender({DATA: {filmsList}, APP_STATUS: {filmsToShowCount: 2, currentGenre: `All genres`}})).toEqual([
       {
-        name: `The Grand Budapest Hotel`,
+        title: `The Grand Budapest Hotel`,
         genre: `Comedies`,
         releaseYear: 2014,
         imgSrc: `img/the-grand-budapest-hotel.jpg`,
@@ -877,7 +877,7 @@ describe(`Selector`, () => {
         ratingCount: 240,
         description: [
           `In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s friend and protege.`,
-          `Gustave prides himself on providing first-className service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`
+          `Gustave prides himself on providing first-classtitle service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`
         ],
         director: `Wes Andreson`,
         starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
@@ -918,7 +918,7 @@ describe(`Selector`, () => {
         ]
       },
       {
-        name: `Fantastic Beasts: The Crimes of Grindelwald`,
+        title: `Fantastic Beasts: The Crimes of Grindelwald`,
         genre: `Kids & Family`,
         releaseYear: 2018,
         imgSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
@@ -973,7 +973,7 @@ describe(`Selector`, () => {
   it(`getMoreLikeThisFilm must return 4 or less similar films`, () => {
     expect(getMoreLikeThisFilm({DATA: {filmsList}, APP_STATUS: {chosenFilm: filmsList[2]}})).toEqual([
       {
-        name: `Macbeth`,
+        title: `Macbeth`,
         imgSrc: `img/macbeth.jpg`,
         genre: `Dramas`,
         releaseYear: 2015,
@@ -1028,7 +1028,7 @@ describe(`Selector`, () => {
         ]
       },
       {
-        name: `Aviator`,
+        title: `Aviator`,
         imgSrc: `img/aviator.jpg`,
         genre: `Dramas`,
         releaseYear: 2004,
@@ -1083,7 +1083,7 @@ describe(`Selector`, () => {
         ]
       },
       {
-        name: `We need to talk about Kevin`,
+        title: `We need to talk about Kevin`,
         imgSrc: `img/we-need-to-talk-about-kevin.jpg`,
         genre: `Dramas`,
         releaseYear: 2011,
@@ -1138,7 +1138,7 @@ describe(`Selector`, () => {
         ]
       },
       {
-        name: `Revenant`,
+        title: `Revenant`,
         imgSrc: `img/revenant.jpg`,
         genre: `Dramas`,
         releaseYear: 2015,

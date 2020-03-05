@@ -1,12 +1,14 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {MovieList} from "./movie-list.jsx";
+import MovieList from "./movie-list.jsx";
 
 const mock = {
   filmsList: [
     {
       title: `Some Title`,
+      trailerSrc: `some path`,
       genre: `Comedy`,
+      bgColor: `red`,
       releaseYear: 2015,
       imgSrc: `Some Path`,
       bgSrc: `iSome Path`,
@@ -56,12 +58,14 @@ const mock = {
     },
     {
       title: `Some Title`,
+      trailerSrc: `some path`,
       genre: `Comedy`,
       releaseYear: 2015,
       imgSrc: `Some Path`,
       bgSrc: `iSome Path`,
       posterSrc: `Some Path`,
       ratingScore: 8.7,
+      bgColor: `red`,
       ratingCount: 230,
       description: [
         `Some description`,
@@ -103,7 +107,7 @@ const mock = {
           reviewDate: `2016-12-25`,
         }
       ]
-    }
+    },
   ]
 };
 
@@ -112,7 +116,7 @@ it(`<MovieList /> should render correctly`, () => {
     .create(
         <MovieList
           filmsToShowCount={8}
-          filmsList={mock.filmsList}
+          filmsToRender={mock.filmsList}
           onMovieCardClick={() => {}}
           activeItem={{}}
           onActiveItemChange={() => {}}

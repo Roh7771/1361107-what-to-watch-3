@@ -30,5 +30,6 @@ const mapStateToProps = (state) => ({
   filmsToRender: getMoreLikeThisFilm(state)
 });
 
+export {MoreLikeThis};
 
 export default connect(mapStateToProps)(MoreLikeThis);

@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import {GenresList} from "./genres-list.jsx.js";
+import {GenresList} from "./genres-list.jsx";
 
 Enzyme.configure({
   adapter: new Adapter()
@@ -12,12 +12,12 @@ describe(`<GenreList />`, () => {
     const genresList = shallow(
         <GenresList
           onGenreButtonClick={() => {}}
-          currentGenre={`Comedies`}
+          currentGenre={`Comedy`}
         />
     );
 
     const activeButton = genresList.find(`.catalog__genres-item--active`);
-    expect(activeButton.text()).toBe(`Comedies`);
+    expect(activeButton.text()).toBe(`Comedy`);
   });
 
   it(`should pass correct data when any link has been pressed`, () => {
@@ -26,7 +26,7 @@ describe(`<GenreList />`, () => {
     const genresList = shallow(
         <GenresList
           onGenreButtonClick={onGenreButtonClick}
-          currentGenre={`Comedies`}
+          currentGenre={`Comedy`}
         />
     );
 

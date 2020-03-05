@@ -11,11 +11,14 @@ const mock = {
     promoFilmTitle: `Promo Film`,
     promoFilmGenre: `Comedy`,
     promoFilmReleaseYear: 2020,
+    promoFilmVideoSrc: `some path`,
   },
   filmsList: [
     {
       title: `Some Title`,
+      trailerSrc: `some path`,
       genre: `Comedy`,
+      bgColor: `red`,
       releaseYear: 2015,
       imgSrc: `Some Path`,
       bgSrc: `iSome Path`,
@@ -65,12 +68,14 @@ const mock = {
     },
     {
       title: `Some Title`,
+      trailerSrc: `some path`,
       genre: `Comedy`,
       releaseYear: 2015,
       imgSrc: `Some Path`,
       bgSrc: `iSome Path`,
       posterSrc: `Some Path`,
       ratingScore: 8.7,
+      bgColor: `red`,
       ratingCount: 230,
       description: [
         `Some description`,
@@ -120,18 +125,22 @@ describe(`App should`, () => {
   it(`render main screen`, () => {
     const {filmsList, promoFilm} = mock;
     const store = mockStore({
-      currentGenre: `All genres`,
-      filmsToRender: filmsList,
-      filmsToShowCount: 8
+      DATA: {
+        filmsList,
+        promoFilm,
+      },
+      APP_STATUS: {
+        currentGenre: `All genres`,
+        filmsToShowCount: 8,
+      },
     });
     const tree = renderer
       .create(
           <Provider store={store}>
             <App
-              filmsList={filmsList}
+              filmsToRender={filmsList}
               promoFilm={promoFilm}
               onMovieCardClick={(() => {})}
-              chosenFilm={null}
               onPlayFilmButtonClick={() => {}}
             />
           </Provider>, {
@@ -147,15 +156,19 @@ describe(`App should`, () => {
   it(`render movie page screen`, () => {
     const {filmsList, promoFilm} = mock;
     const store = mockStore({
-      currentGenre: `All genres`,
-      filmsToRender: filmsList,
-      filmsToShowCount: 8
+      DATA: {
+        filmsList
+      },
+      APP_STATUS: {
+        currentGenre: `All genres`,
+        chosenFilm: filmsList[1]
+      },
     });
     const tree = renderer
       .create(
           <Provider store={store}>
             <App
-              filmsList={filmsList}
+              filmsToRender={filmsList}
               promoFilm={promoFilm}
               onMovieCardClick={() => {}}
               chosenFilm={filmsList[0]}
@@ -182,6 +195,7 @@ describe(`App should`, () => {
       .create(
           <Provider store={store}>
             <App
+              filmsToRender={filmsList}
               filmsList={filmsList}
               promoFilm={promoFilm}
               onMovieCardClick={() => {}}
