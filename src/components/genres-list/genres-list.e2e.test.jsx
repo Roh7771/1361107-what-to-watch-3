@@ -12,12 +12,12 @@ describe(`<GenreList />`, () => {
     const genresList = shallow(
         <GenresList
           onGenreButtonClick={() => {}}
-          currentGenre={`Comedies`}
+          currentGenre={`Comedy`}
         />
     );
 
     const activeButton = genresList.find(`.catalog__genres-item--active`);
-    expect(activeButton.text()).toBe(`Comedies`);
+    expect(activeButton.text()).toBe(`Comedy`);
   });
 
   it(`should pass correct data when any link has been pressed`, () => {
@@ -26,7 +26,7 @@ describe(`<GenreList />`, () => {
     const genresList = shallow(
         <GenresList
           onGenreButtonClick={onGenreButtonClick}
-          currentGenre={`Comedies`}
+          currentGenre={`Comedy`}
         />
     );
 

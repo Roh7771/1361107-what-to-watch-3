@@ -6,10 +6,10 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 
 const TabListWrapper = withActiveItem(TabList);
 
-const MoviePage = ({film, onMovieCardClick, filmsList, onPlayFilmButtonClick}) => {
+const MoviePage = ({film, onMovieCardClick, onPlayFilmButtonClick}) => {
   return (
     <Fragment>
-      <section className="movie-card movie-card--full">
+      <section className="movie-card movie-card--full" style={{backgroundColor: `${film.bgColor}`}}>
         <div className="movie-card__hero">
           <div className="movie-card__bg">
             <img src={film.bgSrc} alt={film.title} />
@@ -75,7 +75,7 @@ const MoviePage = ({film, onMovieCardClick, filmsList, onPlayFilmButtonClick}) =
           </div>
         </div>
       </section>
-      <MoreLikeThis onMovieCardClick={onMovieCardClick} currentFilm={film} filmsList={filmsList}/>
+      <MoreLikeThis onMovieCardClick={onMovieCardClick}/>
     </Fragment>
   );
 };
@@ -96,24 +96,9 @@ MoviePage.propTypes = {
     id: PropTypes.number,
     filmDuration: PropTypes.number,
     reviews: PropTypes.array,
+    bgColor: PropTypes.string.isRequired,
   }),
   onMovieCardClick: PropTypes.func.isRequired,
-  filmsList: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string,
-    genre: PropTypes.string,
-    releaseYear: PropTypes.number,
-    imgSrc: PropTypes.string,
-    bgSrc: PropTypes.string,
-    posterSrc: PropTypes.string,
-    ratingScore: PropTypes.number,
-    ratingCount: PropTypes.number,
-    description: PropTypes.arrayOf(PropTypes.string),
-    director: PropTypes.string,
-    starring: PropTypes.arrayOf(PropTypes.string),
-    id: PropTypes.number,
-    filmDuration: PropTypes.number,
-    reviews: PropTypes.array,
-  })).isRequired,
   onPlayFilmButtonClick: PropTypes.func.isRequired,
 };
 

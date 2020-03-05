@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ActionCreators} from '../../reducer';
 import {connect} from 'react-redux';
+import {getFilmsToRender} from '../../reducer/data/selectors';
+import {getFilmsToShowCount} from '../../reducer/appStatus/selectors';
+import {ActionCreators} from '../../reducer/appStatus/appStatus';
 
 function ShowMoreFilms({onMoreFilmsButtonClick, filmsToRender, filmsToShowCount}) {
   return (
-    <div style={filmsToShowCount >= filmsToRender.length ? {display: `none`} : null} className="catalog__more">
+    <div style={filmsToShowCount > filmsToRender.length ? {display: `none`} : null} className="catalog__more">
       <button onClick={onMoreFilmsButtonClick} className="catalog__button" type="button">
         Show more
       </button>
@@ -35,8 +37,8 @@ ShowMoreFilms.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  filmsToRender: state.filmsToRender,
-  filmsToShowCount: state.filmsToShowCount
+  filmsToRender: getFilmsToRender(state),
+  filmsToShowCount: getFilmsToShowCount(state)
 });
 
 

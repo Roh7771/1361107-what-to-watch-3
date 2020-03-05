@@ -8,7 +8,7 @@ const VideoPlayer = withVideo(Player);
 let timer;
 
 const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick, activeCard}) => {
-  const {title, imgSrc, videoSrc} = film;
+  const {title, imgSrc, trailerSrc} = film;
 
   return (
     <article
@@ -30,7 +30,7 @@ const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick, act
       <div className="small-movie-card__image">
         <VideoPlayer
           isPlaying={activeCard === film}
-          videoSrc={videoSrc}
+          videoSrc={trailerSrc}
           posterSrc={imgSrc}
           isMuted
           widthAtr={280}
@@ -59,7 +59,7 @@ MovieCard.propTypes = {
     title: PropTypes.string,
     imgSrc: PropTypes.string,
     id: PropTypes.id,
-    videoSrc: PropTypes.string,
+    trailerSrc: PropTypes.string,
   }).isRequired,
   onFilmMouseOver: PropTypes.func.isRequired,
   onMovieCardClick: PropTypes.func.isRequired,

@@ -171,7 +171,7 @@ Array [
             href="#"
             onClick={[Function]}
           >
-            Comedies
+            Comedy
           </a>
         </li>
         <li
@@ -193,7 +193,7 @@ Array [
             href="#"
             onClick={[Function]}
           >
-            Documentary
+            Adventure
           </a>
         </li>
         <li
@@ -204,7 +204,7 @@ Array [
             href="#"
             onClick={[Function]}
           >
-            Dramas
+            Drama
           </a>
         </li>
         <li
@@ -215,7 +215,7 @@ Array [
             href="#"
             onClick={[Function]}
           >
-            Horror
+            Action
           </a>
         </li>
         <li
@@ -226,7 +226,7 @@ Array [
             href="#"
             onClick={[Function]}
           >
-            Kids & Family
+            Fantasy
           </a>
         </li>
         <li
@@ -259,7 +259,7 @@ Array [
             href="#"
             onClick={[Function]}
           >
-            Thrillers
+            Thriller
           </a>
         </li>
       </ul>
@@ -280,7 +280,7 @@ Array [
               className=""
               height={175}
               poster="Some Path"
-              src="Some Path"
+              src="some path"
               width={280}
             />
           </div>
@@ -310,7 +310,7 @@ Array [
               className=""
               height={175}
               poster="Some Path"
-              src="Some Path"
+              src="some path"
               width={280}
             />
           </div>
@@ -352,6 +352,11 @@ exports[`App should render movie page screen 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
+    style={
+      Object {
+        "backgroundColor": "red",
+      }
+    }
   >
     <div
       className="movie-card__hero"

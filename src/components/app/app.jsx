@@ -4,13 +4,15 @@ import {BrowserRouter, Switch, Route} from "react-router-dom";
 import PropTypes from "prop-types";
 import MoviePage from "../movie-page/movie-page.jsx";
 import {connect} from "react-redux";
-import {ActionCreators} from "../../reducer.js";
 import withVideo from "../../hocs/with-video/with-video.js";
 import MovieVideoPlayer from "../movie-video-player/movie-video-player.jsx";
+import {getPromoFilm, getFilmsToRender} from "../../reducer/data/selectors.js";
+import {getChosenFilm, getFilmToWatch} from "../../reducer/appStatus/selectors.js";
+import {ActionCreators} from "../../reducer/appStatus/appStatus.js";
 
 const VideoPlayerWrapper = withVideo(MovieVideoPlayer);
 
-const App = ({filmsList, promoFilm, chosenFilm, filmToWatch, onMovieCardClick, onPlayFilmButtonClick}) => {
+const App = ({filmsToRender, promoFilm, chosenFilm, filmToWatch, onMovieCardClick, onPlayFilmButtonClick}) => {
   const renderApp = () => {
     if (filmToWatch) {
       return (
@@ -19,7 +21,7 @@ const App = ({filmsList, promoFilm, chosenFilm, filmToWatch, onMovieCardClick, o
           type={`movie`}
           className={`player__video`}
           isPlaying={false}
-          posterSrc={filmToWatch.posterSrc}
+          posterSrc={filmToWatch.imgSrc}
           videoSrc={filmToWatch.videoSrc}
           onPlayFilmButtonClick={onPlayFilmButtonClick}
         />
@@ -29,7 +31,7 @@ const App = ({filmsList, promoFilm, chosenFilm, filmToWatch, onMovieCardClick, o
 
     if (chosenFilm) {
       return (
-        <MoviePage onPlayFilmButtonClick={onPlayFilmButtonClick} film={chosenFilm} onMovieCardClick={onMovieCardClick} filmsList={filmsList} />
+        <MoviePage onPlayFilmButtonClick={onPlayFilmButtonClick} film={chosenFilm} onMovieCardClick={onMovieCardClick} />
       );
     }
 
@@ -38,6 +40,7 @@ const App = ({filmsList, promoFilm, chosenFilm, filmToWatch, onMovieCardClick, o
         promoFilm={promoFilm}
         onMovieCardClick={onMovieCardClick}
         onPlayFilmButtonClick={onPlayFilmButtonClick}
+        filmsToRender={filmsToRender}
       />
     );
   };
@@ -49,7 +52,7 @@ const App = ({filmsList, promoFilm, chosenFilm, filmToWatch, onMovieCardClick, o
           {renderApp()}
         </Route>
         <Route exact path="/dev-movie-page">
-          <MoviePage onPlayFilmButtonClick={() => {}} onMovieCardClick={onMovieCardClick} filmsList={filmsList} film={chosenFilm ? chosenFilm : filmsList[0]}/>
+          <MoviePage onPlayFilmButtonClick={() => {}} onMovieCardClick={onMovieCardClick} film={chosenFilm ? chosenFilm : filmsToRender[0]}/>
         </Route>
         <Route exact path="/dev-movie-player">
           <VideoPlayerWrapper title={`Some Film`} type={`movie`} className={`player__video`} isPlaying={false} posterSrc={`https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/Fantastic_Beasts_-_The_Crimes_of_Grindelwald_Poster.png/220px-Fantastic_Beasts_-_The_Crimes_of_Grindelwald_Poster.png`} videoSrc={`https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`}/>
@@ -65,7 +68,7 @@ App.propTypes = {
     promoFilmGenre: PropTypes.string,
     promoFilmReleaseYear: PropTypes.number
   }).isRequired,
-  filmsList: PropTypes.arrayOf(PropTypes.shape({
+  filmsToRender: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string,
     genre: PropTypes.string,
     releaseYear: PropTypes.number,
@@ -88,10 +91,10 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  promoFilm: state.promoFilm,
-  filmsList: state.filmsList,
-  chosenFilm: state.chosenFilm,
-  filmToWatch: state.filmToWatch,
+  promoFilm: getPromoFilm(state),
+  filmsToRender: getFilmsToRender(state),
+  chosenFilm: getChosenFilm(state),
+  filmToWatch: getFilmToWatch(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -102,7 +105,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreators.setFilmToWatch(film));
   }
 });
-
 
 export {App};
 

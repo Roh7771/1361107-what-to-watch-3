@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import MovieCard from "../movie-card/movie-card.jsx";
-import {connect} from "react-redux";
 
 const MovieList = (props) => {
-  const {filmsList, onMovieCardClick, filmsToShowCount, activeItem, onActiveItemChange} = props;
-  const filmsToRender = filmsList.slice(0, filmsToShowCount);
+  const {filmsToRender, onMovieCardClick, activeItem, onActiveItemChange} = props;
   return (
     filmsToRender.length === 0 ?
       <p>There is no films :(</p> :
@@ -24,24 +22,16 @@ const MovieList = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  filmsList: state.filmsToRender,
-  filmsToShowCount: state.filmsToShowCount
-});
-
 MovieList.propTypes = {
-  filmsList: PropTypes.arrayOf(PropTypes.shape({
+  filmsToRender: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string,
     imgSrc: PropTypes.string,
     id: PropTypes.id,
   })).isRequired,
   onMovieCardClick: PropTypes.func.isRequired,
-  filmsToShowCount: PropTypes.number.isRequired,
   activeItem: PropTypes.object.isRequired,
   onActiveItemChange: PropTypes.func.isRequired,
 };
 
-export {MovieList};
-
-export default connect(mapStateToProps)(MovieList);
+export default MovieList;
 

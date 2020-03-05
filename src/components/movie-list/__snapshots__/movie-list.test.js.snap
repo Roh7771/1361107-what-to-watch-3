@@ -16,7 +16,7 @@ Array [
         className=""
         height={175}
         poster="Some Path"
-        src="Some Path"
+        src="some path"
         width={280}
       />
     </div>
@@ -46,7 +46,7 @@ Array [
         className=""
         height={175}
         poster="Some Path"
-        src="Some Path"
+        src="some path"
         width={280}
       />
     </div>

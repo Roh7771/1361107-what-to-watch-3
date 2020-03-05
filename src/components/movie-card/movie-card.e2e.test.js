@@ -7,6 +7,7 @@ const mock = {
   film: {
     title: `Some Title`,
     genre: `Comedy`,
+    trailerSrc: `some path`,
     releaseYear: 2015,
     imgSrc: `Some Path`,
     bgSrc: `iSome Path`,

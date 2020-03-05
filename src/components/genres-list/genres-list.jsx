@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import genres from '../../mocks/genres';
-import {ActionCreators} from '../../reducer';
 import {connect} from 'react-redux';
+import {getCurrentGenre} from '../../reducer/appStatus/selectors';
+import {ActionCreators} from '../../reducer/appStatus/appStatus';
 
 const GenresList = ({currentGenre, onGenreButtonClick}) => {
   return (
@@ -33,13 +34,12 @@ GenresList.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  currentGenre: state.currentGenre
+  currentGenre: getCurrentGenre(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreButtonClick: (genre) => {
     dispatch(ActionCreators.changeGenre(genre));
-    dispatch(ActionCreators.setNewFilmsList());
     dispatch(ActionCreators.resetFilmsCount());
   }
 });
