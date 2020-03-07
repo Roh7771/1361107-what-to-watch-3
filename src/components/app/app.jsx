@@ -7,7 +7,7 @@ import {connect} from "react-redux";
 import withVideo from "../../hocs/with-video/with-video.js";
 import MovieVideoPlayer from "../movie-video-player/movie-video-player.jsx";
 import {getPromoFilm, getFilmsToRender} from "../../reducer/data/selectors.js";
-import {getChosenFilm, getFilmToWatch} from "../../reducer/appStatus/selectors.js";
+import {getChosenFilm, getFilmToWatch, getLoggingStatus} from "../../reducer/appStatus/selectors.js";
 import {ActionCreators} from "../../reducer/appStatus/appStatus.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import SignIn from "../sign-in/sign-in.jsx";
@@ -15,7 +15,7 @@ import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 
 const VideoPlayerWrapper = withVideo(MovieVideoPlayer);
 
-const App = ({filmsToRender, promoFilm, chosenFilm, login, filmToWatch, onMovieCardClick, authorizationStatus, onPlayFilmButtonClick}) => {
+const App = ({filmsToRender, promoFilm, chosenFilm, login, filmToWatch, isLogging, changeLoggingStatus, onMovieCardClick, authorizationStatus, onPlayFilmButtonClick}) => {
   const renderApp = () => {
     if (filmToWatch) {
       return (
@@ -37,6 +37,12 @@ const App = ({filmsToRender, promoFilm, chosenFilm, login, filmToWatch, onMovieC
       );
     }
 
+    if (isLogging) {
+      return (
+        <SignIn onSubmit={login}/>
+      );
+    }
+
     return (
       <Main
         authorizationStatus={authorizationStatus}
@@ -44,6 +50,7 @@ const App = ({filmsToRender, promoFilm, chosenFilm, login, filmToWatch, onMovieC
         onMovieCardClick={onMovieCardClick}
         onPlayFilmButtonClick={onPlayFilmButtonClick}
         filmsToRender={filmsToRender}
+        onSignInClick={changeLoggingStatus}
       />
     );
   };
@@ -96,6 +103,8 @@ App.propTypes = {
   onPlayFilmButtonClick: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  isLogging: PropTypes.bool.isRequired,
+  changeLoggingStatus: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -104,6 +113,7 @@ const mapStateToProps = (state) => ({
   filmsToRender: getFilmsToRender(state),
   chosenFilm: getChosenFilm(state),
   filmToWatch: getFilmToWatch(state),
+  isLogging: getLoggingStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -115,6 +125,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   login: (authData) => {
     dispatch(UserOperation.login(authData));
+  },
+  changeLoggingStatus: () => {
+    dispatch(ActionCreators.changeLoggingStatus());
   }
 });
 

@@ -146,6 +146,46 @@ describe(`App should`, () => {
               login={() => {}}
               onSubmit={() => {}}
               authorizationStatus={AuthorizationStatus.NO_AUTH}
+              isLogging={false}
+              changeLoggingStatus={() => {}}
+              onSignInClick={() => {}}
+            />
+          </Provider>, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`render auth screen`, () => {
+    const {filmsList, promoFilm} = mock;
+    const store = mockStore({
+      DATA: {
+        filmsList,
+        promoFilm,
+      },
+      APP_STATUS: {
+        currentGenre: `All genres`,
+        filmsToShowCount: 8,
+      },
+    });
+    const tree = renderer
+      .create(
+          <Provider store={store}>
+            <App
+              filmsToRender={filmsList}
+              promoFilm={promoFilm}
+              onMovieCardClick={(() => {})}
+              onPlayFilmButtonClick={() => {}}
+              login={() => {}}
+              onSubmit={() => {}}
+              authorizationStatus={AuthorizationStatus.NO_AUTH}
+              isLogging={true}
+              changeLoggingStatus={() => {}}
+              onSignInClick={() => {}}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -180,6 +220,9 @@ describe(`App should`, () => {
               login={() => {}}
               onSubmit={() => {}}
               authorizationStatus={AuthorizationStatus.NO_AUTH}
+              isLogging={false}
+              changeLoggingStatus={() => {}}
+              onSignInClick={() => {}}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -212,6 +255,9 @@ describe(`App should`, () => {
               login={() => {}}
               onSubmit={() => {}}
               authorizationStatus={AuthorizationStatus.NO_AUTH}
+              isLogging={false}
+              changeLoggingStatus={() => {}}
+              onSignInClick={() => {}}
             />
           </Provider>, {
             createNodeMock: () => {

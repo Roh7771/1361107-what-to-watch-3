@@ -49,6 +49,7 @@ Array [
         <a
           className="user-block__link"
           href="#"
+          onClick={[Function]}
         >
           Sign in
         </a>

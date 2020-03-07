@@ -8,7 +8,7 @@ import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const MovieListWrapper = withActiveItem(MovieList);
 
-const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick, filmsToRender, authorizationStatus}) => {
+const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick, filmsToRender, authorizationStatus, onSignInClick}) => {
   const {
     promoFilmTitle,
     promoFilmReleaseYear,
@@ -49,7 +49,10 @@ const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick, filmsToRender
                 />
               </div>
             ) : (
-              <a href="#" className="user-block__link">Sign in</a>
+              <a onClick={(e) => {
+                e.preventDefault();
+                onSignInClick();
+              }} href="#" className="user-block__link">Sign in</a>
             )}
           </div>
         </header>
@@ -155,6 +158,7 @@ Main.propTypes = {
     reviews: PropTypes.array,
   })).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  onSignInClick: PropTypes.func.isRequired,
 };
 
 export default Main;

@@ -6,7 +6,8 @@ describe(`Reducer`, () => {
       currentGenre: `All genres`,
       filmsToShowCount: 8,
       chosenFilm: null,
-      filmToWatch: null
+      filmToWatch: null,
+      isLogging: false,
     });
   });
 

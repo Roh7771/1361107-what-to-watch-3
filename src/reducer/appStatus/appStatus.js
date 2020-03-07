@@ -4,7 +4,8 @@ const initialState = {
   currentGenre: `All genres`,
   filmsToShowCount: 8,
   chosenFilm: null,
-  filmToWatch: null
+  filmToWatch: null,
+  isLogging: false
 };
 
 const ActionTypes = {
@@ -12,10 +13,15 @@ const ActionTypes = {
   SHOW_MORE_FILMS: `SHOW_MORE_FILMS`,
   RESET_FILMS_COUNT: `RESET_FILMS_COUNT`,
   SET_CHOSEN_FILM: `SET_CHOSEN_FILM`,
-  SET_FILM_TO_WATCH: `SET_FILM_TO_WATCH`
+  SET_FILM_TO_WATCH: `SET_FILM_TO_WATCH`,
+  CHANGE_LOGGING_STATUS: `CHANGE_LOGGING_STATUS`
 };
 
 const ActionCreators = {
+  changeLoggingStatus: () => ({
+    type: ActionTypes.CHANGE_LOGGING_STATUS,
+  }),
+
   setFilmToWatch: (film) => ({
     type: ActionTypes.SET_FILM_TO_WATCH,
     payload: film
@@ -43,6 +49,11 @@ const ActionCreators = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionTypes.CHANGE_LOGGING_STATUS:
+      return extend(state, {
+        isLogging: !state.isLogging
+      });
+
     case ActionTypes.RESET_FILMS_COUNT:
       return extend(state, {
         filmsToShowCount: 8

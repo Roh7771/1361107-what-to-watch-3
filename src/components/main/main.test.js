@@ -142,6 +142,7 @@ it(`<Main /> should render unauthorized user correctly`, () => {
             onMovieCardClick={() => {}}
             onPlayFilmButtonClick={() => {}}
             authorizationStatus={AuthorizationStatus.NO_AUTH}
+            onSignInClick={() => {}}
           />
         </Provider>, {
           createNodeMock: () => {
@@ -174,6 +175,7 @@ it(`<Main /> should render unauthorized user correctly`, () => {
             onMovieCardClick={() => {}}
             onPlayFilmButtonClick={() => {}}
             authorizationStatus={AuthorizationStatus.AUTH}
+            onSignInClick={() => {}}
           />
         </Provider>, {
           createNodeMock: () => {
