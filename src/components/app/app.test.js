@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {App} from "./app.jsx";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const mockStore = configureStore([]);
 
@@ -142,6 +143,49 @@ describe(`App should`, () => {
               promoFilm={promoFilm}
               onMovieCardClick={(() => {})}
               onPlayFilmButtonClick={() => {}}
+              login={() => {}}
+              onSubmit={() => {}}
+              authorizationStatus={AuthorizationStatus.NO_AUTH}
+              isLogging={false}
+              changeLoggingStatus={() => {}}
+              onSignInClick={() => {}}
+            />
+          </Provider>, {
+            createNodeMock: () => {
+              return {};
+            }
+          })
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`render auth screen`, () => {
+    const {filmsList, promoFilm} = mock;
+    const store = mockStore({
+      DATA: {
+        filmsList,
+        promoFilm,
+      },
+      APP_STATUS: {
+        currentGenre: `All genres`,
+        filmsToShowCount: 8,
+      },
+    });
+    const tree = renderer
+      .create(
+          <Provider store={store}>
+            <App
+              filmsToRender={filmsList}
+              promoFilm={promoFilm}
+              onMovieCardClick={(() => {})}
+              onPlayFilmButtonClick={() => {}}
+              login={() => {}}
+              onSubmit={() => {}}
+              authorizationStatus={AuthorizationStatus.NO_AUTH}
+              isLogging={true}
+              changeLoggingStatus={() => {}}
+              onSignInClick={() => {}}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -173,6 +217,12 @@ describe(`App should`, () => {
               onMovieCardClick={() => {}}
               chosenFilm={filmsList[0]}
               onPlayFilmButtonClick={() => {}}
+              login={() => {}}
+              onSubmit={() => {}}
+              authorizationStatus={AuthorizationStatus.NO_AUTH}
+              isLogging={false}
+              changeLoggingStatus={() => {}}
+              onSignInClick={() => {}}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -202,6 +252,12 @@ describe(`App should`, () => {
               chosenFilm={filmsList[0]}
               onPlayFilmButtonClick={() => {}}
               filmToWatch={filmsList[0]}
+              login={() => {}}
+              onSubmit={() => {}}
+              authorizationStatus={AuthorizationStatus.NO_AUTH}
+              isLogging={false}
+              changeLoggingStatus={() => {}}
+              onSignInClick={() => {}}
             />
           </Provider>, {
             createNodeMock: () => {

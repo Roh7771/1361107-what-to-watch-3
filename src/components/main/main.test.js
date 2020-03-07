@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import Main from "./main.jsx";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const mockStore = configureStore([]);
 
@@ -120,7 +121,7 @@ const mock = {
   ]
 };
 
-it(`<Main /> should render correctly`, () => {
+it(`<Main /> should render unauthorized user correctly`, () => {
   const {promoFilm, filmsList} = mock;
   const store = mockStore({
     DATA: {
@@ -140,6 +141,41 @@ it(`<Main /> should render correctly`, () => {
             promoFilm={promoFilm}
             onMovieCardClick={() => {}}
             onPlayFilmButtonClick={() => {}}
+            authorizationStatus={AuthorizationStatus.NO_AUTH}
+            onSignInClick={() => {}}
+          />
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }
+        })
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+it(`<Main /> should render unauthorized user correctly`, () => {
+  const {promoFilm, filmsList} = mock;
+  const store = mockStore({
+    DATA: {
+      filmsList,
+      promoFilm
+    },
+    APP_STATUS: {
+      currentGenre: `All genres`,
+      filmsToShowCount: 8,
+    },
+  });
+  const tree = renderer
+    .create(
+        <Provider store={store}>
+          <Main
+            filmsToRender={filmsList}
+            promoFilm={promoFilm}
+            onMovieCardClick={() => {}}
+            onPlayFilmButtonClick={() => {}}
+            authorizationStatus={AuthorizationStatus.AUTH}
+            onSignInClick={() => {}}
           />
         </Provider>, {
           createNodeMock: () => {

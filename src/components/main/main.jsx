@@ -4,10 +4,11 @@ import MovieList from "../movie-list/movie-list.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
 import ShowMoreFilms from "../show-more-films/show-more-films.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const MovieListWrapper = withActiveItem(MovieList);
 
-const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick, filmsToRender}) => {
+const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick, filmsToRender, authorizationStatus, onSignInClick}) => {
   const {
     promoFilmTitle,
     promoFilmReleaseYear,
@@ -37,16 +38,22 @@ const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick, filmsToRender
               <span className="logo__letter logo__letter--3">W</span>
             </a>
           </div>
-
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img
-                src="img/avatar.jpg"
-                alt="User avatar"
-                width="63"
-                height="63"
-              />
-            </div>
+            {authorizationStatus === AuthorizationStatus.AUTH ? (
+              <div className="user-block__avatar">
+                <img
+                  src="img/avatar.jpg"
+                  alt="User avatar"
+                  width="63"
+                  height="63"
+                />
+              </div>
+            ) : (
+              <a onClick={(e) => {
+                e.preventDefault();
+                onSignInClick();
+              }} href="#" className="user-block__link">Sign in</a>
+            )}
           </div>
         </header>
 
@@ -150,6 +157,8 @@ Main.propTypes = {
     filmDuration: PropTypes.number,
     reviews: PropTypes.array,
   })).isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  onSignInClick: PropTypes.func.isRequired,
 };
 
 export default Main;

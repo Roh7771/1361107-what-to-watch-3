@@ -15,3 +15,7 @@ export const getChosenFilm = (state) => {
 export const getFilmToWatch = (state) => {
   return state[NameSpace.APP_STATUS].filmToWatch;
 };
+
+export const getLoggingStatus = (state) => {
+  return state[NameSpace.APP_STATUS].isLogging;
+};
