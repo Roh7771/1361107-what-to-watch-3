@@ -9,10 +9,13 @@ import MovieVideoPlayer from "../movie-video-player/movie-video-player.jsx";
 import {getPromoFilm, getFilmsToRender} from "../../reducer/data/selectors.js";
 import {getChosenFilm, getFilmToWatch} from "../../reducer/appStatus/selectors.js";
 import {ActionCreators} from "../../reducer/appStatus/appStatus.js";
+import {Operation as UserOperation} from "../../reducer/user/user.js";
+import SignIn from "../sign-in/sign-in.jsx";
+import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 
 const VideoPlayerWrapper = withVideo(MovieVideoPlayer);
 
-const App = ({filmsToRender, promoFilm, chosenFilm, filmToWatch, onMovieCardClick, onPlayFilmButtonClick}) => {
+const App = ({filmsToRender, promoFilm, chosenFilm, login, filmToWatch, onMovieCardClick, authorizationStatus, onPlayFilmButtonClick}) => {
   const renderApp = () => {
     if (filmToWatch) {
       return (
@@ -28,7 +31,6 @@ const App = ({filmsToRender, promoFilm, chosenFilm, filmToWatch, onMovieCardClic
       );
     }
 
-
     if (chosenFilm) {
       return (
         <MoviePage onPlayFilmButtonClick={onPlayFilmButtonClick} film={chosenFilm} onMovieCardClick={onMovieCardClick} />
@@ -37,6 +39,7 @@ const App = ({filmsToRender, promoFilm, chosenFilm, filmToWatch, onMovieCardClic
 
     return (
       <Main
+        authorizationStatus={authorizationStatus}
         promoFilm={promoFilm}
         onMovieCardClick={onMovieCardClick}
         onPlayFilmButtonClick={onPlayFilmButtonClick}
@@ -56,6 +59,9 @@ const App = ({filmsToRender, promoFilm, chosenFilm, filmToWatch, onMovieCardClic
         </Route>
         <Route exact path="/dev-movie-player">
           <VideoPlayerWrapper title={`Some Film`} type={`movie`} className={`player__video`} isPlaying={false} posterSrc={`https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/Fantastic_Beasts_-_The_Crimes_of_Grindelwald_Poster.png/220px-Fantastic_Beasts_-_The_Crimes_of_Grindelwald_Poster.png`} videoSrc={`https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`}/>
+        </Route>
+        <Route exact path="/dev-auth">
+          <SignIn onSubmit={login}/>
         </Route>
       </Switch>
     </BrowserRouter>
@@ -88,9 +94,12 @@ App.propTypes = {
   onMovieCardClick: PropTypes.func.isRequired,
   filmToWatch: PropTypes.object,
   onPlayFilmButtonClick: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state),
   promoFilm: getPromoFilm(state),
   filmsToRender: getFilmsToRender(state),
   chosenFilm: getChosenFilm(state),
@@ -103,6 +112,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   onPlayFilmButtonClick: (film) => {
     dispatch(ActionCreators.setFilmToWatch(film));
+  },
+  login: (authData) => {
+    dispatch(UserOperation.login(authData));
   }
 });
 
