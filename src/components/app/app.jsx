@@ -12,8 +12,12 @@ import {ActionCreators} from "../../reducer/appStatus/appStatus.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import SignIn from "../sign-in/sign-in.jsx";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import AddReview from "../add-review/add-review.jsx";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import withTextState from "../../hocs/with-review-data/with-review-data.js";
 
 const VideoPlayerWrapper = withVideo(MovieVideoPlayer);
+const AddReviewWrapper = withTextState(withActiveItem(AddReview));
 
 const App = ({filmsToRender, promoFilm, chosenFilm, login, filmToWatch, isLogging, changeLoggingStatus, onMovieCardClick, authorizationStatus, onPlayFilmButtonClick}) => {
   const renderApp = () => {
@@ -69,6 +73,9 @@ const App = ({filmsToRender, promoFilm, chosenFilm, login, filmToWatch, isLoggin
         </Route>
         <Route exact path="/dev-auth">
           <SignIn onSubmit={login}/>
+        </Route>
+        <Route exact path="/dev-review">
+          <AddReviewWrapper movieTitle={`The Grand Budapest Hotel`} movieBg={`img/bg-the-grand-budapest-hotel.jpg`} moviePoster={`img/the-grand-budapest-hotel-poster.jpg`} activeItem={3}/>
         </Route>
       </Switch>
     </BrowserRouter>
