@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {App} from "./app.jsx";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const mockStore = configureStore([]);
 
@@ -142,6 +143,9 @@ describe(`App should`, () => {
               promoFilm={promoFilm}
               onMovieCardClick={(() => {})}
               onPlayFilmButtonClick={() => {}}
+              login={() => {}}
+              onSubmit={() => {}}
+              authorizationStatus={AuthorizationStatus.NO_AUTH}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -173,6 +177,9 @@ describe(`App should`, () => {
               onMovieCardClick={() => {}}
               chosenFilm={filmsList[0]}
               onPlayFilmButtonClick={() => {}}
+              login={() => {}}
+              onSubmit={() => {}}
+              authorizationStatus={AuthorizationStatus.NO_AUTH}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -202,6 +209,9 @@ describe(`App should`, () => {
               chosenFilm={filmsList[0]}
               onPlayFilmButtonClick={() => {}}
               filmToWatch={filmsList[0]}
+              login={() => {}}
+              onSubmit={() => {}}
+              authorizationStatus={AuthorizationStatus.NO_AUTH}
             />
           </Provider>, {
             createNodeMock: () => {
