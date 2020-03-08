@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import MoviePage from "./movie-page.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const mockStore = configureStore([]);
 
@@ -18,9 +19,7 @@ const mock = {
     posterSrc: `Some Path`,
     ratingScore: 8.7,
     ratingCount: 230,
-    description: [
-      `Some description`,
-    ],
+    description: [`Some description`],
     director: `Some cool directot`,
     starring: [`Actor1`, `Actor2`],
     id: 2,
@@ -31,31 +30,31 @@ const mock = {
         rating: 8.1,
         reviewText: `Description`,
         reviewer: `Kate Muiry`,
-        reviewDate: `2016-12-25`,
+        reviewDate: `2016-12-25`
       },
       {
         rating: 8.1,
         reviewText: `Description`,
         reviewer: `Kate Muiry`,
-        reviewDate: `2016-12-25`,
+        reviewDate: `2016-12-25`
       },
       {
         rating: 8.1,
         reviewText: `Description`,
         reviewer: `Kate Muiry`,
-        reviewDate: `2016-12-25`,
+        reviewDate: `2016-12-25`
       },
       {
         rating: 8.1,
         reviewText: `Description`,
         reviewer: `Kate Muiry`,
-        reviewDate: `2016-12-25`,
+        reviewDate: `2016-12-25`
       },
       {
         rating: 8.1,
         reviewText: `Description`,
         reviewer: `Kate Muiry`,
-        reviewDate: `2016-12-25`,
+        reviewDate: `2016-12-25`
       }
     ]
   },
@@ -71,9 +70,7 @@ const mock = {
       posterSrc: `Some Path`,
       ratingScore: 8.7,
       ratingCount: 230,
-      description: [
-        `Some description`,
-      ],
+      description: [`Some description`],
       director: `Some cool directot`,
       starring: [`Actor1`, `Actor2`],
       id: 2,
@@ -84,31 +81,31 @@ const mock = {
           rating: 8.1,
           reviewText: `Description`,
           reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
+          reviewDate: `2016-12-25`
         },
         {
           rating: 8.1,
           reviewText: `Description`,
           reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
+          reviewDate: `2016-12-25`
         },
         {
           rating: 8.1,
           reviewText: `Description`,
           reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
+          reviewDate: `2016-12-25`
         },
         {
           rating: 8.1,
           reviewText: `Description`,
           reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
+          reviewDate: `2016-12-25`
         },
         {
           rating: 8.1,
           reviewText: `Description`,
           reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
+          reviewDate: `2016-12-25`
         }
       ]
     },
@@ -123,9 +120,7 @@ const mock = {
       ratingScore: 8.7,
       bgColor: `red`,
       ratingCount: 230,
-      description: [
-        `Some description`,
-      ],
+      description: [`Some description`],
       director: `Some cool directot`,
       starring: [`Actor1`, `Actor2`],
       id: 4,
@@ -136,51 +131,84 @@ const mock = {
           rating: 8.1,
           reviewText: `Description`,
           reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
+          reviewDate: `2016-12-25`
         },
         {
           rating: 8.1,
           reviewText: `Description`,
           reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
+          reviewDate: `2016-12-25`
         },
         {
           rating: 8.1,
           reviewText: `Description`,
           reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
+          reviewDate: `2016-12-25`
         },
         {
           rating: 8.1,
           reviewText: `Description`,
           reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
+          reviewDate: `2016-12-25`
         },
         {
           rating: 8.1,
           reviewText: `Description`,
           reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
+          reviewDate: `2016-12-25`
         }
       ]
-    },
+    }
   ]
 };
 
-it(`<MoviePage /> should render correctly`, () => {
+it(`<MoviePage /> should render for unauthorized user correctly`, () => {
   const {film, filmsList} = mock;
   const store = mockStore({
     DATA: {
-      filmsList,
+      filmsList
     },
     APP_STATUS: {
-      chosenFilm: film,
-    },
+      chosenFilm: film
+    }
   });
   const tree = renderer
     .create(
         <Provider store={store}>
-          <MoviePage onPlayFilmButtonClick={() => {}} filmsList={filmsList} onMovieCardClick={() => {}} film={film}/>
+          <MoviePage
+            authorizationStatus={AuthorizationStatus.NO_AUTH}
+            onPlayFilmButtonClick={() => {}}
+            filmsList={filmsList}
+            onMovieCardClick={() => {}}
+            film={film}
+          />
+        </Provider>
+    )
+    .toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+it(`<MoviePage /> should render for authorized user correctly`, () => {
+  const {film, filmsList} = mock;
+  const store = mockStore({
+    DATA: {
+      filmsList
+    },
+    APP_STATUS: {
+      chosenFilm: film
+    }
+  });
+  const tree = renderer
+    .create(
+        <Provider store={store}>
+          <MoviePage
+            authorizationStatus={AuthorizationStatus.NO_AUTH}
+            onPlayFilmButtonClick={() => {}}
+            filmsList={filmsList}
+            onMovieCardClick={() => {}}
+            film={film}
+          />
         </Provider>
     )
     .toJSON();

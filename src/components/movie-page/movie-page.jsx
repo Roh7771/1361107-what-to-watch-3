@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import TabList from "../tab-list/tab-list.jsx";
 import MoreLikeThis from "../more-like-this/more-like-this.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const TabListWrapper = withActiveItem(TabList);
 
-const MoviePage = ({film, onMovieCardClick, onPlayFilmButtonClick}) => {
+const MoviePage = ({film, onMovieCardClick, onPlayFilmButtonClick, authorizationStatus}) => {
   return (
     <Fragment>
       <section className="movie-card movie-card--full" style={{backgroundColor: `${film.bgColor}`}}>
@@ -60,7 +61,11 @@ const MoviePage = ({film, onMovieCardClick, onPlayFilmButtonClick}) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                {authorizationStatus === AuthorizationStatus.AUTH ? (
+                  <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                ) : (
+                  null
+                )}
               </div>
             </div>
           </div>
@@ -100,6 +105,7 @@ MoviePage.propTypes = {
   }),
   onMovieCardClick: PropTypes.func.isRequired,
   onPlayFilmButtonClick: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
 export default MoviePage;

@@ -149,6 +149,9 @@ describe(`App should`, () => {
               isLogging={false}
               changeLoggingStatus={() => {}}
               onSignInClick={() => {}}
+              onReviewSend={() => {}}
+              changeFormSendingStatus={() => {}}
+              isFormSending={false}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -186,6 +189,9 @@ describe(`App should`, () => {
               isLogging={true}
               changeLoggingStatus={() => {}}
               onSignInClick={() => {}}
+              onReviewSend={() => {}}
+              changeFormSendingStatus={() => {}}
+              isFormSending={false}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -223,6 +229,9 @@ describe(`App should`, () => {
               isLogging={false}
               changeLoggingStatus={() => {}}
               onSignInClick={() => {}}
+              onReviewSend={() => {}}
+              changeFormSendingStatus={() => {}}
+              isFormSending={false}
             />
           </Provider>, {
             createNodeMock: () => {
@@ -258,6 +267,9 @@ describe(`App should`, () => {
               isLogging={false}
               changeLoggingStatus={() => {}}
               onSignInClick={() => {}}
+              onReviewSend={() => {}}
+              changeFormSendingStatus={() => {}}
+              isFormSending={false}
             />
           </Provider>, {
             createNodeMock: () => {

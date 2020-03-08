@@ -1,6 +1,9 @@
 import {extend} from "../../utils";
 import settings from "../../mocks/settings";
 import adaptFilmsData from "./adaptFilmsData";
+import {ActionCreators as AppActionCreators} from '../appStatus/appStatus.js';
+
+let timer;
 
 const initialState = {
   filmsList: [],
@@ -9,6 +12,7 @@ const initialState = {
 
 const ActionTypes = {
   LOAD_FILMS: `LOAD_FILMS`,
+  SEND_REVIEW: `SEND_REVIEW`
 };
 
 const ActionCreators = {
@@ -18,6 +22,11 @@ const ActionCreators = {
       payload: films
     };
   },
+  sendReview: () => {
+    return {
+      type: ActionTypes.SEND_REVIEW
+    };
+  }
 };
 
 const Operation = {
@@ -27,6 +36,24 @@ const Operation = {
         const newData = adaptFilmsData(response.data);
         dispatch(ActionCreators.loadFilms(newData));
       });
+  },
+  sendReview: (id, comment, rating) => (dispatch, getState, api) => {
+    clearTimeout(timer);
+    return api.post(`/comments/${id}`, {
+      rating,
+      comment
+    })
+    .then(() => {
+      dispatch(AppActionCreators.changeFormSendingStatus());
+      dispatch(ActionCreators.sendReview());
+    })
+    .catch((error) => {
+      dispatch(AppActionCreators.changeFormSendingStatus());
+      dispatch(AppActionCreators.setFormErrorMessage(error.response.data.error));
+      timer = setTimeout(() => {
+        dispatch(AppActionCreators.setFormErrorMessage(null));
+      }, 4000);
+    });
   }
 };
 

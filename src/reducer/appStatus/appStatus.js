@@ -5,7 +5,9 @@ const initialState = {
   filmsToShowCount: 8,
   chosenFilm: null,
   filmToWatch: null,
-  isLogging: false
+  isLogging: false,
+  isFormSending: false,
+  formErrorMessage: null
 };
 
 const ActionTypes = {
@@ -14,10 +16,21 @@ const ActionTypes = {
   RESET_FILMS_COUNT: `RESET_FILMS_COUNT`,
   SET_CHOSEN_FILM: `SET_CHOSEN_FILM`,
   SET_FILM_TO_WATCH: `SET_FILM_TO_WATCH`,
-  CHANGE_LOGGING_STATUS: `CHANGE_LOGGING_STATUS`
+  CHANGE_LOGGING_STATUS: `CHANGE_LOGGING_STATUS`,
+  CHANGE_FORM_SENDING_STATUS: `CHANGE_FORM_SENDING_STATUS`,
+  SET_FORM_ERROR_MESSAGE: `SET_FORM_ERROR_MESSAGE`,
 };
 
 const ActionCreators = {
+  setFormErrorMessage: (message) => ({
+    type: ActionTypes.SET_FORM_ERROR_MESSAGE,
+    payload: message
+  }),
+
+  changeFormSendingStatus: () => ({
+    type: ActionTypes.CHANGE_FORM_SENDING_STATUS
+  }),
+
   changeLoggingStatus: () => ({
     type: ActionTypes.CHANGE_LOGGING_STATUS,
   }),
@@ -49,6 +62,16 @@ const ActionCreators = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionTypes.SET_FORM_ERROR_MESSAGE:
+      return extend(state, {
+        formErrorMessage: action.payload
+      });
+
+    case ActionTypes.CHANGE_FORM_SENDING_STATUS:
+      return extend(state, {
+        isFormSending: !state.isFormSending
+      });
+
     case ActionTypes.CHANGE_LOGGING_STATUS:
       return extend(state, {
         isLogging: !state.isLogging
