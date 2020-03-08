@@ -8,6 +8,19 @@ describe(`Reducer`, () => {
       chosenFilm: null,
       filmToWatch: null,
       isLogging: false,
+      isFormSending: false,
+    });
+  });
+
+  it(`change form sending status`, () => {
+    expect(reducer({isFormSending: true}, {type: ActionTypes.CHANGE_FORM_SENDING_STATUS})).toEqual({
+      isFormSending: false
+    });
+  });
+
+  it(`change form sending status`, () => {
+    expect(reducer({isLogging: true}, {type: ActionTypes.CHANGE_LOGGING_STATUS})).toEqual({
+      isLogging: false
     });
   });
 
@@ -43,6 +56,18 @@ describe(`Reducer`, () => {
 });
 
 describe(`ActionCreators`, () => {
+  it(`for form sending status changing returns correct action`, () => {
+    expect(ActionCreators.changeFormSendingStatus()).toEqual({
+      type: ActionTypes.CHANGE_FORM_SENDING_STATUS,
+    });
+  });
+
+  it(`for form sending status changing returns correct action`, () => {
+    expect(ActionCreators.changeLoggingStatus()).toEqual({
+      type: ActionTypes.CHANGE_LOGGING_STATUS,
+    });
+  });
+
   it(`for genre changing returns correct action`, () => {
     expect(ActionCreators.changeGenre(`Comedies`)).toEqual({
       type: ActionTypes.CHANGE_GENRE,

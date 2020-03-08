@@ -19,3 +19,7 @@ export const getFilmToWatch = (state) => {
 export const getLoggingStatus = (state) => {
   return state[NameSpace.APP_STATUS].isLogging;
 };
+
+export const getFormSendingStatus = (state) => {
+  return state[NameSpace.APP_STATUS].isFormSending;
+};

@@ -81,10 +81,33 @@ describe(`ActionCreators`, () => {
         }
     );
   });
+
+  it(`for sending Review returns correct action`, () => {
+    expect(ActionCreators.sendReview()).toEqual(
+        {
+          type: ActionTypes.SEND_REVIEW,
+        }
+    );
+  });
 });
 
 describe(`Operation`, () => {
-  it(`should make a correct API call to /films`, function () {
+  it(`sendReview should make a correct API call to /comments/:filmId`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const reviewSender = Operation.sendReview(1, `text`, 8);
+
+    apiMock
+      .onPost(`/comments/1`)
+      .reply(200);
+
+    return reviewSender(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(2);
+      });
+  });
+
+  it(`loadFilms should make a correct API call to /films`, function () {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const filmsLoader = Operation.loadFilms();
