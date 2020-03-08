@@ -1,15 +1,24 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-const AddReview = ({onActiveItemChange, activeItem: chosenStar, onTextChange, text, movieTitle, movieBg, moviePoster}) => {
+const AddReview = ({
+  onActiveItemChange,
+  activeItem: chosenStar,
+  onTextChange,
+  text,
+  movieTitle,
+  movieBg,
+  moviePoster,
+  id,
+  onReviewSend,
+  changeFormSendingStatus,
+  isFormSending
+}) => {
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
-          <img
-            src={movieBg}
-            alt={movieTitle}
-          />
+          <img src={movieBg} alt={movieTitle} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -49,17 +58,20 @@ const AddReview = ({onActiveItemChange, activeItem: chosenStar, onTextChange, te
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img
-            src={moviePoster}
-            alt={movieTitle}
-            width="218"
-            height="327"
-          />
+          <img src={moviePoster} alt={movieTitle} width="218" height="327" />
         </div>
       </div>
 
       <div className="add-review">
-        <form action="#" className="add-review__form">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            changeFormSendingStatus();
+            onReviewSend(id, text, chosenStar);
+          }}
+          action="#"
+          className="add-review__form"
+        >
           <div className="rating">
             <div className="rating__stars">
               <input
@@ -149,7 +161,7 @@ const AddReview = ({onActiveItemChange, activeItem: chosenStar, onTextChange, te
             ></textarea>
             <div className="add-review__submit">
               <button
-                disabled={text.length < 50}
+                disabled={text.length < 50 || isFormSending}
                 className="add-review__btn"
                 type="submit"
               >
@@ -171,6 +183,10 @@ AddReview.propTypes = {
   movieTitle: PropTypes.string.isRequired,
   moviePoster: PropTypes.string.isRequired,
   movieBg: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  onReviewSend: PropTypes.func.isRequired,
+  changeFormSendingStatus: PropTypes.func.isRequired,
+  isFormSending: PropTypes.bool.isRequired,
 };
 
 export default AddReview;
