@@ -23,3 +23,7 @@ export const getLoggingStatus = (state) => {
 export const getFormSendingStatus = (state) => {
   return state[NameSpace.APP_STATUS].isFormSending;
 };
+
+export const getFormErrorMessage = (state) => {
+  return state[NameSpace.APP_STATUS].formErrorMessage;
+};

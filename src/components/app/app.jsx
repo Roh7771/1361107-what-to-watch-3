@@ -14,7 +14,8 @@ import {
   getChosenFilm,
   getFilmToWatch,
   getLoggingStatus,
-  getFormSendingStatus
+  getFormSendingStatus,
+  getFormErrorMessage
 } from "../../reducer/appStatus/selectors.js";
 import {ActionCreators} from "../../reducer/appStatus/appStatus.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
@@ -41,7 +42,8 @@ const App = ({
   authorizationStatus,
   onPlayFilmButtonClick,
   changeFormSendingStatus,
-  isFormSending
+  isFormSending,
+  formErrorMessage
 }) => {
   const renderApp = () => {
     if (filmToWatch) {
@@ -116,12 +118,13 @@ const App = ({
           <AddReviewWrapper
             changeFormSendingStatus={changeFormSendingStatus}
             onReviewSend={onReviewSend}
-            id={42}
+            id={5}
             movieTitle={`The Grand Budapest Hotel`}
             movieBg={`img/bg-the-grand-budapest-hotel.jpg`}
             moviePoster={`img/the-grand-budapest-hotel-poster.jpg`}
             activeItem={3}
             isFormSending={isFormSending}
+            formErrorMessage={formErrorMessage}
           />
         </Route>
       </Switch>
@@ -164,6 +167,7 @@ App.propTypes = {
   onReviewSend: PropTypes.func.isRequired,
   changeFormSendingStatus: PropTypes.func.isRequired,
   isFormSending: PropTypes.bool.isRequired,
+  formErrorMessage: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
@@ -173,7 +177,8 @@ const mapStateToProps = (state) => ({
   chosenFilm: getChosenFilm(state),
   filmToWatch: getFilmToWatch(state),
   isLogging: getLoggingStatus(state),
-  isFormSending: getFormSendingStatus(state)
+  isFormSending: getFormSendingStatus(state),
+  formErrorMessage: getFormErrorMessage(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

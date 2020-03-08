@@ -12,7 +12,8 @@ const AddReview = ({
   id,
   onReviewSend,
   changeFormSendingStatus,
-  isFormSending
+  isFormSending,
+  formErrorMessage
 }) => {
   return (
     <section className="movie-card movie-card--full">
@@ -84,6 +85,7 @@ const AddReview = ({
                 type="radio"
                 name="rating"
                 value="1"
+                disabled={isFormSending}
               />
               <label className="rating__label" htmlFor="star-1">
                 Rating 1
@@ -99,6 +101,7 @@ const AddReview = ({
                 type="radio"
                 name="rating"
                 value="2"
+                disabled={isFormSending}
               />
               <label className="rating__label" htmlFor="star-2">
                 Rating 2
@@ -114,6 +117,7 @@ const AddReview = ({
                 type="radio"
                 name="rating"
                 value="3"
+                disabled={isFormSending}
               />
               <label className="rating__label" htmlFor="star-3">
                 Rating 3
@@ -129,6 +133,7 @@ const AddReview = ({
                 type="radio"
                 name="rating"
                 value="4"
+                disabled={isFormSending}
               />
               <label className="rating__label" htmlFor="star-4">
                 Rating 4
@@ -144,6 +149,7 @@ const AddReview = ({
                 type="radio"
                 name="rating"
                 value="5"
+                disabled={isFormSending}
               />
               <label className="rating__label" htmlFor="star-5">
                 Rating 5
@@ -158,6 +164,7 @@ const AddReview = ({
               name="review-text"
               id="review-text"
               placeholder="Review text"
+              disabled={isFormSending}
             ></textarea>
             <div className="add-review__submit">
               <button
@@ -170,6 +177,12 @@ const AddReview = ({
             </div>
           </div>
         </form>
+        {formErrorMessage ? (
+          <p>
+            Не удалось отправить отзыв :( <br/>
+            {`Причина: ${formErrorMessage}`}
+          </p>
+        ) : null}
       </div>
     </section>
   );
@@ -187,6 +200,7 @@ AddReview.propTypes = {
   onReviewSend: PropTypes.func.isRequired,
   changeFormSendingStatus: PropTypes.func.isRequired,
   isFormSending: PropTypes.bool.isRequired,
+  formErrorMessage: PropTypes.string,
 };
 
 export default AddReview;

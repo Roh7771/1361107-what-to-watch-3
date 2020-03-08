@@ -9,6 +9,7 @@ describe(`Reducer`, () => {
       filmToWatch: null,
       isLogging: false,
       isFormSending: false,
+      formErrorMessage: null
     });
   });
 

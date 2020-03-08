@@ -3,6 +3,8 @@ import settings from "../../mocks/settings";
 import adaptFilmsData from "./adaptFilmsData";
 import {ActionCreators as AppActionCreators} from '../appStatus/appStatus.js';
 
+let timer;
+
 const initialState = {
   filmsList: [],
   promoFilm: settings.PROMO_FILM,
@@ -36,6 +38,7 @@ const Operation = {
       });
   },
   sendReview: (id, comment, rating) => (dispatch, getState, api) => {
+    clearTimeout(timer);
     return api.post(`/comments/${id}`, {
       rating,
       comment
@@ -44,8 +47,12 @@ const Operation = {
       dispatch(AppActionCreators.changeFormSendingStatus());
       dispatch(ActionCreators.sendReview());
     })
-    .catch(() => {
+    .catch((error) => {
       dispatch(AppActionCreators.changeFormSendingStatus());
+      dispatch(AppActionCreators.setFormErrorMessage(error.response.data.error));
+      timer = setTimeout(() => {
+        dispatch(AppActionCreators.setFormErrorMessage(null));
+      }, 4000);
     });
   }
 };
