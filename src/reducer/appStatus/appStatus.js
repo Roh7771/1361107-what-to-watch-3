@@ -7,7 +7,8 @@ const initialState = {
   filmToWatch: null,
   isLogging: false,
   isFormSending: false,
-  formErrorMessage: null
+  formErrorMessage: null,
+  isFilmsLoading: true,
 };
 
 const ActionTypes = {
@@ -19,12 +20,17 @@ const ActionTypes = {
   CHANGE_LOGGING_STATUS: `CHANGE_LOGGING_STATUS`,
   CHANGE_FORM_SENDING_STATUS: `CHANGE_FORM_SENDING_STATUS`,
   SET_FORM_ERROR_MESSAGE: `SET_FORM_ERROR_MESSAGE`,
+  CHANGE_FILMS_LOADING_STATUS: `CHANGE_FILMS_LOADING_STATUS`
 };
 
 const ActionCreators = {
   setFormErrorMessage: (message) => ({
     type: ActionTypes.SET_FORM_ERROR_MESSAGE,
     payload: message
+  }),
+
+  changeFilmsLoadingStatus: () => ({
+    type: ActionTypes.CHANGE_FILMS_LOADING_STATUS
   }),
 
   changeFormSendingStatus: () => ({
@@ -62,6 +68,11 @@ const ActionCreators = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionTypes.CHANGE_FILMS_LOADING_STATUS:
+      return extend(state, {
+        isFilmsLoading: !state.isFilmsLoading
+      });
+
     case ActionTypes.SET_FORM_ERROR_MESSAGE:
       return extend(state, {
         formErrorMessage: action.payload

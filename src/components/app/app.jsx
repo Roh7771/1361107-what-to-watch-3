@@ -1,6 +1,6 @@
 import React from "react";
 import Main from "../main/main.jsx";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {Router, Switch, Route} from "react-router-dom";
 import PropTypes from "prop-types";
 import MoviePage from "../movie-page/movie-page.jsx";
 import {connect} from "react-redux";
@@ -15,7 +15,8 @@ import {
   getFilmToWatch,
   getLoggingStatus,
   getFormSendingStatus,
-  getFormErrorMessage
+  getFormErrorMessage,
+  getFilmsLoadingStatus
 } from "../../reducer/appStatus/selectors.js";
 import {ActionCreators} from "../../reducer/appStatus/appStatus.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
@@ -25,6 +26,7 @@ import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import AddReview from "../add-review/add-review.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import withTextState from "../../hocs/with-text-state/with-text-state.js";
+import history from "../../history.js";
 
 const VideoPlayerWrapper = withVideo(MovieVideoPlayer);
 const AddReviewWrapper = withTextState(withActiveItem(AddReview));
@@ -43,7 +45,8 @@ const App = ({
   onPlayFilmButtonClick,
   changeFormSendingStatus,
   isFormSending,
-  formErrorMessage
+  formErrorMessage,
+  isFilmsLoading
 }) => {
   const renderApp = () => {
     if (filmToWatch) {
@@ -88,19 +91,40 @@ const App = ({
   };
 
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <Switch>
-        <Route exact path="/">
-          {renderApp()}
-        </Route>
-        <Route exact path="/dev-movie-page">
-          <MoviePage
-            onPlayFilmButtonClick={() => {}}
-            onMovieCardClick={onMovieCardClick}
-            film={chosenFilm ? chosenFilm : filmsToRender[0]}
-            authorizationStatus={authorizationStatus}
-          />
-        </Route>
+        <Route
+          exact
+          path="/"
+          render={() => {
+            return (
+              <Main
+                authorizationStatus={authorizationStatus}
+                promoFilm={promoFilm}
+                onMovieCardClick={onMovieCardClick}
+                onPlayFilmButtonClick={onPlayFilmButtonClick}
+                filmsToRender={filmsToRender}
+                onSignInClick={changeLoggingStatus}
+              />
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/films/:id"
+          render={(propsFromRoute) => {
+            return (
+              <MoviePage
+                onPlayFilmButtonClick={onPlayFilmButtonClick}
+                film={filmsToRender[propsFromRoute.match.params.id]}
+                onMovieCardClick={onMovieCardClick}
+                authorizationStatus={authorizationStatus}
+                isFilmsLoading={isFilmsLoading}
+              />
+            );
+          }}
+        />
+        <Route exact path="/films/:id" component={MoviePage} />
         <Route exact path="/dev-movie-player">
           <VideoPlayerWrapper
             title={`Some Film`}
@@ -111,7 +135,7 @@ const App = ({
             videoSrc={`https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`}
           />
         </Route>
-        <Route exact path="/dev-auth">
+        <Route exact path="/login">
           <SignIn onSubmit={login} />
         </Route>
         <Route exact path="/dev-review">
@@ -128,7 +152,7 @@ const App = ({
           />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 };
 
@@ -168,6 +192,7 @@ App.propTypes = {
   changeFormSendingStatus: PropTypes.func.isRequired,
   isFormSending: PropTypes.bool.isRequired,
   formErrorMessage: PropTypes.string,
+  isFilmsLoading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -179,6 +204,7 @@ const mapStateToProps = (state) => ({
   isLogging: getLoggingStatus(state),
   isFormSending: getFormSendingStatus(state),
   formErrorMessage: getFormErrorMessage(state),
+  isFilmsLoading: getFilmsLoadingStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

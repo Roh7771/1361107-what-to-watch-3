@@ -27,3 +27,7 @@ export const getFormSendingStatus = (state) => {
 export const getFormErrorMessage = (state) => {
   return state[NameSpace.APP_STATUS].formErrorMessage;
 };
+
+export const getFilmsLoadingStatus = (state) => {
+  return state[NameSpace.APP_STATUS].isFilmsLoading;
+};

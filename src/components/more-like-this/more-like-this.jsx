@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MovieList from '../movie-list/movie-list.jsx';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
-import {getMoreLikeThisFilm} from '../../reducer/data/selectors.js';
+import {getAllFilms} from '../../reducer/data/selectors.js';
 import {connect} from 'react-redux';
 
 const MovieListWrapper = withActiveItem(MovieList);
 
-const MoreLikeThis = ({onMovieCardClick, filmsToRender}) => {
+const MoreLikeThis = ({onMovieCardClick, filmsList, film: chosenFilm}) => {
+  const filmsToRender = filmsList.filter((film) => chosenFilm.genre === film.genre && film.title !== chosenFilm.title).slice(0, 4);
   return (
     <div className="page-content">
       <section className="catalog catalog--like-this">
@@ -23,11 +24,15 @@ const MoreLikeThis = ({onMovieCardClick, filmsToRender}) => {
 
 MoreLikeThis.propTypes = {
   onMovieCardClick: PropTypes.func.isRequired,
-  filmsToRender: PropTypes.array.isRequired,
+  filmsList: PropTypes.array.isRequired,
+  film: PropTypes.shape({
+    genre: PropTypes.string,
+    title: PropTypes.string,
+  }).isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  filmsToRender: getMoreLikeThisFilm(state)
+  filmsList: getAllFilms(state)
 });
 
 export {MoreLikeThis};

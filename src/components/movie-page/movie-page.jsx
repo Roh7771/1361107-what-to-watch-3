@@ -7,8 +7,8 @@ import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const TabListWrapper = withActiveItem(TabList);
 
-const MoviePage = ({film, onMovieCardClick, onPlayFilmButtonClick, authorizationStatus}) => {
-  return (
+const MoviePage = ({film, onMovieCardClick, onPlayFilmButtonClick, authorizationStatus, isFilmsLoading}) => {
+  return isFilmsLoading ? <p>Идет загрузка фильмов, пожалуйста подождите...</p> : (
     <Fragment>
       <section className="movie-card movie-card--full" style={{backgroundColor: `${film.bgColor}`}}>
         <div className="movie-card__hero">
@@ -80,7 +80,7 @@ const MoviePage = ({film, onMovieCardClick, onPlayFilmButtonClick, authorization
           </div>
         </div>
       </section>
-      <MoreLikeThis onMovieCardClick={onMovieCardClick}/>
+      <MoreLikeThis film={film} onMovieCardClick={onMovieCardClick}/>
     </Fragment>
   );
 };
@@ -106,6 +106,7 @@ MoviePage.propTypes = {
   onMovieCardClick: PropTypes.func.isRequired,
   onPlayFilmButtonClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  isFilmsLoading: PropTypes.bool.isRequired,
 };
 
 export default MoviePage;
