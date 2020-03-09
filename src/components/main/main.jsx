@@ -10,12 +10,12 @@ const MovieListWrapper = withActiveItem(MovieList);
 
 const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick, filmsToRender, authorizationStatus, onSignInClick}) => {
   const {
-    promoFilmTitle,
-    promoFilmReleaseYear,
-    promoFilmGenre,
-    promoFilmBgSrc,
-    promoFilmPosterSrc,
-    promoFilmVideoSrc
+    title,
+    releaseYear,
+    genre,
+    bgSrc,
+    posterSrc,
+    videoSrc
   } = promoFilm;
 
   return (
@@ -23,8 +23,8 @@ const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick, filmsToRender
       <section className="movie-card">
         <div className="movie-card__bg">
           <img
-            src={promoFilmBgSrc}
-            alt={promoFilmTitle}
+            src={bgSrc}
+            alt={title}
           />
         </div>
 
@@ -61,27 +61,27 @@ const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick, filmsToRender
           <div className="movie-card__info">
             <div className="movie-card__poster">
               <img
-                src={promoFilmPosterSrc}
-                alt={`${promoFilmTitle} poster`}
+                src={posterSrc}
+                alt={`${title} poster`}
                 width="218"
                 height="327"
               />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{promoFilmTitle}</h2>
+              <h2 className="movie-card__title">{title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{promoFilmGenre}</span>
-                <span className="movie-card__year">{promoFilmReleaseYear}</span>
+                <span className="movie-card__genre">{genre}</span>
+                <span className="movie-card__year">{releaseYear}</span>
               </p>
 
               <div className="movie-card__buttons">
                 <button
                   onClick={() => {
                     onPlayFilmButtonClick({
-                      title: promoFilmTitle,
-                      imgSrc: promoFilmPosterSrc,
-                      videoSrc: promoFilmVideoSrc
+                      title,
+                      imgSrc: posterSrc,
+                      videoSrc,
                     });
                   }}
                   className="btn btn--play movie-card__button"
@@ -92,15 +92,17 @@ const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick, filmsToRender
                   </svg>
                   <span>Play</span>
                 </button>
-                <button
-                  className="btn btn--list movie-card__button"
-                  type="button"
-                >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+                {authorizationStatus === AuthorizationStatus.AUTH ? (
+                  <button
+                    className="btn btn--list movie-card__button"
+                    type="button"
+                  >
+                    <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"></use>
+                    </svg>
+                    <span>My list</span>
+                  </button>
+                ) : null}
               </div>
             </div>
           </div>
@@ -131,12 +133,12 @@ const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick, filmsToRender
 
 Main.propTypes = {
   promoFilm: PropTypes.shape({
-    promoFilmTitle: PropTypes.string,
-    promoFilmGenre: PropTypes.string,
-    promoFilmReleaseYear: PropTypes.number,
-    promoFilmPosterSrc: PropTypes.string,
-    promoFilmBgSrc: PropTypes.string,
-    promoFilmVideoSrc: PropTypes.string,
+    title: PropTypes.string,
+    genre: PropTypes.string,
+    releaseYear: PropTypes.number,
+    posterSrc: PropTypes.string,
+    bgSrc: PropTypes.string,
+    videoSrc: PropTypes.string,
   }).isRequired,
   onMovieCardClick: PropTypes.func.isRequired,
   onPlayFilmButtonClick: PropTypes.func.isRequired,

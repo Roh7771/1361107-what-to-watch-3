@@ -1,5 +1,4 @@
 import {extend} from "../../utils";
-import settings from "../../mocks/settings";
 import adaptFilmsData from "./adaptFilmsData";
 import {ActionCreators as AppActionCreators} from '../appStatus/appStatus.js';
 
@@ -7,15 +6,22 @@ let timer;
 
 const initialState = {
   filmsList: [],
-  promoFilm: settings.PROMO_FILM,
+  promoFilm: {},
 };
 
 const ActionTypes = {
   LOAD_FILMS: `LOAD_FILMS`,
-  SEND_REVIEW: `SEND_REVIEW`
+  SEND_REVIEW: `SEND_REVIEW`,
+  LOAD_PROMO_FILM: `LOAD_PROMO_FILM`
 };
 
 const ActionCreators = {
+  loadPromoFilm: (film) => {
+    return {
+      type: ActionTypes.LOAD_PROMO_FILM,
+      payload: film,
+    };
+  },
   loadFilms: (films) => {
     return {
       type: ActionTypes.LOAD_FILMS,
@@ -30,11 +36,19 @@ const ActionCreators = {
 };
 
 const Operation = {
+  loadPromoFilm: () => (dispatch, getState, api) => {
+    return api.get(`/films/promo`)
+      .then((response) => {
+        const newData = adaptFilmsData([response.data]);
+        dispatch(ActionCreators.loadPromoFilm(newData[0]));
+      });
+  },
   loadFilms: () => (dispatch, getState, api) => {
     return api.get(`/films`)
       .then((response) => {
         const newData = adaptFilmsData(response.data);
         dispatch(ActionCreators.loadFilms(newData));
+        dispatch(AppActionCreators.changeFilmsLoadingStatus());
       });
   },
   sendReview: (id, comment, rating) => (dispatch, getState, api) => {
@@ -62,6 +76,10 @@ const reducer = (state = initialState, action) => {
     case ActionTypes.LOAD_FILMS:
       return extend(state, {
         filmsList: action.payload
+      });
+    case ActionTypes.LOAD_PROMO_FILM:
+      return extend(state, {
+        promoFilm: action.payload
       });
   }
   return state;
