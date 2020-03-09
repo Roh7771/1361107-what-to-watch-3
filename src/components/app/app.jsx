@@ -1,6 +1,6 @@
 import React from "react";
 import Main from "../main/main.jsx";
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {Router, Switch, Route} from "react-router-dom";
 import PropTypes from "prop-types";
 import MoviePage from "../movie-page/movie-page.jsx";
 import {connect} from "react-redux";
@@ -25,6 +25,8 @@ import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import AddReview from "../add-review/add-review.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import withTextState from "../../hocs/with-text-state/with-text-state.js";
+import history from "../../history.js";
+import LoginRoute from "../routes/login-route/login-route.jsx";
 
 const VideoPlayerWrapper = withVideo(MovieVideoPlayer);
 const AddReviewWrapper = withTextState(withActiveItem(AddReview));
@@ -70,65 +72,53 @@ const App = ({
         />
       );
     }
-
-    if (isLogging) {
-      return <SignIn onSubmit={login} />;
-    }
-
-    return (
-      <Main
-        authorizationStatus={authorizationStatus}
-        promoFilm={promoFilm}
-        onMovieCardClick={onMovieCardClick}
-        onPlayFilmButtonClick={onPlayFilmButtonClick}
-        filmsToRender={filmsToRender}
-        onSignInClick={changeLoggingStatus}
-      />
-    );
   };
 
   return (
-    <BrowserRouter>
+    <Router history={history}>
       <Switch>
-        <Route exact path="/">
-          {renderApp()}
-        </Route>
-        <Route exact path="/dev-movie-page">
-          <MoviePage
-            onPlayFilmButtonClick={() => {}}
-            onMovieCardClick={onMovieCardClick}
-            film={chosenFilm ? chosenFilm : filmsToRender[0]}
-            authorizationStatus={authorizationStatus}
-          />
-        </Route>
-        <Route exact path="/dev-movie-player">
-          <VideoPlayerWrapper
-            title={`Some Film`}
-            type={`movie`}
-            className={`player__video`}
-            isPlaying={false}
-            posterSrc={`https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/Fantastic_Beasts_-_The_Crimes_of_Grindelwald_Poster.png/220px-Fantastic_Beasts_-_The_Crimes_of_Grindelwald_Poster.png`}
-            videoSrc={`https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`}
-          />
-        </Route>
-        <Route exact path="/dev-auth">
-          <SignIn onSubmit={login} />
-        </Route>
-        <Route exact path="/dev-review">
-          <AddReviewWrapper
-            changeFormSendingStatus={changeFormSendingStatus}
-            onReviewSend={onReviewSend}
-            id={5}
-            movieTitle={`The Grand Budapest Hotel`}
-            movieBg={`img/bg-the-grand-budapest-hotel.jpg`}
-            moviePoster={`img/the-grand-budapest-hotel-poster.jpg`}
-            activeItem={3}
-            isFormSending={isFormSending}
-            formErrorMessage={formErrorMessage}
-          />
-        </Route>
+        <Route
+          exact
+          path="/"
+          render={(props) => {
+            console.log(authorizationStatus);
+            return (
+              <Main
+                authorizationStatus={authorizationStatus}
+                promoFilm={promoFilm}
+                onMovieCardClick={onMovieCardClick}
+                onPlayFilmButtonClick={onPlayFilmButtonClick}
+                filmsToRender={filmsToRender}
+                onSignInClick={changeLoggingStatus}
+              />
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/films"
+          render={(props) => {
+            console.log(authorizationStatus);
+            return (
+              <MoviePage
+                onPlayFilmButtonClick={() => {}}
+                onMovieCardClick={onMovieCardClick}
+                film={filmsToRender[0]}
+                authorizationStatus={authorizationStatus}
+              />
+            );
+          }}
+        />
+        <LoginRoute
+          authorizationStatus={authorizationStatus}
+          exact
+          path="/login"
+          render={() => {
+            return (<SignIn onSubmit={login} />);
+          }}
+        />
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 };
 

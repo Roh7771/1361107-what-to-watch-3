@@ -8,6 +8,7 @@ import {AuthorizationStatus} from "../../reducer/user/user.js";
 const TabListWrapper = withActiveItem(TabList);
 
 const MoviePage = ({film, onMovieCardClick, onPlayFilmButtonClick, authorizationStatus}) => {
+  console.log(film);
   return (
     <Fragment>
       <section className="movie-card movie-card--full" style={{backgroundColor: `${film.bgColor}`}}>

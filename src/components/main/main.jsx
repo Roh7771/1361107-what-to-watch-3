@@ -5,6 +5,7 @@ import GenresList from "../genres-list/genres-list.jsx";
 import ShowMoreFilms from "../show-more-films/show-more-films.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {Link} from "react-router-dom";
 
 const MovieListWrapper = withActiveItem(MovieList);
 
@@ -49,10 +50,9 @@ const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick, filmsToRender
                 />
               </div>
             ) : (
-              <a onClick={(e) => {
-                e.preventDefault();
+              <Link to="/login" onClick={() => {
                 onSignInClick();
-              }} href="#" className="user-block__link">Sign in</a>
+              }} className="user-block__link">Sign in</Link>
             )}
           </div>
         </header>
