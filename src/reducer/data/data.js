@@ -12,12 +12,18 @@ const initialState = {
 
 const ActionTypes = {
   LOAD_FILMS: `LOAD_FILMS`,
-  SEND_REVIEW: `SEND_REVIEW`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
-  GET_FAVORITE_FILMS: `GET_FAVORITE_FILMS`
+  GET_FAVORITE_FILMS: `GET_FAVORITE_FILMS`,
+  UPDATE_FILM_FAVORITE_STATUS: `UPDATE_FILM_FAVORITE_STATUS`
 };
 
 const ActionCreators = {
+  updateFilmFavoriteStatus: (id) => {
+    return {
+      type: ActionTypes.UPDATE_FILM_FAVORITE_STATUS,
+      payload: id
+    };
+  },
   getFavoriteFilms: (films) => {
     return {
       type: ActionTypes.GET_FAVORITE_FILMS,
@@ -36,11 +42,6 @@ const ActionCreators = {
       payload: films
     };
   },
-  sendReview: () => {
-    return {
-      type: ActionTypes.SEND_REVIEW
-    };
-  }
 };
 
 const Operation = {
@@ -74,19 +75,32 @@ const Operation = {
     })
     .then(() => {
       dispatch(AppActionCreators.changeFormSendingStatus(false));
-      dispatch(ActionCreators.sendReview());
     });
   },
   setFilmFavoriteStatus: (id, value) => (dispatch, getState, api) => {
     return api.post(`/favorite/${id}/${value}`)
       .then((response) => {
-        console.dir(response);
+        dispatch(ActionCreators.updateFilmFavoriteStatus(response.data.id));
+        dispatch(Operation.getFavoriteFilms());
       });
   }
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionTypes.UPDATE_FILM_FAVORITE_STATUS:
+      return extend(state, {
+        filmsList: state.filmsList.map((film) => {
+          if (film.id === action.payload) {
+            film.isFavorite = !film.isFavorite;
+            return film;
+          }
+          return film;
+        }),
+        promoFilm: extend(state.promoFilm, {
+          isFavorite: state.promoFilm.id === action.payload ? !state.promoFilm.isFavorite : state.promoFilm.isFavorite
+        })
+      });
     case ActionTypes.GET_FAVORITE_FILMS:
       return extend(state, {
         userFavoriteFilms: action.payload

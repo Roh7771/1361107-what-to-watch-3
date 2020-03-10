@@ -29,6 +29,7 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import withTextState from "../../hocs/with-text-state/with-text-state.js";
 import history from "../../history.js";
 import LoginRoute from "../routes/login-route/login-route.jsx";
+import MyList from "../my-list/my-list.jsx";
 
 const VideoPlayerWrapper = withVideo(MovieVideoPlayer);
 const AddReviewWrapper = withTextState(withActiveItem(AddReview));
@@ -36,9 +37,7 @@ const AddReviewWrapper = withTextState(withActiveItem(AddReview));
 const App = ({
   filmsToRender,
   promoFilm,
-  chosenFilm,
   login,
-  filmToWatch,
   changeLoggingStatus,
   onMovieCardClick,
   onReviewSend,
@@ -129,6 +128,18 @@ const App = ({
             );
           }}
         />
+        <Route
+          exact
+          path="/mylist"
+          render={() => {
+            return (
+              <MyList
+                onMovieCardClick={onMovieCardClick}
+                userFavoriteFilms={userFavoriteFilms}
+              />
+            );
+          }}
+        />
         <Route exact path="/dev-movie-player">
           <VideoPlayerWrapper
             title={`Some Film`}
@@ -212,6 +223,7 @@ App.propTypes = {
   isFormSending: PropTypes.bool.isRequired,
   formErrorMessage: PropTypes.string,
   isFilmsLoading: PropTypes.bool.isRequired,
+  setFilmFavoriteStatus: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

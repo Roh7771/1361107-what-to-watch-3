@@ -40,14 +40,16 @@ const Main = ({
           </div>
           <div className="user-block">
             {authorizationStatus === AuthorizationStatus.AUTH ? (
-              <div className="user-block__avatar">
-                <img
-                  src="img/avatar.jpg"
-                  alt="User avatar"
-                  width="63"
-                  height="63"
-                />
-              </div>
+              <Link to="/myList">
+                <div className="user-block__avatar">
+                  <img
+                    src="img/avatar.jpg"
+                    alt="User avatar"
+                    width="63"
+                    height="63"
+                  />
+                </div>
+              </Link>
             ) : (
               <Link
                 to="/login"
@@ -107,9 +109,15 @@ const Main = ({
                     return isFavorite ? setFilmFavoriteStatus(promoFilm.id, 0) : setFilmFavoriteStatus(promoFilm.id, 1);
                   }}
                 >
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
+                  {isFavorite ? (
+                    <svg viewBox="0 0 18 14" width="18" height="14">
+                      <use xlinkHref="#in-list"></use>
+                    </svg>
+                  ) : (
+                    <svg viewBox="0 0 19 20" width="19" height="20">
+                      <use xlinkHref="#add"></use>
+                    </svg>
+                  )}
                   <span>My list</span>
                 </button>
               </div>
