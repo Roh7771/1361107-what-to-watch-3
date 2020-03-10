@@ -1,5 +1,6 @@
 import {extend} from "../../utils";
 import history from "../../history";
+import {Operation as DataOperation} from '../data/data.js';
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -28,6 +29,7 @@ const Operation = {
     return api.get(`/login`)
       .then(() => {
         dispatch(ActionCreators.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(DataOperation.getFavoriteFilms());
       });
   },
 
@@ -38,6 +40,7 @@ const Operation = {
     })
       .then(() => {
         dispatch(ActionCreators.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(DataOperation.getFavoriteFilms());
         history.push(`/`);
       });
   },
