@@ -6,27 +6,26 @@ import ShowMoreFilms from "../show-more-films/show-more-films.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Link} from "react-router-dom";
+import history from "../../history.js";
 
 const MovieListWrapper = withActiveItem(MovieList);
 
-const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick, filmsToRender, authorizationStatus, onSignInClick}) => {
-  const {
-    title,
-    releaseYear,
-    genre,
-    bgSrc,
-    posterSrc,
-    videoSrc
-  } = promoFilm;
+const Main = ({
+  promoFilm,
+  onMovieCardClick,
+  onPlayFilmButtonClick,
+  filmsToRender,
+  authorizationStatus,
+  onSignInClick,
+  setFilmFavoriteStatus
+}) => {
+  const {title, releaseYear, genre, bgSrc, posterSrc, videoSrc, isFavorite} = promoFilm;
 
   return (
     <React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img
-            src={bgSrc}
-            alt={title}
-          />
+          <img src={bgSrc} alt={title} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -50,9 +49,15 @@ const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick, filmsToRender
                 />
               </div>
             ) : (
-              <Link to="/login" onClick={() => {
-                onSignInClick();
-              }} className="user-block__link">Sign in</Link>
+              <Link
+                to="/login"
+                onClick={() => {
+                  onSignInClick();
+                }}
+                className="user-block__link"
+              >
+                Sign in
+              </Link>
             )}
           </div>
         </header>
@@ -81,7 +86,7 @@ const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick, filmsToRender
                     onPlayFilmButtonClick({
                       title,
                       imgSrc: posterSrc,
-                      videoSrc,
+                      videoSrc
                     });
                   }}
                   className="btn btn--play movie-card__button"
@@ -92,17 +97,21 @@ const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick, filmsToRender
                   </svg>
                   <span>Play</span>
                 </button>
-                {authorizationStatus === AuthorizationStatus.AUTH ? (
-                  <button
-                    className="btn btn--list movie-card__button"
-                    type="button"
-                  >
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"></use>
-                    </svg>
-                    <span>My list</span>
-                  </button>
-                ) : null}
+                <button
+                  className="btn btn--list movie-card__button"
+                  type="button"
+                  onClick={() => {
+                    if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
+                      history.push(`/login`);
+                    }
+                    return isFavorite ? setFilmFavoriteStatus(promoFilm.id, 0) : setFilmFavoriteStatus(promoFilm.id, 1);
+                  }}
+                >
+                  <svg viewBox="0 0 19 20" width="19" height="20">
+                    <use xlinkHref="#add"></use>
+                  </svg>
+                  <span>My list</span>
+                </button>
               </div>
             </div>
           </div>
@@ -124,7 +133,7 @@ const Main = ({promoFilm, onMovieCardClick, onPlayFilmButtonClick, filmsToRender
             />
           </div>
 
-          <ShowMoreFilms/>
+          <ShowMoreFilms />
         </section>
       </div>
     </React.Fragment>
@@ -139,28 +148,52 @@ Main.propTypes = {
     posterSrc: PropTypes.string,
     bgSrc: PropTypes.string,
     videoSrc: PropTypes.string,
+    id: PropTypes.number,
+    isFavorite: PropTypes.bool,
   }).isRequired,
   onMovieCardClick: PropTypes.func.isRequired,
   onPlayFilmButtonClick: PropTypes.func.isRequired,
-  filmsToRender: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string,
-    genre: PropTypes.string,
-    releaseYear: PropTypes.number,
-    imgSrc: PropTypes.string,
-    bgSrc: PropTypes.string,
-    videoSrc: PropTypes.string,
-    posterSrc: PropTypes.string,
-    ratingScore: PropTypes.number,
-    ratingCount: PropTypes.number,
-    description: PropTypes.arrayOf(PropTypes.string),
-    director: PropTypes.string,
-    starring: PropTypes.arrayOf(PropTypes.string),
-    id: PropTypes.number,
-    filmDuration: PropTypes.number,
-    reviews: PropTypes.array,
-  })).isRequired,
+  filmsToRender: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        genre: PropTypes.string,
+        releaseYear: PropTypes.number,
+        imgSrc: PropTypes.string,
+        bgSrc: PropTypes.string,
+        videoSrc: PropTypes.string,
+        posterSrc: PropTypes.string,
+        ratingScore: PropTypes.number,
+        ratingCount: PropTypes.number,
+        description: PropTypes.arrayOf(PropTypes.string),
+        director: PropTypes.string,
+        starring: PropTypes.arrayOf(PropTypes.string),
+        id: PropTypes.number,
+        filmDuration: PropTypes.number,
+        reviews: PropTypes.array
+      })
+  ).isRequired,
+  userFavoriteFilms: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        genre: PropTypes.string,
+        releaseYear: PropTypes.number,
+        imgSrc: PropTypes.string,
+        bgSrc: PropTypes.string,
+        videoSrc: PropTypes.string,
+        posterSrc: PropTypes.string,
+        ratingScore: PropTypes.number,
+        ratingCount: PropTypes.number,
+        description: PropTypes.arrayOf(PropTypes.string),
+        director: PropTypes.string,
+        starring: PropTypes.arrayOf(PropTypes.string),
+        id: PropTypes.number,
+        filmDuration: PropTypes.number,
+        reviews: PropTypes.array
+      })
+  ).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   onSignInClick: PropTypes.func.isRequired,
+  setFilmFavoriteStatus: PropTypes.func.isRequired,
 };
 
 export default Main;

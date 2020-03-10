@@ -76,6 +76,12 @@ const Operation = {
       dispatch(AppActionCreators.changeFormSendingStatus(false));
       dispatch(ActionCreators.sendReview());
     });
+  },
+  setFilmFavoriteStatus: (id, value) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${id}/${value}`)
+      .then((response) => {
+        console.dir(response);
+      });
   }
 };
 

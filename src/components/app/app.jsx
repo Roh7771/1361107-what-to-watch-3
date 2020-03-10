@@ -8,7 +8,8 @@ import withVideo from "../../hocs/with-video/with-video.js";
 import MovieVideoPlayer from "../movie-video-player/movie-video-player.jsx";
 import {
   getPromoFilm,
-  getFilmsToRender
+  getFilmsToRender,
+  getUserFavoriteFilms
 } from "../../reducer/data/selectors.js";
 import {
   getChosenFilm,
@@ -46,34 +47,36 @@ const App = ({
   changeFormSendingStatus,
   isFormSending,
   formErrorMessage,
-  isFilmsLoading
+  isFilmsLoading,
+  userFavoriteFilms,
+  setFilmFavoriteStatus
 }) => {
-  const renderApp = () => {
-    if (filmToWatch) {
-      return (
-        <VideoPlayerWrapper
-          title={filmToWatch.title}
-          type={`movie`}
-          className={`player__video`}
-          isPlaying={false}
-          posterSrc={filmToWatch.imgSrc}
-          videoSrc={filmToWatch.videoSrc}
-          onPlayFilmButtonClick={onPlayFilmButtonClick}
-        />
-      );
-    }
+  // const renderApp = () => {
+  //   if (filmToWatch) {
+  //     return (
+  //       <VideoPlayerWrapper
+  //         title={filmToWatch.title}
+  //         type={`movie`}
+  //         className={`player__video`}
+  //         isPlaying={false}
+  //         posterSrc={filmToWatch.imgSrc}
+  //         videoSrc={filmToWatch.videoSrc}
+  //         onPlayFilmButtonClick={onPlayFilmButtonClick}
+  //       />
+  //     );
+  //   }
 
-    if (chosenFilm) {
-      return (
-        <MoviePage
-          onPlayFilmButtonClick={onPlayFilmButtonClick}
-          film={chosenFilm}
-          onMovieCardClick={onMovieCardClick}
-          authorizationStatus={authorizationStatus}
-        />
-      );
-    }
-  };
+  //   if (chosenFilm) {
+  //     return (
+  //       <MoviePage
+  //         onPlayFilmButtonClick={onPlayFilmButtonClick}
+  //         film={chosenFilm}
+  //         onMovieCardClick={onMovieCardClick}
+  //         authorizationStatus={authorizationStatus}
+  //       />
+  //     );
+  //   }
+  // };
 
   return (
     <Router history={history}>
@@ -90,6 +93,8 @@ const App = ({
                 onPlayFilmButtonClick={onPlayFilmButtonClick}
                 filmsToRender={filmsToRender}
                 onSignInClick={changeLoggingStatus}
+                userFavoriteFilms={userFavoriteFilms}
+                setFilmFavoriteStatus={setFilmFavoriteStatus}
               />
             );
           }}
@@ -158,6 +163,24 @@ App.propTypes = {
     promoFilmGenre: PropTypes.string,
     promoFilmReleaseYear: PropTypes.number
   }).isRequired,
+  userFavoriteFilms: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        genre: PropTypes.string,
+        releaseYear: PropTypes.number,
+        imgSrc: PropTypes.string,
+        bgSrc: PropTypes.string,
+        posterSrc: PropTypes.string,
+        ratingScore: PropTypes.number,
+        ratingCount: PropTypes.number,
+        description: PropTypes.arrayOf(PropTypes.string),
+        director: PropTypes.string,
+        starring: PropTypes.arrayOf(PropTypes.string),
+        id: PropTypes.number,
+        filmDuration: PropTypes.number,
+        reviews: PropTypes.array
+      })
+  ).isRequired,
   filmsToRender: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string,
@@ -200,7 +223,8 @@ const mapStateToProps = (state) => ({
   isLogging: getLoggingStatus(state),
   isFormSending: getFormSendingStatus(state),
   formErrorMessage: getFormErrorMessage(state),
-  isFilmsLoading: getFilmsLoadingStatus(state)
+  isFilmsLoading: getFilmsLoadingStatus(state),
+  userFavoriteFilms: getUserFavoriteFilms(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -221,6 +245,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   changeFormSendingStatus: (value) => {
     dispatch(ActionCreators.changeFormSendingStatus(value));
+  },
+  setFilmFavoriteStatus: (id, value) => {
+    dispatch(DataOperation.setFilmFavoriteStatus(id, value));
   }
 });
 
