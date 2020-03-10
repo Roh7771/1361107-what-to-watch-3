@@ -8,13 +8,25 @@ import {Provider} from "react-redux";
 import {createAPI} from "./api.js";
 import thunk from "redux-thunk";
 import {Operation as DataOperation} from "./reducer/data/data.js";
-import {Operation as UserOperation, ActionCreators, AuthorizationStatus} from "./reducer/user/user.js";
+import {Operation as UserOperation, ActionCreators as UserActionCreators, AuthorizationStatus} from "./reducer/user/user.js";
+import {ActionCreators as AppActionCreators} from "./reducer/appStatus/appStatus.js";
+
+let timer;
 
 const onUnauthorized = () => {
-  store.dispatch(ActionCreators.requireAuthorization(AuthorizationStatus.NO_AUTH));
+  store.dispatch(UserActionCreators.requireAuthorization(AuthorizationStatus.NO_AUTH));
 };
 
-const api = createAPI(onUnauthorized);
+const onErrorReceived = (error) => {
+  clearTimeout(timer);
+  store.dispatch(AppActionCreators.changeFormSendingStatus(false));
+  store.dispatch(AppActionCreators.setFormErrorMessage(error.response.data.error));
+  timer = setTimeout(() => {
+    store.dispatch(AppActionCreators.setFormErrorMessage(null));
+  }, 4000);
+};
+
+const api = createAPI(onUnauthorized, onErrorReceived);
 
 const store = createStore(
     reducer,

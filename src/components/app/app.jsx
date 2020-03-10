@@ -27,6 +27,7 @@ import AddReview from "../add-review/add-review.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import withTextState from "../../hocs/with-text-state/with-text-state.js";
 import history from "../../history.js";
+import LoginRoute from "../routes/login-route/login-route.jsx";
 
 const VideoPlayerWrapper = withVideo(MovieVideoPlayer);
 const AddReviewWrapper = withTextState(withActiveItem(AddReview));
@@ -37,7 +38,6 @@ const App = ({
   chosenFilm,
   login,
   filmToWatch,
-  isLogging,
   changeLoggingStatus,
   onMovieCardClick,
   onReviewSend,
@@ -73,21 +73,6 @@ const App = ({
         />
       );
     }
-
-    if (isLogging) {
-      return <SignIn onSubmit={login} />;
-    }
-
-    return (
-      <Main
-        authorizationStatus={authorizationStatus}
-        promoFilm={promoFilm}
-        onMovieCardClick={onMovieCardClick}
-        onPlayFilmButtonClick={onPlayFilmButtonClick}
-        filmsToRender={filmsToRender}
-        onSignInClick={changeLoggingStatus}
-      />
-    );
   };
 
   return (
@@ -124,7 +109,21 @@ const App = ({
             );
           }}
         />
-        <Route exact path="/films/:id" component={MoviePage} />
+        <LoginRoute
+          authorizationStatus={authorizationStatus}
+          exact
+          path="/login"
+          render={() => {
+            return (
+              <SignIn
+                onSubmit={login}
+                formErrorMessage={formErrorMessage}
+                changeFormSendingStatus={changeFormSendingStatus}
+                isFormSending={isFormSending}
+              />
+            );
+          }}
+        />
         <Route exact path="/dev-movie-player">
           <VideoPlayerWrapper
             title={`Some Film`}
@@ -134,9 +133,6 @@ const App = ({
             posterSrc={`https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/Fantastic_Beasts_-_The_Crimes_of_Grindelwald_Poster.png/220px-Fantastic_Beasts_-_The_Crimes_of_Grindelwald_Poster.png`}
             videoSrc={`https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`}
           />
-        </Route>
-        <Route exact path="/login">
-          <SignIn onSubmit={login} />
         </Route>
         <Route exact path="/dev-review">
           <AddReviewWrapper
@@ -223,8 +219,8 @@ const mapDispatchToProps = (dispatch) => ({
   onReviewSend: (id, comment, rating) => {
     dispatch(DataOperation.sendReview(id, comment, rating));
   },
-  changeFormSendingStatus: () => {
-    dispatch(ActionCreators.changeFormSendingStatus());
+  changeFormSendingStatus: (value) => {
+    dispatch(ActionCreators.changeFormSendingStatus(value));
   }
 });
 

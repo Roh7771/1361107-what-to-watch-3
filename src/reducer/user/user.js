@@ -1,5 +1,5 @@
 import {extend} from "../../utils";
-import {ActionCreators as AppActionCreators} from '../appStatus/appStatus.js';
+import history from "../../history";
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -28,9 +28,6 @@ const Operation = {
     return api.get(`/login`)
       .then(() => {
         dispatch(ActionCreators.requireAuthorization(AuthorizationStatus.AUTH));
-      })
-      .catch((err) => {
-        throw err;
       });
   },
 
@@ -41,7 +38,7 @@ const Operation = {
     })
       .then(() => {
         dispatch(ActionCreators.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(AppActionCreators.changeLoggingStatus());
+        history.push(`/`);
       });
   },
 };

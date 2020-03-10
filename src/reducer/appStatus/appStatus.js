@@ -33,8 +33,9 @@ const ActionCreators = {
     type: ActionTypes.CHANGE_FILMS_LOADING_STATUS
   }),
 
-  changeFormSendingStatus: () => ({
-    type: ActionTypes.CHANGE_FORM_SENDING_STATUS
+  changeFormSendingStatus: (value) => ({
+    type: ActionTypes.CHANGE_FORM_SENDING_STATUS,
+    payload: value
   }),
 
   changeLoggingStatus: () => ({
@@ -80,7 +81,7 @@ const reducer = (state = initialState, action) => {
 
     case ActionTypes.CHANGE_FORM_SENDING_STATUS:
       return extend(state, {
-        isFormSending: !state.isFormSending
+        isFormSending: action.payload
       });
 
     case ActionTypes.CHANGE_LOGGING_STATUS:

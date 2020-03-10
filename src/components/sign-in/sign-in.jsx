@@ -12,9 +12,11 @@ class SignIn extends PureComponent {
   }
 
   _handleSubmit(e) {
-    const {onSubmit} = this.props;
+    const {onSubmit, changeFormSendingStatus} = this.props;
 
     e.preventDefault();
+
+    changeFormSendingStatus(true);
 
     onSubmit({
       login: this.loginRef.current.value,
@@ -23,6 +25,7 @@ class SignIn extends PureComponent {
   }
 
   render() {
+    const {isFormSending, formErrorMessage} = this.props;
     return (
       <div className="user-page">
         <header className="page-header user-page__head">
@@ -37,21 +40,30 @@ class SignIn extends PureComponent {
           <h1 className="page-title user-page__title">Sign in</h1>
         </header>
 
+        {formErrorMessage ? (
+          <p style={{textAlign: `center`}}>
+            Не удалось авторизоваться :( <br/>
+            {`Причина: ${formErrorMessage}`}
+          </p>
+        ) : null}
+
         <div className="sign-in user-page__content">
           <form onSubmit={this._handleSubmit} action="#" className="sign-in__form">
-            <div className="sign-in__fields">
-              <div className="sign-in__field">
-                <input ref={this.loginRef} className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
-                <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
+            <fieldset style={{padding: 0, border: `none`}} disabled={isFormSending}>
+              <div className="sign-in__fields">
+                <div className="sign-in__field">
+                  <input ref={this.loginRef} className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
+                  <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
+                </div>
+                <div className="sign-in__field">
+                  <input ref={this.passwordRef} className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" />
+                  <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
+                </div>
               </div>
-              <div className="sign-in__field">
-                <input ref={this.passwordRef} className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" />
-                <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
+              <div className="sign-in__submit">
+                <button className="sign-in__btn" type="submit">Sign in</button>
               </div>
-            </div>
-            <div className="sign-in__submit">
-              <button className="sign-in__btn" type="submit">Sign in</button>
-            </div>
+            </fieldset>
           </form>
         </div>
 
@@ -75,6 +87,9 @@ class SignIn extends PureComponent {
 
 SignIn.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  formErrorMessage: PropTypes.string,
+  isFormSending: PropTypes.bool.isRequired,
+  changeFormSendingStatus: PropTypes.func.isRequired,
 };
 
 export default SignIn;

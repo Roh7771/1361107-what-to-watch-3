@@ -58,15 +58,8 @@ const Operation = {
       comment
     })
     .then(() => {
-      dispatch(AppActionCreators.changeFormSendingStatus());
+      dispatch(AppActionCreators.changeFormSendingStatus(false));
       dispatch(ActionCreators.sendReview());
-    })
-    .catch((error) => {
-      dispatch(AppActionCreators.changeFormSendingStatus());
-      dispatch(AppActionCreators.setFormErrorMessage(error.response.data.error));
-      timer = setTimeout(() => {
-        dispatch(AppActionCreators.setFormErrorMessage(null));
-      }, 4000);
     });
   }
 };

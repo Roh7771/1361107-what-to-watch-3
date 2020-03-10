@@ -67,7 +67,7 @@ const AddReview = ({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            changeFormSendingStatus();
+            changeFormSendingStatus(true);
             onReviewSend(id, text, chosenStar);
           }}
           action="#"
