@@ -37,3 +37,12 @@ export const getMoreLikeThisFilm = createSelector(
     }
 );
 
+export const getGenreList = createSelector(
+    getAllFilms,
+    (films) => {
+      const genreList = films.map((film) => film.genre);
+      const filteredGenreList = genreList.filter((genre, index) => genreList.indexOf(genre) === index);
+      return [`All genres`, ...filteredGenreList];
+    }
+);
+
