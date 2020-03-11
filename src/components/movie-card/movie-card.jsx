@@ -2,13 +2,14 @@ import React from "react";
 import PropTypes from 'prop-types';
 import Player from "../movie-video-player/movie-video-player.jsx";
 import withVideo from "../../hocs/with-video/with-video.js";
+import {Link} from "react-router-dom";
 
 const VideoPlayer = withVideo(Player);
 
 let timer;
 
 const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick, activeCard}) => {
-  const {title, imgSrc, trailerSrc} = film;
+  const {title, imgSrc, trailerSrc, id} = film;
 
   return (
     <article
@@ -27,17 +28,19 @@ const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick, act
       }}
       className="small-movie-card catalog__movies-card"
     >
-      <div className="small-movie-card__image">
-        <VideoPlayer
-          isPlaying={activeCard === film}
-          videoSrc={trailerSrc}
-          posterSrc={imgSrc}
-          isMuted
-          widthAtr={280}
-          heightAtr={175}
-          type={`trailer`}
-        />
-      </div>
+      <Link to={`/films/${id}`}>
+        <div className="small-movie-card__image">
+          <VideoPlayer
+            isPlaying={activeCard === film}
+            videoSrc={trailerSrc}
+            posterSrc={imgSrc}
+            isMuted
+            widthAtr={280}
+            heightAtr={175}
+            type={`trailer`}
+          />
+        </div>
+      </Link>
       <h3 className="small-movie-card__title">
         <a
           onClick={(e) => {

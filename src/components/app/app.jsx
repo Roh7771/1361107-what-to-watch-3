@@ -9,7 +9,8 @@ import MovieVideoPlayer from "../movie-video-player/movie-video-player.jsx";
 import {
   getPromoFilm,
   getFilmsToRender,
-  getUserFavoriteFilms
+  getUserFavoriteFilms,
+  getAllFilms
 } from "../../reducer/data/selectors.js";
 import {
   getChosenFilm,
@@ -38,7 +39,6 @@ const App = ({
   filmsToRender,
   promoFilm,
   login,
-  changeLoggingStatus,
   onMovieCardClick,
   onReviewSend,
   authorizationStatus,
@@ -48,7 +48,8 @@ const App = ({
   formErrorMessage,
   isFilmsLoading,
   userFavoriteFilms,
-  setFilmFavoriteStatus
+  setFilmFavoriteStatus,
+  allFilms
 }) => {
   // const renderApp = () => {
   //   if (filmToWatch) {
@@ -91,7 +92,6 @@ const App = ({
                 onMovieCardClick={onMovieCardClick}
                 onPlayFilmButtonClick={onPlayFilmButtonClick}
                 filmsToRender={filmsToRender}
-                onSignInClick={changeLoggingStatus}
                 userFavoriteFilms={userFavoriteFilms}
                 setFilmFavoriteStatus={setFilmFavoriteStatus}
               />
@@ -102,13 +102,15 @@ const App = ({
           exact
           path="/films/:id"
           render={(propsFromRoute) => {
+            const filmToRender = allFilms.find((film) => film.id === +propsFromRoute.match.params.id);
             return (
               <MoviePage
                 onPlayFilmButtonClick={onPlayFilmButtonClick}
-                film={filmsToRender[propsFromRoute.match.params.id]}
+                film={filmToRender}
                 onMovieCardClick={onMovieCardClick}
                 authorizationStatus={authorizationStatus}
                 isFilmsLoading={isFilmsLoading}
+                setFilmFavoriteStatus={setFilmFavoriteStatus}
               />
             );
           }}
@@ -192,6 +194,24 @@ App.propTypes = {
         reviews: PropTypes.array
       })
   ).isRequired,
+  allFilms: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string,
+        genre: PropTypes.string,
+        releaseYear: PropTypes.number,
+        imgSrc: PropTypes.string,
+        bgSrc: PropTypes.string,
+        posterSrc: PropTypes.string,
+        ratingScore: PropTypes.number,
+        ratingCount: PropTypes.number,
+        description: PropTypes.arrayOf(PropTypes.string),
+        director: PropTypes.string,
+        starring: PropTypes.arrayOf(PropTypes.string),
+        id: PropTypes.number,
+        filmDuration: PropTypes.number,
+        reviews: PropTypes.array
+      })
+  ).isRequired,
   filmsToRender: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string,
@@ -217,7 +237,6 @@ App.propTypes = {
   login: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   isLogging: PropTypes.bool.isRequired,
-  changeLoggingStatus: PropTypes.func.isRequired,
   onReviewSend: PropTypes.func.isRequired,
   changeFormSendingStatus: PropTypes.func.isRequired,
   isFormSending: PropTypes.bool.isRequired,
@@ -236,7 +255,8 @@ const mapStateToProps = (state) => ({
   isFormSending: getFormSendingStatus(state),
   formErrorMessage: getFormErrorMessage(state),
   isFilmsLoading: getFilmsLoadingStatus(state),
-  userFavoriteFilms: getUserFavoriteFilms(state)
+  userFavoriteFilms: getUserFavoriteFilms(state),
+  allFilms: getAllFilms(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -248,9 +268,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   login: (authData) => {
     dispatch(UserOperation.login(authData));
-  },
-  changeLoggingStatus: () => {
-    dispatch(ActionCreators.changeLoggingStatus());
   },
   onReviewSend: (id, comment, rating) => {
     dispatch(DataOperation.sendReview(id, comment, rating));

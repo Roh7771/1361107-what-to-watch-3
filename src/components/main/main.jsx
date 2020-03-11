@@ -16,7 +16,6 @@ const Main = ({
   onPlayFilmButtonClick,
   filmsToRender,
   authorizationStatus,
-  onSignInClick,
   setFilmFavoriteStatus
 }) => {
   const {title, releaseYear, genre, bgSrc, posterSrc, videoSrc, isFavorite} = promoFilm;
@@ -43,7 +42,7 @@ const Main = ({
               <Link to="/myList">
                 <div className="user-block__avatar">
                   <img
-                    src="img/avatar.jpg"
+                    src="/img/avatar.jpg"
                     alt="User avatar"
                     width="63"
                     height="63"
@@ -53,9 +52,6 @@ const Main = ({
             ) : (
               <Link
                 to="/login"
-                onClick={() => {
-                  onSignInClick();
-                }}
                 className="user-block__link"
               >
                 Sign in
