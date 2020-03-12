@@ -14,8 +14,8 @@ const LoginRoute = (props) => {
       render={() => {
         return (
           authorizationStatus === AuthorizationStatus.AUTH
-            ? <Redirect to={`/`} />
-            : render()
+            ? render()
+            : <Redirect to={`/`} />
         );
       }}
     />
