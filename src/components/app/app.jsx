@@ -32,6 +32,7 @@ import withTextState from "../../hocs/with-text-state/with-text-state.js";
 import history from "../../history.js";
 import LoginRoute from "../routes/login-route/login-route.jsx";
 import MyList from "../my-list/my-list.jsx";
+import PrivateRoute from "../routes/private-route/private-route.jsx";
 
 const VideoPlayerWrapper = withVideo(MovieVideoPlayer);
 const AddReviewWrapper = withTextState(withActiveItem(AddReview));
@@ -145,6 +146,24 @@ const App = ({
               <MyList
                 onMovieCardClick={onMovieCardClick}
                 userFavoriteFilms={userFavoriteFilms}
+              />
+            );
+          }}
+        />
+        <PrivateRoute
+          exact
+          authorizationStatus={authorizationStatus}
+          path="/films/:id/review"
+          render={(propsFromRoute) => {
+            const reviewedFilm = allFilms.find((film) => film.id === +propsFromRoute.match.params.id);
+            return (
+              <AddReviewWrapper
+                changeFormSendingStatus={changeFormSendingStatus}
+                onReviewSend={onReviewSend}
+                reviewedFilm={reviewedFilm}
+                activeItem={3}
+                isFormSending={isFormSending}
+                formErrorMessage={formErrorMessage}
               />
             );
           }}

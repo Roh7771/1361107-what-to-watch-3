@@ -1,6 +1,7 @@
 import {extend} from "../../utils";
 import adaptFilmsData from "./adaptFilmsData";
 import {ActionCreators as AppActionCreators} from '../appStatus/appStatus.js';
+import history from "../../history";
 
 let timer;
 
@@ -89,6 +90,7 @@ const Operation = {
     })
     .then(() => {
       dispatch(AppActionCreators.changeFormSendingStatus(false));
+      history.push(`/films/${id}`);
     });
   },
   setFilmFavoriteStatus: (id, value) => (dispatch, getState, api) => {
@@ -110,8 +112,7 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         filmsList: state.filmsList.map((film) => {
           if (film.id === action.payload) {
-            film.isFavorite = !film.isFavorite;
-            return film;
+            return extend(film, {isFavorite: !film.isFavorite});
           }
           return film;
         }),

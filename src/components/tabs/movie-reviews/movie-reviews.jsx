@@ -40,7 +40,7 @@ const MovieReviews = ({filmComments}) => {
 
                 <footer className="review__details">
                   <cite className="review__author">{review.user.name}</cite>
-                  <time className="review__date" dateTime={review.date}>${convertDate(review.date)}</time>
+                  <time className="review__date" dateTime={review.date}>{convertDate(review.date)}</time>
                 </footer>
               </blockquote>
 
@@ -70,7 +70,17 @@ MovieReviews.propTypes = {
     id: PropTypes.number,
     filmDuration: PropTypes.number,
     reviews: PropTypes.array,
-  })
+  }),
+  filmComments: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    user: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+    }),
+    rating: PropTypes.number,
+    comment: PropTypes.string,
+    data: PropTypes.string,
+  })),
 };
 
 export default MovieReviews;

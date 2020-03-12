@@ -72,7 +72,7 @@ MovieCard.propTypes = {
   onMovieCardClick: PropTypes.func.isRequired,
   onFilmMouseOut: PropTypes.func.isRequired,
   activeCard: PropTypes.object.isRequired,
-  changeTab: PropTypes.func.isRequired,
+  changeTab: PropTypes.func,
 };
 
 export default MovieCard;

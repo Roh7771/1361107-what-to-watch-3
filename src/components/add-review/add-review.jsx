@@ -6,20 +6,18 @@ const AddReview = ({
   activeItem: chosenStar,
   onTextChange,
   text,
-  movieTitle,
-  movieBg,
-  moviePoster,
-  id,
+  reviewedFilm,
   onReviewSend,
   changeFormSendingStatus,
   isFormSending,
   formErrorMessage
 }) => {
+  const {id, title, posterSrc, bgSrc} = reviewedFilm;
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
-          <img src={movieBg} alt={movieTitle} />
+          <img src={bgSrc} alt={title} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -37,7 +35,7 @@ const AddReview = ({
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
                 <a href="#" className="breadcrumbs__link">
-                  {movieTitle}
+                  {title}
                 </a>
               </li>
               <li className="breadcrumbs__item">
@@ -49,7 +47,7 @@ const AddReview = ({
           <div className="user-block">
             <div className="user-block__avatar">
               <img
-                src="img/avatar.jpg"
+                src="/img/avatar.jpg"
                 alt="User avatar"
                 width="63"
                 height="63"
@@ -59,7 +57,7 @@ const AddReview = ({
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src={moviePoster} alt={movieTitle} width="218" height="327" />
+          <img src={posterSrc} alt={title} width="218" height="327" />
         </div>
       </div>
 
@@ -193,10 +191,12 @@ AddReview.propTypes = {
   onTextChange: PropTypes.func.isRequired,
   activeItem: PropTypes.number.isRequired,
   text: PropTypes.string,
-  movieTitle: PropTypes.string.isRequired,
-  moviePoster: PropTypes.string.isRequired,
-  movieBg: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  reviewedFilm: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    posterSrc: PropTypes.string.isRequired,
+    bgSrc: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+  }).isRequired,
   onReviewSend: PropTypes.func.isRequired,
   changeFormSendingStatus: PropTypes.func.isRequired,
   isFormSending: PropTypes.bool.isRequired,

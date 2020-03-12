@@ -19,7 +19,6 @@ const Main = ({
   setFilmFavoriteStatus,
 }) => {
   const {title, releaseYear, genre, bgSrc, posterSrc, videoSrc, isFavorite} = promoFilm;
-
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -196,7 +195,6 @@ Main.propTypes = {
       })
   ).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
-  onSignInClick: PropTypes.func.isRequired,
   setFilmFavoriteStatus: PropTypes.func.isRequired,
 };
 
