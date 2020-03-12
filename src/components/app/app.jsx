@@ -10,7 +10,8 @@ import {
   getPromoFilm,
   getFilmsToRender,
   getUserFavoriteFilms,
-  getAllFilms
+  getAllFilms,
+  getFilmComments
 } from "../../reducer/data/selectors.js";
 import {
   getChosenFilm,
@@ -34,6 +35,7 @@ import MyList from "../my-list/my-list.jsx";
 
 const VideoPlayerWrapper = withVideo(MovieVideoPlayer);
 const AddReviewWrapper = withTextState(withActiveItem(AddReview));
+const MoviePageWrapper = withActiveItem(MoviePage);
 
 const App = ({
   filmsToRender,
@@ -49,7 +51,9 @@ const App = ({
   isFilmsLoading,
   userFavoriteFilms,
   setFilmFavoriteStatus,
-  allFilms
+  allFilms,
+  filmComments,
+  onReviewButtonClick
 }) => {
   // const renderApp = () => {
   //   if (filmToWatch) {
@@ -104,13 +108,16 @@ const App = ({
           render={(propsFromRoute) => {
             const filmToRender = allFilms.find((film) => film.id === +propsFromRoute.match.params.id);
             return (
-              <MoviePage
+              <MoviePageWrapper
+                activeItem={`movieOverview`}
                 onPlayFilmButtonClick={onPlayFilmButtonClick}
                 film={filmToRender}
                 onMovieCardClick={onMovieCardClick}
                 authorizationStatus={authorizationStatus}
                 isFilmsLoading={isFilmsLoading}
                 setFilmFavoriteStatus={setFilmFavoriteStatus}
+                filmComments={filmComments}
+                onReviewButtonClick={onReviewButtonClick}
               />
             );
           }}
@@ -243,6 +250,17 @@ App.propTypes = {
   formErrorMessage: PropTypes.string,
   isFilmsLoading: PropTypes.bool.isRequired,
   setFilmFavoriteStatus: PropTypes.func.isRequired,
+  onReviewButtonClick: PropTypes.func.isRequired,
+  filmComments: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    user: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+    }),
+    rating: PropTypes.number,
+    comment: PropTypes.string,
+    data: PropTypes.string,
+  })),
 };
 
 const mapStateToProps = (state) => ({
@@ -257,6 +275,7 @@ const mapStateToProps = (state) => ({
   isFilmsLoading: getFilmsLoadingStatus(state),
   userFavoriteFilms: getUserFavoriteFilms(state),
   allFilms: getAllFilms(state),
+  filmComments: getFilmComments(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -277,6 +296,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setFilmFavoriteStatus: (id, value) => {
     dispatch(DataOperation.setFilmFavoriteStatus(id, value));
+  },
+  onReviewButtonClick: (id) => {
+    dispatch(DataOperation.getFilmComments(id));
   }
 });
 

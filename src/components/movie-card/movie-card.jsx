@@ -8,7 +8,7 @@ const VideoPlayer = withVideo(Player);
 
 let timer;
 
-const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick, activeCard}) => {
+const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick, activeCard, changeTab}) => {
   const {title, imgSrc, trailerSrc, id} = film;
 
   return (
@@ -25,6 +25,10 @@ const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick, act
       onClick={() => {
         clearTimeout(timer);
         onMovieCardClick(film);
+        if (changeTab) {
+          changeTab(`movieOverview`);
+        }
+        window.scrollTo(0, 0);
       }}
       className="small-movie-card catalog__movies-card"
     >
@@ -68,6 +72,7 @@ MovieCard.propTypes = {
   onMovieCardClick: PropTypes.func.isRequired,
   onFilmMouseOut: PropTypes.func.isRequired,
   activeCard: PropTypes.object.isRequired,
+  changeTab: PropTypes.func.isRequired,
 };
 
 export default MovieCard;

@@ -8,16 +8,24 @@ const initialState = {
   filmsList: [],
   promoFilm: {},
   userFavoriteFilms: [],
+  filmComments: []
 };
 
 const ActionTypes = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO_FILM: `LOAD_PROMO_FILM`,
   GET_FAVORITE_FILMS: `GET_FAVORITE_FILMS`,
-  UPDATE_FILM_FAVORITE_STATUS: `UPDATE_FILM_FAVORITE_STATUS`
+  UPDATE_FILM_FAVORITE_STATUS: `UPDATE_FILM_FAVORITE_STATUS`,
+  GET_FILM_COMMENTS: `GET_FILM_COMMENTS`
 };
 
 const ActionCreators = {
+  getFilmComments: (comments) => {
+    return {
+      type: ActionTypes.GET_FILM_COMMENTS,
+      payload: comments
+    };
+  },
   updateFilmFavoriteStatus: (id) => {
     return {
       type: ActionTypes.UPDATE_FILM_FAVORITE_STATUS,
@@ -45,6 +53,12 @@ const ActionCreators = {
 };
 
 const Operation = {
+  getFilmComments: (id) => (dispatch, getState, api) => {
+    return api.get(`/comments/${id}`)
+      .then((response) => {
+        dispatch(ActionCreators.getFilmComments(response.data));
+      });
+  },
   getFavoriteFilms: () => (dispatch, getState, api) => {
     return api.get(`/favorite`)
       .then((response) => {
@@ -88,6 +102,10 @@ const Operation = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case ActionTypes.GET_FILM_COMMENTS:
+      return extend(state, {
+        filmComments: action.payload
+      });
     case ActionTypes.UPDATE_FILM_FAVORITE_STATUS:
       return extend(state, {
         filmsList: state.filmsList.map((film) => {

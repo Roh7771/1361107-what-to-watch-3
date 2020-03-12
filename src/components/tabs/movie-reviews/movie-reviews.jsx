@@ -1,29 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import mockReviews from '../../../mocks/reviews';
 
 const monthsArr = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
 const convertDate = (date) => {
-  const dateArr = date.split(`-`);
-  return `${monthsArr[dateArr[1] - 1]} ${dateArr[2]}, ${dateArr[0]}`;
+  const dateObj = new Date(date);
+  return `${monthsArr[dateObj.getMonth()]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
 };
 
-const MovieReviews = ({film}) => {
-  const {reviews = mockReviews} = film;
-  const reviewSecondPart = [...reviews];
+const MovieReviews = ({filmComments}) => {
+  const reviewSecondPart = [...filmComments];
   const reviewsFirstPart = reviewSecondPart.splice(0, Math.ceil(reviewSecondPart.length / 2));
   return (
     <div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">
-        {reviewsFirstPart.map((review, i) => {
+        {reviewsFirstPart.map((review) => {
           return (
-            <div key={`${i}-${review.reviewer}`} className="review">
+            <div key={review.id} className="review">
               <blockquote className="review__quote">
-                <p className="review__text">{review.reviewText}</p>
+                <p className="review__text">{review.comment}</p>
 
                 <footer className="review__details">
-                  <cite className="review__author">{review.reviewer}</cite>
-                  <time className="review__date" dateTime={review.reviewDate}>{convertDate(review.reviewDate)}</time>
+                  <cite className="review__author">{review.user.name}</cite>
+                  <time className="review__date" dateTime={review.date}>{convertDate(review.date)}</time>
                 </footer>
               </blockquote>
 
@@ -34,15 +32,15 @@ const MovieReviews = ({film}) => {
         }
       </div>
       <div className="movie-card__reviews-col">
-        {reviewSecondPart.map((review, i) => {
+        {reviewSecondPart.map((review) => {
           return (
-            <div key={`${i}-${review.reviewer}`} className="review">
+            <div key={review.id} className="review">
               <blockquote className="review__quote">
-                <p className="review__text">{review.reviewText}</p>
+                <p className="review__text">{review.comment}</p>
 
                 <footer className="review__details">
-                  <cite className="review__author">{review.reviewer}</cite>
-                  <time className="review__date" dateTime="2016-12-24">December 24, 2016</time>
+                  <cite className="review__author">{review.user.name}</cite>
+                  <time className="review__date" dateTime={review.date}>${convertDate(review.date)}</time>
                 </footer>
               </blockquote>
 

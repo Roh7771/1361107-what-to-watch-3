@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 
 const MovieListWrapper = withActiveItem(MovieList);
 
-const MoreLikeThis = ({onMovieCardClick, filmsList, film: chosenFilm}) => {
+const MoreLikeThis = ({onMovieCardClick, filmsList, film: chosenFilm, changeTab}) => {
   const filmsToRender = filmsList.filter((film) => chosenFilm.genre === film.genre && film.title !== chosenFilm.title).slice(0, 4);
   return (
     <div className="page-content">
@@ -15,7 +15,7 @@ const MoreLikeThis = ({onMovieCardClick, filmsList, film: chosenFilm}) => {
         <h2 className="catalog__title">More like this</h2>
 
         <div className="catalog__movies-list">
-          {filmsToRender.length === 0 ? <p>Sorry, there is no more films :(</p> : <MovieListWrapper activeItem={{}} onMovieCardClick={onMovieCardClick} filmsToRender={filmsToRender}/>}
+          {filmsToRender.length === 0 ? <p>Sorry, there is no more films :(</p> : <MovieListWrapper activeItem={{}} changeTab={changeTab} onMovieCardClick={onMovieCardClick} filmsToRender={filmsToRender}/>}
         </div>
       </section>
     </div>
@@ -29,6 +29,7 @@ MoreLikeThis.propTypes = {
     genre: PropTypes.string,
     title: PropTypes.string,
   }).isRequired,
+  changeTab: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({

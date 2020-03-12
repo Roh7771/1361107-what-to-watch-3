@@ -16,7 +16,7 @@ const Main = ({
   onPlayFilmButtonClick,
   filmsToRender,
   authorizationStatus,
-  setFilmFavoriteStatus
+  setFilmFavoriteStatus,
 }) => {
   const {title, releaseYear, genre, bgSrc, posterSrc, videoSrc, isFavorite} = promoFilm;
 

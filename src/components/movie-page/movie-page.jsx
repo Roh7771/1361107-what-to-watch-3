@@ -1,18 +1,37 @@
-import React, {Fragment} from "react";
-import PropTypes from 'prop-types';
+import React, {Fragment, useEffect} from "react";
+import PropTypes from "prop-types";
 import TabList from "../tab-list/tab-list.jsx";
 import MoreLikeThis from "../more-like-this/more-like-this.jsx";
-import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Link} from "react-router-dom";
+import history from "../../history.js";
 
-const TabListWrapper = withActiveItem(TabList);
-
-const MoviePage = ({film = {}, onMovieCardClick, onPlayFilmButtonClick, authorizationStatus, isFilmsLoading, setFilmFavoriteStatus}) => {
+const MoviePage = ({
+  film = {},
+  onMovieCardClick,
+  onPlayFilmButtonClick,
+  authorizationStatus,
+  isFilmsLoading,
+  setFilmFavoriteStatus,
+  filmComments,
+  onReviewButtonClick,
+  activeItem,
+  onActiveItemChange
+}) => {
   const {bgSrc, title, genre, releaseYear, posterSrc, isFavorite, id} = film;
-  return isFilmsLoading ? <p>Идет загрузка фильмов, пожалуйста подождите...</p> : (
+  useEffect(() => {
+    if (id) {
+      onReviewButtonClick(id);
+    }
+  }, [id]);
+  return isFilmsLoading ? (
+    <p>Идет загрузка фильмов, пожалуйста подождите...</p>
+  ) : (
     <Fragment>
-      <section className="movie-card movie-card--full" style={{backgroundColor: `${film.bgColor}`}}>
+      <section
+        className="movie-card movie-card--full"
+        style={{backgroundColor: `${film.bgColor}`}}
+      >
         <div className="movie-card__hero">
           <div className="movie-card__bg">
             <img src={bgSrc} alt={title} />
@@ -42,10 +61,7 @@ const MoviePage = ({film = {}, onMovieCardClick, onPlayFilmButtonClick, authoriz
                   </div>
                 </Link>
               ) : (
-                <Link
-                  to="/login"
-                  className="user-block__link"
-                >
+                <Link to="/login" className="user-block__link">
                   Sign in
                 </Link>
               )}
@@ -80,7 +96,9 @@ const MoviePage = ({film = {}, onMovieCardClick, onPlayFilmButtonClick, authoriz
                     if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
                       history.push(`/login`);
                     }
-                    return isFavorite ? setFilmFavoriteStatus(id, 0) : setFilmFavoriteStatus(id, 1);
+                    return isFavorite
+                      ? setFilmFavoriteStatus(id, 0)
+                      : setFilmFavoriteStatus(id, 1);
                   }}
                 >
                   {isFavorite ? (
@@ -95,10 +113,10 @@ const MoviePage = ({film = {}, onMovieCardClick, onPlayFilmButtonClick, authoriz
                   <span>My list</span>
                 </button>
                 {authorizationStatus === AuthorizationStatus.AUTH ? (
-                  <a href="add-review.html" className="btn movie-card__button">Add review</a>
-                ) : (
-                  null
-                )}
+                  <a href="add-review.html" className="btn movie-card__button">
+                    Add review
+                  </a>
+                ) : null}
               </div>
             </div>
           </div>
@@ -107,13 +125,24 @@ const MoviePage = ({film = {}, onMovieCardClick, onPlayFilmButtonClick, authoriz
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src={posterSrc} alt={`${title} poster`} width="218" height="327" />
+              <img
+                src={posterSrc}
+                alt={`${title} poster`}
+                width="218"
+                height="327"
+              />
             </div>
-            <TabListWrapper activeItem={`movieOverview`} film={film}/>
+            <TabList
+              filmComments={filmComments}
+              activeItem={activeItem}
+              changeTab={onActiveItemChange}
+              film={film}
+              onReviewButtonClick={onReviewButtonClick}
+            />
           </div>
         </div>
       </section>
-      <MoreLikeThis film={film} onMovieCardClick={onMovieCardClick}/>
+      <MoreLikeThis changeTab={onActiveItemChange} film={film} onMovieCardClick={onMovieCardClick} />
     </Fragment>
   );
 };
@@ -134,13 +163,26 @@ MoviePage.propTypes = {
     id: PropTypes.number,
     filmDuration: PropTypes.number,
     reviews: PropTypes.array,
-    bgColor: PropTypes.string.isRequired,
+    bgColor: PropTypes.string.isRequired
   }),
   onMovieCardClick: PropTypes.func.isRequired,
   onPlayFilmButtonClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   isFilmsLoading: PropTypes.bool.isRequired,
   setFilmFavoriteStatus: PropTypes.func.isRequired,
+  onReviewButtonClick: PropTypes.func.isRequired,
+  filmComments: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    user: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+    }),
+    rating: PropTypes.number,
+    comment: PropTypes.string,
+    data: PropTypes.string,
+  })),
+  onActiveItemChange: PropTypes.func.isRequired,
+  activeItem: PropTypes.string.isRequired,
 };
 
 export default MoviePage;
