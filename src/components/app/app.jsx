@@ -56,33 +56,6 @@ const App = ({
   filmComments,
   onReviewButtonClick
 }) => {
-  // const renderApp = () => {
-  //   if (filmToWatch) {
-  //     return (
-  //       <VideoPlayerWrapper
-  //         title={filmToWatch.title}
-  //         type={`movie`}
-  //         className={`player__video`}
-  //         isPlaying={false}
-  //         posterSrc={filmToWatch.imgSrc}
-  //         videoSrc={filmToWatch.videoSrc}
-  //         onPlayFilmButtonClick={onPlayFilmButtonClick}
-  //       />
-  //     );
-  //   }
-
-  //   if (chosenFilm) {
-  //     return (
-  //       <MoviePage
-  //         onPlayFilmButtonClick={onPlayFilmButtonClick}
-  //         film={chosenFilm}
-  //         onMovieCardClick={onMovieCardClick}
-  //         authorizationStatus={authorizationStatus}
-  //       />
-  //     );
-  //   }
-  // };
-
   return (
     <Router history={history}>
       <Switch>
@@ -168,29 +141,24 @@ const App = ({
             );
           }}
         />
-        <Route exact path="/dev-movie-player">
-          <VideoPlayerWrapper
-            title={`Some Film`}
-            type={`movie`}
-            className={`player__video`}
-            isPlaying={false}
-            posterSrc={`https://upload.wikimedia.org/wikipedia/en/thumb/3/3c/Fantastic_Beasts_-_The_Crimes_of_Grindelwald_Poster.png/220px-Fantastic_Beasts_-_The_Crimes_of_Grindelwald_Poster.png`}
-            videoSrc={`https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`}
-          />
-        </Route>
-        <Route exact path="/dev-review">
-          <AddReviewWrapper
-            changeFormSendingStatus={changeFormSendingStatus}
-            onReviewSend={onReviewSend}
-            id={5}
-            movieTitle={`The Grand Budapest Hotel`}
-            movieBg={`img/bg-the-grand-budapest-hotel.jpg`}
-            moviePoster={`img/the-grand-budapest-hotel-poster.jpg`}
-            activeItem={3}
-            isFormSending={isFormSending}
-            formErrorMessage={formErrorMessage}
-          />
-        </Route>
+        <Route
+          exact
+          path="/player/:id"
+          render={(propsFromRoute) => {
+            const filmToWatch = allFilms.find((film) => film.id === +propsFromRoute.match.params.id);
+            return (
+              <VideoPlayerWrapper
+                title={filmToWatch.title}
+                type={`movie`}
+                className={`player__video`}
+                isPlaying={false}
+                posterSrc={filmToWatch.imgSrc}
+                videoSrc={filmToWatch.videoSrc}
+                onPlayFilmButtonClick={onPlayFilmButtonClick}
+              />
+            );
+          }}
+        />
       </Switch>
     </Router>
   );

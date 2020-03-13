@@ -79,6 +79,7 @@ const MoviePage = ({
               <div className="movie-card__buttons">
                 <button
                   onClick={() => {
+                    history.push(`/player/${id}`);
                     onPlayFilmButtonClick(film);
                   }}
                   className="btn btn--play movie-card__button"

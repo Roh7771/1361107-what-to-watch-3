@@ -80,6 +80,7 @@ const Main = ({
               <div className="movie-card__buttons">
                 <button
                   onClick={() => {
+                    history.push(`/player/${promoFilm.id}`);
                     onPlayFilmButtonClick({
                       title,
                       imgSrc: posterSrc,
