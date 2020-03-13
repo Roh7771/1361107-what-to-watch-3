@@ -49,7 +49,7 @@ const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick, act
         <a
           onClick={(e) => {
             e.preventDefault();
-            onMovieCardClick(film);
+            onMovieCardClick(film.id);
           }}
           className="small-movie-card__link"
           href="movie-page.html"

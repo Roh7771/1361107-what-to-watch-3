@@ -41,7 +41,11 @@ const Operation = {
       .then(() => {
         dispatch(ActionCreators.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(DataOperation.getFavoriteFilms());
-        history.push(`/`);
+        if (history.length === 2) {
+          history.push(`/`);
+        } else {
+          history.goBack();
+        }
       });
   },
 };
