@@ -8,8 +8,6 @@ import history from "../../history.js";
 
 const MoviePage = ({
   film = {},
-  onMovieCardClick,
-  onPlayFilmButtonClick,
   authorizationStatus,
   isFilmsLoading,
   setFilmFavoriteStatus,
@@ -81,7 +79,6 @@ const MoviePage = ({
                 <button
                   onClick={() => {
                     history.push(`/player/${id}`);
-                    onPlayFilmButtonClick(film);
                   }}
                   className="btn btn--play movie-card__button"
                   type="button"
@@ -142,7 +139,7 @@ const MoviePage = ({
           </div>
         </div>
       </section>
-      <MoreLikeThis changeTab={onActiveItemChange} film={film} onMovieCardClick={onMovieCardClick} />
+      <MoreLikeThis changeTab={onActiveItemChange} film={film} />
       {children}
     </div>
   );
@@ -166,8 +163,6 @@ MoviePage.propTypes = {
     reviews: PropTypes.array,
     bgColor: PropTypes.string.isRequired
   }),
-  onMovieCardClick: PropTypes.func.isRequired,
-  onPlayFilmButtonClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   isFilmsLoading: PropTypes.bool.isRequired,
   setFilmFavoriteStatus: PropTypes.func.isRequired,

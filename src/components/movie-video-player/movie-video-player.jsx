@@ -41,7 +41,6 @@ class MovieVideoPlayer extends PureComponent {
   _renderPlayer() {
     const {
       children,
-      onPlayFilmButtonClick,
       progressInPercent,
       progressInSeconds,
       onPlayButtonClick,
@@ -65,7 +64,6 @@ class MovieVideoPlayer extends PureComponent {
               type="button"
               onClick={() => {
                 history.goBack();
-                onPlayFilmButtonClick(null);
               }}
               className="player__exit"
             >
@@ -165,12 +163,11 @@ MovieVideoPlayer.propTypes = {
   ]).isRequired,
   progressInPercent: PropTypes.number.isRequired,
   progressInSeconds: PropTypes.number.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   title: PropTypes.string,
   isFullScreen: PropTypes.bool.isRequired,
-  onPlayFilmButtonClick: PropTypes.func,
   type: PropTypes.oneOf([`trailer`, `movie`]),
+  onPlayButtonClick: PropTypes.func.isRequired,
 };
 
 export default MovieVideoPlayer;

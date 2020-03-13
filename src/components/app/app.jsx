@@ -14,9 +14,6 @@ import {
   getFilmComments
 } from "../../reducer/data/selectors.js";
 import {
-  getChosenFilm,
-  getFilmToWatch,
-  getLoggingStatus,
   getFormSendingStatus,
   getFormErrorMessage,
   getFilmsLoadingStatus
@@ -43,10 +40,8 @@ const App = ({
   filmsToRender,
   promoFilm,
   login,
-  onMovieCardClick,
   onReviewSend,
   authorizationStatus,
-  onPlayFilmButtonClick,
   changeFormSendingStatus,
   isFormSending,
   formErrorMessage,
@@ -68,8 +63,6 @@ const App = ({
               <Main
                 authorizationStatus={authorizationStatus}
                 promoFilm={promoFilm}
-                onMovieCardClick={onMovieCardClick}
-                onPlayFilmButtonClick={onPlayFilmButtonClick}
                 filmsToRender={filmsToRender}
                 userFavoriteFilms={userFavoriteFilms}
                 setFilmFavoriteStatus={setFilmFavoriteStatus}
@@ -87,9 +80,7 @@ const App = ({
             return (
               <MoviePageWrapper
                 activeItem={`movieOverview`}
-                onPlayFilmButtonClick={onPlayFilmButtonClick}
                 film={filmToRender}
-                onMovieCardClick={onMovieCardClick}
                 authorizationStatus={authorizationStatus}
                 isFilmsLoading={isFilmsLoading}
                 setFilmFavoriteStatus={setFilmFavoriteStatus}
@@ -124,7 +115,6 @@ const App = ({
           render={() => {
             return (
               <MyList
-                onMovieCardClick={onMovieCardClick}
                 userFavoriteFilms={userFavoriteFilms}
               >
                 <Footer withLink/>
@@ -163,7 +153,6 @@ const App = ({
                 isPlaying={false}
                 posterSrc={filmToWatch.imgSrc}
                 videoSrc={filmToWatch.videoSrc}
-                onPlayFilmButtonClick={onPlayFilmButtonClick}
               />
             );
           }}
@@ -234,12 +223,9 @@ App.propTypes = {
       })
   ).isRequired,
   chosenFilm: PropTypes.object,
-  onMovieCardClick: PropTypes.func.isRequired,
   filmToWatch: PropTypes.object,
-  onPlayFilmButtonClick: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
-  isLogging: PropTypes.bool.isRequired,
   onReviewSend: PropTypes.func.isRequired,
   changeFormSendingStatus: PropTypes.func.isRequired,
   isFormSending: PropTypes.bool.isRequired,
@@ -263,9 +249,6 @@ const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),
   promoFilm: getPromoFilm(state),
   filmsToRender: getFilmsToRender(state),
-  chosenFilm: getChosenFilm(state),
-  filmToWatch: getFilmToWatch(state),
-  isLogging: getLoggingStatus(state),
   isFormSending: getFormSendingStatus(state),
   formErrorMessage: getFormErrorMessage(state),
   isFilmsLoading: getFilmsLoadingStatus(state),
@@ -275,12 +258,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onMovieCardClick: (chosenFilm) => {
-    dispatch(ActionCreators.setChosenFilm(chosenFilm));
-  },
-  onPlayFilmButtonClick: (film) => {
-    dispatch(ActionCreators.setFilmToWatch(film));
-  },
   login: (authData) => {
     dispatch(UserOperation.login(authData));
   },

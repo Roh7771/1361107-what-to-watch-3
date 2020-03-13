@@ -8,7 +8,7 @@ const VideoPlayer = withVideo(Player);
 
 let timer;
 
-const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick, activeCard, changeTab}) => {
+const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, activeCard, changeTab}) => {
   const {title, imgSrc, trailerSrc, id} = film;
 
   return (
@@ -24,7 +24,6 @@ const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick, act
       }}
       onClick={() => {
         clearTimeout(timer);
-        onMovieCardClick(film);
         if (changeTab) {
           changeTab(`movieOverview`);
         }
@@ -46,16 +45,12 @@ const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick, act
         </div>
       </Link>
       <h3 className="small-movie-card__title">
-        <a
-          onClick={(e) => {
-            e.preventDefault();
-            onMovieCardClick(film.id);
-          }}
+        <Link to={`/films/${id}`}
           className="small-movie-card__link"
           href="movie-page.html"
         >
           {title}
-        </a>
+        </Link>
       </h3>
     </article>
   );
@@ -69,7 +64,6 @@ MovieCard.propTypes = {
     trailerSrc: PropTypes.string,
   }).isRequired,
   onFilmMouseOver: PropTypes.func.isRequired,
-  onMovieCardClick: PropTypes.func.isRequired,
   onFilmMouseOut: PropTypes.func.isRequired,
   activeCard: PropTypes.object.isRequired,
   changeTab: PropTypes.func,

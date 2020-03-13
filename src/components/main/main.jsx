@@ -12,14 +12,12 @@ const MovieListWrapper = withActiveItem(MovieList);
 
 const Main = ({
   promoFilm,
-  onMovieCardClick,
-  onPlayFilmButtonClick,
   filmsToRender,
   authorizationStatus,
   setFilmFavoriteStatus,
   children
 }) => {
-  const {title, releaseYear, genre, bgSrc, posterSrc, videoSrc, isFavorite} = promoFilm;
+  const {title, releaseYear, genre, bgSrc, posterSrc, isFavorite} = promoFilm;
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -82,11 +80,6 @@ const Main = ({
                 <button
                   onClick={() => {
                     history.push(`/player/${promoFilm.id}`);
-                    onPlayFilmButtonClick({
-                      title,
-                      imgSrc: posterSrc,
-                      videoSrc
-                    });
                   }}
                   className="btn btn--play movie-card__button"
                   type="button"
@@ -131,7 +124,6 @@ const Main = ({
 
           <div className="catalog__movies-list">
             <MovieListWrapper
-              onMovieCardClick={onMovieCardClick}
               activeItem={{}}
               onPlayFilmButtonClick={() => {}}
               filmsToRender={filmsToRender}
@@ -157,8 +149,6 @@ Main.propTypes = {
     id: PropTypes.number,
     isFavorite: PropTypes.bool,
   }).isRequired,
-  onMovieCardClick: PropTypes.func.isRequired,
-  onPlayFilmButtonClick: PropTypes.func.isRequired,
   filmsToRender: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string,
