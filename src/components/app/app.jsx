@@ -39,18 +39,17 @@ const MoviePageWrapper = withActiveItem(MoviePage);
 const App = ({
   filmsToRender,
   promoFilm,
-  login,
+  onLoginFormSubmit,
   onReviewSend,
   authorizationStatus,
-  changeFormSendingStatus,
   isFormSending,
   formErrorMessage,
   isFilmsLoading,
   userFavoriteFilms,
-  setFilmFavoriteStatus,
+  onFavoriteButtonClick,
   allFilms,
   filmComments,
-  onReviewButtonClick
+  setFilmComments
 }) => {
   return (
     <Router history={history}>
@@ -65,7 +64,7 @@ const App = ({
                 promoFilm={promoFilm}
                 filmsToRender={filmsToRender}
                 userFavoriteFilms={userFavoriteFilms}
-                setFilmFavoriteStatus={setFilmFavoriteStatus}
+                onFavoriteButtonClick={onFavoriteButtonClick}
               >
                 <Footer/>
               </Main>
@@ -83,9 +82,9 @@ const App = ({
                 film={filmToRender}
                 authorizationStatus={authorizationStatus}
                 isFilmsLoading={isFilmsLoading}
-                setFilmFavoriteStatus={setFilmFavoriteStatus}
+                onFavoriteButtonClick={onFavoriteButtonClick}
                 filmComments={filmComments}
-                onReviewButtonClick={onReviewButtonClick}
+                setFilmComments={setFilmComments}
               >
                 <Footer withLink />
               </MoviePageWrapper>
@@ -99,9 +98,8 @@ const App = ({
           render={() => {
             return (
               <SignIn
-                onSubmit={login}
+                onLoginFormSubmit={onLoginFormSubmit}
                 formErrorMessage={formErrorMessage}
-                changeFormSendingStatus={changeFormSendingStatus}
                 isFormSending={isFormSending}
               >
                 <Footer withLink/>
@@ -130,7 +128,6 @@ const App = ({
             const reviewedFilm = allFilms.find((film) => film.id === +propsFromRoute.match.params.id);
             return (
               <AddReviewWrapper
-                changeFormSendingStatus={changeFormSendingStatus}
                 onReviewSend={onReviewSend}
                 reviewedFilm={reviewedFilm}
                 activeItem={3}
@@ -224,15 +221,14 @@ App.propTypes = {
   ).isRequired,
   chosenFilm: PropTypes.object,
   filmToWatch: PropTypes.object,
-  login: PropTypes.func.isRequired,
+  onLoginFormSubmit: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   onReviewSend: PropTypes.func.isRequired,
-  changeFormSendingStatus: PropTypes.func.isRequired,
   isFormSending: PropTypes.bool.isRequired,
   formErrorMessage: PropTypes.string,
   isFilmsLoading: PropTypes.bool.isRequired,
-  setFilmFavoriteStatus: PropTypes.func.isRequired,
-  onReviewButtonClick: PropTypes.func.isRequired,
+  onFavoriteButtonClick: PropTypes.func.isRequired,
+  setFilmComments: PropTypes.func.isRequired,
   filmComments: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     user: PropTypes.shape({
@@ -258,19 +254,18 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  login: (authData) => {
+  onLoginFormSubmit: (authData) => {
     dispatch(UserOperation.login(authData));
+    dispatch(ActionCreators.changeFormSendingStatus(true));
   },
   onReviewSend: (id, comment, rating) => {
     dispatch(DataOperation.sendReview(id, comment, rating));
+    dispatch(ActionCreators.changeFormSendingStatus(true));
   },
-  changeFormSendingStatus: (value) => {
-    dispatch(ActionCreators.changeFormSendingStatus(value));
-  },
-  setFilmFavoriteStatus: (id, value) => {
+  onFavoriteButtonClick: (id, value) => {
     dispatch(DataOperation.setFilmFavoriteStatus(id, value));
   },
-  onReviewButtonClick: (id) => {
+  setFilmComments: (id) => {
     dispatch(DataOperation.getFilmComments(id));
   }
 });

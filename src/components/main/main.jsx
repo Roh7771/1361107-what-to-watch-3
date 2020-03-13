@@ -14,7 +14,7 @@ const Main = ({
   promoFilm,
   filmsToRender,
   authorizationStatus,
-  setFilmFavoriteStatus,
+  onFavoriteButtonClick,
   children
 }) => {
   const {title, releaseYear, genre, bgSrc, posterSrc, isFavorite} = promoFilm;
@@ -96,7 +96,7 @@ const Main = ({
                     if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
                       history.push(`/login`);
                     }
-                    return isFavorite ? setFilmFavoriteStatus(promoFilm.id, 0) : setFilmFavoriteStatus(promoFilm.id, 1);
+                    return isFavorite ? onFavoriteButtonClick(promoFilm.id, 0) : onFavoriteButtonClick(promoFilm.id, 1);
                   }}
                 >
                   {isFavorite ? (
@@ -188,7 +188,7 @@ Main.propTypes = {
       })
   ).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
-  setFilmFavoriteStatus: PropTypes.func.isRequired,
+  onFavoriteButtonClick: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.node.isRequired,
     PropTypes.arrayOf(PropTypes.node)

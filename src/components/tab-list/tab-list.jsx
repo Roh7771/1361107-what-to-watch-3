@@ -87,7 +87,6 @@ TabList.propTypes = {
   }),
   activeItem: PropTypes.string.isRequired,
   changeTab: PropTypes.func.isRequired,
-  onReviewButtonClick: PropTypes.func.isRequired,
   filmComments: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     user: PropTypes.shape({

@@ -9,7 +9,6 @@ const AddReview = ({
   text,
   reviewedFilm,
   onReviewSend,
-  changeFormSendingStatus,
   isFormSending,
   formErrorMessage
 }) => {
@@ -66,7 +65,6 @@ const AddReview = ({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            changeFormSendingStatus(true);
             onReviewSend(id, text, chosenStar);
           }}
           action="#"
@@ -199,7 +197,6 @@ AddReview.propTypes = {
     id: PropTypes.number.isRequired,
   }).isRequired,
   onReviewSend: PropTypes.func.isRequired,
-  changeFormSendingStatus: PropTypes.func.isRequired,
   isFormSending: PropTypes.bool.isRequired,
   formErrorMessage: PropTypes.string,
 };

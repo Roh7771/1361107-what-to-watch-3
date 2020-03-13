@@ -13,13 +13,11 @@ class SignIn extends PureComponent {
   }
 
   _handleSubmit(e) {
-    const {onSubmit, changeFormSendingStatus} = this.props;
+    const {onLoginFormSubmit} = this.props;
 
     e.preventDefault();
 
-    changeFormSendingStatus(true);
-
-    onSubmit({
+    onLoginFormSubmit({
       login: this.loginRef.current.value,
       password: this.passwordRef.current.value,
     });
@@ -75,10 +73,9 @@ class SignIn extends PureComponent {
 }
 
 SignIn.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  onLoginFormSubmit: PropTypes.func.isRequired,
   formErrorMessage: PropTypes.string,
   isFormSending: PropTypes.bool.isRequired,
-  changeFormSendingStatus: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.node.isRequired,
     PropTypes.arrayOf(PropTypes.node)

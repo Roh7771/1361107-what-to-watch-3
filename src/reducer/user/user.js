@@ -1,6 +1,7 @@
 import {extend} from "../../utils";
 import history from "../../history";
 import {Operation as DataOperation} from '../data/data.js';
+import {ActionCreators as AppActionCreators} from '../appStatus/appStatus.js';
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -41,6 +42,7 @@ const Operation = {
       .then(() => {
         dispatch(ActionCreators.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(DataOperation.getFavoriteFilms());
+        dispatch(AppActionCreators.changeFormSendingStatus(false));
         if (history.length === 2) {
           history.push(`/`);
         } else {

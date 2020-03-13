@@ -10,9 +10,9 @@ const MoviePage = ({
   film = {},
   authorizationStatus,
   isFilmsLoading,
-  setFilmFavoriteStatus,
+  onFavoriteButtonClick,
   filmComments,
-  onReviewButtonClick,
+  setFilmComments,
   activeItem,
   onActiveItemChange,
   children
@@ -20,7 +20,7 @@ const MoviePage = ({
   const {bgSrc, title, genre, releaseYear, posterSrc, isFavorite, id} = film;
   useEffect(() => {
     if (id) {
-      onReviewButtonClick(id);
+      setFilmComments(id);
     }
   }, [id]);
   return isFilmsLoading ? (
@@ -96,8 +96,8 @@ const MoviePage = ({
                       history.push(`/login`);
                     }
                     return isFavorite
-                      ? setFilmFavoriteStatus(id, 0)
-                      : setFilmFavoriteStatus(id, 1);
+                      ? onFavoriteButtonClick(id, 0)
+                      : onFavoriteButtonClick(id, 1);
                   }}
                 >
                   {isFavorite ? (
@@ -134,7 +134,6 @@ const MoviePage = ({
               activeItem={activeItem}
               changeTab={onActiveItemChange}
               film={film}
-              onReviewButtonClick={onReviewButtonClick}
             />
           </div>
         </div>
@@ -165,8 +164,8 @@ MoviePage.propTypes = {
   }),
   authorizationStatus: PropTypes.string.isRequired,
   isFilmsLoading: PropTypes.bool.isRequired,
-  setFilmFavoriteStatus: PropTypes.func.isRequired,
-  onReviewButtonClick: PropTypes.func.isRequired,
+  onFavoriteButtonClick: PropTypes.func.isRequired,
+  setFilmComments: PropTypes.func.isRequired,
   filmComments: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number,
     user: PropTypes.shape({
