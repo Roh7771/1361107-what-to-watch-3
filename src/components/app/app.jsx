@@ -33,6 +33,7 @@ import history from "../../history.js";
 import LoginRoute from "../routes/login-route/login-route.jsx";
 import MyList from "../my-list/my-list.jsx";
 import PrivateRoute from "../routes/private-route/private-route.jsx";
+import Footer from "../footer/footer.jsx";
 
 const VideoPlayerWrapper = withVideo(MovieVideoPlayer);
 const AddReviewWrapper = withTextState(withActiveItem(AddReview));
@@ -72,7 +73,9 @@ const App = ({
                 filmsToRender={filmsToRender}
                 userFavoriteFilms={userFavoriteFilms}
                 setFilmFavoriteStatus={setFilmFavoriteStatus}
-              />
+              >
+                <Footer/>
+              </Main>
             );
           }}
         />
@@ -92,7 +95,9 @@ const App = ({
                 setFilmFavoriteStatus={setFilmFavoriteStatus}
                 filmComments={filmComments}
                 onReviewButtonClick={onReviewButtonClick}
-              />
+              >
+                <Footer withLink />
+              </MoviePageWrapper>
             );
           }}
         />
@@ -107,7 +112,9 @@ const App = ({
                 formErrorMessage={formErrorMessage}
                 changeFormSendingStatus={changeFormSendingStatus}
                 isFormSending={isFormSending}
-              />
+              >
+                <Footer withLink/>
+              </SignIn>
             );
           }}
         />
@@ -119,7 +126,9 @@ const App = ({
               <MyList
                 onMovieCardClick={onMovieCardClick}
                 userFavoriteFilms={userFavoriteFilms}
-              />
+              >
+                <Footer withLink/>
+              </MyList>
             );
           }}
         />

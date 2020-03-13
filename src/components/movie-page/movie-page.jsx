@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect} from "react";
+import React, {useEffect} from "react";
 import PropTypes from "prop-types";
 import TabList from "../tab-list/tab-list.jsx";
 import MoreLikeThis from "../more-like-this/more-like-this.jsx";
@@ -16,7 +16,8 @@ const MoviePage = ({
   filmComments,
   onReviewButtonClick,
   activeItem,
-  onActiveItemChange
+  onActiveItemChange,
+  children
 }) => {
   const {bgSrc, title, genre, releaseYear, posterSrc, isFavorite, id} = film;
   useEffect(() => {
@@ -27,7 +28,7 @@ const MoviePage = ({
   return isFilmsLoading ? (
     <p>Идет загрузка фильмов, пожалуйста подождите...</p>
   ) : (
-    <Fragment>
+    <div className="page-content">
       <section
         className="movie-card movie-card--full"
         style={{backgroundColor: `${film.bgColor}`}}
@@ -142,7 +143,8 @@ const MoviePage = ({
         </div>
       </section>
       <MoreLikeThis changeTab={onActiveItemChange} film={film} onMovieCardClick={onMovieCardClick} />
-    </Fragment>
+      {children}
+    </div>
   );
 };
 
@@ -182,6 +184,10 @@ MoviePage.propTypes = {
   })),
   onActiveItemChange: PropTypes.func.isRequired,
   activeItem: PropTypes.string.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.node.isRequired,
+    PropTypes.arrayOf(PropTypes.node)
+  ]).isRequired,
 };
 
 export default MoviePage;

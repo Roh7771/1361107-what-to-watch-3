@@ -17,6 +17,7 @@ const Main = ({
   filmsToRender,
   authorizationStatus,
   setFilmFavoriteStatus,
+  children
 }) => {
   const {title, releaseYear, genre, bgSrc, posterSrc, videoSrc, isFavorite} = promoFilm;
   return (
@@ -139,6 +140,7 @@ const Main = ({
 
           <ShowMoreFilms />
         </section>
+        {children}
       </div>
     </React.Fragment>
   );
@@ -197,6 +199,10 @@ Main.propTypes = {
   ).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   setFilmFavoriteStatus: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.node.isRequired,
+    PropTypes.arrayOf(PropTypes.node)
+  ]).isRequired,
 };
 
 export default Main;
