@@ -2,6 +2,7 @@ import {extend} from "../../utils";
 import adaptFilmsData from "./adaptFilmsData";
 import {ActionCreators as AppActionCreators} from '../appStatus/appStatus.js';
 import history from "../../history";
+import { AppRoute } from "../../const";
 
 let timer;
 
@@ -68,14 +69,14 @@ const Operation = {
       });
   },
   loadPromoFilm: () => (dispatch, getState, api) => {
-    return api.get(`/films/promo`)
+    return api.get(`${AppRoute.FILM}/promo`)
       .then((response) => {
         const newData = adaptFilmsData([response.data]);
         dispatch(ActionCreators.loadPromoFilm(newData[0]));
       });
   },
   loadFilms: () => (dispatch, getState, api) => {
-    return api.get(`/films`)
+    return api.get(`${AppRoute.FILM}`)
       .then((response) => {
         const newData = adaptFilmsData(response.data);
         dispatch(ActionCreators.loadFilms(newData));
@@ -90,7 +91,7 @@ const Operation = {
     })
     .then(() => {
       dispatch(AppActionCreators.changeFormSendingStatus(false));
-      history.push(`/films/${id}`);
+      history.push(`${AppRoute.FILM}/${id}`);
     });
   },
   setFilmFavoriteStatus: (id, value) => (dispatch, getState, api) => {

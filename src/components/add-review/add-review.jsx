@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
+import { AppRoute } from "../../const";
 
 const AddReview = ({
   onActiveItemChange,
@@ -24,7 +25,7 @@ const AddReview = ({
 
         <header className="page-header">
           <div className="logo">
-            <Link to="/" className="logo__link">
+            <Link to={`${AppRoute.ROOT}`} className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
@@ -34,7 +35,7 @@ const AddReview = ({
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`/films/${id}`} className="breadcrumbs__link">
+                <Link to={`${AppRoute.FILM}/${id}`} className="breadcrumbs__link">
                   {title}
                 </Link>
               </li>
@@ -45,7 +46,7 @@ const AddReview = ({
           </nav>
 
           <div className="user-block">
-            <Link to="/myList">
+            <Link to={`${AppRoute.MY_LIST}`}>
               <div className="user-block__avatar">
                 <img
                   src="/img/avatar.jpg"

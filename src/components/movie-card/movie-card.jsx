@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Player from "../movie-video-player/movie-video-player.jsx";
 import withVideo from "../../hocs/with-video/with-video.js";
 import {Link} from "react-router-dom";
+import { AppRoute } from "../../const.js";
 
 const VideoPlayer = withVideo(Player);
 
@@ -31,7 +32,7 @@ const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, activeCard, changeTab
       }}
       className="small-movie-card catalog__movies-card"
     >
-      <Link to={`/films/${id}`}>
+      <Link to={`${AppRoute.FILM}/${id}`}>
         <div className="small-movie-card__image">
           <VideoPlayer
             isPlaying={activeCard === film}
@@ -45,7 +46,7 @@ const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, activeCard, changeTab
         </div>
       </Link>
       <h3 className="small-movie-card__title">
-        <Link to={`/films/${id}`}
+        <Link to={`${AppRoute.FILM}/${id}`}
           className="small-movie-card__link"
           href="movie-page.html"
         >

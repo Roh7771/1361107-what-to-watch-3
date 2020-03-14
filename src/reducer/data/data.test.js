@@ -2,6 +2,7 @@ import {reducer, ActionCreators, ActionTypes, Operation} from "./data";
 import settings from "../../mocks/settings";
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../api";
+import { AppRoute } from "../../const";
 
 const api = createAPI(() => {});
 
@@ -113,7 +114,7 @@ describe(`Operation`, () => {
     const filmsLoader = Operation.loadFilms();
 
     apiMock
-      .onGet(`/films`)
+      .onGet(`${AppRoute.FILM}`)
       .reply(200, films);
 
     return filmsLoader(dispatch, () => {}, api)

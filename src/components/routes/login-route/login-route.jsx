@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Route, Redirect} from "react-router-dom";
 import {AuthorizationStatus} from "../../../reducer/user/user.js";
+import { AppRoute } from "../../../const.js";
 
 
 const LoginRoute = (props) => {
@@ -14,7 +15,7 @@ const LoginRoute = (props) => {
       render={() => {
         return (
           authorizationStatus === AuthorizationStatus.AUTH
-            ? <Redirect to={`/`} />
+            ? <Redirect to={`${AppRoute.ROOT}`} />
             : render()
         );
       }}

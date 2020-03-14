@@ -1,6 +1,7 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
+import { AppRoute } from "../../const";
 
 const Footer = (props) => {
   const logo = (
@@ -15,7 +16,7 @@ const Footer = (props) => {
       <div className="logo">
         {props.withLink ? (
           <Link
-            to={`/`}
+            to={`${AppRoute.ROOT}`}
             onClick={() => {
               window.scrollTo(0, 0);
             }}

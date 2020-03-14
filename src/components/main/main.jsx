@@ -7,6 +7,7 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Link} from "react-router-dom";
 import history from "../../history.js";
+import {AppRoute} from "../../const.js";
 
 const MovieListWrapper = withActiveItem(MovieList);
 
@@ -37,7 +38,7 @@ const Main = ({
           </div>
           <div className="user-block">
             {authorizationStatus === AuthorizationStatus.AUTH ? (
-              <Link to="/myList">
+              <Link to={`${AppRoute.MY_LIST}`}>
                 <div className="user-block__avatar">
                   <img
                     src="/img/avatar.jpg"
@@ -49,7 +50,7 @@ const Main = ({
               </Link>
             ) : (
               <Link
-                to="/login"
+                to={`${AppRoute.LOGIN}`}
                 className="user-block__link"
               >
                 Sign in
@@ -79,7 +80,7 @@ const Main = ({
               <div className="movie-card__buttons">
                 <button
                   onClick={() => {
-                    history.push(`/player/${promoFilm.id}`);
+                    history.push(`${AppRoute.PLAYER}/${promoFilm.id}`);
                   }}
                   className="btn btn--play movie-card__button"
                   type="button"
@@ -94,7 +95,7 @@ const Main = ({
                   type="button"
                   onClick={() => {
                     if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
-                      history.push(`/login`);
+                      history.push(`${AppRoute.LOGIN}`);
                     }
                     return isFavorite ? onFavoriteButtonClick(promoFilm.id, 0) : onFavoriteButtonClick(promoFilm.id, 1);
                   }}

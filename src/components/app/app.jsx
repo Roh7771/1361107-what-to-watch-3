@@ -31,6 +31,7 @@ import LoginRoute from "../routes/login-route/login-route.jsx";
 import MyList from "../my-list/my-list.jsx";
 import PrivateRoute from "../routes/private-route/private-route.jsx";
 import Footer from "../footer/footer.jsx";
+import {AppRoute} from "../../const.js";
 
 const VideoPlayerWrapper = withVideo(MovieVideoPlayer);
 const AddReviewWrapper = withTextState(withActiveItem(AddReview));
@@ -56,7 +57,7 @@ const App = ({
       <Switch>
         <Route
           exact
-          path="/"
+          path={`${AppRoute.ROOT}`}
           render={() => {
             return (
               <Main
@@ -73,7 +74,7 @@ const App = ({
         />
         <Route
           exact
-          path="/films/:id"
+          path={`${AppRoute.FILM}/:id`}
           render={(propsFromRoute) => {
             const filmToRender = allFilms.find((film) => film.id === +propsFromRoute.match.params.id);
             return (
@@ -94,7 +95,7 @@ const App = ({
         <LoginRoute
           authorizationStatus={authorizationStatus}
           exact
-          path="/login"
+          path={`${AppRoute.LOGIN}`}
           render={() => {
             return (
               <SignIn
@@ -109,7 +110,7 @@ const App = ({
         />
         <Route
           exact
-          path="/mylist"
+          path={`${AppRoute.MY_LIST}`}
           render={() => {
             return (
               <MyList
@@ -123,7 +124,7 @@ const App = ({
         <PrivateRoute
           exact
           authorizationStatus={authorizationStatus}
-          path="/films/:id/review"
+          path={`${AppRoute.FILM}/:id/review`}
           render={(propsFromRoute) => {
             const reviewedFilm = allFilms.find((film) => film.id === +propsFromRoute.match.params.id);
             return (
@@ -139,7 +140,7 @@ const App = ({
         />
         <Route
           exact
-          path="/player/:id"
+          path={`${AppRoute.PLAYER}/:id`}
           render={(propsFromRoute) => {
             const filmToWatch = allFilms.find((film) => film.id === +propsFromRoute.match.params.id);
             return (

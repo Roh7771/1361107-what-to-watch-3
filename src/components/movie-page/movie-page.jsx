@@ -5,6 +5,7 @@ import MoreLikeThis from "../more-like-this/more-like-this.jsx";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Link} from "react-router-dom";
 import history from "../../history.js";
+import {AppRoute} from "../../const.js";
 
 const MoviePage = ({
   film = {},
@@ -40,7 +41,7 @@ const MoviePage = ({
 
           <header className="page-header movie-card__head">
             <div className="logo">
-              <Link to="/" className="logo__link">
+              <Link to={`${AppRoute.ROOT}`} className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
@@ -49,7 +50,7 @@ const MoviePage = ({
 
             <div className="user-block">
               {authorizationStatus === AuthorizationStatus.AUTH ? (
-                <Link to="/myList">
+                <Link to={`${AppRoute.MY_LIST}`}>
                   <div className="user-block__avatar">
                     <img
                       src="/img/avatar.jpg"
@@ -60,7 +61,7 @@ const MoviePage = ({
                   </div>
                 </Link>
               ) : (
-                <Link to="/login" className="user-block__link">
+                <Link to={`${AppRoute.LOGIN}`} className="user-block__link">
                   Sign in
                 </Link>
               )}
@@ -78,7 +79,7 @@ const MoviePage = ({
               <div className="movie-card__buttons">
                 <button
                   onClick={() => {
-                    history.push(`/player/${id}`);
+                    history.push(`${AppRoute.PLAYER}/${id}`);
                   }}
                   className="btn btn--play movie-card__button"
                   type="button"
@@ -93,7 +94,7 @@ const MoviePage = ({
                   type="button"
                   onClick={() => {
                     if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
-                      history.push(`/login`);
+                      history.push(`${AppRoute.LOGIN}`);
                     }
                     return isFavorite
                       ? onFavoriteButtonClick(id, 0)
@@ -111,7 +112,7 @@ const MoviePage = ({
                   )}
                   <span>My list</span>
                 </button>
-                <Link to={`/films/${id}/review`} className="btn movie-card__button">
+                <Link to={`${AppRoute.FILM}/${id}/review`} className="btn movie-card__button">
                   Add review
                 </Link>
               </div>
