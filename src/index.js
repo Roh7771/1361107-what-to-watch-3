@@ -23,7 +23,7 @@ const onErrorReceived = (error) => {
   store.dispatch(AppActionCreators.setFormErrorMessage(error.response.data.error));
   timer = setTimeout(() => {
     store.dispatch(AppActionCreators.setFormErrorMessage(null));
-  }, 4000);
+  }, 5000);
 };
 
 const api = createAPI(onUnauthorized, onErrorReceived);

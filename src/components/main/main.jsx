@@ -29,11 +29,11 @@ const Main = ({
 
         <header className="page-header movie-card__head">
           <div className="logo">
-            <Link to="/" className="logo__link">
+            <a className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </Link>
+            </a>
           </div>
           <div className="user-block">
             {authorizationStatus === AuthorizationStatus.AUTH ? (

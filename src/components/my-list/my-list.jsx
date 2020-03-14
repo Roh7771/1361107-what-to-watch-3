@@ -5,7 +5,7 @@ import MovieList from '../movie-list/movie-list.jsx';
 
 const MovieListWrapper = withActiveItem(MovieList);
 
-const MyList = ({onMovieCardClick, userFavoriteFilms, children}) => {
+const MyList = ({userFavoriteFilms, children}) => {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -30,7 +30,7 @@ const MyList = ({onMovieCardClick, userFavoriteFilms, children}) => {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__movies-list">
-          <MovieListWrapper activeItem={{}} onMovieCardClick={onMovieCardClick} filmsToRender={userFavoriteFilms}/>
+          <MovieListWrapper activeItem={{}} filmsToRender={userFavoriteFilms}/>
         </div>
       </section>
 
@@ -40,7 +40,6 @@ const MyList = ({onMovieCardClick, userFavoriteFilms, children}) => {
 };
 
 MyList.propTypes = {
-  onMovieCardClick: PropTypes.func.isRequired,
   userFavoriteFilms: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string,
