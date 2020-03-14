@@ -34,9 +34,9 @@ const AddReview = ({
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="#" className="breadcrumbs__link">
+                <Link to={`/films/${id}`} className="breadcrumbs__link">
                   {title}
-                </a>
+                </Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -45,14 +45,16 @@ const AddReview = ({
           </nav>
 
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img
-                src="/img/avatar.jpg"
-                alt="User avatar"
-                width="63"
-                height="63"
-              />
-            </div>
+            <Link to="/myList">
+              <div className="user-block__avatar">
+                <img
+                  src="/img/avatar.jpg"
+                  alt="User avatar"
+                  width="63"
+                  height="63"
+                />
+              </div>
+            </Link>
           </div>
         </header>
 
@@ -160,7 +162,7 @@ const AddReview = ({
               className="add-review__textarea"
               name="review-text"
               id="review-text"
-              placeholder="Review text"
+              placeholder="Text must contain at least 50 symbols"
               disabled={isFormSending}
             ></textarea>
             <div className="add-review__submit">
@@ -176,8 +178,8 @@ const AddReview = ({
         </form>
         {formErrorMessage ? (
           <p>
-            Не удалось отправить отзыв :( <br/>
-            {`Причина: ${formErrorMessage}`}
+            Failed to send your review. :( <br/>
+            {`The reason: ${formErrorMessage}`}
           </p>
         ) : null}
       </div>

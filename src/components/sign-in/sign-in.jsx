@@ -39,15 +39,13 @@ class SignIn extends PureComponent {
           <h1 className="page-title user-page__title">Sign in</h1>
         </header>
 
-        {formErrorMessage ? (
-          <p style={{textAlign: `center`}}>
-            Не удалось авторизоваться :( <br/>
-            {`Причина: ${formErrorMessage}`}
-          </p>
-        ) : null}
-
         <div className="sign-in user-page__content">
           <form onSubmit={this._handleSubmit} action="#" className="sign-in__form">
+            {formErrorMessage ? (
+              <div className="sign-in__message">
+                <p>Please enter a valid email address</p>
+              </div>
+            ) : null}
             <fieldset style={{padding: 0, border: `none`}} disabled={isFormSending}>
               <div className="sign-in__fields">
                 <div className="sign-in__field">
