@@ -1,44 +1,43 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
+import {AppRoute} from "../../const";
 
 const AddReview = ({
   onActiveItemChange,
   activeItem: chosenStar,
   onTextChange,
   text,
-  movieTitle,
-  movieBg,
-  moviePoster,
-  id,
+  reviewedFilm,
   onReviewSend,
-  changeFormSendingStatus,
   isFormSending,
   formErrorMessage
 }) => {
+  const {id, title, posterSrc, bgSrc} = reviewedFilm;
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
-          <img src={movieBg} alt={movieTitle} />
+          <img src={bgSrc} alt={title} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header">
           <div className="logo">
-            <a href="main.html" className="logo__link">
+            <Link to={`${AppRoute.ROOT}`} className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="#" className="breadcrumbs__link">
-                  {movieTitle}
-                </a>
+                <Link to={`${AppRoute.FILM}/${id}`} className="breadcrumbs__link">
+                  {title}
+                </Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>
@@ -47,19 +46,21 @@ const AddReview = ({
           </nav>
 
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img
-                src="img/avatar.jpg"
-                alt="User avatar"
-                width="63"
-                height="63"
-              />
-            </div>
+            <Link to={`${AppRoute.MY_LIST}`}>
+              <div className="user-block__avatar">
+                <img
+                  src="/img/avatar.jpg"
+                  alt="User avatar"
+                  width="63"
+                  height="63"
+                />
+              </div>
+            </Link>
           </div>
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src={moviePoster} alt={movieTitle} width="218" height="327" />
+          <img src={posterSrc} alt={title} width="218" height="327" />
         </div>
       </div>
 
@@ -67,7 +68,6 @@ const AddReview = ({
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            changeFormSendingStatus();
             onReviewSend(id, text, chosenStar);
           }}
           action="#"
@@ -163,7 +163,7 @@ const AddReview = ({
               className="add-review__textarea"
               name="review-text"
               id="review-text"
-              placeholder="Review text"
+              placeholder="Text must contain at least 50 symbols"
               disabled={isFormSending}
             ></textarea>
             <div className="add-review__submit">
@@ -179,8 +179,8 @@ const AddReview = ({
         </form>
         {formErrorMessage ? (
           <p>
-            Не удалось отправить отзыв :( <br/>
-            {`Причина: ${formErrorMessage}`}
+            Failed to send your review. :( <br/>
+            {`The reason: ${formErrorMessage}`}
           </p>
         ) : null}
       </div>
@@ -193,12 +193,13 @@ AddReview.propTypes = {
   onTextChange: PropTypes.func.isRequired,
   activeItem: PropTypes.number.isRequired,
   text: PropTypes.string,
-  movieTitle: PropTypes.string.isRequired,
-  moviePoster: PropTypes.string.isRequired,
-  movieBg: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  reviewedFilm: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    posterSrc: PropTypes.string.isRequired,
+    bgSrc: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+  }).isRequired,
   onReviewSend: PropTypes.func.isRequired,
-  changeFormSendingStatus: PropTypes.func.isRequired,
   isFormSending: PropTypes.bool.isRequired,
   formErrorMessage: PropTypes.string,
 };

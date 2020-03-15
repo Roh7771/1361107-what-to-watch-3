@@ -1,5 +1,6 @@
 import React, {PureComponent, createRef, Fragment} from "react";
 import PropTypes from "prop-types";
+import history from "../../history";
 
 const convertVideoTime = (time) => {
   let seconds;
@@ -40,14 +41,13 @@ class MovieVideoPlayer extends PureComponent {
   _renderPlayer() {
     const {
       children,
-      onPlayFilmButtonClick,
       progressInPercent,
       progressInSeconds,
       onPlayButtonClick,
       isPlaying,
       title,
       isFullScreen,
-      type
+      type,
     } = this.props;
     switch (type) {
       case `trailer`:
@@ -62,7 +62,9 @@ class MovieVideoPlayer extends PureComponent {
 
             <button
               type="button"
-              onClick={() => onPlayFilmButtonClick(null)}
+              onClick={() => {
+                history.goBack();
+              }}
               className="player__exit"
             >
               Exit
@@ -161,12 +163,11 @@ MovieVideoPlayer.propTypes = {
   ]).isRequired,
   progressInPercent: PropTypes.number.isRequired,
   progressInSeconds: PropTypes.number.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   title: PropTypes.string,
   isFullScreen: PropTypes.bool.isRequired,
-  onPlayFilmButtonClick: PropTypes.func,
   type: PropTypes.oneOf([`trailer`, `movie`]),
+  onPlayButtonClick: PropTypes.func.isRequired,
 };
 
 export default MovieVideoPlayer;

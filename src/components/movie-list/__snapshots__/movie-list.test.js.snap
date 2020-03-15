@@ -8,24 +8,29 @@ Array [
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/films/2"
+      onClick={[Function]}
     >
-      <video
-        alt=""
-        className=""
-        height={175}
-        poster="Some Path"
-        src="some path"
-        width={280}
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          alt=""
+          className=""
+          height={175}
+          poster="Some Path"
+          src="some path"
+          width={280}
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/films/2"
         onClick={[Function]}
       >
         Some Title
@@ -38,24 +43,29 @@ Array [
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      href="/films/4"
+      onClick={[Function]}
     >
-      <video
-        alt=""
-        className=""
-        height={175}
-        poster="Some Path"
-        src="some path"
-        width={280}
-      />
-    </div>
+      <div
+        className="small-movie-card__image"
+      >
+        <video
+          alt=""
+          className=""
+          height={175}
+          poster="Some Path"
+          src="some path"
+          width={280}
+        />
+      </div>
+    </a>
     <h3
       className="small-movie-card__title"
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="/films/4"
         onClick={[Function]}
       >
         Some Title

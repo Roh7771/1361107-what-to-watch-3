@@ -166,7 +166,7 @@ const mock = {
 it(`<MoreLikeThis /> should render correctly`, () => {
   const {film, filmsList} = mock;
   const tree = renderer
-    .create(<MoreLikeThis filmsToRender={filmsList} onMovieCardClick={() => {}} currentFilm={film}/>, {
+    .create(<MoreLikeThis filmsList={filmsList} changeTab={() => {}} film={film}/>, {
       createNodeMock: () => {
         return {};
       }

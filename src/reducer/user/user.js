@@ -1,5 +1,8 @@
 import {extend} from "../../utils";
+import history from "../../history";
+import {Operation as DataOperation} from '../data/data.js';
 import {ActionCreators as AppActionCreators} from '../appStatus/appStatus.js';
+import {AppRoute} from "../../const";
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,
@@ -25,23 +28,27 @@ const ActionCreators = {
 
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
-    return api.get(`/login`)
+    return api.get(`${AppRoute.LOGIN}`)
       .then(() => {
         dispatch(ActionCreators.requireAuthorization(AuthorizationStatus.AUTH));
-      })
-      .catch((err) => {
-        throw err;
+        dispatch(DataOperation.getFavoriteFilms());
       });
   },
 
   login: (authData) => (dispatch, getState, api) => {
-    return api.post(`/login`, {
+    return api.post(`${AppRoute.LOGIN}`, {
       email: authData.login,
       password: authData.password,
     })
       .then(() => {
         dispatch(ActionCreators.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(AppActionCreators.changeLoggingStatus());
+        dispatch(DataOperation.getFavoriteFilms());
+        dispatch(AppActionCreators.changeFormSendingStatus(false));
+        if (history.length === 2) {
+          history.push(`${AppRoute.ROOT}`);
+        } else {
+          history.goBack();
+        }
       });
   },
 };

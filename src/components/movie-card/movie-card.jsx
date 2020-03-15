@@ -2,13 +2,15 @@ import React from "react";
 import PropTypes from 'prop-types';
 import Player from "../movie-video-player/movie-video-player.jsx";
 import withVideo from "../../hocs/with-video/with-video.js";
+import {Link} from "react-router-dom";
+import {AppRoute} from "../../const.js";
 
 const VideoPlayer = withVideo(Player);
 
 let timer;
 
-const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick, activeCard}) => {
-  const {title, imgSrc, trailerSrc} = film;
+const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, activeCard, changeTab}) => {
+  const {title, imgSrc, trailerSrc, id} = film;
 
   return (
     <article
@@ -23,32 +25,33 @@ const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, onMovieCardClick, act
       }}
       onClick={() => {
         clearTimeout(timer);
-        onMovieCardClick(film);
+        if (changeTab) {
+          changeTab(`movieOverview`);
+        }
+        window.scrollTo(0, 0);
       }}
       className="small-movie-card catalog__movies-card"
     >
-      <div className="small-movie-card__image">
-        <VideoPlayer
-          isPlaying={activeCard === film}
-          videoSrc={trailerSrc}
-          posterSrc={imgSrc}
-          isMuted
-          widthAtr={280}
-          heightAtr={175}
-          type={`trailer`}
-        />
-      </div>
+      <Link to={`${AppRoute.FILM}/${id}`}>
+        <div className="small-movie-card__image">
+          <VideoPlayer
+            isPlaying={activeCard === film}
+            videoSrc={trailerSrc}
+            posterSrc={imgSrc}
+            isMuted
+            widthAtr={280}
+            heightAtr={175}
+            type={`trailer`}
+          />
+        </div>
+      </Link>
       <h3 className="small-movie-card__title">
-        <a
-          onClick={(e) => {
-            e.preventDefault();
-            onMovieCardClick(film);
-          }}
+        <Link to={`${AppRoute.FILM}/${id}`}
           className="small-movie-card__link"
           href="movie-page.html"
         >
           {title}
-        </a>
+        </Link>
       </h3>
     </article>
   );
@@ -62,9 +65,9 @@ MovieCard.propTypes = {
     trailerSrc: PropTypes.string,
   }).isRequired,
   onFilmMouseOver: PropTypes.func.isRequired,
-  onMovieCardClick: PropTypes.func.isRequired,
   onFilmMouseOut: PropTypes.func.isRequired,
   activeCard: PropTypes.object.isRequired,
+  changeTab: PropTypes.func,
 };
 
 export default MovieCard;

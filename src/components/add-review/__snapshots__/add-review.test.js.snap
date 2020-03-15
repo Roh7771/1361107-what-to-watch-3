@@ -28,7 +28,8 @@ exports[`<AddReview /> should render correctly 1`] = `
       >
         <a
           className="logo__link"
-          href="main.html"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -58,7 +59,8 @@ exports[`<AddReview /> should render correctly 1`] = `
           >
             <a
               className="breadcrumbs__link"
-              href="#"
+              href="/films/1"
+              onClick={[Function]}
             >
               Some Title
             </a>
@@ -77,16 +79,21 @@ exports[`<AddReview /> should render correctly 1`] = `
       <div
         className="user-block"
       >
-        <div
-          className="user-block__avatar"
+        <a
+          href="/mylist"
+          onClick={[Function]}
         >
-          <img
-            alt="User avatar"
-            height="63"
-            src="img/avatar.jpg"
-            width="63"
-          />
-        </div>
+          <div
+            className="user-block__avatar"
+          >
+            <img
+              alt="User avatar"
+              height="63"
+              src="/img/avatar.jpg"
+              width="63"
+            />
+          </div>
+        </a>
       </div>
     </header>
     <div
@@ -205,7 +212,7 @@ exports[`<AddReview /> should render correctly 1`] = `
           id="review-text"
           name="review-text"
           onChange={[Function]}
-          placeholder="Review text"
+          placeholder="Text must contain at least 50 symbols"
         />
         <div
           className="add-review__submit"

@@ -2,6 +2,7 @@ import {reducer, ActionTypes, ActionCreators, Operation} from "./user";
 import {AuthorizationStatus} from "./user";
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../api";
+import {AppRoute} from "../../const";
 
 const api = createAPI(() => {});
 
@@ -35,12 +36,12 @@ describe(`Operation`, () => {
     const checkAuth = Operation.checkAuth({login: `lol`, password: `lolka`});
 
     apiMock
-      .onGet(`/login`)
+      .onGet(`${AppRoute.LOGIN}`)
       .reply(200);
 
     return checkAuth(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenCalledTimes(2);
         expect(dispatch).toHaveBeenNthCalledWith(1, ActionCreators.requireAuthorization(AuthorizationStatus.AUTH));
       });
   });
@@ -51,12 +52,12 @@ describe(`Operation`, () => {
     const login = Operation.login({});
 
     apiMock
-      .onPost(`/login`)
+      .onPost(`${AppRoute.LOGIN}`)
       .reply(200);
 
     return login(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1, ActionCreators.requireAuthorization(AuthorizationStatus.AUTH));
       });
   });

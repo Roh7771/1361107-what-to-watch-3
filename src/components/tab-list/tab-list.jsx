@@ -5,7 +5,7 @@ import MovieReviews from "../tabs/movie-reviews/movie-reviews.jsx";
 import MovieOverview from "../tabs/movie-overview/movie-overview.jsx";
 
 const TabList = (props) => {
-  const {film, activeItem, onActiveItemChange} = props;
+  const {film, activeItem, changeTab, filmComments} = props;
 
   const renderTab = () => {
     switch (activeItem) {
@@ -16,7 +16,7 @@ const TabList = (props) => {
         return <MovieDetails film={film}/>;
 
       case `movieReviews`:
-        return <MovieReviews film={film}/>;
+        return <MovieReviews filmComments={filmComments}/>;
     }
     return <p>Что-то пошло не так :(</p>;
   };
@@ -30,7 +30,7 @@ const TabList = (props) => {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                onActiveItemChange(`movieOverview`);
+                changeTab(`movieOverview`);
               }}
               className="movie-nav__link"
             >
@@ -42,7 +42,7 @@ const TabList = (props) => {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                onActiveItemChange(`movieDetails`);
+                changeTab(`movieDetails`);
               }}
               className="movie-nav__link"
             >
@@ -54,7 +54,7 @@ const TabList = (props) => {
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                onActiveItemChange(`movieReviews`);
+                changeTab(`movieReviews`);
               }}
               className="movie-nav__link"
             >
@@ -86,7 +86,17 @@ TabList.propTypes = {
     reviews: PropTypes.array,
   }),
   activeItem: PropTypes.string.isRequired,
-  onActiveItemChange: PropTypes.func.isRequired,
+  changeTab: PropTypes.func.isRequired,
+  filmComments: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    user: PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+    }),
+    rating: PropTypes.number,
+    comment: PropTypes.string,
+    data: PropTypes.string,
+  })),
 };
 
 export default TabList;

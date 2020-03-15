@@ -15,66 +15,9 @@ exports[`<MoreLikeThis /> should render correctly 1`] = `
     <div
       className="catalog__movies-list"
     >
-      <article
-        className="small-movie-card catalog__movies-card"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-      >
-        <div
-          className="small-movie-card__image"
-        >
-          <video
-            alt=""
-            className=""
-            height={175}
-            poster="Some Path"
-            src="some path"
-            width={280}
-          />
-        </div>
-        <h3
-          className="small-movie-card__title"
-        >
-          <a
-            className="small-movie-card__link"
-            href="movie-page.html"
-            onClick={[Function]}
-          >
-            Some Title
-          </a>
-        </h3>
-      </article>
-      <article
-        className="small-movie-card catalog__movies-card"
-        onClick={[Function]}
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
-      >
-        <div
-          className="small-movie-card__image"
-        >
-          <video
-            alt=""
-            className=""
-            height={175}
-            poster="Some Path"
-            src="some path"
-            width={280}
-          />
-        </div>
-        <h3
-          className="small-movie-card__title"
-        >
-          <a
-            className="small-movie-card__link"
-            href="movie-page.html"
-            onClick={[Function]}
-          >
-            Some Title
-          </a>
-        </h3>
-      </article>
+      <p>
+        Sorry, there is no more films :(
+      </p>
     </div>
   </section>
 </div>

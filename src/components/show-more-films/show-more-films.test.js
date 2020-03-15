@@ -107,7 +107,7 @@ const mock = {
   ]
 };
 
-it(`<GenreList /> should render correctly`, () => {
+it(`<ShowMoreFilms /> should render correctly`, () => {
   const tree = renderer
     .create(
         <ShowMoreFilms

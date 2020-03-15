@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MovieCard from "../movie-card/movie-card.jsx";
 
 const MovieList = (props) => {
-  const {filmsToRender, onMovieCardClick, activeItem, onActiveItemChange} = props;
+  const {filmsToRender, activeItem, onActiveItemChange, changeTab} = props;
   return (
     filmsToRender.length === 0 ?
       <p>There is no films :(</p> :
@@ -14,8 +14,8 @@ const MovieList = (props) => {
             film={el}
             onFilmMouseOut={onActiveItemChange}
             onFilmMouseOver={onActiveItemChange}
-            onMovieCardClick={onMovieCardClick}
             activeCard={activeItem}
+            changeTab={changeTab}
           />
         );
       })
@@ -28,9 +28,9 @@ MovieList.propTypes = {
     imgSrc: PropTypes.string,
     id: PropTypes.id,
   })).isRequired,
-  onMovieCardClick: PropTypes.func.isRequired,
   activeItem: PropTypes.object.isRequired,
   onActiveItemChange: PropTypes.func.isRequired,
+  changeTab: PropTypes.func,
 };
 
 export default MovieList;

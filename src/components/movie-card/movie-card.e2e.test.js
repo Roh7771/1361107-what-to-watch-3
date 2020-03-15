@@ -3,6 +3,8 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import MovieCard from "./movie-card";
 
+window.scrollTo = jest.fn();
+
 const mock = {
   film: {
     title: `Some Title`,
@@ -61,28 +63,27 @@ Enzyme.configure({
   adapter: new Adapter()
 });
 
-it(`Should movie card and title be pressed and got correct data`, () => {
-  const handlerMovieCardClick = jest.fn();
+it(`ChangeTab get correct data`, () => {
+  const changeTab = jest.fn((...args) => [...args]);
 
   const movieCard = shallow(
       <MovieCard
+        film={mock.film}
         onFilmMouseOver={() => {}}
         onFilmMouseOut={() => {}}
-        film={mock.film}
-        onMovieCardClick={handlerMovieCardClick}
         activeCard={mock.film}
+        changeTab={changeTab}
       />
   );
 
-  const titleButton = movieCard.find(`a.small-movie-card__link`);
-  const movieCardWrapper = movieCard.find(`article`);
+  const card = movieCard.find(`article`);
+  card.simulate(`click`);
 
-  titleButton.simulate(`click`, {preventDefault() {}});
-  movieCardWrapper.simulate(`click`);
-
-  expect(handlerMovieCardClick.mock.calls.length).toBe(2);
-  expect(handlerMovieCardClick.mock.calls[0][0]).toMatchObject(mock.film);
-  expect(handlerMovieCardClick.mock.calls[1][0]).toMatchObject(mock.film);
+  setTimeout(() => {
+    expect(changeTab.mock.calls.length).toBe(1);
+    expect(changeTab.mock.calls[0][0]).toBe(`movieOverview`);
+  }, 1100);
+  window.scrollTo.mockClear();
 });
 
 it(`HandlerOnMouseEnter get correct data`, () => {
@@ -93,7 +94,6 @@ it(`HandlerOnMouseEnter get correct data`, () => {
         film={mock.film}
         onFilmMouseOver={handlerOnMouseEnter}
         onFilmMouseOut={() => {}}
-        onMovieCardClick={() => {}}
         activeCard={mock.film}
       />
   );
@@ -106,4 +106,3 @@ it(`HandlerOnMouseEnter get correct data`, () => {
     expect(handlerOnMouseEnter.mock.calls[0][0]).toMatchObject(mock.film);
   }, 1100);
 });
-
