@@ -7,10 +7,15 @@ Enzyme.configure({
   adapter: new Adapter()
 });
 
+const mock = {
+  genreList: [`All genres`, `Horror`, `Comedy`]
+};
+
 describe(`<GenreList />`, () => {
   it(`should mark active genre correctly`, () => {
     const genresList = shallow(
         <GenresList
+          genreList = {mock.genreList}
           onGenreButtonClick={() => {}}
           currentGenre={`Comedy`}
         />
@@ -25,6 +30,7 @@ describe(`<GenreList />`, () => {
 
     const genresList = shallow(
         <GenresList
+          genreList = {mock.genreList}
           onGenreButtonClick={onGenreButtonClick}
           currentGenre={`Comedy`}
         />

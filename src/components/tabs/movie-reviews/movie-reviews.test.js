@@ -20,45 +20,25 @@ const mock = {
     id: 2,
     videoSrc: `Some Path`,
     filmDuration: 99,
-    reviews: [
-      {
-        rating: 8.1,
-        reviewText: `Description`,
-        reviewer: `Kate Muiry`,
-        reviewDate: `2016-12-25`,
-      },
-      {
-        rating: 8.1,
-        reviewText: `Description`,
-        reviewer: `Kate Muiry`,
-        reviewDate: `2016-12-25`,
-      },
-      {
-        rating: 8.1,
-        reviewText: `Description`,
-        reviewer: `Kate Muiry`,
-        reviewDate: `2016-12-25`,
-      },
-      {
-        rating: 8.1,
-        reviewText: `Description`,
-        reviewer: `Kate Muiry`,
-        reviewDate: `2016-12-25`,
-      },
-      {
-        rating: 8.1,
-        reviewText: `Description`,
-        reviewer: `Kate Muiry`,
-        reviewDate: `2016-12-25`,
-      }
-    ]
   },
+  filmComments: [
+    {
+      id: 1,
+      user: {
+        id: 1,
+        name: `Some User`,
+      },
+      rating: 9,
+      comment: `Some comment`,
+      date: `Sun Mar 15 2020`,
+    }
+  ]
 };
 
 it(`<MovieReviews /> should render correctly`, () => {
-  const {film} = mock;
+  const {film, filmComments} = mock;
   const tree = renderer
-    .create(<MovieReviews film={film}/>)
+    .create(<MovieReviews film={film} filmComments={filmComments}/>)
     .toJSON();
 
   expect(tree).toMatchSnapshot();

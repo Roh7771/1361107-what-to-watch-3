@@ -8,7 +8,6 @@ export const getFilmsToShowCount = (state) => {
   return state[NameSpace.APP_STATUS].filmsToShowCount;
 };
 
-
 export const getFormSendingStatus = (state) => {
   return state[NameSpace.APP_STATUS].isFormSending;
 };

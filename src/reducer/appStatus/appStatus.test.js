@@ -5,23 +5,21 @@ describe(`Reducer`, () => {
     expect(reducer(void 0, {})).toEqual({
       currentGenre: `All genres`,
       filmsToShowCount: 8,
-      chosenFilm: null,
-      filmToWatch: null,
-      isLogging: false,
       isFormSending: false,
-      formErrorMessage: null
+      formErrorMessage: null,
+      isFilmsLoading: true
     });
   });
 
   it(`change form sending status`, () => {
-    expect(reducer({isFormSending: true}, {type: ActionTypes.CHANGE_FORM_SENDING_STATUS})).toEqual({
+    expect(reducer({isFormSending: true}, {type: ActionTypes.CHANGE_FORM_SENDING_STATUS, payload: false})).toEqual({
       isFormSending: false
     });
   });
 
-  it(`change form sending status`, () => {
-    expect(reducer({isLogging: true}, {type: ActionTypes.CHANGE_LOGGING_STATUS})).toEqual({
-      isLogging: false
+  it(`change film loading status`, () => {
+    expect(reducer({isFilmsLoading: true}, {type: ActionTypes.CHANGE_FILMS_LOADING_STATUS})).toEqual({
+      isFilmsLoading: false
     });
   });
 
@@ -31,9 +29,9 @@ describe(`Reducer`, () => {
     });
   });
 
-  it(`sets film to watch correctly`, () => {
-    expect(reducer({filmToWatch: null}, {type: ActionTypes.SET_FILM_TO_WATCH, payload: {title: `Some Film`}})).toEqual({
-      filmToWatch: {title: `Some Film`},
+  it(`sets form error message correctly`, () => {
+    expect(reducer({formErrorMessage: null}, {type: ActionTypes.SET_FORM_ERROR_MESSAGE, payload: `Some Text`})).toEqual({
+      formErrorMessage: `Some Text`,
     });
   });
 
@@ -48,24 +46,13 @@ describe(`Reducer`, () => {
       filmsToShowCount: 16
     });
   });
-
-  it(`sets chosen film`, () => {
-    expect(reducer({chosenFilm: null}, {type: ActionTypes.SET_CHOSEN_FILM, payload: {title: `Film`}})).toEqual({
-      chosenFilm: {title: `Film`}
-    });
-  });
 });
 
 describe(`ActionCreators`, () => {
   it(`for form sending status changing returns correct action`, () => {
-    expect(ActionCreators.changeFormSendingStatus()).toEqual({
+    expect(ActionCreators.changeFormSendingStatus(true)).toEqual({
       type: ActionTypes.CHANGE_FORM_SENDING_STATUS,
-    });
-  });
-
-  it(`for form sending status changing returns correct action`, () => {
-    expect(ActionCreators.changeLoggingStatus()).toEqual({
-      type: ActionTypes.CHANGE_LOGGING_STATUS,
+      payload: true
     });
   });
 
@@ -74,22 +61,6 @@ describe(`ActionCreators`, () => {
       type: ActionTypes.CHANGE_GENRE,
       payload: `Comedies`,
     });
-  });
-
-  it(`for setting film to watch returns correct action`, () => {
-    expect(ActionCreators.setFilmToWatch({title: `Some Film`})).toEqual({
-      type: ActionTypes.SET_FILM_TO_WATCH,
-      payload: {title: `Some Film`},
-    });
-  });
-
-  it(`for setting chosen film returns correct action`, () => {
-    expect(ActionCreators.setChosenFilm({title: `fake`})).toEqual(
-        {
-          type: ActionTypes.SET_CHOSEN_FILM,
-          payload: {title: `fake`}
-        }
-    );
   });
 
   it(`for reseting films count returns correct action`, () => {
@@ -105,6 +76,23 @@ describe(`ActionCreators`, () => {
         {
           type: ActionTypes.SHOW_MORE_FILMS,
           payload: 8
+        }
+    );
+  });
+
+  it(`for setting form error message returns correct action`, () => {
+    expect(ActionCreators.setFormErrorMessage(`Some Error`)).toEqual(
+        {
+          type: ActionTypes.SET_FORM_ERROR_MESSAGE,
+          payload: `Some Error`
+        }
+    );
+  });
+
+  it(`for changing films loading status returns correct action`, () => {
+    expect(ActionCreators.changeFilmsLoadingStatus()).toEqual(
+        {
+          type: ActionTypes.CHANGE_FILMS_LOADING_STATUS,
         }
     );
   });

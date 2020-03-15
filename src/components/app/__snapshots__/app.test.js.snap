@@ -12,7 +12,8 @@ exports[`App should render auth screen 1`] = `
     >
       <a
         className="logo__link"
-        href="main.html"
+        href="/"
+        onClick={[Function]}
       >
         <span
           className="logo__letter logo__letter--1"
@@ -45,54 +46,64 @@ exports[`App should render auth screen 1`] = `
       className="sign-in__form"
       onSubmit={[Function]}
     >
-      <div
-        className="sign-in__fields"
+      <fieldset
+        disabled={false}
+        style={
+          Object {
+            "border": "none",
+            "padding": 0,
+          }
+        }
       >
         <div
-          className="sign-in__field"
+          className="sign-in__fields"
         >
-          <input
-            className="sign-in__input"
-            id="user-email"
-            name="user-email"
-            placeholder="Email address"
-            type="email"
-          />
-          <label
-            className="sign-in__label visually-hidden"
-            htmlFor="user-email"
+          <div
+            className="sign-in__field"
           >
-            Email address
-          </label>
+            <input
+              className="sign-in__input"
+              id="user-email"
+              name="user-email"
+              placeholder="Email address"
+              type="email"
+            />
+            <label
+              className="sign-in__label visually-hidden"
+              htmlFor="user-email"
+            >
+              Email address
+            </label>
+          </div>
+          <div
+            className="sign-in__field"
+          >
+            <input
+              className="sign-in__input"
+              id="user-password"
+              name="user-password"
+              placeholder="Password"
+              type="password"
+            />
+            <label
+              className="sign-in__label visually-hidden"
+              htmlFor="user-password"
+            >
+              Password
+            </label>
+          </div>
         </div>
         <div
-          className="sign-in__field"
+          className="sign-in__submit"
         >
-          <input
-            className="sign-in__input"
-            id="user-password"
-            name="user-password"
-            placeholder="Password"
-            type="password"
-          />
-          <label
-            className="sign-in__label visually-hidden"
-            htmlFor="user-password"
+          <button
+            className="sign-in__btn"
+            type="submit"
           >
-            Password
-          </label>
+            Sign in
+          </button>
         </div>
-      </div>
-      <div
-        className="sign-in__submit"
-      >
-        <button
-          className="sign-in__btn"
-          type="submit"
-        >
-          Sign in
-        </button>
-      </div>
+      </fieldset>
     </form>
   </div>
   <footer
@@ -103,7 +114,8 @@ exports[`App should render auth screen 1`] = `
     >
       <a
         className="logo__link logo__link--light"
-        href="main.html"
+        href="/"
+        onClick={[Function]}
       >
         <span
           className="logo__letter logo__letter--1"
@@ -142,7 +154,8 @@ Array [
       className="movie-card__bg"
     >
       <img
-        alt="Promo Film"
+        alt="Some Title"
+        src="iSome Path"
       />
     </div>
     <h1
@@ -181,7 +194,7 @@ Array [
       >
         <a
           className="user-block__link"
-          href="#"
+          href="/login"
           onClick={[Function]}
         >
           Sign in
@@ -198,8 +211,9 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt="Promo Film poster"
+            alt="Some Title poster"
             height="327"
+            src="Some Path"
             width="218"
           />
         </div>
@@ -209,7 +223,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            Promo Film
+            Some Title
           </h2>
           <p
             className="movie-card__meta"
@@ -222,7 +236,7 @@ Array [
             <span
               className="movie-card__year"
             >
-              2020
+              2015
             </span>
           </p>
           <div
@@ -248,6 +262,7 @@ Array [
             </button>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -304,94 +319,6 @@ Array [
             Comedy
           </a>
         </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Crime
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Adventure
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Drama
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Action
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Fantasy
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Romance
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Sci-Fi
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Thriller
-          </a>
-        </li>
       </ul>
       <div
         className="catalog__movies-list"
@@ -402,24 +329,29 @@ Array [
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/films/2"
+            onClick={[Function]}
           >
-            <video
-              alt=""
-              className=""
-              height={175}
-              poster="Some Path"
-              src="some path"
-              width={280}
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <video
+                alt=""
+                className=""
+                height={175}
+                poster="Some Path"
+                src="some path"
+                width={280}
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/2"
               onClick={[Function]}
             >
               Some Title
@@ -432,24 +364,29 @@ Array [
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/films/4"
+            onClick={[Function]}
           >
-            <video
-              alt=""
-              className=""
-              height={175}
-              poster="Some Path"
-              src="some path"
-              width={280}
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <video
+                alt=""
+                className=""
+                height={175}
+                poster="Some Path"
+                src="some path"
+                width={280}
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/4"
               onClick={[Function]}
             >
               Some Title
@@ -474,12 +411,48 @@ Array [
         </button>
       </div>
     </section>
+    <footer
+      className="page-footer"
+    >
+      <div
+        className="logo"
+      >
+        <a
+          className="logo__link logo__link--light"
+        >
+          <span
+            className="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            className="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            className="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <div
+        className="copyright"
+      >
+        <p>
+          © 2019 What to watch Ltd.
+        </p>
+      </div>
+    </footer>
   </div>,
 ]
 `;
 
 exports[`App should render movie page screen 1`] = `
-Array [
+<div
+  className="page-content"
+>
   <section
     className="movie-card movie-card--full"
     style={
@@ -512,7 +485,8 @@ Array [
         >
           <a
             className="logo__link"
-            href="main.html"
+            href="/"
+            onClick={[Function]}
           >
             <span
               className="logo__letter logo__letter--1"
@@ -534,16 +508,13 @@ Array [
         <div
           className="user-block"
         >
-          <div
-            className="user-block__avatar"
+          <a
+            className="user-block__link"
+            href="/login"
+            onClick={[Function]}
           >
-            <img
-              alt="User avatar"
-              height="63"
-              src="img/avatar.jpg"
-              width="63"
-            />
-          </div>
+            Sign in
+          </a>
         </div>
       </header>
       <div
@@ -594,6 +565,7 @@ Array [
             </button>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -609,6 +581,13 @@ Array [
                 My list
               </span>
             </button>
+            <a
+              className="btn movie-card__button"
+              href="/films/2/review"
+              onClick={[Function]}
+            >
+              Add review
+            </a>
           </div>
         </div>
       </div>
@@ -720,7 +699,7 @@ Array [
         </div>
       </div>
     </div>
-  </section>,
+  </section>
   <div
     className="page-content"
   >
@@ -740,8 +719,44 @@ Array [
         </p>
       </div>
     </section>
-  </div>,
-]
+  </div>
+  <footer
+    className="page-footer"
+  >
+    <div
+      className="logo"
+    >
+      <a
+        className="logo__link logo__link--light"
+        href="/"
+        onClick={[Function]}
+      >
+        <span
+          className="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          className="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          className="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </a>
+    </div>
+    <div
+      className="copyright"
+    >
+      <p>
+        © 2019 What to watch Ltd.
+      </p>
+    </div>
+  </footer>
+</div>
 `;
 
 exports[`App should render movie video player 1`] = `
@@ -840,5 +855,375 @@ exports[`App should render movie video player 1`] = `
       </button>
     </div>
   </div>
+</div>
+`;
+
+exports[`App should render review form 1`] = `
+<section
+  className="movie-card movie-card--full"
+>
+  <div
+    className="movie-card__header"
+  >
+    <div
+      className="movie-card__bg"
+    >
+      <img
+        alt="Some Title"
+        src="iSome Path"
+      />
+    </div>
+    <h1
+      className="visually-hidden"
+    >
+      WTW
+    </h1>
+    <header
+      className="page-header"
+    >
+      <div
+        className="logo"
+      >
+        <a
+          className="logo__link"
+          href="/"
+          onClick={[Function]}
+        >
+          <span
+            className="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            className="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            className="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <nav
+        className="breadcrumbs"
+      >
+        <ul
+          className="breadcrumbs__list"
+        >
+          <li
+            className="breadcrumbs__item"
+          >
+            <a
+              className="breadcrumbs__link"
+              href="/films/2"
+              onClick={[Function]}
+            >
+              Some Title
+            </a>
+          </li>
+          <li
+            className="breadcrumbs__item"
+          >
+            <a
+              className="breadcrumbs__link"
+            >
+              Add review
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div
+        className="user-block"
+      >
+        <a
+          href="/mylist"
+          onClick={[Function]}
+        >
+          <div
+            className="user-block__avatar"
+          >
+            <img
+              alt="User avatar"
+              height="63"
+              src="/img/avatar.jpg"
+              width="63"
+            />
+          </div>
+        </a>
+      </div>
+    </header>
+    <div
+      className="movie-card__poster movie-card__poster--small"
+    >
+      <img
+        alt="Some Title"
+        height="327"
+        src="Some Path"
+        width="218"
+      />
+    </div>
+  </div>
+  <div
+    className="add-review"
+  >
+    <form
+      action="#"
+      className="add-review__form"
+      onSubmit={[Function]}
+    >
+      <div
+        className="rating"
+      >
+        <div
+          className="rating__stars"
+        >
+          <input
+            checked={false}
+            className="rating__input"
+            disabled={false}
+            id="star-1"
+            name="rating"
+            onChange={[Function]}
+            type="radio"
+            value="1"
+          />
+          <label
+            className="rating__label"
+            htmlFor="star-1"
+          >
+            Rating 1
+          </label>
+          <input
+            checked={false}
+            className="rating__input"
+            disabled={false}
+            id="star-2"
+            name="rating"
+            onChange={[Function]}
+            type="radio"
+            value="2"
+          />
+          <label
+            className="rating__label"
+            htmlFor="star-2"
+          >
+            Rating 2
+          </label>
+          <input
+            checked={true}
+            className="rating__input"
+            disabled={false}
+            id="star-3"
+            name="rating"
+            onChange={[Function]}
+            type="radio"
+            value="3"
+          />
+          <label
+            className="rating__label"
+            htmlFor="star-3"
+          >
+            Rating 3
+          </label>
+          <input
+            checked={false}
+            className="rating__input"
+            disabled={false}
+            id="star-4"
+            name="rating"
+            onChange={[Function]}
+            type="radio"
+            value="4"
+          />
+          <label
+            className="rating__label"
+            htmlFor="star-4"
+          >
+            Rating 4
+          </label>
+          <input
+            checked={false}
+            className="rating__input"
+            disabled={false}
+            id="star-5"
+            name="rating"
+            onChange={[Function]}
+            type="radio"
+            value="5"
+          />
+          <label
+            className="rating__label"
+            htmlFor="star-5"
+          >
+            Rating 5
+          </label>
+        </div>
+      </div>
+      <div
+        className="add-review__text"
+      >
+        <textarea
+          className="add-review__textarea"
+          disabled={false}
+          id="review-text"
+          name="review-text"
+          onChange={[Function]}
+          placeholder="Text must contain at least 50 symbols"
+        />
+        <div
+          className="add-review__submit"
+        >
+          <button
+            className="add-review__btn"
+            disabled={true}
+            type="submit"
+          >
+            Post
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+`;
+
+exports[`App should render user favorite films 1`] = `
+<div
+  className="user-page"
+>
+  <header
+    className="page-header user-page__head"
+  >
+    <div
+      className="logo"
+    >
+      <a
+        className="logo__link"
+        href="/"
+        onClick={[Function]}
+      >
+        <span
+          className="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          className="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          className="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </a>
+    </div>
+    <h1
+      className="page-title user-page__title"
+    >
+      My list
+    </h1>
+    <div
+      className="user-block"
+    >
+      <div
+        className="user-block__avatar"
+      >
+        <img
+          alt="User avatar"
+          height="63"
+          src="img/avatar.jpg"
+          width="63"
+        />
+      </div>
+    </div>
+  </header>
+  <section
+    className="catalog"
+  >
+    <h2
+      className="catalog__title visually-hidden"
+    >
+      Catalog
+    </h2>
+    <div
+      className="catalog__movies-list"
+    >
+      <article
+        className="small-movie-card catalog__movies-card"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      >
+        <a
+          href="/films/2"
+          onClick={[Function]}
+        >
+          <div
+            className="small-movie-card__image"
+          >
+            <video
+              alt=""
+              className=""
+              height={175}
+              poster="Some Path"
+              src="some path"
+              width={280}
+            />
+          </div>
+        </a>
+        <h3
+          className="small-movie-card__title"
+        >
+          <a
+            className="small-movie-card__link"
+            href="/films/2"
+            onClick={[Function]}
+          >
+            Some Title
+          </a>
+        </h3>
+      </article>
+    </div>
+  </section>
+  <footer
+    className="page-footer"
+  >
+    <div
+      className="logo"
+    >
+      <a
+        className="logo__link logo__link--light"
+        href="/"
+        onClick={[Function]}
+      >
+        <span
+          className="logo__letter logo__letter--1"
+        >
+          W
+        </span>
+        <span
+          className="logo__letter logo__letter--2"
+        >
+          T
+        </span>
+        <span
+          className="logo__letter logo__letter--3"
+        >
+          W
+        </span>
+      </a>
+    </div>
+    <div
+      className="copyright"
+    >
+      <p>
+        © 2019 What to watch Ltd.
+      </p>
+    </div>
+  </footer>
 </div>
 `;

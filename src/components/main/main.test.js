@@ -4,14 +4,53 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import Main from "./main.jsx";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {Router} from "react-router-dom";
+import history from "../../history.js";
 
 const mockStore = configureStore([]);
 
 const mock = {
+  userFavoriteFilms: [
+    {
+      title: `Some Title`,
+      trailerSrc: `some path`,
+      genre: `Comedy`,
+      bgColor: `red`,
+      releaseYear: 2015,
+      imgSrc: `Some Path`,
+      bgSrc: `iSome Path`,
+      posterSrc: `Some Path`,
+      ratingScore: 8.7,
+      ratingCount: 230,
+      description: [
+        `Some description`,
+      ],
+      director: `Some cool directot`,
+      starring: [`Actor1`, `Actor2`],
+      id: 2,
+      videoSrc: `Some Path`,
+      filmDuration: 99,
+    }
+  ],
   promoFilm: {
-    promoFilmTitle: `Promo Film`,
-    promoFilmGenre: `Comedy`,
-    promoFilmReleaseYear: 2020,
+    title: `Some Title`,
+    trailerSrc: `some path`,
+    genre: `Comedy`,
+    bgColor: `red`,
+    releaseYear: 2015,
+    imgSrc: `Some Path`,
+    bgSrc: `iSome Path`,
+    posterSrc: `Some Path`,
+    ratingScore: 8.7,
+    ratingCount: 230,
+    description: [
+      `Some description`,
+    ],
+    director: `Some cool directot`,
+    starring: [`Actor1`, `Actor2`],
+    id: 2,
+    videoSrc: `Some Path`,
+    filmDuration: 99,
   },
   filmsList: [
     {
@@ -33,38 +72,6 @@ const mock = {
       id: 2,
       videoSrc: `Some Path`,
       filmDuration: 99,
-      reviews: [
-        {
-          rating: 8.1,
-          reviewText: `Description`,
-          reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
-        },
-        {
-          rating: 8.1,
-          reviewText: `Description`,
-          reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
-        },
-        {
-          rating: 8.1,
-          reviewText: `Description`,
-          reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
-        },
-        {
-          rating: 8.1,
-          reviewText: `Description`,
-          reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
-        },
-        {
-          rating: 8.1,
-          reviewText: `Description`,
-          reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
-        }
-      ]
     },
     {
       title: `Some Title`,
@@ -85,44 +92,12 @@ const mock = {
       id: 4,
       videoSrc: `Some Path`,
       filmDuration: 99,
-      reviews: [
-        {
-          rating: 8.1,
-          reviewText: `Description`,
-          reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
-        },
-        {
-          rating: 8.1,
-          reviewText: `Description`,
-          reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
-        },
-        {
-          rating: 8.1,
-          reviewText: `Description`,
-          reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
-        },
-        {
-          rating: 8.1,
-          reviewText: `Description`,
-          reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
-        },
-        {
-          rating: 8.1,
-          reviewText: `Description`,
-          reviewer: `Kate Muiry`,
-          reviewDate: `2016-12-25`,
-        }
-      ]
     },
   ]
 };
 
 it(`<Main /> should render unauthorized user correctly`, () => {
-  const {promoFilm, filmsList} = mock;
+  const {promoFilm, filmsList, userFavoriteFilms} = mock;
   const store = mockStore({
     DATA: {
       filmsList,
@@ -136,14 +111,17 @@ it(`<Main /> should render unauthorized user correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Main
-            filmsToRender={filmsList}
-            promoFilm={promoFilm}
-            onMovieCardClick={() => {}}
-            onPlayFilmButtonClick={() => {}}
-            authorizationStatus={AuthorizationStatus.NO_AUTH}
-            onSignInClick={() => {}}
-          />
+          <Router history={history}>
+            <Main
+              filmsToRender={filmsList}
+              userFavoriteFilms={userFavoriteFilms}
+              promoFilm={promoFilm}
+              onFavoriteButtonClick={() => {}}
+              authorizationStatus={AuthorizationStatus.NO_AUTH}
+            >
+              <footer>Some footer</footer>
+            </Main>
+          </Router>
         </Provider>, {
           createNodeMock: () => {
             return {};
@@ -155,7 +133,7 @@ it(`<Main /> should render unauthorized user correctly`, () => {
 });
 
 it(`<Main /> should render unauthorized user correctly`, () => {
-  const {promoFilm, filmsList} = mock;
+  const {promoFilm, filmsList, userFavoriteFilms} = mock;
   const store = mockStore({
     DATA: {
       filmsList,
@@ -169,14 +147,17 @@ it(`<Main /> should render unauthorized user correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Main
-            filmsToRender={filmsList}
-            promoFilm={promoFilm}
-            onMovieCardClick={() => {}}
-            onPlayFilmButtonClick={() => {}}
-            authorizationStatus={AuthorizationStatus.AUTH}
-            onSignInClick={() => {}}
-          />
+          <Router history={history}>
+            <Main
+              filmsToRender={filmsList}
+              userFavoriteFilms={userFavoriteFilms}
+              promoFilm={promoFilm}
+              onFavoriteButtonClick={() => {}}
+              authorizationStatus={AuthorizationStatus.AUTH}
+            >
+              <footer>Some footer</footer>
+            </Main>
+          </Router>
         </Provider>, {
           createNodeMock: () => {
             return {};

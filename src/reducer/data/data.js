@@ -2,7 +2,7 @@ import {extend} from "../../utils";
 import adaptFilmsData from "./adaptFilmsData";
 import {ActionCreators as AppActionCreators} from '../appStatus/appStatus.js';
 import history from "../../history";
-import { AppRoute } from "../../const";
+import {AppRoute} from "../../const";
 
 let timer;
 

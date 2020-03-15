@@ -1,6 +1,6 @@
 import React from "react";
 import Main from "../main/main.jsx";
-import {Router, Switch, Route} from "react-router-dom";
+import {Switch, Route} from "react-router-dom";
 import PropTypes from "prop-types";
 import MoviePage from "../movie-page/movie-page.jsx";
 import {connect} from "react-redux";
@@ -26,7 +26,6 @@ import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import AddReview from "../add-review/add-review.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
 import withTextState from "../../hocs/with-text-state/with-text-state.js";
-import history from "../../history.js";
 import LoginRoute from "../routes/login-route/login-route.jsx";
 import MyList from "../my-list/my-list.jsx";
 import PrivateRoute from "../routes/private-route/private-route.jsx";
@@ -53,118 +52,121 @@ const App = ({
   setFilmComments
 }) => {
   return (
-    <Router history={history}>
-      <Switch>
-        <Route
-          exact
-          path={`${AppRoute.ROOT}`}
-          render={() => {
-            return (
-              <Main
-                authorizationStatus={authorizationStatus}
-                promoFilm={promoFilm}
-                filmsToRender={filmsToRender}
-                userFavoriteFilms={userFavoriteFilms}
-                onFavoriteButtonClick={onFavoriteButtonClick}
-              >
-                <Footer/>
-              </Main>
-            );
-          }}
-        />
-        <Route
-          exact
-          path={`${AppRoute.FILM}/:id`}
-          render={(propsFromRoute) => {
-            const filmToRender = allFilms.find((film) => film.id === +propsFromRoute.match.params.id);
-            return (
-              <MoviePageWrapper
-                activeItem={`movieOverview`}
-                film={filmToRender}
-                authorizationStatus={authorizationStatus}
-                isFilmsLoading={isFilmsLoading}
-                onFavoriteButtonClick={onFavoriteButtonClick}
-                filmComments={filmComments}
-                setFilmComments={setFilmComments}
-              >
-                <Footer withLink />
-              </MoviePageWrapper>
-            );
-          }}
-        />
-        <LoginRoute
-          authorizationStatus={authorizationStatus}
-          exact
-          path={`${AppRoute.LOGIN}`}
-          render={() => {
-            return (
-              <SignIn
-                onLoginFormSubmit={onLoginFormSubmit}
-                formErrorMessage={formErrorMessage}
-                isFormSending={isFormSending}
-              >
-                <Footer withLink/>
-              </SignIn>
-            );
-          }}
-        />
-        <Route
-          exact
-          path={`${AppRoute.MY_LIST}`}
-          render={() => {
-            return (
-              <MyList
-                userFavoriteFilms={userFavoriteFilms}
-              >
-                <Footer withLink/>
-              </MyList>
-            );
-          }}
-        />
-        <PrivateRoute
-          exact
-          authorizationStatus={authorizationStatus}
-          path={`${AppRoute.FILM}/:id/review`}
-          render={(propsFromRoute) => {
-            const reviewedFilm = allFilms.find((film) => film.id === +propsFromRoute.match.params.id);
-            return (
-              <AddReviewWrapper
-                onReviewSend={onReviewSend}
-                reviewedFilm={reviewedFilm}
-                activeItem={3}
-                isFormSending={isFormSending}
-                formErrorMessage={formErrorMessage}
-              />
-            );
-          }}
-        />
-        <Route
-          exact
-          path={`${AppRoute.PLAYER}/:id`}
-          render={(propsFromRoute) => {
-            const filmToWatch = allFilms.find((film) => film.id === +propsFromRoute.match.params.id);
-            return (
-              <VideoPlayerWrapper
-                title={filmToWatch.title}
-                type={`movie`}
-                className={`player__video`}
-                isPlaying={false}
-                posterSrc={filmToWatch.imgSrc}
-                videoSrc={filmToWatch.videoSrc}
-              />
-            );
-          }}
-        />
-      </Switch>
-    </Router>
+    <Switch>
+      <Route
+        exact
+        path={`${AppRoute.ROOT}`}
+        render={() => {
+          return (
+            <Main
+              authorizationStatus={authorizationStatus}
+              promoFilm={promoFilm}
+              filmsToRender={filmsToRender}
+              userFavoriteFilms={userFavoriteFilms}
+              onFavoriteButtonClick={onFavoriteButtonClick}
+            >
+              <Footer/>
+            </Main>
+          );
+        }}
+      />
+      <Route
+        exact
+        path={`${AppRoute.FILM}/:id`}
+        render={(propsFromRoute) => {
+          const filmToRender = allFilms.find((film) => film.id === +propsFromRoute.match.params.id);
+          return (
+            <MoviePageWrapper
+              activeItem={`movieOverview`}
+              film={filmToRender}
+              authorizationStatus={authorizationStatus}
+              isFilmsLoading={isFilmsLoading}
+              onFavoriteButtonClick={onFavoriteButtonClick}
+              filmComments={filmComments}
+              setFilmComments={setFilmComments}
+            >
+              <Footer withLink />
+            </MoviePageWrapper>
+          );
+        }}
+      />
+      <LoginRoute
+        authorizationStatus={authorizationStatus}
+        exact
+        path={`${AppRoute.LOGIN}`}
+        render={() => {
+          return (
+            <SignIn
+              onLoginFormSubmit={onLoginFormSubmit}
+              formErrorMessage={formErrorMessage}
+              isFormSending={isFormSending}
+            >
+              <Footer withLink/>
+            </SignIn>
+          );
+        }}
+      />
+      <Route
+        exact
+        path={`${AppRoute.MY_LIST}`}
+        render={() => {
+          return (
+            <MyList
+              userFavoriteFilms={userFavoriteFilms}
+            >
+              <Footer withLink/>
+            </MyList>
+          );
+        }}
+      />
+      <PrivateRoute
+        exact
+        authorizationStatus={authorizationStatus}
+        path={`${AppRoute.FILM}/:id/review`}
+        render={(propsFromRoute) => {
+          const reviewedFilm = allFilms.find((film) => film.id === +propsFromRoute.match.params.id);
+          return (
+            <AddReviewWrapper
+              onReviewSend={onReviewSend}
+              reviewedFilm={reviewedFilm}
+              activeItem={3}
+              isFormSending={isFormSending}
+              formErrorMessage={formErrorMessage}
+            />
+          );
+        }}
+      />
+      <Route
+        exact
+        path={`${AppRoute.PLAYER}/:id`}
+        render={(propsFromRoute) => {
+          const filmToWatch = allFilms.find((film) => film.id === +propsFromRoute.match.params.id);
+          return (
+            <VideoPlayerWrapper
+              title={filmToWatch.title}
+              type={`movie`}
+              className={`player__video`}
+              isPlaying={false}
+              posterSrc={filmToWatch.imgSrc}
+              videoSrc={filmToWatch.videoSrc}
+            />
+          );
+        }}
+      />
+    </Switch>
   );
 };
 
 App.propTypes = {
   promoFilm: PropTypes.shape({
-    promoFilmTitle: PropTypes.string,
-    promoFilmGenre: PropTypes.string,
-    promoFilmReleaseYear: PropTypes.number
+    title: PropTypes.string,
+    genre: PropTypes.string,
+    releaseYear: PropTypes.number,
+    posterSrc: PropTypes.string,
+    bgSrc: PropTypes.string,
+    videoSrc: PropTypes.string,
+    id: PropTypes.number,
+    isFavorite: PropTypes.bool,
   }).isRequired,
   userFavoriteFilms: PropTypes.arrayOf(
       PropTypes.shape({
@@ -220,8 +222,6 @@ App.propTypes = {
         reviews: PropTypes.array
       })
   ).isRequired,
-  chosenFilm: PropTypes.object,
-  filmToWatch: PropTypes.object,
   onLoginFormSubmit: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   onReviewSend: PropTypes.func.isRequired,

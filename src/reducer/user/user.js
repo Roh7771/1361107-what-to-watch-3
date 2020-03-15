@@ -2,7 +2,7 @@ import {extend} from "../../utils";
 import history from "../../history";
 import {Operation as DataOperation} from '../data/data.js';
 import {ActionCreators as AppActionCreators} from '../appStatus/appStatus.js';
-import { AppRoute } from "../../const";
+import {AppRoute} from "../../const";
 
 const AuthorizationStatus = {
   AUTH: `AUTH`,

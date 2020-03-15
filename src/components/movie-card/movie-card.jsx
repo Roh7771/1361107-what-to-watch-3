@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Player from "../movie-video-player/movie-video-player.jsx";
 import withVideo from "../../hocs/with-video/with-video.js";
 import {Link} from "react-router-dom";
-import { AppRoute } from "../../const.js";
+import {AppRoute} from "../../const.js";
 
 const VideoPlayer = withVideo(Player);
 

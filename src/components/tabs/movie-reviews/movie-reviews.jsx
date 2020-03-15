@@ -79,7 +79,7 @@ MovieReviews.propTypes = {
     }),
     rating: PropTypes.number,
     comment: PropTypes.string,
-    data: PropTypes.string,
+    date: PropTypes.string,
   })),
 };
 

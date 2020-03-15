@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<MoviePage /> should render for authorized user correctly 1`] = `
-Array [
+<div
+  className="page-content"
+>
   <section
     className="movie-card movie-card--full"
     style={
@@ -34,7 +36,8 @@ Array [
         >
           <a
             className="logo__link"
-            href="main.html"
+            href="/"
+            onClick={[Function]}
           >
             <span
               className="logo__letter logo__letter--1"
@@ -56,16 +59,21 @@ Array [
         <div
           className="user-block"
         >
-          <div
-            className="user-block__avatar"
+          <a
+            href="/mylist"
+            onClick={[Function]}
           >
-            <img
-              alt="User avatar"
-              height="63"
-              src="img/avatar.jpg"
-              width="63"
-            />
-          </div>
+            <div
+              className="user-block__avatar"
+            >
+              <img
+                alt="User avatar"
+                height="63"
+                src="/img/avatar.jpg"
+                width="63"
+              />
+            </div>
+          </a>
         </div>
       </header>
       <div
@@ -116,6 +124,7 @@ Array [
             </button>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -131,6 +140,13 @@ Array [
                 My list
               </span>
             </button>
+            <a
+              className="btn movie-card__button"
+              href="/films/2/review"
+              onClick={[Function]}
+            >
+              Add review
+            </a>
           </div>
         </div>
       </div>
@@ -242,7 +258,7 @@ Array [
         </div>
       </div>
     </div>
-  </section>,
+  </section>
   <div
     className="page-content"
   >
@@ -262,12 +278,17 @@ Array [
         </p>
       </div>
     </section>
-  </div>,
-]
+  </div>
+  <footer>
+    Some footer
+  </footer>
+</div>
 `;
 
 exports[`<MoviePage /> should render for unauthorized user correctly 1`] = `
-Array [
+<div
+  className="page-content"
+>
   <section
     className="movie-card movie-card--full"
     style={
@@ -300,7 +321,8 @@ Array [
         >
           <a
             className="logo__link"
-            href="main.html"
+            href="/"
+            onClick={[Function]}
           >
             <span
               className="logo__letter logo__letter--1"
@@ -322,16 +344,13 @@ Array [
         <div
           className="user-block"
         >
-          <div
-            className="user-block__avatar"
+          <a
+            className="user-block__link"
+            href="/login"
+            onClick={[Function]}
           >
-            <img
-              alt="User avatar"
-              height="63"
-              src="img/avatar.jpg"
-              width="63"
-            />
-          </div>
+            Sign in
+          </a>
         </div>
       </header>
       <div
@@ -382,6 +401,7 @@ Array [
             </button>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -397,6 +417,13 @@ Array [
                 My list
               </span>
             </button>
+            <a
+              className="btn movie-card__button"
+              href="/films/2/review"
+              onClick={[Function]}
+            >
+              Add review
+            </a>
           </div>
         </div>
       </div>
@@ -508,7 +535,7 @@ Array [
         </div>
       </div>
     </div>
-  </section>,
+  </section>
   <div
     className="page-content"
   >
@@ -528,6 +555,9 @@ Array [
         </p>
       </div>
     </section>
-  </div>,
-]
+  </div>
+  <footer>
+    Some footer
+  </footer>
+</div>
 `;

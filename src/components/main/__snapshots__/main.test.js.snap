@@ -9,7 +9,8 @@ Array [
       className="movie-card__bg"
     >
       <img
-        alt="Promo Film"
+        alt="Some Title"
+        src="iSome Path"
       />
     </div>
     <h1
@@ -48,7 +49,7 @@ Array [
       >
         <a
           className="user-block__link"
-          href="#"
+          href="/login"
           onClick={[Function]}
         >
           Sign in
@@ -65,8 +66,9 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt="Promo Film poster"
+            alt="Some Title poster"
             height="327"
+            src="Some Path"
             width="218"
           />
         </div>
@@ -76,7 +78,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            Promo Film
+            Some Title
           </h2>
           <p
             className="movie-card__meta"
@@ -89,7 +91,7 @@ Array [
             <span
               className="movie-card__year"
             >
-              2020
+              2015
             </span>
           </p>
           <div
@@ -115,6 +117,7 @@ Array [
             </button>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -171,94 +174,6 @@ Array [
             Comedy
           </a>
         </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Crime
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Adventure
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Drama
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Action
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Fantasy
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Romance
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Sci-Fi
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Thriller
-          </a>
-        </li>
       </ul>
       <div
         className="catalog__movies-list"
@@ -269,24 +184,29 @@ Array [
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/films/2"
+            onClick={[Function]}
           >
-            <video
-              alt=""
-              className=""
-              height={175}
-              poster="Some Path"
-              src="some path"
-              width={280}
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <video
+                alt=""
+                className=""
+                height={175}
+                poster="Some Path"
+                src="some path"
+                width={280}
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/2"
               onClick={[Function]}
             >
               Some Title
@@ -299,24 +219,29 @@ Array [
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/films/4"
+            onClick={[Function]}
           >
-            <video
-              alt=""
-              className=""
-              height={175}
-              poster="Some Path"
-              src="some path"
-              width={280}
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <video
+                alt=""
+                className=""
+                height={175}
+                poster="Some Path"
+                src="some path"
+                width={280}
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/4"
               onClick={[Function]}
             >
               Some Title
@@ -341,6 +266,9 @@ Array [
         </button>
       </div>
     </section>
+    <footer>
+      Some footer
+    </footer>
   </div>,
 ]
 `;
@@ -354,7 +282,8 @@ Array [
       className="movie-card__bg"
     >
       <img
-        alt="Promo Film"
+        alt="Some Title"
+        src="iSome Path"
       />
     </div>
     <h1
@@ -391,16 +320,21 @@ Array [
       <div
         className="user-block"
       >
-        <div
-          className="user-block__avatar"
+        <a
+          href="/mylist"
+          onClick={[Function]}
         >
-          <img
-            alt="User avatar"
-            height="63"
-            src="img/avatar.jpg"
-            width="63"
-          />
-        </div>
+          <div
+            className="user-block__avatar"
+          >
+            <img
+              alt="User avatar"
+              height="63"
+              src="/img/avatar.jpg"
+              width="63"
+            />
+          </div>
+        </a>
       </div>
     </header>
     <div
@@ -413,8 +347,9 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt="Promo Film poster"
+            alt="Some Title poster"
             height="327"
+            src="Some Path"
             width="218"
           />
         </div>
@@ -424,7 +359,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            Promo Film
+            Some Title
           </h2>
           <p
             className="movie-card__meta"
@@ -437,7 +372,7 @@ Array [
             <span
               className="movie-card__year"
             >
-              2020
+              2015
             </span>
           </p>
           <div
@@ -463,6 +398,7 @@ Array [
             </button>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg
@@ -519,94 +455,6 @@ Array [
             Comedy
           </a>
         </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Crime
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Adventure
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Drama
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Action
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Fantasy
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Romance
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Sci-Fi
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Thriller
-          </a>
-        </li>
       </ul>
       <div
         className="catalog__movies-list"
@@ -617,24 +465,29 @@ Array [
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/films/2"
+            onClick={[Function]}
           >
-            <video
-              alt=""
-              className=""
-              height={175}
-              poster="Some Path"
-              src="some path"
-              width={280}
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <video
+                alt=""
+                className=""
+                height={175}
+                poster="Some Path"
+                src="some path"
+                width={280}
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/2"
               onClick={[Function]}
             >
               Some Title
@@ -647,24 +500,29 @@ Array [
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
-          <div
-            className="small-movie-card__image"
+          <a
+            href="/films/4"
+            onClick={[Function]}
           >
-            <video
-              alt=""
-              className=""
-              height={175}
-              poster="Some Path"
-              src="some path"
-              width={280}
-            />
-          </div>
+            <div
+              className="small-movie-card__image"
+            >
+              <video
+                alt=""
+                className=""
+                height={175}
+                poster="Some Path"
+                src="some path"
+                width={280}
+              />
+            </div>
+          </a>
           <h3
             className="small-movie-card__title"
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/4"
               onClick={[Function]}
             >
               Some Title
@@ -689,6 +547,9 @@ Array [
         </button>
       </div>
     </section>
+    <footer>
+      Some footer
+    </footer>
   </div>,
 ]
 `;

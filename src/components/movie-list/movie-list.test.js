@@ -1,6 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import MovieList from "./movie-list.jsx";
+import history from "../../history.js";
+import {Router} from "react-router-dom";
 
 const mock = {
   filmsList: [
@@ -114,13 +116,15 @@ const mock = {
 it(`<MovieList /> should render correctly`, () => {
   const tree = renderer
     .create(
-        <MovieList
-          filmsToShowCount={8}
-          filmsToRender={mock.filmsList}
-          onMovieCardClick={() => {}}
-          activeItem={{}}
-          onActiveItemChange={() => {}}
-        />,
+        <Router history={history}>
+          <MovieList
+            filmsToShowCount={8}
+            filmsToRender={mock.filmsList}
+            onMovieCardClick={() => {}}
+            activeItem={{}}
+            onActiveItemChange={() => {}}
+          />
+        </Router>,
         {
           createNodeMock: () => {
             return {};
