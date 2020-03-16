@@ -112,7 +112,10 @@ const MoviePage = ({
                   )}
                   <span>My list</span>
                 </button>
-                <Link to={`${AppRoute.FILM}/${id}/review`} className="btn movie-card__button">
+                <Link
+                  to={`${AppRoute.FILM}/${id}/review`}
+                  className="btn movie-card__button"
+                >
                   Add review
                 </Link>
               </div>
@@ -167,22 +170,24 @@ MoviePage.propTypes = {
   isFilmsLoading: PropTypes.bool.isRequired,
   onFavoriteButtonClick: PropTypes.func.isRequired,
   setFilmComments: PropTypes.func.isRequired,
-  filmComments: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    user: PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-    }),
-    rating: PropTypes.number,
-    comment: PropTypes.string,
-    data: PropTypes.string,
-  })),
+  filmComments: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        user: PropTypes.shape({
+          id: PropTypes.number,
+          name: PropTypes.string
+        }),
+        rating: PropTypes.number,
+        comment: PropTypes.string,
+        data: PropTypes.string
+      })
+  ),
   onActiveItemChange: PropTypes.func.isRequired,
   activeItem: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.node.isRequired,
     PropTypes.arrayOf(PropTypes.node)
-  ]).isRequired,
+  ]).isRequired
 };
 
 export default MoviePage;

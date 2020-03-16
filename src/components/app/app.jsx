@@ -65,7 +65,7 @@ const App = ({
               userFavoriteFilms={userFavoriteFilms}
               onFavoriteButtonClick={onFavoriteButtonClick}
             >
-              <Footer/>
+              <Footer />
             </Main>
           );
         }}
@@ -74,7 +74,9 @@ const App = ({
         exact
         path={`${AppRoute.FILM}/:id`}
         render={(propsFromRoute) => {
-          const filmToRender = allFilms.find((film) => film.id === +propsFromRoute.match.params.id);
+          const filmToRender = allFilms.find(
+              (film) => film.id === +propsFromRoute.match.params.id
+          );
           return (
             <MoviePageWrapper
               activeItem={`movieOverview`}
@@ -101,7 +103,7 @@ const App = ({
               formErrorMessage={formErrorMessage}
               isFormSending={isFormSending}
             >
-              <Footer withLink/>
+              <Footer withLink />
             </SignIn>
           );
         }}
@@ -111,10 +113,8 @@ const App = ({
         path={`${AppRoute.MY_LIST}`}
         render={() => {
           return (
-            <MyList
-              userFavoriteFilms={userFavoriteFilms}
-            >
-              <Footer withLink/>
+            <MyList userFavoriteFilms={userFavoriteFilms}>
+              <Footer withLink />
             </MyList>
           );
         }}
@@ -124,7 +124,9 @@ const App = ({
         authorizationStatus={authorizationStatus}
         path={`${AppRoute.FILM}/:id/review`}
         render={(propsFromRoute) => {
-          const reviewedFilm = allFilms.find((film) => film.id === +propsFromRoute.match.params.id);
+          const reviewedFilm = allFilms.find(
+              (film) => film.id === +propsFromRoute.match.params.id
+          );
           return (
             <AddReviewWrapper
               onReviewSend={onReviewSend}
@@ -140,7 +142,9 @@ const App = ({
         exact
         path={`${AppRoute.PLAYER}/:id`}
         render={(propsFromRoute) => {
-          const filmToWatch = allFilms.find((film) => film.id === +propsFromRoute.match.params.id);
+          const filmToWatch = allFilms.find(
+              (film) => film.id === +propsFromRoute.match.params.id
+          );
           return (
             <VideoPlayerWrapper
               title={filmToWatch.title}
@@ -166,7 +170,7 @@ App.propTypes = {
     bgSrc: PropTypes.string,
     videoSrc: PropTypes.string,
     id: PropTypes.number,
-    isFavorite: PropTypes.bool,
+    isFavorite: PropTypes.bool
   }).isRequired,
   userFavoriteFilms: PropTypes.arrayOf(
       PropTypes.shape({
@@ -230,16 +234,18 @@ App.propTypes = {
   isFilmsLoading: PropTypes.bool.isRequired,
   onFavoriteButtonClick: PropTypes.func.isRequired,
   setFilmComments: PropTypes.func.isRequired,
-  filmComments: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    user: PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-    }),
-    rating: PropTypes.number,
-    comment: PropTypes.string,
-    data: PropTypes.string,
-  })),
+  filmComments: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        user: PropTypes.shape({
+          id: PropTypes.number,
+          name: PropTypes.string
+        }),
+        rating: PropTypes.number,
+        comment: PropTypes.string,
+        data: PropTypes.string
+      })
+  )
 };
 
 const mapStateToProps = (state) => ({
@@ -251,7 +257,7 @@ const mapStateToProps = (state) => ({
   isFilmsLoading: getFilmsLoadingStatus(state),
   userFavoriteFilms: getUserFavoriteFilms(state),
   allFilms: getAllFilms(state),
-  filmComments: getFilmComments(state),
+  filmComments: getFilmComments(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

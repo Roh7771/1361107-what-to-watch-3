@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import Player from "../movie-video-player/movie-video-player.jsx";
 import withVideo from "../../hocs/with-video/with-video.js";
 import {Link} from "react-router-dom";
@@ -9,7 +9,13 @@ const VideoPlayer = withVideo(Player);
 
 let timer;
 
-const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, activeCard, changeTab}) => {
+const MovieCard = ({
+  film,
+  onFilmMouseOver,
+  onFilmMouseOut,
+  activeCard,
+  changeTab
+}) => {
   const {title, imgSrc, trailerSrc, id} = film;
 
   return (
@@ -46,7 +52,8 @@ const MovieCard = ({film, onFilmMouseOver, onFilmMouseOut, activeCard, changeTab
         </div>
       </Link>
       <h3 className="small-movie-card__title">
-        <Link to={`${AppRoute.FILM}/${id}`}
+        <Link
+          to={`${AppRoute.FILM}/${id}`}
           className="small-movie-card__link"
           href="movie-page.html"
         >
@@ -62,12 +69,12 @@ MovieCard.propTypes = {
     title: PropTypes.string,
     imgSrc: PropTypes.string,
     id: PropTypes.id,
-    trailerSrc: PropTypes.string,
+    trailerSrc: PropTypes.string
   }).isRequired,
   onFilmMouseOver: PropTypes.func.isRequired,
   onFilmMouseOut: PropTypes.func.isRequired,
   activeCard: PropTypes.object.isRequired,
-  changeTab: PropTypes.func,
+  changeTab: PropTypes.func
 };
 
 export default MovieCard;

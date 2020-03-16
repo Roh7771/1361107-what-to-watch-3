@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import withActiveItem from '../../hocs/with-active-item/with-active-item.js';
-import MovieList from '../movie-list/movie-list.jsx';
-import {Link} from 'react-router-dom';
-import {AppRoute} from '../../const.js';
+import React from "react";
+import PropTypes from "prop-types";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
+import MovieList from "../movie-list/movie-list.jsx";
+import {Link} from "react-router-dom";
+import {AppRoute} from "../../const.js";
 
 const MovieListWrapper = withActiveItem(MovieList);
 
@@ -23,7 +23,12 @@ const MyList = ({userFavoriteFilms, children}) => {
 
         <div className="user-block">
           <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+            <img
+              src="img/avatar.jpg"
+              alt="User avatar"
+              width="63"
+              height="63"
+            />
           </div>
         </div>
       </header>
@@ -32,7 +37,7 @@ const MyList = ({userFavoriteFilms, children}) => {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__movies-list">
-          <MovieListWrapper activeItem={{}} filmsToRender={userFavoriteFilms}/>
+          <MovieListWrapper activeItem={{}} filmsToRender={userFavoriteFilms} />
         </div>
       </section>
 
@@ -63,7 +68,7 @@ MyList.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.node.isRequired,
     PropTypes.arrayOf(PropTypes.node)
-  ]).isRequired,
+  ]).isRequired
 };
 
 export default MyList;

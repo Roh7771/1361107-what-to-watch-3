@@ -1,7 +1,7 @@
-import React, {PureComponent, createRef} from 'react';
-import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
-import {AppRoute} from '../../const';
+import React, {PureComponent, createRef} from "react";
+import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
+import {AppRoute} from "../../const";
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -20,7 +20,7 @@ class SignIn extends PureComponent {
 
     onLoginFormSubmit({
       login: this.loginRef.current.value,
-      password: this.passwordRef.current.value,
+      password: this.passwordRef.current.value
     });
   }
 
@@ -41,25 +41,58 @@ class SignIn extends PureComponent {
         </header>
 
         <div className="sign-in user-page__content">
-          <form onSubmit={this._handleSubmit} action="#" className="sign-in__form">
+          <form
+            onSubmit={this._handleSubmit}
+            action="#"
+            className="sign-in__form"
+          >
             {formErrorMessage ? (
               <div className="sign-in__message">
                 <p>Please enter a valid email address</p>
               </div>
             ) : null}
-            <fieldset style={{padding: 0, border: `none`}} disabled={isFormSending}>
+            <fieldset
+              style={{padding: 0, border: `none`}}
+              disabled={isFormSending}
+            >
               <div className="sign-in__fields">
                 <div className="sign-in__field">
-                  <input ref={this.loginRef} className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
-                  <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
+                  <input
+                    ref={this.loginRef}
+                    className="sign-in__input"
+                    type="email"
+                    placeholder="Email address"
+                    name="user-email"
+                    id="user-email"
+                  />
+                  <label
+                    className="sign-in__label visually-hidden"
+                    htmlFor="user-email"
+                  >
+                    Email address
+                  </label>
                 </div>
                 <div className="sign-in__field">
-                  <input ref={this.passwordRef} className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" />
-                  <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
+                  <input
+                    ref={this.passwordRef}
+                    className="sign-in__input"
+                    type="password"
+                    placeholder="Password"
+                    name="user-password"
+                    id="user-password"
+                  />
+                  <label
+                    className="sign-in__label visually-hidden"
+                    htmlFor="user-password"
+                  >
+                    Password
+                  </label>
                 </div>
               </div>
               <div className="sign-in__submit">
-                <button className="sign-in__btn" type="submit">Sign in</button>
+                <button className="sign-in__btn" type="submit">
+                  Sign in
+                </button>
               </div>
             </fieldset>
           </form>
@@ -78,7 +111,7 @@ SignIn.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.node.isRequired,
     PropTypes.arrayOf(PropTypes.node)
-  ]).isRequired,
+  ]).isRequired
 };
 
 export default SignIn;

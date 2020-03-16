@@ -67,7 +67,7 @@ MovieOverview.propTypes = {
     starring: PropTypes.arrayOf(PropTypes.string),
     id: PropTypes.number,
     filmDuration: PropTypes.number,
-    reviews: PropTypes.array,
+    reviews: PropTypes.array
   })
 };
 

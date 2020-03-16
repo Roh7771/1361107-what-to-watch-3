@@ -49,10 +49,7 @@ const Main = ({
                 </div>
               </Link>
             ) : (
-              <Link
-                to={`${AppRoute.LOGIN}`}
-                className="user-block__link"
-              >
+              <Link to={`${AppRoute.LOGIN}`} className="user-block__link">
                 Sign in
               </Link>
             )}
@@ -97,7 +94,9 @@ const Main = ({
                     if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
                       history.push(`${AppRoute.LOGIN}`);
                     }
-                    return isFavorite ? onFavoriteButtonClick(promoFilm.id, 0) : onFavoriteButtonClick(promoFilm.id, 1);
+                    return isFavorite
+                      ? onFavoriteButtonClick(promoFilm.id, 0)
+                      : onFavoriteButtonClick(promoFilm.id, 1);
                   }}
                 >
                   {isFavorite ? (
@@ -148,7 +147,7 @@ Main.propTypes = {
     bgSrc: PropTypes.string,
     videoSrc: PropTypes.string,
     id: PropTypes.number,
-    isFavorite: PropTypes.bool,
+    isFavorite: PropTypes.bool
   }).isRequired,
   filmsToRender: PropTypes.arrayOf(
       PropTypes.shape({
@@ -193,7 +192,7 @@ Main.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.node.isRequired,
     PropTypes.arrayOf(PropTypes.node)
-  ]).isRequired,
+  ]).isRequired
 };
 
 export default Main;

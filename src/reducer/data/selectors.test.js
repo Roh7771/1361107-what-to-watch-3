@@ -1,4 +1,11 @@
-import {getAllFilms, getFilmsToRender, getPromoFilm, getUserFavoriteFilms, getFilmComments, getGenreList} from "./selectors";
+import {
+  getAllFilms,
+  getFilmsToRender,
+  getPromoFilm,
+  getUserFavoriteFilms,
+  getFilmComments,
+  getGenreList
+} from "./selectors";
 
 const mock = {
   userFavoriteFilms: [
@@ -107,7 +114,7 @@ const mock = {
           reviewDate: `2016-12-24`
         }
       ]
-    },
+    }
   ],
   filmsList: [
     {
@@ -215,18 +222,18 @@ const mock = {
           reviewDate: `2016-12-24`
         }
       ]
-    },
+    }
   ],
   filmComments: [
     {
       id: 1,
       user: {
         id: 1,
-        name: `Some User`,
+        name: `Some User`
       },
       rating: 9,
       comment: `Some comment`,
-      date: `Sun Mar 15 2020`,
+      date: `Sun Mar 15 2020`
     }
   ]
 };
@@ -238,11 +245,15 @@ describe(`Selector`, () => {
   });
 
   it(`getPromoFilm must return promo film`, () => {
-    expect(getPromoFilm({DATA: {promoFilm: {title: `promo`}}})).toEqual({title: `promo`});
+    expect(getPromoFilm({DATA: {promoFilm: {title: `promo`}}})).toEqual({
+      title: `promo`
+    });
   });
 
   it(`getUserFavoriteFilms must return user favorite films`, () => {
-    expect(getUserFavoriteFilms({DATA: {userFavoriteFilms}})).toEqual(userFavoriteFilms);
+    expect(getUserFavoriteFilms({DATA: {userFavoriteFilms}})).toEqual(
+        userFavoriteFilms
+    );
   });
 
   it(`getFilmComments must return film comments`, () => {
@@ -250,7 +261,12 @@ describe(`Selector`, () => {
   });
 
   it(`getFilmsToRender must return clipped films list`, () => {
-    expect(getFilmsToRender({DATA: {filmsList}, APP_STATUS: {filmsToShowCount: 1, currentGenre: `All genres`}})).toEqual([
+    expect(
+        getFilmsToRender({
+          DATA: {filmsList},
+          APP_STATUS: {filmsToShowCount: 1, currentGenre: `All genres`}
+        })
+    ).toEqual([
       {
         title: `The Grand Budapest Hotel`,
         genre: `Comedies`,
@@ -301,13 +317,15 @@ describe(`Selector`, () => {
             reviewDate: `2016-12-24`
           }
         ]
-      },
+      }
     ]);
   });
 
   it(`getGenreList must return film comments`, () => {
-    expect(getGenreList({DATA: {filmsList}})).toEqual([`All genres`, `Comedies`, `Dramas`]);
+    expect(getGenreList({DATA: {filmsList}})).toEqual([
+      `All genres`,
+      `Comedies`,
+      `Dramas`
+    ]);
   });
-
 });
-

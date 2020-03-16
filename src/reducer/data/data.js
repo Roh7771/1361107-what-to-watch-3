@@ -1,6 +1,6 @@
 import {extend} from "../../utils";
 import adaptFilmsData from "./adaptFilmsData";
-import {ActionCreators as AppActionCreators} from '../appStatus/appStatus.js';
+import {ActionCreators as AppActionCreators} from "../appStatus/appStatus.js";
 import history from "../../history";
 import {AppRoute} from "../../const";
 
@@ -43,7 +43,7 @@ const ActionCreators = {
   loadPromoFilm: (film) => {
     return {
       type: ActionTypes.LOAD_PROMO_FILM,
-      payload: film,
+      payload: film
     };
   },
   loadFilms: (films) => {
@@ -51,55 +51,51 @@ const ActionCreators = {
       type: ActionTypes.LOAD_FILMS,
       payload: films
     };
-  },
+  }
 };
 
 const Operation = {
   getFilmComments: (id) => (dispatch, getState, api) => {
-    return api.get(`/comments/${id}`)
-      .then((response) => {
-        dispatch(ActionCreators.getFilmComments(response.data));
-      });
+    return api.get(`/comments/${id}`).then((response) => {
+      dispatch(ActionCreators.getFilmComments(response.data));
+    });
   },
   getFavoriteFilms: () => (dispatch, getState, api) => {
-    return api.get(`/favorite`)
-      .then((response) => {
-        const newData = adaptFilmsData(response.data);
-        dispatch(ActionCreators.getFavoriteFilms(newData));
-      });
+    return api.get(`/favorite`).then((response) => {
+      const newData = adaptFilmsData(response.data);
+      dispatch(ActionCreators.getFavoriteFilms(newData));
+    });
   },
   loadPromoFilm: () => (dispatch, getState, api) => {
-    return api.get(`${AppRoute.FILM}/promo`)
-      .then((response) => {
-        const newData = adaptFilmsData([response.data]);
-        dispatch(ActionCreators.loadPromoFilm(newData[0]));
-      });
+    return api.get(`${AppRoute.FILM}/promo`).then((response) => {
+      const newData = adaptFilmsData([response.data]);
+      dispatch(ActionCreators.loadPromoFilm(newData[0]));
+    });
   },
   loadFilms: () => (dispatch, getState, api) => {
-    return api.get(`${AppRoute.FILM}`)
-      .then((response) => {
-        const newData = adaptFilmsData(response.data);
-        dispatch(ActionCreators.loadFilms(newData));
-        dispatch(AppActionCreators.changeFilmsLoadingStatus());
-      });
+    return api.get(`${AppRoute.FILM}`).then((response) => {
+      const newData = adaptFilmsData(response.data);
+      dispatch(ActionCreators.loadFilms(newData));
+      dispatch(AppActionCreators.changeFilmsLoadingStatus());
+    });
   },
   sendReview: (id, comment, rating) => (dispatch, getState, api) => {
     clearTimeout(timer);
-    return api.post(`/comments/${id}`, {
-      rating,
-      comment
-    })
-    .then(() => {
-      dispatch(AppActionCreators.changeFormSendingStatus(false));
-      history.push(`${AppRoute.FILM}/${id}`);
-    });
+    return api
+      .post(`/comments/${id}`, {
+        rating,
+        comment
+      })
+      .then(() => {
+        dispatch(AppActionCreators.changeFormSendingStatus(false));
+        history.push(`${AppRoute.FILM}/${id}`);
+      });
   },
   setFilmFavoriteStatus: (id, value) => (dispatch, getState, api) => {
-    return api.post(`/favorite/${id}/${value}`)
-      .then((response) => {
-        dispatch(ActionCreators.updateFilmFavoriteStatus(response.data.id));
-        dispatch(Operation.getFavoriteFilms());
-      });
+    return api.post(`/favorite/${id}/${value}`).then((response) => {
+      dispatch(ActionCreators.updateFilmFavoriteStatus(response.data.id));
+      dispatch(Operation.getFavoriteFilms());
+    });
   }
 };
 
@@ -118,7 +114,10 @@ const reducer = (state = initialState, action) => {
           return film;
         }),
         promoFilm: extend(state.promoFilm, {
-          isFavorite: state.promoFilm.id === action.payload ? !state.promoFilm.isFavorite : state.promoFilm.isFavorite
+          isFavorite:
+            state.promoFilm.id === action.payload
+              ? !state.promoFilm.isFavorite
+              : state.promoFilm.isFavorite
         })
       });
     case ActionTypes.GET_FAVORITE_FILMS:

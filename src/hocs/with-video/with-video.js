@@ -11,11 +11,13 @@ const withVideo = (Component) => {
         isPlaying: this.props.isPlaying,
         isFullScreen: false,
         progressInPercent: 0,
-        progressInSeconds: 0,
+        progressInSeconds: 0
       };
 
       this._handlerPlayButtonClick = this._handlerPlayButtonClick.bind(this);
-      this._handlerFullScreenButtonClick = this._handlerFullScreenButtonClick.bind(this);
+      this._handlerFullScreenButtonClick = this._handlerFullScreenButtonClick.bind(
+          this
+      );
     }
 
     _handlerPlayButtonClick() {
@@ -41,7 +43,7 @@ const withVideo = (Component) => {
 
       video.onplay = () => {
         this.setState({
-          isPlaying: true,
+          isPlaying: true
         });
       };
 
@@ -51,10 +53,13 @@ const withVideo = (Component) => {
             isPlaying: false
           });
         };
-        video.ontimeupdate = () => this.setState({
-          progressInSeconds: Math.floor(video.currentTime),
-          progressInPercent: video.duration ? Math.round((video.currentTime / video.duration) * 100) : 0
-        });
+        video.ontimeupdate = () =>
+          this.setState({
+            progressInSeconds: Math.floor(video.currentTime),
+            progressInPercent: video.duration
+              ? Math.round((video.currentTime / video.duration) * 100)
+              : 0
+          });
 
         if (this.state.isPlaying) {
           video.play();
@@ -97,8 +102,19 @@ const withVideo = (Component) => {
     }
 
     render() {
-      const {posterSrc, videoSrc, widthAtr = null, heightAtr = null, className = ``} = this.props;
-      const {isPlaying, isFullScreen, progressInSeconds, progressInPercent} = this.state;
+      const {
+        posterSrc,
+        videoSrc,
+        widthAtr = null,
+        heightAtr = null,
+        className = ``
+      } = this.props;
+      const {
+        isPlaying,
+        isFullScreen,
+        progressInSeconds,
+        progressInPercent
+      } = this.state;
       return (
         <Component
           {...this.props}
@@ -109,7 +125,15 @@ const withVideo = (Component) => {
           progressInSeconds={progressInSeconds}
           progressInPercent={progressInPercent}
         >
-          <video className={className} ref={this._videoRef} poster={posterSrc} src={videoSrc} alt="" width={widthAtr} height={heightAtr} />
+          <video
+            className={className}
+            ref={this._videoRef}
+            poster={posterSrc}
+            src={videoSrc}
+            alt=""
+            width={widthAtr}
+            height={heightAtr}
+          />
         </Component>
       );
     }
@@ -123,7 +147,7 @@ const withVideo = (Component) => {
     heightAtr: PropTypes.number,
     widthAtr: PropTypes.number,
     className: PropTypes.string,
-    type: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired
   };
 
   return WithVideo;

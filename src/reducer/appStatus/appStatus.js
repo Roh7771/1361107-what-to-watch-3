@@ -5,7 +5,7 @@ const initialState = {
   filmsToShowCount: 8,
   isFormSending: false,
   formErrorMessage: null,
-  isFilmsLoading: true,
+  isFilmsLoading: true
 };
 
 const ActionTypes = {
@@ -38,12 +38,12 @@ const ActionCreators = {
 
   changeGenre: (chosenGenre) => ({
     type: ActionTypes.CHANGE_GENRE,
-    payload: chosenGenre,
+    payload: chosenGenre
   }),
 
   showMoreFilms: () => ({
     type: ActionTypes.SHOW_MORE_FILMS,
-    payload: 8,
+    payload: 8
   })
 };
 
@@ -75,7 +75,7 @@ const reducer = (state = initialState, action) => {
 
     case ActionTypes.CHANGE_GENRE:
       return extend(state, {
-        currentGenre: action.payload,
+        currentGenre: action.payload
       });
   }
   return state;
