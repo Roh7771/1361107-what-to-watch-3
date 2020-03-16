@@ -10,13 +10,13 @@ const TabList = (props) => {
   const renderTab = () => {
     switch (activeItem) {
       case `movieOverview`:
-        return <MovieOverview film={film}/>;
+        return <MovieOverview film={film} />;
 
       case `movieDetails`:
-        return <MovieDetails film={film}/>;
+        return <MovieDetails film={film} />;
 
       case `movieReviews`:
-        return <MovieReviews filmComments={filmComments}/>;
+        return <MovieReviews filmComments={filmComments} />;
     }
     return <p>Что-то пошло не так :(</p>;
   };
@@ -25,7 +25,11 @@ const TabList = (props) => {
     <div className="movie-card__desc">
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
-          <li className={`movie-nav__item${activeItem === `movieOverview` ? ` movie-nav__item--active` : ``}`}>
+          <li
+            className={`movie-nav__item${
+              activeItem === `movieOverview` ? ` movie-nav__item--active` : ``
+            }`}
+          >
             <a
               href="#"
               onClick={(e) => {
@@ -37,7 +41,11 @@ const TabList = (props) => {
               Overview
             </a>
           </li>
-          <li className={`movie-nav__item${activeItem === `movieDetails` ? ` movie-nav__item--active` : ``}`}>
+          <li
+            className={`movie-nav__item${
+              activeItem === `movieDetails` ? ` movie-nav__item--active` : ``
+            }`}
+          >
             <a
               href="#"
               onClick={(e) => {
@@ -49,7 +57,11 @@ const TabList = (props) => {
               Details
             </a>
           </li>
-          <li className={`movie-nav__item${activeItem === `movieReviews` ? ` movie-nav__item--active` : ``}`}>
+          <li
+            className={`movie-nav__item${
+              activeItem === `movieReviews` ? ` movie-nav__item--active` : ``
+            }`}
+          >
             <a
               href="#"
               onClick={(e) => {
@@ -83,20 +95,22 @@ TabList.propTypes = {
     starring: PropTypes.arrayOf(PropTypes.string),
     id: PropTypes.number,
     filmDuration: PropTypes.number,
-    reviews: PropTypes.array,
+    reviews: PropTypes.array
   }),
   activeItem: PropTypes.string.isRequired,
   changeTab: PropTypes.func.isRequired,
-  filmComments: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    user: PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-    }),
-    rating: PropTypes.number,
-    comment: PropTypes.string,
-    data: PropTypes.string,
-  })),
+  filmComments: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        user: PropTypes.shape({
+          id: PropTypes.number,
+          name: PropTypes.string
+        }),
+        rating: PropTypes.number,
+        comment: PropTypes.string,
+        data: PropTypes.string
+      })
+  )
 };
 
 export default TabList;

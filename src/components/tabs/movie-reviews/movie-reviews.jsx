@@ -1,15 +1,33 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-const monthsArr = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
+const monthsArr = [
+  `January`,
+  `February`,
+  `March`,
+  `April`,
+  `May`,
+  `June`,
+  `July`,
+  `August`,
+  `September`,
+  `October`,
+  `November`,
+  `December`
+];
 const convertDate = (date) => {
   const dateObj = new Date(date);
-  return `${monthsArr[dateObj.getMonth()]} ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
+  return `${
+    monthsArr[dateObj.getMonth()]
+  } ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
 };
 
 const MovieReviews = ({filmComments}) => {
   const reviewSecondPart = [...filmComments];
-  const reviewsFirstPart = reviewSecondPart.splice(0, Math.ceil(reviewSecondPart.length / 2));
+  const reviewsFirstPart = reviewSecondPart.splice(
+      0,
+      Math.ceil(reviewSecondPart.length / 2)
+  );
   return (
     <div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">
@@ -21,15 +39,16 @@ const MovieReviews = ({filmComments}) => {
 
                 <footer className="review__details">
                   <cite className="review__author">{review.user.name}</cite>
-                  <time className="review__date" dateTime={review.date}>{convertDate(review.date)}</time>
+                  <time className="review__date" dateTime={review.date}>
+                    {convertDate(review.date)}
+                  </time>
                 </footer>
               </blockquote>
 
               <div className="review__rating">{review.rating}</div>
             </div>
           );
-        })
-        }
+        })}
       </div>
       <div className="movie-card__reviews-col">
         {reviewSecondPart.map((review) => {
@@ -40,15 +59,16 @@ const MovieReviews = ({filmComments}) => {
 
                 <footer className="review__details">
                   <cite className="review__author">{review.user.name}</cite>
-                  <time className="review__date" dateTime={review.date}>{convertDate(review.date)}</time>
+                  <time className="review__date" dateTime={review.date}>
+                    {convertDate(review.date)}
+                  </time>
                 </footer>
               </blockquote>
 
               <div className="review__rating">{review.rating}</div>
             </div>
           );
-        })
-        }
+        })}
       </div>
     </div>
   );
@@ -69,18 +89,20 @@ MovieReviews.propTypes = {
     starring: PropTypes.arrayOf(PropTypes.string),
     id: PropTypes.number,
     filmDuration: PropTypes.number,
-    reviews: PropTypes.array,
+    reviews: PropTypes.array
   }),
-  filmComments: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    user: PropTypes.shape({
-      id: PropTypes.number,
-      name: PropTypes.string,
-    }),
-    rating: PropTypes.number,
-    comment: PropTypes.string,
-    date: PropTypes.string,
-  })),
+  filmComments: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        user: PropTypes.shape({
+          id: PropTypes.number,
+          name: PropTypes.string
+        }),
+        rating: PropTypes.number,
+        comment: PropTypes.string,
+        date: PropTypes.string
+      })
+  )
 };
 
 export default MovieReviews;

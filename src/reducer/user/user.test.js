@@ -9,12 +9,20 @@ const api = createAPI(() => {});
 describe(`Reducer work correctly`, () => {
   it(`Reducer return initial state for the first time`, () => {
     expect(reducer(void 0, {})).toEqual({
-      authorizationStatus: AuthorizationStatus.NO_AUTH,
+      authorizationStatus: AuthorizationStatus.NO_AUTH
     });
   });
 
   it(`Reducer require authorization`, () => {
-    expect(reducer({authorizationStatus: AuthorizationStatus.NO_AUTH}, {type: ActionTypes.REQUIRE_AUTHORIZATION, payload: AuthorizationStatus.AUTH})).toEqual({
+    expect(
+        reducer(
+            {authorizationStatus: AuthorizationStatus.NO_AUTH},
+            {
+              type: ActionTypes.REQUIRE_AUTHORIZATION,
+              payload: AuthorizationStatus.AUTH
+            }
+        )
+    ).toEqual({
       authorizationStatus: AuthorizationStatus.AUTH
     });
   });
@@ -22,9 +30,11 @@ describe(`Reducer work correctly`, () => {
 
 describe(`ActionCreators should work correctly`, () => {
   it(`ActionCreators for requiring authorization return correct action`, () => {
-    expect(ActionCreators.requireAuthorization(AuthorizationStatus.AUTH)).toEqual({
+    expect(
+        ActionCreators.requireAuthorization(AuthorizationStatus.AUTH)
+    ).toEqual({
       type: ActionTypes.REQUIRE_AUTHORIZATION,
-      payload: AuthorizationStatus.AUTH,
+      payload: AuthorizationStatus.AUTH
     });
   });
 });
@@ -35,15 +45,15 @@ describe(`Operation`, () => {
     const dispatch = jest.fn();
     const checkAuth = Operation.checkAuth({login: `lol`, password: `lolka`});
 
-    apiMock
-      .onGet(`${AppRoute.LOGIN}`)
-      .reply(200);
+    apiMock.onGet(`${AppRoute.LOGIN}`).reply(200);
 
-    return checkAuth(dispatch, () => {}, api)
-      .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
-        expect(dispatch).toHaveBeenNthCalledWith(1, ActionCreators.requireAuthorization(AuthorizationStatus.AUTH));
-      });
+    return checkAuth(dispatch, () => {}, api).then(() => {
+      expect(dispatch).toHaveBeenCalledTimes(2);
+      expect(dispatch).toHaveBeenNthCalledWith(
+          1,
+          ActionCreators.requireAuthorization(AuthorizationStatus.AUTH)
+      );
+    });
   });
 
   it(`login should make a correct API call to /login`, function () {
@@ -51,14 +61,14 @@ describe(`Operation`, () => {
     const dispatch = jest.fn();
     const login = Operation.login({});
 
-    apiMock
-      .onPost(`${AppRoute.LOGIN}`)
-      .reply(200);
+    apiMock.onPost(`${AppRoute.LOGIN}`).reply(200);
 
-    return login(dispatch, () => {}, api)
-      .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(3);
-        expect(dispatch).toHaveBeenNthCalledWith(1, ActionCreators.requireAuthorization(AuthorizationStatus.AUTH));
-      });
+    return login(dispatch, () => {}, api).then(() => {
+      expect(dispatch).toHaveBeenCalledTimes(3);
+      expect(dispatch).toHaveBeenNthCalledWith(
+          1,
+          ActionCreators.requireAuthorization(AuthorizationStatus.AUTH)
+      );
+    });
   });
 });

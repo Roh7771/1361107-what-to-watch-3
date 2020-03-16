@@ -47,13 +47,11 @@ class MovieVideoPlayer extends PureComponent {
       isPlaying,
       title,
       isFullScreen,
-      type,
+      type
     } = this.props;
     switch (type) {
       case `trailer`:
-        return (
-          <Fragment>{children}</Fragment>
-        );
+        return <Fragment>{children}</Fragment>;
 
       case `movie`:
         return (
@@ -167,7 +165,7 @@ MovieVideoPlayer.propTypes = {
   title: PropTypes.string,
   isFullScreen: PropTypes.bool.isRequired,
   type: PropTypes.oneOf([`trailer`, `movie`]),
-  onPlayButtonClick: PropTypes.func.isRequired,
+  onPlayButtonClick: PropTypes.func.isRequired
 };
 
 export default MovieVideoPlayer;

@@ -35,7 +35,10 @@ const AddReview = ({
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`${AppRoute.FILM}/${id}`} className="breadcrumbs__link">
+                <Link
+                  to={`${AppRoute.FILM}/${id}`}
+                  className="breadcrumbs__link"
+                >
                   {title}
                 </Link>
               </li>
@@ -179,7 +182,7 @@ const AddReview = ({
         </form>
         {formErrorMessage ? (
           <p>
-            Failed to send your review. :( <br/>
+            Failed to send your review. :( <br />
             {`The reason: ${formErrorMessage}`}
           </p>
         ) : null}
@@ -197,11 +200,11 @@ AddReview.propTypes = {
     title: PropTypes.string.isRequired,
     posterSrc: PropTypes.string.isRequired,
     bgSrc: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired
   }).isRequired,
   onReviewSend: PropTypes.func.isRequired,
   isFormSending: PropTypes.bool.isRequired,
-  formErrorMessage: PropTypes.string,
+  formErrorMessage: PropTypes.string
 };
 
 export default AddReview;

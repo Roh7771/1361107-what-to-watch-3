@@ -1,6 +1,9 @@
 import {createSelector} from "reselect";
 import NameSpace from "../name-space.js";
-import {getCurrentGenre, getFilmsToShowCount} from "../appStatus/selectors.js";
+import {
+  getCurrentGenre,
+  getFilmsToShowCount
+} from "../appStatus/selectors.js";
 
 export const getAllFilms = (state) => {
   return state[NameSpace.DATA].filmsList;
@@ -32,12 +35,10 @@ export const getFilmsToRender = createSelector(
     }
 );
 
-export const getGenreList = createSelector(
-    getAllFilms,
-    (films) => {
-      const genreList = films.map((film) => film.genre);
-      const filteredGenreList = genreList.filter((genre, index) => genreList.indexOf(genre) === index);
-      return [`All genres`, ...filteredGenreList];
-    }
-);
-
+export const getGenreList = createSelector(getAllFilms, (films) => {
+  const genreList = films.map((film) => film.genre);
+  const filteredGenreList = genreList.filter(
+      (genre, index) => genreList.indexOf(genre) === index
+  );
+  return [`All genres`, ...filteredGenreList];
+});

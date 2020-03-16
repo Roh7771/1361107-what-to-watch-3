@@ -6,6 +6,10 @@ const NAME_SPACE = NameSpace.USER;
 
 describe(`Selector`, () => {
   it(`Selector getAuthorizationStatus must return current step`, () => {
-    expect(getAuthorizationStatus({[NAME_SPACE]: {authorizationStatus: AuthorizationStatus.AUTH}})).toBe(AuthorizationStatus.AUTH);
+    expect(
+        getAuthorizationStatus({
+          [NAME_SPACE]: {authorizationStatus: AuthorizationStatus.AUTH}
+        })
+    ).toBe(AuthorizationStatus.AUTH);
   });
 });

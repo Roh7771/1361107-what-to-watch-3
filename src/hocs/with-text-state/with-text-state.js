@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent} from "react";
 
 const withTextState = (Component) => {
   class WithTextState extends PureComponent {
@@ -6,7 +6,7 @@ const withTextState = (Component) => {
       super(props);
 
       this.state = {
-        text: ``,
+        text: ``
       };
       this._handleTextChange = this._handleTextChange.bind(this);
     }
@@ -29,4 +29,3 @@ const withTextState = (Component) => {
 };
 
 export default withTextState;
-

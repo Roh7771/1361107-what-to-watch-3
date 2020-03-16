@@ -1,13 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 const getStarsListHtml = (stars) => {
   let newStarsList = [];
-  stars.map((star, i) => [`${star}, `, <br key={`${i}-${star}`}></br>]).forEach((arr) => {
-    newStarsList = newStarsList.concat(arr);
-  });
+  stars
+    .map((star, i) => [`${star}, `, <br key={`${i}-${star}`}></br>])
+    .forEach((arr) => {
+      newStarsList = newStarsList.concat(arr);
+    });
   newStarsList.pop();
-  newStarsList[newStarsList.length - 1] = newStarsList[newStarsList.length - 1].slice(0, -2);
+  newStarsList[newStarsList.length - 1] = newStarsList[
+    newStarsList.length - 1
+  ].slice(0, -2);
   return newStarsList;
 };
 
@@ -20,11 +24,15 @@ const convertFilmDuration = (time) => {
 const MovieDetails = ({film}) => {
   const {director, starring, filmDuration, genre, releaseYear} = film;
   let newStarsList = [];
-  starring.map((star, i) => [`${star}, `, <br key={`${i}-${star}`}></br>]).forEach((arr) => {
-    newStarsList = newStarsList.concat(arr);
-  });
+  starring
+    .map((star, i) => [`${star}, `, <br key={`${i}-${star}`}></br>])
+    .forEach((arr) => {
+      newStarsList = newStarsList.concat(arr);
+    });
   newStarsList.pop();
-  newStarsList[newStarsList.length - 1] = newStarsList[newStarsList.length - 1].slice(0, -2);
+  newStarsList[newStarsList.length - 1] = newStarsList[
+    newStarsList.length - 1
+  ].slice(0, -2);
   return (
     <div className="movie-card__text movie-card__row">
       <div className="movie-card__text-col">
@@ -43,7 +51,9 @@ const MovieDetails = ({film}) => {
       <div className="movie-card__text-col">
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Run Time</strong>
-          <span className="movie-card__details-value">{convertFilmDuration(filmDuration)}</span>
+          <span className="movie-card__details-value">
+            {convertFilmDuration(filmDuration)}
+          </span>
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Genre</strong>
@@ -73,7 +83,7 @@ MovieDetails.propTypes = {
     starring: PropTypes.arrayOf(PropTypes.string),
     id: PropTypes.number,
     filmDuration: PropTypes.number,
-    reviews: PropTypes.array,
+    reviews: PropTypes.array
   })
 };
 
