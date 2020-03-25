@@ -5,18 +5,18 @@ import {AppRoute} from "../../const";
 type LoginData = {
   login: string;
   password: string;
-}
+};
 
 interface Props {
-  onLoginFormSubmit: (loginData: LoginData) => void,
-  formErrorMessage: string,
-  isFormSending: boolean,
-  children: React.ReactNode
+  onLoginFormSubmit: (loginData: LoginData) => void;
+  formErrorMessage: string;
+  isFormSending: boolean;
+  children: React.ReactNode;
 }
 
 class SignIn extends React.PureComponent<Props, {}> {
-  loginRef: React.RefObject<HTMLInputElement>
-  passwordRef: React.RefObject<HTMLInputElement>
+  loginRef: React.RefObject<HTMLInputElement>;
+  passwordRef: React.RefObject<HTMLInputElement>;
   constructor(props) {
     super(props);
 

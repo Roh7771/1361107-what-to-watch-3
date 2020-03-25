@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Film, Comment } from "../../../types";
+import {Comment} from "../../../types";
 
 const monthsArr: string[] = [
   `January`,

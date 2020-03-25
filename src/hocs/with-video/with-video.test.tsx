@@ -1,9 +1,12 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import PropTypes from "prop-types";
-import withVideo from "./with-video.js";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
+import withVideo from "./with-video";
 
-const MockComponent = (props) => {
+interface Props {
+  children: React.ReactNode;
+}
+
+const MockComponent: React.FunctionComponent<Props> = (props: Props) => {
   const {children} = props;
 
   return (
@@ -13,12 +16,6 @@ const MockComponent = (props) => {
   );
 };
 
-MockComponent.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
-};
 const MockComponentWrapped = withVideo(MockComponent);
 
 it(`withVideo is rendered correctly`, () => {

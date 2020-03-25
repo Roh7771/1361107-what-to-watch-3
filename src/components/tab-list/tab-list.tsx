@@ -2,16 +2,16 @@ import * as React from "react";
 import MovieDetails from "../tabs/movie-details/movie-details";
 import MovieReviews from "../tabs/movie-reviews/movie-reviews";
 import MovieOverview from "../tabs/movie-overview/movie-overview";
-import { Film, Comment } from "../../types";
+import {Film, Comment} from "../../types";
 
 interface Props {
   film: Film;
-  activeItem: string,
-  changeTab: (tab: string) => void,
-  filmComments: Comment[]
+  activeItem: string;
+  changeTab: (tab: string) => void;
+  filmComments: Comment[];
 }
 
-const TabList: React.FunctionComponent<Props> = (props) => {
+const TabList: React.FunctionComponent<Props> = (props: Props) => {
   const {film, activeItem, changeTab, filmComments} = props;
 
   const renderTab = () => {

@@ -3,18 +3,18 @@ import Player from "../movie-video-player/movie-video-player";
 import withVideo from "../../hocs/with-video/with-video";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../const";
-import { Film } from "../../types";
+import {Film} from "../../types";
 
 const VideoPlayer = withVideo(Player);
 
 let timer;
 
 interface Props {
-  film: Film
-  onFilmMouseOver: (film: Film) => void,
-  onFilmMouseOut: (film: {}) => void,
-  activeCard: Film,
-  changeTab: (tab: string) => void
+  film: Film;
+  onFilmMouseOver: (film: Film) => void;
+  onFilmMouseOut: (film: {}) => void;
+  activeCard: Film;
+  changeTab: (tab: string) => void;
 }
 
 const MovieCard: React.FunctionComponent<Props> = (props: Props) => {
@@ -74,7 +74,7 @@ const MovieCard: React.FunctionComponent<Props> = (props: Props) => {
 };
 
 MovieCard.propTypes = {
-  
+
 };
 
 export default MovieCard;

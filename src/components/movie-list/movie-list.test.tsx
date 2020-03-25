@@ -1,31 +1,12 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import {MoreLikeThis} from "./more-like-this";
+import MovieList from "./movie-list";
+import history from "../../history.js";
+import {Router} from "react-router-dom";
 import {Film} from "../../types.js";
-import {noop} from "../../utils";
+import {noop} from '../../utils';
 
-const mock: {film: Film; filmsList: Film[] } = {
-  film: {
-    title: `Some Title`,
-    trailerSrc: `some path`,
-    genre: `Comedy`,
-    bgColor: `red`,
-    releaseYear: 2015,
-    imgSrc: `Some Path`,
-    bgSrc: `iSome Path`,
-    posterSrc: `Some Path`,
-    ratingScore: 8.7,
-    ratingCount: 230,
-    description: [
-      `Some description`,
-    ],
-    director: `Some cool directot`,
-    starring: [`Actor1`, `Actor2`],
-    id: 2,
-    videoSrc: `Some Path`,
-    filmDuration: 99,
-    isFavorite: false,
-  },
+const mock: {filmsList: Film[]} = {
   filmsList: [
     {
       title: `Some Title`,
@@ -46,40 +27,49 @@ const mock: {film: Film; filmsList: Film[] } = {
       id: 2,
       videoSrc: `Some Path`,
       filmDuration: 99,
-      isFavorite: false
+      isFavorite: false,
     },
     {
       title: `Some Title`,
       trailerSrc: `some path`,
       genre: `Comedy`,
+      bgColor: `red`,
       releaseYear: 2015,
       imgSrc: `Some Path`,
       bgSrc: `iSome Path`,
       posterSrc: `Some Path`,
       ratingScore: 8.7,
-      bgColor: `red`,
       ratingCount: 230,
       description: [
         `Some description`,
       ],
       director: `Some cool directot`,
       starring: [`Actor1`, `Actor2`],
-      id: 4,
+      id: 3,
       videoSrc: `Some Path`,
       filmDuration: 99,
-      isFavorite: false
+      isFavorite: false,
     },
   ]
 };
 
-it(`<MoreLikeThis /> should render correctly`, () => {
-  const {film, filmsList} = mock;
+it(`<MovieList /> should render correctly`, () => {
   const tree = renderer
-    .create(<MoreLikeThis filmsList={filmsList} changeTab={noop} film={film}/>, {
-      createNodeMock: () => {
-        return {};
-      }
-    })
+    .create(
+        <Router history={history}>
+          <MovieList
+            filmsToRender={mock.filmsList}
+            activeItem={mock.filmsList[0]}
+            onActiveItemChange={noop}
+            changeTab={noop}
+          />
+        </Router>,
+        {
+          createNodeMock: () => {
+            return {};
+          }
+        }
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

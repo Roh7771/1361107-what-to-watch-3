@@ -1,15 +1,18 @@
-import React from "react";
-import Enzyme, {shallow} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import * as React from "react";
+import {configure, shallow} from "enzyme";
+import * as Adapter from "enzyme-adapter-react-16";
 import MovieCard from "./movie-card";
+import {Film} from "../../types";
+import {noop} from '../../utils';
 
 window.scrollTo = jest.fn();
 
-const mock = {
+const mock: {film: Film} = {
   film: {
     title: `Some Title`,
-    genre: `Comedy`,
     trailerSrc: `some path`,
+    genre: `Comedy`,
+    bgColor: `red`,
     releaseYear: 2015,
     imgSrc: `Some Path`,
     bgSrc: `iSome Path`,
@@ -24,42 +27,11 @@ const mock = {
     id: 2,
     videoSrc: `Some Path`,
     filmDuration: 99,
-    reviews: [
-      {
-        rating: 8.1,
-        reviewText: `Description`,
-        reviewer: `Kate Muiry`,
-        reviewDate: `2016-12-25`,
-      },
-      {
-        rating: 8.1,
-        reviewText: `Description`,
-        reviewer: `Kate Muiry`,
-        reviewDate: `2016-12-25`,
-      },
-      {
-        rating: 8.1,
-        reviewText: `Description`,
-        reviewer: `Kate Muiry`,
-        reviewDate: `2016-12-25`,
-      },
-      {
-        rating: 8.1,
-        reviewText: `Description`,
-        reviewer: `Kate Muiry`,
-        reviewDate: `2016-12-25`,
-      },
-      {
-        rating: 8.1,
-        reviewText: `Description`,
-        reviewer: `Kate Muiry`,
-        reviewDate: `2016-12-25`,
-      }
-    ]
-  }
+    isFavorite: false,
+  },
 };
 
-Enzyme.configure({
+configure({
   adapter: new Adapter()
 });
 
@@ -69,8 +41,8 @@ it(`ChangeTab get correct data`, () => {
   const movieCard = shallow(
       <MovieCard
         film={mock.film}
-        onFilmMouseOver={() => {}}
-        onFilmMouseOut={() => {}}
+        onFilmMouseOver={noop}
+        onFilmMouseOut={noop}
         activeCard={mock.film}
         changeTab={changeTab}
       />
@@ -83,7 +55,6 @@ it(`ChangeTab get correct data`, () => {
     expect(changeTab.mock.calls.length).toBe(1);
     expect(changeTab.mock.calls[0][0]).toBe(`movieOverview`);
   }, 1100);
-  window.scrollTo.mockClear();
 });
 
 it(`HandlerOnMouseEnter get correct data`, () => {
@@ -93,8 +64,9 @@ it(`HandlerOnMouseEnter get correct data`, () => {
       <MovieCard
         film={mock.film}
         onFilmMouseOver={handlerOnMouseEnter}
-        onFilmMouseOut={() => {}}
+        onFilmMouseOut={noop}
         activeCard={mock.film}
+        changeTab={noop}
       />
   );
 

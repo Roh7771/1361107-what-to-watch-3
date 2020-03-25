@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Film } from "../../../types";
+import {Film} from "../../../types";
 
 const getRatingLevel = (ratingScore: number) => {
   if (ratingScore < 3) {

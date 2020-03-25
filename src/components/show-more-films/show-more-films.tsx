@@ -6,9 +6,9 @@ import {ActionCreators} from "../../reducer/appStatus/appStatus";
 import {Film} from "../../types";
 
 interface Props {
-  onMoreFilmsButtonClick: () => void,
-  filmsToRender: Film[]
-  filmsToShowCount: number
+  onMoreFilmsButtonClick: () => void;
+  filmsToRender: Film[];
+  filmsToShowCount: number;
 }
 
 const ShowMoreFilms: React.FunctionComponent<Props> = (props: Props) => {
@@ -33,7 +33,7 @@ const ShowMoreFilms: React.FunctionComponent<Props> = (props: Props) => {
       </button>
     </div>
   );
-}
+};
 
 const mapStateToProps = (state) => ({
   filmsToRender: getFilmsToRender(state),

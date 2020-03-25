@@ -8,8 +8,8 @@ import {Film} from "../../types";
 const MovieListWrapper = withActiveItem(MovieList);
 
 interface Props {
-  userFavoriteFilms: Film[]
-  children: React.ReactNode
+  userFavoriteFilms: Film[];
+  children: React.ReactNode;
 }
 
 const MyList: React.FunctionComponent<Props> = (props: Props) => {

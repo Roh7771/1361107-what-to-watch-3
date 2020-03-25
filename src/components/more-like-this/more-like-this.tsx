@@ -3,14 +3,14 @@ import MovieList from "../movie-list/movie-list";
 import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import {getAllFilms} from "../../reducer/data/selectors";
 import {connect} from "react-redux";
-import { Film } from "../../types";
+import {Film} from "../../types";
 
 const MovieListWrapper = withActiveItem(MovieList);
 
 interface Props {
-  filmsList: Film[]
-  film: Film
-  changeTab: () => void
+  filmsList: Film[];
+  film: Film;
+  changeTab: () => void;
 }
 
 const MoreLikeThis: React.FunctionComponent<Props> = (props: Props) => {

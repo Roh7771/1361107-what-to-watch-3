@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {AppRoute} from "../../const";
 
 interface Props {
-  withLink: boolean
+  withLink: boolean;
 }
 
 const Footer: React.FunctionComponent<Props> = (props: Props) => {

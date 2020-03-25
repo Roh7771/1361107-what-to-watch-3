@@ -5,9 +5,9 @@ import {ActionCreators} from "../../reducer/appStatus/appStatus";
 import {getGenreList} from "../../reducer/data/selectors";
 
 interface Props {
-  currentGenre: string
-  onGenreButtonClick: (genre: string) => void,
-  genreList: string[]
+  currentGenre: string;
+  onGenreButtonClick: (genre: string) => void;
+  genreList: string[];
 }
 
 const GenresList: React.FunctionComponent<Props> = (props: Props) => {

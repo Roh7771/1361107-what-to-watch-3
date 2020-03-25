@@ -4,8 +4,8 @@ import {Subtract} from "utility-types";
 interface State {
   isPlaying: boolean;
   isFullScreen: boolean;
-  progressInPercent: number,
-  progressInSeconds: number,
+  progressInPercent: number;
+  progressInSeconds: number;
 }
 
 interface InjectingProps {
@@ -13,15 +13,15 @@ interface InjectingProps {
   onPlayButtonClick: () => void;
   isPlaying: boolean;
   isFullScreen: boolean;
-  progressInPercent: number,
-  progressInSeconds: number,
+  progressInPercent: number;
+  progressInSeconds: number;
 }
 
 const withVideo = (Component) => {
   type P = React.ComponentProps<typeof Component>;
   type T = Subtract<P, InjectingProps>;
   class WithVideo extends React.PureComponent<T, State> {
-    _videoRef: React.RefObject<HTMLVideoElement>
+    _videoRef: React.RefObject<HTMLVideoElement>;
 
     constructor(props) {
       super(props);

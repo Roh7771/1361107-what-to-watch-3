@@ -7,6 +7,7 @@ import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {AppRoute} from "../../const.js";
 import {MemoryRouter} from "react-router-dom";
 import {Film} from "../../types.js";
+import {noop} from "../../utils";
 
 const mockStore = configureStore([]);
 
@@ -123,13 +124,13 @@ describe(`App should`, () => {
                 userFavoriteFilms={userFavoriteFilms}
                 allFilms={filmsList}
                 promoFilm={promoFilm}
-                onLoginFormSubmit={() => {}}
+                onLoginFormSubmit={noop}
                 authorizationStatus={AuthorizationStatus.NO_AUTH}
-                onFavoriteButtonClick={() => {}}
-                onReviewSend={() => {}}
+                onFavoriteButtonClick={noop}
+                onReviewSend={noop}
                 isFormSending={false}
                 isFilmsLoading={false}
-                setFilmComments={() => {}}
+                setFilmComments={noop}
                 formErrorMessage={null}
                 filmComments={[]}
               />
@@ -166,13 +167,13 @@ describe(`App should`, () => {
                 userFavoriteFilms={userFavoriteFilms}
                 allFilms={filmsList}
                 promoFilm={promoFilm}
-                onLoginFormSubmit={() => {}}
+                onLoginFormSubmit={noop}
                 authorizationStatus={AuthorizationStatus.NO_AUTH}
-                onFavoriteButtonClick={() => {}}
-                onReviewSend={() => {}}
+                onFavoriteButtonClick={noop}
+                onReviewSend={noop}
                 isFormSending={false}
                 isFilmsLoading={false}
-                setFilmComments={() => {}}
+                setFilmComments={noop}
                 formErrorMessage={null}
                 filmComments={[]}
               />
@@ -208,13 +209,13 @@ describe(`App should`, () => {
                 userFavoriteFilms={userFavoriteFilms}
                 allFilms={filmsList}
                 promoFilm={promoFilm}
-                onLoginFormSubmit={() => {}}
+                onLoginFormSubmit={noop}
                 authorizationStatus={AuthorizationStatus.NO_AUTH}
-                onFavoriteButtonClick={() => {}}
-                onReviewSend={() => {}}
+                onFavoriteButtonClick={noop}
+                onReviewSend={noop}
                 isFormSending={false}
                 isFilmsLoading={false}
-                setFilmComments={() => {}}
+                setFilmComments={noop}
                 formErrorMessage={null}
                 filmComments={[]}
               />
@@ -250,13 +251,13 @@ describe(`App should`, () => {
                 userFavoriteFilms={userFavoriteFilms}
                 allFilms={filmsList}
                 promoFilm={promoFilm}
-                onLoginFormSubmit={() => {}}
+                onLoginFormSubmit={noop}
                 authorizationStatus={AuthorizationStatus.NO_AUTH}
-                onFavoriteButtonClick={() => {}}
-                onReviewSend={() => {}}
+                onFavoriteButtonClick={noop}
+                onReviewSend={noop}
                 isFormSending={false}
                 isFilmsLoading={false}
-                setFilmComments={() => {}}
+                setFilmComments={noop}
                 formErrorMessage={null}
                 filmComments={[]}
               />
@@ -292,13 +293,13 @@ describe(`App should`, () => {
                 userFavoriteFilms={userFavoriteFilms}
                 allFilms={filmsList}
                 promoFilm={promoFilm}
-                onLoginFormSubmit={() => {}}
+                onLoginFormSubmit={noop}
                 authorizationStatus={AuthorizationStatus.AUTH}
-                onFavoriteButtonClick={() => {}}
-                onReviewSend={() => {}}
+                onFavoriteButtonClick={noop}
+                onReviewSend={noop}
                 isFormSending={false}
                 isFilmsLoading={false}
-                setFilmComments={() => {}}
+                setFilmComments={noop}
                 formErrorMessage={null}
                 filmComments={[]}
               />
@@ -334,13 +335,13 @@ describe(`App should`, () => {
                 userFavoriteFilms={userFavoriteFilms}
                 allFilms={filmsList}
                 promoFilm={promoFilm}
-                onLoginFormSubmit={() => {}}
+                onLoginFormSubmit={noop}
                 authorizationStatus={AuthorizationStatus.AUTH}
-                onFavoriteButtonClick={() => {}}
-                onReviewSend={() => {}}
+                onFavoriteButtonClick={noop}
+                onReviewSend={noop}
                 isFormSending={false}
                 isFilmsLoading={false}
-                setFilmComments={() => {}}
+                setFilmComments={noop}
                 formErrorMessage={null}
                 filmComments={[]}
               />

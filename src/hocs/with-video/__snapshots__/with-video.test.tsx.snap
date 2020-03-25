@@ -3,7 +3,6 @@
 exports[`withVideo is rendered correctly 1`] = `
 <div>
   <video
-    alt=""
     className=""
     height={null}
     poster=""

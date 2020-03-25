@@ -15,16 +15,16 @@ const MovieList: React.FunctionComponent<Props> = (props: Props) => {
     <p>There is no films :(</p>
   ) : (
     <React.Fragment>
-      {filmsToRender.map(el => {
+      {filmsToRender.map((el) => {
         return (
-            <MovieCard
-              key={el.id}
-              film={el}
-              onFilmMouseOut={onActiveItemChange}
-              onFilmMouseOver={onActiveItemChange}
-              activeCard={activeItem}
-              changeTab={changeTab}
-            />
+          <MovieCard
+            key={el.id}
+            film={el}
+            onFilmMouseOut={onActiveItemChange}
+            onFilmMouseOver={onActiveItemChange}
+            activeCard={activeItem}
+            changeTab={changeTab}
+          />
         );
       })}
     </React.Fragment>

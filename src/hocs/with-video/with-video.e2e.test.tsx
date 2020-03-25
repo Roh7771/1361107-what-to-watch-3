@@ -1,21 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {configure, mount} from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-import withVideo from "./with-video.js";
+import * as Adapter from "enzyme-adapter-react-16";
+import withVideo from "./with-video";
+import {noop} from '../../utils';
 
 configure({adapter: new Adapter()});
 
-const TrailerPlayer = (props) => {
+interface TrailerPlayerProps {
+  children: React.ReactNode;
+}
+
+const TrailerPlayer: React.FunctionComponent<TrailerPlayerProps> = (props: TrailerPlayerProps) => {
   const {children} = props;
   return <div>{children}</div>;
-};
-
-TrailerPlayer.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
 };
 
 describe(`For trailer video player`, () => {
@@ -30,7 +27,7 @@ describe(`For trailer video player`, () => {
         />
     );
 
-    window.HTMLMediaElement.prototype.play = () => {};
+    window.HTMLMediaElement.prototype.play = noop;
 
     const {_videoRef} = wrapper.instance();
 
@@ -54,7 +51,7 @@ describe(`For trailer video player`, () => {
         />
     );
 
-    window.HTMLMediaElement.prototype.load = () => {};
+    window.HTMLMediaElement.prototype.load = noop;
 
     const {_videoRef} = wrapper.instance();
 
@@ -68,7 +65,13 @@ describe(`For trailer video player`, () => {
   });
 });
 
-const MoviePlayer = (props) => {
+interface MoviePlayerProps {
+  children: React.ReactNode;
+  onFullScreenButtonClick: () => void;
+  onPlayButtonClick: () => void;
+}
+
+const MoviePlayer: React.FunctionComponent<MoviePlayerProps> = (props: MoviePlayerProps) => {
   const {
     children,
     onFullScreenButtonClick,
@@ -83,15 +86,6 @@ const MoviePlayer = (props) => {
   );
 };
 
-MoviePlayer.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
-  onFullScreenButtonClick: PropTypes.func.isRequired,
-  onPlayButtonClick: PropTypes.func.isRequired,
-};
-
 describe(`For movie video player`, () => {
   it(`Checks that pressing play button turn on video (play)`, () => {
     const PlayerWrapped = withVideo(MoviePlayer);
@@ -102,7 +96,7 @@ describe(`For movie video player`, () => {
       type={`movie`}
     />);
 
-    window.HTMLMediaElement.prototype.play = () => {};
+    window.HTMLMediaElement.prototype.play = noop;
 
     const {_videoRef} = wrapper.instance();
 
@@ -124,7 +118,7 @@ describe(`For movie video player`, () => {
       type={`movie`}
     />);
 
-    window.HTMLMediaElement.prototype.pause = () => {};
+    window.HTMLMediaElement.prototype.pause = noop;
 
     const {_videoRef} = wrapper.instance();
 

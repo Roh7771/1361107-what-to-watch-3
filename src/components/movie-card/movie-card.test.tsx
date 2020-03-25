@@ -1,14 +1,13 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import AddReview from "./add-review";
+import MovieCard from "./movie-card";
+import history from "../../history.js";
 import {Router} from "react-router-dom";
-import history from "../../history";
-import {Film} from "../../types";
-import {noop} from "../../utils";
+import {Film} from "../../types.js";
+import {noop} from '../../utils';
 
-const mock: { text: string; reviewedFilm: Film } = {
-  text: `Some Review`,
-  reviewedFilm: {
+const mock: {film: Film} = {
+  film: {
     title: `Some Title`,
     trailerSrc: `some path`,
     genre: `Comedy`,
@@ -19,31 +18,29 @@ const mock: { text: string; reviewedFilm: Film } = {
     posterSrc: `Some Path`,
     ratingScore: 8.7,
     ratingCount: 230,
-    description: [`Some description`],
+    description: [
+      `Some description`,
+    ],
     director: `Some cool directot`,
     starring: [`Actor1`, `Actor2`],
     id: 2,
     videoSrc: `Some Path`,
     filmDuration: 99,
-    isFavorite: false
-  }
+    isFavorite: false,
+  },
 };
 
-it(`<AddReview /> should render correctly`, () => {
+it(`<MovieCard /> should render correctly`, () => {
   const tree = renderer
     .create(
         <Router history={history}>
-          <AddReview
-            {...mock}
-            onActiveItemChange={noop}
-            onTextChange={noop}
-            activeItem={3}
-            onReviewSend={noop}
-            isFormSending={false}
-            formErrorMessage={null}
-          >
-            <video />
-          </AddReview>
+          <MovieCard
+            film={mock.film}
+            onFilmMouseOut={noop}
+            onFilmMouseOver={noop}
+            activeCard={mock.film}
+            changeTab={noop}
+          />
         </Router>,
         {
           createNodeMock: () => {

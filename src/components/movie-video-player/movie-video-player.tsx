@@ -4,10 +4,9 @@ import history from "../../history";
 const convertVideoTime = (time) => {
   let seconds;
   let minutes;
-  let hours;
   let timeLeft;
+  const hours = Math.floor(time / 60 / 60);
 
-  hours = Math.floor(time / 60 / 60);
   timeLeft = time - hours * 60 * 60;
 
   minutes = Math.floor(timeLeft / 60);
@@ -28,12 +27,12 @@ const convertVideoTime = (time) => {
 interface Props {
   onFullScreenButtonClick: () => void;
   children: React.ReactNode;
-  progressInPercent: number,
-  progressInSeconds: number,
-  isPlaying: boolean,
-  title: string,
-  isFullScreen: boolean,
-  type: string,
+  progressInPercent: number;
+  progressInSeconds: number;
+  isPlaying: boolean;
+  title: string;
+  isFullScreen: boolean;
+  type: string;
   onPlayButtonClick: () => void;
 }
 

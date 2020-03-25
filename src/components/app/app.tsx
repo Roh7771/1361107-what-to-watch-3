@@ -30,27 +30,27 @@ import MyList from "../my-list/my-list";
 import PrivateRoute from "../routes/private-route/private-route";
 import Footer from "../footer/footer";
 import {AppRoute} from "../../const";
-import { Film } from "../../types";
+import {Film} from "../../types";
 
 const VideoPlayerWrapper = withVideo(MovieVideoPlayer);
 const AddReviewWrapper = withTextState(withActiveItem(AddReview));
 const MoviePageWrapper = withActiveItem(MoviePage);
 
-interface Props  {
-  promoFilm: Film
-  userFavoriteFilms: Film[]
-  allFilms: Film[]
-  filmsToRender: Film[]
-  onLoginFormSubmit: () => void,
-  authorizationStatus: string,
-  onReviewSend: () => void,
-  isFormSending: boolean,
-  formErrorMessage: string,
-  isFilmsLoading: boolean,
-  onFavoriteButtonClick: () => void,
-  setFilmComments: () => void,
-  filmComments: Comment[]
-};
+interface Props {
+  promoFilm: Film;
+  userFavoriteFilms: Film[];
+  allFilms: Film[];
+  filmsToRender: Film[];
+  onLoginFormSubmit: () => void;
+  authorizationStatus: string;
+  onReviewSend: () => void;
+  isFormSending: boolean;
+  formErrorMessage: string;
+  isFilmsLoading: boolean;
+  onFavoriteButtonClick: () => void;
+  setFilmComments: () => void;
+  filmComments: Comment[];
+}
 
 const App: React.FunctionComponent<Props> = (props: Props) => {
   const {

@@ -9,7 +9,7 @@ type Props = RouteProps & {
   exact: boolean;
 }
 
-const PrivateRoute: React.FunctionComponent<Props> = (props) => {
+const PrivateRoute: React.FunctionComponent<Props> = (props: Props) => {
   const {render, path, exact, authorizationStatus} = props;
 
   return (

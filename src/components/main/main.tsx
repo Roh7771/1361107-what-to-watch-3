@@ -7,16 +7,16 @@ import {AuthorizationStatus} from "../../reducer/user/user";
 import {Link} from "react-router-dom";
 import history from "../../history";
 import {AppRoute} from "../../const";
-import { Film } from "../../types";
+import {Film} from "../../types";
 
 const MovieListWrapper = withActiveItem(MovieList);
 
 interface Props {
-  promoFilm: Film,
-  filmsToRender: Film[],
-  userFavoriteFilms: Film[]
-  authorizationStatus: string,
-  onFavoriteButtonClick: (id: number, status: number) => void,
+  promoFilm: Film;
+  filmsToRender: Film[];
+  userFavoriteFilms: Film[];
+  authorizationStatus: string;
+  onFavoriteButtonClick: (id: number, status: number) => void;
   children: React.ReactNode;
 }
 
@@ -135,7 +135,6 @@ const Main: React.FunctionComponent<Props> = (props: Props) => {
           <div className="catalog__movies-list">
             <MovieListWrapper
               activeItem={{}}
-              onPlayFilmButtonClick={() => {}}
               filmsToRender={filmsToRender}
             />
           </div>

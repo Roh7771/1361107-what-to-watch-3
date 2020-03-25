@@ -1,13 +1,20 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
 import MovieVideoPlayer from "./movie-video-player";
+import {noop} from '../../utils';
 
-const mock = {
+const mock: {
+  progressInPercent: number;
+  progressInSeconds: number;
+  isPlaying: boolean;
+  title: string;
+  isFullScreen: boolean;
+} = {
   progressInPercent: 0,
   progressInSeconds: 0,
   isPlaying: false,
   title: `Some title`,
-  isFullScreen: false,
+  isFullScreen: false
 };
 
 it(`<MovieVideoPlayer /> should render trailer player`, () => {
@@ -15,12 +22,11 @@ it(`<MovieVideoPlayer /> should render trailer player`, () => {
     .create(
         <MovieVideoPlayer
           {...mock}
-          onFullScreenButtonClick={() => {}}
-          onPlayButtonClick={() => {}}
-          onPlayFilmButtonClick={() => {}}
+          onFullScreenButtonClick={noop}
+          onPlayButtonClick={noop}
           type={`trailer`}
         >
-          <video/>
+          <video />
         </MovieVideoPlayer>,
         {
           createNodeMock: () => {
@@ -38,12 +44,11 @@ it(`<MovieVideoPlayer /> should render full movie player`, () => {
     .create(
         <MovieVideoPlayer
           {...mock}
-          onFullScreenButtonClick={() => {}}
-          onPlayButtonClick={() => {}}
-          onPlayFilmButtonClick={() => {}}
+          onFullScreenButtonClick={noop}
+          onPlayButtonClick={noop}
           type={`movie`}
         >
-          <video/>
+          <video />
         </MovieVideoPlayer>,
         {
           createNodeMock: () => {

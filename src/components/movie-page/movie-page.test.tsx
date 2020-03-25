@@ -1,41 +1,18 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
+import MoviePage from "./movie-page";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import Main from "./main";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Router} from "react-router-dom";
 import history from "../../history.js";
 import {Film} from "../../types.js";
-import {noop} from "../../utils";
+import {noop} from '../../utils';
 
 const mockStore = configureStore([]);
 
-const mock: {userFavoriteFilms: Film[]; promoFilm: Film; filmsList: Film[] } = {
-  userFavoriteFilms: [
-    {
-      title: `Some Title`,
-      trailerSrc: `some path`,
-      genre: `Comedy`,
-      bgColor: `red`,
-      releaseYear: 2015,
-      imgSrc: `Some Path`,
-      bgSrc: `iSome Path`,
-      posterSrc: `Some Path`,
-      ratingScore: 8.7,
-      ratingCount: 230,
-      description: [
-        `Some description`,
-      ],
-      director: `Some cool directot`,
-      starring: [`Actor1`, `Actor2`],
-      id: 2,
-      videoSrc: `Some Path`,
-      filmDuration: 99,
-      isFavorite: false,
-    }
-  ],
-  promoFilm: {
+const mock: {film: Film; filmsList: Film[]} = {
+  film: {
     title: `Some Title`,
     trailerSrc: `some path`,
     genre: `Comedy`,
@@ -76,99 +53,95 @@ const mock: {userFavoriteFilms: Film[]; promoFilm: Film; filmsList: Film[] } = {
       id: 2,
       videoSrc: `Some Path`,
       filmDuration: 99,
-      isFavorite: false
+      isFavorite: false,
     },
     {
       title: `Some Title`,
       trailerSrc: `some path`,
       genre: `Comedy`,
+      bgColor: `red`,
       releaseYear: 2015,
       imgSrc: `Some Path`,
       bgSrc: `iSome Path`,
       posterSrc: `Some Path`,
       ratingScore: 8.7,
-      bgColor: `red`,
       ratingCount: 230,
       description: [
         `Some description`,
       ],
       director: `Some cool directot`,
       starring: [`Actor1`, `Actor2`],
-      id: 4,
+      id: 2,
       videoSrc: `Some Path`,
       filmDuration: 99,
-      isFavorite: false
+      isFavorite: false,
     },
   ]
 };
 
-it(`<Main /> should render unauthorized user correctly`, () => {
-  const {promoFilm, filmsList, userFavoriteFilms} = mock;
+it(`<MoviePage /> should render for unauthorized user correctly`, () => {
+  const {film, filmsList} = mock;
   const store = mockStore({
     DATA: {
-      filmsList,
-      promoFilm
+      filmsList
     },
     APP_STATUS: {
-      currentGenre: `All genres`,
-      filmsToShowCount: 8,
-    },
+      chosenFilm: film
+    }
   });
   const tree = renderer
     .create(
         <Provider store={store}>
           <Router history={history}>
-            <Main
-              filmsToRender={filmsList}
-              userFavoriteFilms={userFavoriteFilms}
-              promoFilm={promoFilm}
-              onFavoriteButtonClick={noop}
+            <MoviePage
               authorizationStatus={AuthorizationStatus.NO_AUTH}
+              onActiveItemChange={noop}
+              onFavoriteButtonClick={noop}
+              isFilmsLoading={false}
+              setFilmComments={noop}
+              activeItem={`movieOverview`}
+              film={film}
+              filmComments={[]}
             >
               <footer>Some footer</footer>
-            </Main>
+            </MoviePage>
           </Router>
-        </Provider>, {
-          createNodeMock: () => {
-            return {};
-          }
-        })
+        </Provider>
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();
 });
 
-it(`<Main /> should render unauthorized user correctly`, () => {
-  const {promoFilm, filmsList, userFavoriteFilms} = mock;
+it(`<MoviePage /> should render for authorized user correctly`, () => {
+  const {film, filmsList} = mock;
   const store = mockStore({
     DATA: {
-      filmsList,
-      promoFilm
+      filmsList
     },
     APP_STATUS: {
-      currentGenre: `All genres`,
-      filmsToShowCount: 8,
-    },
+      chosenFilm: film
+    }
   });
   const tree = renderer
     .create(
         <Provider store={store}>
           <Router history={history}>
-            <Main
-              filmsToRender={filmsList}
-              userFavoriteFilms={userFavoriteFilms}
-              promoFilm={promoFilm}
-              onFavoriteButtonClick={noop}
+            <MoviePage
               authorizationStatus={AuthorizationStatus.AUTH}
+              onActiveItemChange={noop}
+              onFavoriteButtonClick={noop}
+              isFilmsLoading={false}
+              setFilmComments={noop}
+              activeItem={`movieOverview`}
+              film={film}
+              filmComments={[]}
             >
               <footer>Some footer</footer>
-            </Main>
+            </MoviePage>
           </Router>
-        </Provider>, {
-          createNodeMock: () => {
-            return {};
-          }
-        })
+        </Provider>
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

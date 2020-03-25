@@ -1,6 +1,6 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import withTextState from "./with-text-state.js";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
+import withTextState from "./with-text-state";
 
 const MockComponent = () => <div />;
 const MockComponentWrapped = withTextState(MockComponent);
