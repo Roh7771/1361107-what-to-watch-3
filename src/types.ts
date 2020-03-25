@@ -7,7 +7,7 @@ export interface Film {
   posterSrc: string;
   ratingScore: number;
   ratingCount: number;
-  description: string[];
+  descriptionList: string[];
   director: string;
   starring: string[];
   id: number;

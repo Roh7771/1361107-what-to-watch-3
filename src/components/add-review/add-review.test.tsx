@@ -19,7 +19,7 @@ const mock: { text: string; reviewedFilm: Film } = {
     posterSrc: `Some Path`,
     ratingScore: 8.7,
     ratingCount: 230,
-    description: [`Some description`],
+    descriptionList: [`Some description`],
     director: `Some cool directot`,
     starring: [`Actor1`, `Actor2`],
     id: 2,

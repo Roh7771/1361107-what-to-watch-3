@@ -41,7 +41,7 @@ const MovieOverview: React.FunctionComponent<Props> = (props: Props) => {
       </div>
 
       <div className="movie-card__text">
-        {film.description.map((el, i) => {
+        {film.descriptionList.map((el, i) => {
           return <p key={`${i + 1}-descr`}>{el}</p>;
         })}
         <p className="movie-card__director">

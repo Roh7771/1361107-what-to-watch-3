@@ -29,15 +29,15 @@ interface Props {
 
 const MovieReviews: React.FunctionComponent<Props> = (props: Props) => {
   const {filmComments} = props;
-  const reviewSecondPart = [...filmComments];
-  const reviewsFirstPart = reviewSecondPart.splice(
+  const secondCommentsList = [...filmComments];
+  const firstCommentsList = secondCommentsList.splice(
       0,
-      Math.ceil(reviewSecondPart.length / 2)
+      Math.ceil(secondCommentsList.length / 2)
   );
   return (
     <div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">
-        {reviewsFirstPart.map((review) => {
+        {firstCommentsList.map((review) => {
           return (
             <div key={review.id} className="review">
               <blockquote className="review__quote">
@@ -57,7 +57,7 @@ const MovieReviews: React.FunctionComponent<Props> = (props: Props) => {
         })}
       </div>
       <div className="movie-card__reviews-col">
-        {reviewSecondPart.map((review) => {
+        {secondCommentsList.map((review) => {
           return (
             <div key={review.id} className="review">
               <blockquote className="review__quote">

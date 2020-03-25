@@ -16,7 +16,7 @@ const mock: {film: Film; filmsList: Film[] } = {
     posterSrc: `Some Path`,
     ratingScore: 8.7,
     ratingCount: 230,
-    description: [
+    descriptionList: [
       `Some description`,
     ],
     director: `Some cool directot`,
@@ -38,7 +38,7 @@ const mock: {film: Film; filmsList: Film[] } = {
       posterSrc: `Some Path`,
       ratingScore: 8.7,
       ratingCount: 230,
-      description: [
+      descriptionList: [
         `Some description`,
       ],
       director: `Some cool directot`,
@@ -59,7 +59,7 @@ const mock: {film: Film; filmsList: Film[] } = {
       ratingScore: 8.7,
       bgColor: `red`,
       ratingCount: 230,
-      description: [
+      descriptionList: [
         `Some description`,
       ],
       director: `Some cool directot`,
