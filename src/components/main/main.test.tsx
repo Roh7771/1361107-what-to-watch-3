@@ -1,15 +1,16 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import Main from "./main.jsx";
+import Main from "./main";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Router} from "react-router-dom";
 import history from "../../history.js";
+import { Film } from "../../types.js";
 
 const mockStore = configureStore([]);
 
-const mock = {
+const mock: {userFavoriteFilms: Film[], promoFilm: Film, filmsList: Film[] } = {
   userFavoriteFilms: [
     {
       title: `Some Title`,
@@ -30,6 +31,7 @@ const mock = {
       id: 2,
       videoSrc: `Some Path`,
       filmDuration: 99,
+      isFavorite: false,
     }
   ],
   promoFilm: {
@@ -51,6 +53,7 @@ const mock = {
     id: 2,
     videoSrc: `Some Path`,
     filmDuration: 99,
+    isFavorite: false,
   },
   filmsList: [
     {
@@ -72,6 +75,7 @@ const mock = {
       id: 2,
       videoSrc: `Some Path`,
       filmDuration: 99,
+      isFavorite: false
     },
     {
       title: `Some Title`,
@@ -92,6 +96,7 @@ const mock = {
       id: 4,
       videoSrc: `Some Path`,
       filmDuration: 99,
+      isFavorite: false
     },
   ]
 };

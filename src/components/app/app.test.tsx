@@ -1,15 +1,16 @@
-import React from "react";
-import renderer from "react-test-renderer";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
-import {App} from "./app.jsx";
+import {App} from "./app";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {AppRoute} from "../../const.js";
 import {MemoryRouter} from "react-router-dom";
+import {Film} from "../../types.js";
 
 const mockStore = configureStore([]);
 
-const mock = {
+const mock: {userFavoriteFilms: Film[]; promoFilm: Film; filmsList: Film[] } = {
   userFavoriteFilms: [
     {
       title: `Some Title`,
@@ -30,6 +31,7 @@ const mock = {
       id: 2,
       videoSrc: `Some Path`,
       filmDuration: 99,
+      isFavorite: false,
     }
   ],
   promoFilm: {
@@ -51,6 +53,7 @@ const mock = {
     id: 2,
     videoSrc: `Some Path`,
     filmDuration: 99,
+    isFavorite: false,
   },
   filmsList: [
     {
@@ -72,6 +75,7 @@ const mock = {
       id: 2,
       videoSrc: `Some Path`,
       filmDuration: 99,
+      isFavorite: false
     },
     {
       title: `Some Title`,
@@ -92,6 +96,7 @@ const mock = {
       id: 4,
       videoSrc: `Some Path`,
       filmDuration: 99,
+      isFavorite: false
     },
   ]
 };
@@ -122,10 +127,11 @@ describe(`App should`, () => {
                 authorizationStatus={AuthorizationStatus.NO_AUTH}
                 onFavoriteButtonClick={() => {}}
                 onReviewSend={() => {}}
-                changeFormSendingStatus={() => {}}
                 isFormSending={false}
                 isFilmsLoading={false}
                 setFilmComments={() => {}}
+                formErrorMessage={null}
+                filmComments={[]}
               />
             </MemoryRouter>
           </Provider>,
@@ -164,10 +170,11 @@ describe(`App should`, () => {
                 authorizationStatus={AuthorizationStatus.NO_AUTH}
                 onFavoriteButtonClick={() => {}}
                 onReviewSend={() => {}}
-                changeFormSendingStatus={() => {}}
                 isFormSending={false}
                 isFilmsLoading={false}
                 setFilmComments={() => {}}
+                formErrorMessage={null}
+                filmComments={[]}
               />
             </MemoryRouter>
           </Provider>, {
@@ -205,10 +212,11 @@ describe(`App should`, () => {
                 authorizationStatus={AuthorizationStatus.NO_AUTH}
                 onFavoriteButtonClick={() => {}}
                 onReviewSend={() => {}}
-                changeFormSendingStatus={() => {}}
                 isFormSending={false}
                 isFilmsLoading={false}
                 setFilmComments={() => {}}
+                formErrorMessage={null}
+                filmComments={[]}
               />
             </MemoryRouter>
           </Provider>, {
@@ -246,10 +254,11 @@ describe(`App should`, () => {
                 authorizationStatus={AuthorizationStatus.NO_AUTH}
                 onFavoriteButtonClick={() => {}}
                 onReviewSend={() => {}}
-                changeFormSendingStatus={() => {}}
                 isFormSending={false}
                 isFilmsLoading={false}
                 setFilmComments={() => {}}
+                formErrorMessage={null}
+                filmComments={[]}
               />
             </MemoryRouter>
           </Provider>, {
@@ -287,10 +296,11 @@ describe(`App should`, () => {
                 authorizationStatus={AuthorizationStatus.AUTH}
                 onFavoriteButtonClick={() => {}}
                 onReviewSend={() => {}}
-                changeFormSendingStatus={() => {}}
                 isFormSending={false}
                 isFilmsLoading={false}
                 setFilmComments={() => {}}
+                formErrorMessage={null}
+                filmComments={[]}
               />
             </MemoryRouter>
           </Provider>, {
@@ -328,10 +338,11 @@ describe(`App should`, () => {
                 authorizationStatus={AuthorizationStatus.AUTH}
                 onFavoriteButtonClick={() => {}}
                 onReviewSend={() => {}}
-                changeFormSendingStatus={() => {}}
                 isFormSending={false}
                 isFilmsLoading={false}
                 setFilmComments={() => {}}
+                formErrorMessage={null}
+                filmComments={[]}
               />
             </MemoryRouter>
           </Provider>, {

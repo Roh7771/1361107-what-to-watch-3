@@ -337,7 +337,6 @@ Array [
               className="small-movie-card__image"
             >
               <video
-                alt=""
                 className=""
                 height={175}
                 poster="Some Path"
@@ -372,7 +371,6 @@ Array [
               className="small-movie-card__image"
             >
               <video
-                alt=""
                 className=""
                 height={175}
                 poster="Some Path"
@@ -764,7 +762,6 @@ exports[`App should render movie video player 1`] = `
   className="player"
 >
   <video
-    alt=""
     className="player__video"
     height={null}
     poster="Some Path"
@@ -1166,7 +1163,6 @@ exports[`App should render user favorite films 1`] = `
             className="small-movie-card__image"
           >
             <video
-              alt=""
               className=""
               height={175}
               poster="Some Path"

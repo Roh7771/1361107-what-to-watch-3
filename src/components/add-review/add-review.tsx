@@ -1,7 +1,7 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
-import { AppRoute } from "../../const";
-import { Film } from "../../types";
+import {Link} from "react-router-dom";
+import {AppRoute} from "../../const";
+import {Film} from "../../types";
 
 interface Props {
   onActiveItemChange: (newActiveItem: number) => void;
@@ -25,7 +25,7 @@ const AddReview: React.FunctionComponent<Props> = (props: Props) => {
     isFormSending,
     formErrorMessage
   } = props;
-  const { id, title, posterSrc, bgSrc } = reviewedFilm;
+  const {id, title, posterSrc, bgSrc} = reviewedFilm;
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
@@ -81,7 +81,7 @@ const AddReview: React.FunctionComponent<Props> = (props: Props) => {
 
       <div className="add-review">
         <form
-          onSubmit={e => {
+          onSubmit={(e) => {
             e.preventDefault();
             onReviewSend(id, text, chosenStar);
           }}
@@ -174,7 +174,7 @@ const AddReview: React.FunctionComponent<Props> = (props: Props) => {
 
           <div className="add-review__text">
             <textarea
-              onChange={e => onTextChange(e.target.value)}
+              onChange={(e) => onTextChange(e.target.value)}
               className="add-review__textarea"
               name="review-text"
               id="review-text"

@@ -192,7 +192,6 @@ Array [
               className="small-movie-card__image"
             >
               <video
-                alt=""
                 className=""
                 height={175}
                 poster="Some Path"
@@ -227,7 +226,6 @@ Array [
               className="small-movie-card__image"
             >
               <video
-                alt=""
                 className=""
                 height={175}
                 poster="Some Path"
@@ -473,7 +471,6 @@ Array [
               className="small-movie-card__image"
             >
               <video
-                alt=""
                 className=""
                 height={175}
                 poster="Some Path"
@@ -508,7 +505,6 @@ Array [
               className="small-movie-card__image"
             >
               <video
-                alt=""
                 className=""
                 height={175}
                 poster="Some Path"

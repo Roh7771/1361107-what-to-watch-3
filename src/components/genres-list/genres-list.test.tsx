@@ -1,8 +1,8 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import {GenresList} from "./genres-list.jsx";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
+import {GenresList} from "./genres-list";
 
-const mock = {
+const mock: {genreList: string[]} = {
   genreList: [`All genres`, `Horror`, `Comedy`]
 };
 
