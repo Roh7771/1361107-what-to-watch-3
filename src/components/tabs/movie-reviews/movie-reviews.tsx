@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import { Film, Comment } from "../../../types";
 
-const monthsArr = [
+const monthsArr: string[] = [
   `January`,
   `February`,
   `March`,
@@ -15,14 +15,20 @@ const monthsArr = [
   `November`,
   `December`
 ];
-const convertDate = (date) => {
+
+const convertDate = (date: string) => {
   const dateObj = new Date(date);
   return `${
     monthsArr[dateObj.getMonth()]
   } ${dateObj.getDate()}, ${dateObj.getFullYear()}`;
 };
 
-const MovieReviews = ({filmComments}) => {
+interface Props {
+  filmComments: Comment[];
+}
+
+const MovieReviews: React.FunctionComponent<Props> = (props: Props) => {
+  const {filmComments} = props;
   const reviewSecondPart = [...filmComments];
   const reviewsFirstPart = reviewSecondPart.splice(
       0,
@@ -72,37 +78,6 @@ const MovieReviews = ({filmComments}) => {
       </div>
     </div>
   );
-};
-
-MovieReviews.propTypes = {
-  film: PropTypes.shape({
-    title: PropTypes.string,
-    genre: PropTypes.string,
-    releaseYear: PropTypes.number,
-    imgSrc: PropTypes.string,
-    bgSrc: PropTypes.string,
-    posterSrc: PropTypes.string,
-    ratingScore: PropTypes.number,
-    ratingCount: PropTypes.number,
-    description: PropTypes.arrayOf(PropTypes.string),
-    director: PropTypes.string,
-    starring: PropTypes.arrayOf(PropTypes.string),
-    id: PropTypes.number,
-    filmDuration: PropTypes.number,
-    reviews: PropTypes.array
-  }),
-  filmComments: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        user: PropTypes.shape({
-          id: PropTypes.number,
-          name: PropTypes.string
-        }),
-        rating: PropTypes.number,
-        comment: PropTypes.string,
-        date: PropTypes.string
-      })
-  )
 };
 
 export default MovieReviews;

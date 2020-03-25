@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {ShowMoreFilms} from "./show-more-films.jsx";
+import {ShowMoreFilms} from "./show-more-films";
 
 const mock = {
   filmsList: [

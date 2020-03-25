@@ -1,56 +1,73 @@
-import React from "react";
-import Main from "../main/main.jsx";
+import * as React from "react";
+import Main from "../main/main";
 import {Switch, Route} from "react-router-dom";
-import PropTypes from "prop-types";
-import MoviePage from "../movie-page/movie-page.jsx";
+import MoviePage from "../movie-page/movie-page";
 import {connect} from "react-redux";
-import withVideo from "../../hocs/with-video/with-video.js";
-import MovieVideoPlayer from "../movie-video-player/movie-video-player.jsx";
+import withVideo from "../../hocs/with-video/with-video";
+import MovieVideoPlayer from "../movie-video-player/movie-video-player";
 import {
   getPromoFilm,
   getFilmsToRender,
   getUserFavoriteFilms,
   getAllFilms,
   getFilmComments
-} from "../../reducer/data/selectors.js";
+} from "../../reducer/data/selectors";
 import {
   getFormSendingStatus,
   getFormErrorMessage,
   getFilmsLoadingStatus
-} from "../../reducer/appStatus/selectors.js";
-import {ActionCreators} from "../../reducer/appStatus/appStatus.js";
-import {Operation as UserOperation} from "../../reducer/user/user.js";
-import {Operation as DataOperation} from "../../reducer/data/data.js";
-import SignIn from "../sign-in/sign-in.jsx";
-import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
-import AddReview from "../add-review/add-review.jsx";
-import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
-import withTextState from "../../hocs/with-text-state/with-text-state.js";
-import LoginRoute from "../routes/login-route/login-route.jsx";
-import MyList from "../my-list/my-list.jsx";
-import PrivateRoute from "../routes/private-route/private-route.jsx";
-import Footer from "../footer/footer.jsx";
-import {AppRoute} from "../../const.js";
+} from "../../reducer/appStatus/selectors";
+import {ActionCreators} from "../../reducer/appStatus/appStatus";
+import {Operation as UserOperation} from "../../reducer/user/user";
+import {Operation as DataOperation} from "../../reducer/data/data";
+import SignIn from "../sign-in/sign-in";
+import {getAuthorizationStatus} from "../../reducer/user/selectors";
+import AddReview from "../add-review/add-review";
+import withActiveItem from "../../hocs/with-active-item/with-active-item";
+import withTextState from "../../hocs/with-text-state/with-text-state";
+import LoginRoute from "../routes/login-route/login-route";
+import MyList from "../my-list/my-list";
+import PrivateRoute from "../routes/private-route/private-route";
+import Footer from "../footer/footer";
+import {AppRoute} from "../../const";
+import { Film } from "../../types";
 
 const VideoPlayerWrapper = withVideo(MovieVideoPlayer);
 const AddReviewWrapper = withTextState(withActiveItem(AddReview));
 const MoviePageWrapper = withActiveItem(MoviePage);
 
-const App = ({
-  filmsToRender,
-  promoFilm,
-  onLoginFormSubmit,
-  onReviewSend,
-  authorizationStatus,
-  isFormSending,
-  formErrorMessage,
-  isFilmsLoading,
-  userFavoriteFilms,
-  onFavoriteButtonClick,
-  allFilms,
-  filmComments,
-  setFilmComments
-}) => {
+interface Props  {
+  promoFilm: Film
+  userFavoriteFilms: Film[]
+  allFilms: Film[]
+  filmsToRender: Film[]
+  onLoginFormSubmit: () => void,
+  authorizationStatus: string,
+  onReviewSend: () => void,
+  isFormSending: boolean,
+  formErrorMessage: string,
+  isFilmsLoading: boolean,
+  onFavoriteButtonClick: () => void,
+  setFilmComments: () => void,
+  filmComments: Comment[]
+};
+
+const App: React.FunctionComponent<Props> = (props: Props) => {
+  const {
+    filmsToRender,
+    promoFilm,
+    onLoginFormSubmit,
+    onReviewSend,
+    authorizationStatus,
+    isFormSending,
+    formErrorMessage,
+    isFilmsLoading,
+    userFavoriteFilms,
+    onFavoriteButtonClick,
+    allFilms,
+    filmComments,
+    setFilmComments
+  } = props;
   return (
     <Switch>
       <Route
@@ -65,7 +82,7 @@ const App = ({
               userFavoriteFilms={userFavoriteFilms}
               onFavoriteButtonClick={onFavoriteButtonClick}
             >
-              <Footer />
+              <Footer withLink={false} />
             </Main>
           );
         }}
@@ -159,93 +176,6 @@ const App = ({
       />
     </Switch>
   );
-};
-
-App.propTypes = {
-  promoFilm: PropTypes.shape({
-    title: PropTypes.string,
-    genre: PropTypes.string,
-    releaseYear: PropTypes.number,
-    posterSrc: PropTypes.string,
-    bgSrc: PropTypes.string,
-    videoSrc: PropTypes.string,
-    id: PropTypes.number,
-    isFavorite: PropTypes.bool
-  }).isRequired,
-  userFavoriteFilms: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string,
-        genre: PropTypes.string,
-        releaseYear: PropTypes.number,
-        imgSrc: PropTypes.string,
-        bgSrc: PropTypes.string,
-        posterSrc: PropTypes.string,
-        ratingScore: PropTypes.number,
-        ratingCount: PropTypes.number,
-        description: PropTypes.arrayOf(PropTypes.string),
-        director: PropTypes.string,
-        starring: PropTypes.arrayOf(PropTypes.string),
-        id: PropTypes.number,
-        filmDuration: PropTypes.number,
-        reviews: PropTypes.array
-      })
-  ).isRequired,
-  allFilms: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string,
-        genre: PropTypes.string,
-        releaseYear: PropTypes.number,
-        imgSrc: PropTypes.string,
-        bgSrc: PropTypes.string,
-        posterSrc: PropTypes.string,
-        ratingScore: PropTypes.number,
-        ratingCount: PropTypes.number,
-        description: PropTypes.arrayOf(PropTypes.string),
-        director: PropTypes.string,
-        starring: PropTypes.arrayOf(PropTypes.string),
-        id: PropTypes.number,
-        filmDuration: PropTypes.number,
-        reviews: PropTypes.array
-      })
-  ).isRequired,
-  filmsToRender: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string,
-        genre: PropTypes.string,
-        releaseYear: PropTypes.number,
-        imgSrc: PropTypes.string,
-        bgSrc: PropTypes.string,
-        posterSrc: PropTypes.string,
-        ratingScore: PropTypes.number,
-        ratingCount: PropTypes.number,
-        description: PropTypes.arrayOf(PropTypes.string),
-        director: PropTypes.string,
-        starring: PropTypes.arrayOf(PropTypes.string),
-        id: PropTypes.number,
-        filmDuration: PropTypes.number,
-        reviews: PropTypes.array
-      })
-  ).isRequired,
-  onLoginFormSubmit: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  onReviewSend: PropTypes.func.isRequired,
-  isFormSending: PropTypes.bool.isRequired,
-  formErrorMessage: PropTypes.string,
-  isFilmsLoading: PropTypes.bool.isRequired,
-  onFavoriteButtonClick: PropTypes.func.isRequired,
-  setFilmComments: PropTypes.func.isRequired,
-  filmComments: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        user: PropTypes.shape({
-          id: PropTypes.number,
-          name: PropTypes.string
-        }),
-        rating: PropTypes.number,
-        comment: PropTypes.string,
-        data: PropTypes.string
-      })
-  )
 };
 
 const mapStateToProps = (state) => ({

@@ -1,21 +1,30 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Player from "../movie-video-player/movie-video-player.jsx";
-import withVideo from "../../hocs/with-video/with-video.js";
+import * as React from "react";
+import Player from "../movie-video-player/movie-video-player";
+import withVideo from "../../hocs/with-video/with-video";
 import {Link} from "react-router-dom";
-import {AppRoute} from "../../const.js";
+import {AppRoute} from "../../const";
+import { Film } from "../../types";
 
 const VideoPlayer = withVideo(Player);
 
 let timer;
 
-const MovieCard = ({
-  film,
-  onFilmMouseOver,
-  onFilmMouseOut,
-  activeCard,
-  changeTab
-}) => {
+interface Props {
+  film: Film
+  onFilmMouseOver: (film: Film) => void,
+  onFilmMouseOut: (film: {}) => void,
+  activeCard: Film,
+  changeTab: (tab: string) => void
+}
+
+const MovieCard: React.FunctionComponent<Props> = (props: Props) => {
+  const {
+    film,
+    onFilmMouseOver,
+    onFilmMouseOut,
+    activeCard,
+    changeTab
+  } = props;
   const {title, imgSrc, trailerSrc, id} = film;
 
   return (
@@ -65,16 +74,7 @@ const MovieCard = ({
 };
 
 MovieCard.propTypes = {
-  film: PropTypes.shape({
-    title: PropTypes.string,
-    imgSrc: PropTypes.string,
-    id: PropTypes.id,
-    trailerSrc: PropTypes.string
-  }).isRequired,
-  onFilmMouseOver: PropTypes.func.isRequired,
-  onFilmMouseOut: PropTypes.func.isRequired,
-  activeCard: PropTypes.object.isRequired,
-  changeTab: PropTypes.func
+  
 };
 
 export default MovieCard;

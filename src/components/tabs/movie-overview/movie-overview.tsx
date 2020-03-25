@@ -1,7 +1,7 @@
-import React, {Fragment} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import { Film } from "../../../types";
 
-const getRatingLevel = (ratingScore) => {
+const getRatingLevel = (ratingScore: number) => {
   if (ratingScore < 3) {
     return `Bad`;
   }
@@ -20,9 +20,14 @@ const getRatingLevel = (ratingScore) => {
   return `No rating`;
 };
 
-const MovieOverview = ({film}) => {
+interface Props {
+  film: Film;
+}
+
+const MovieOverview: React.FunctionComponent<Props> = (props: Props) => {
+  const {film} = props;
   return (
-    <Fragment>
+    <React.Fragment>
       <div className="movie-rating">
         <div className="movie-rating__score">
           {String(film.ratingScore).replace(`.`, `,`)}
@@ -48,27 +53,8 @@ const MovieOverview = ({film}) => {
           )} and other`}</strong>
         </p>
       </div>
-    </Fragment>
+    </React.Fragment>
   );
-};
-
-MovieOverview.propTypes = {
-  film: PropTypes.shape({
-    title: PropTypes.string,
-    genre: PropTypes.string,
-    releaseYear: PropTypes.number,
-    imgSrc: PropTypes.string,
-    bgSrc: PropTypes.string,
-    posterSrc: PropTypes.string,
-    ratingScore: PropTypes.number,
-    ratingCount: PropTypes.number,
-    description: PropTypes.arrayOf(PropTypes.string),
-    director: PropTypes.string,
-    starring: PropTypes.arrayOf(PropTypes.string),
-    id: PropTypes.number,
-    filmDuration: PropTypes.number,
-    reviews: PropTypes.array
-  })
 };
 
 export default MovieOverview;

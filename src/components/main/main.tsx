@@ -1,23 +1,33 @@
-import React from "react";
-import PropTypes from "prop-types";
-import MovieList from "../movie-list/movie-list.jsx";
-import GenresList from "../genres-list/genres-list.jsx";
-import ShowMoreFilms from "../show-more-films/show-more-films.jsx";
-import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
+import * as React from "react";
+import MovieList from "../movie-list/movie-list";
+import GenresList from "../genres-list/genres-list";
+import ShowMoreFilms from "../show-more-films/show-more-films";
+import withActiveItem from "../../hocs/with-active-item/with-active-item";
+import {AuthorizationStatus} from "../../reducer/user/user";
 import {Link} from "react-router-dom";
-import history from "../../history.js";
-import {AppRoute} from "../../const.js";
+import history from "../../history";
+import {AppRoute} from "../../const";
+import { Film } from "../../types";
 
 const MovieListWrapper = withActiveItem(MovieList);
 
-const Main = ({
-  promoFilm,
-  filmsToRender,
-  authorizationStatus,
-  onFavoriteButtonClick,
-  children
-}) => {
+interface Props {
+  promoFilm: Film,
+  filmsToRender: Film[],
+  userFavoriteFilms: Film[]
+  authorizationStatus: string,
+  onFavoriteButtonClick: (id: number, status: number) => void,
+  children: React.ReactNode;
+}
+
+const Main: React.FunctionComponent<Props> = (props: Props) => {
+  const {
+    promoFilm,
+    filmsToRender,
+    authorizationStatus,
+    onFavoriteButtonClick,
+    children
+  } = props;
   const {title, releaseYear, genre, bgSrc, posterSrc, isFavorite} = promoFilm;
   return (
     <React.Fragment>
@@ -136,63 +146,6 @@ const Main = ({
       </div>
     </React.Fragment>
   );
-};
-
-Main.propTypes = {
-  promoFilm: PropTypes.shape({
-    title: PropTypes.string,
-    genre: PropTypes.string,
-    releaseYear: PropTypes.number,
-    posterSrc: PropTypes.string,
-    bgSrc: PropTypes.string,
-    videoSrc: PropTypes.string,
-    id: PropTypes.number,
-    isFavorite: PropTypes.bool
-  }).isRequired,
-  filmsToRender: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string,
-        genre: PropTypes.string,
-        releaseYear: PropTypes.number,
-        imgSrc: PropTypes.string,
-        bgSrc: PropTypes.string,
-        videoSrc: PropTypes.string,
-        posterSrc: PropTypes.string,
-        ratingScore: PropTypes.number,
-        ratingCount: PropTypes.number,
-        description: PropTypes.arrayOf(PropTypes.string),
-        director: PropTypes.string,
-        starring: PropTypes.arrayOf(PropTypes.string),
-        id: PropTypes.number,
-        filmDuration: PropTypes.number,
-        reviews: PropTypes.array
-      })
-  ).isRequired,
-  userFavoriteFilms: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string,
-        genre: PropTypes.string,
-        releaseYear: PropTypes.number,
-        imgSrc: PropTypes.string,
-        bgSrc: PropTypes.string,
-        videoSrc: PropTypes.string,
-        posterSrc: PropTypes.string,
-        ratingScore: PropTypes.number,
-        ratingCount: PropTypes.number,
-        description: PropTypes.arrayOf(PropTypes.string),
-        director: PropTypes.string,
-        starring: PropTypes.arrayOf(PropTypes.string),
-        id: PropTypes.number,
-        filmDuration: PropTypes.number,
-        reviews: PropTypes.array
-      })
-  ).isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  onFavoriteButtonClick: PropTypes.func.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.node.isRequired,
-    PropTypes.arrayOf(PropTypes.node)
-  ]).isRequired
 };
 
 export default Main;

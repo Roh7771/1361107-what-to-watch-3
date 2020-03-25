@@ -1,25 +1,38 @@
-import React, {useEffect} from "react";
-import PropTypes from "prop-types";
-import TabList from "../tab-list/tab-list.jsx";
-import MoreLikeThis from "../more-like-this/more-like-this.jsx";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
+import * as React from "react";
+import TabList from "../tab-list/tab-list";
+import MoreLikeThis from "../more-like-this/more-like-this";
+import {AuthorizationStatus} from "../../reducer/user/user";
 import {Link} from "react-router-dom";
-import history from "../../history.js";
-import {AppRoute} from "../../const.js";
+import history from "../../history";
+import {AppRoute} from "../../const";
+import {Film, Comment} from "../../types";
 
-const MoviePage = ({
-  film = {},
-  authorizationStatus,
-  isFilmsLoading,
-  onFavoriteButtonClick,
-  filmComments,
-  setFilmComments,
-  activeItem,
-  onActiveItemChange,
-  children
-}) => {
+interface Props {
+  film: Film;
+  authorizationStatus: string;
+  isFilmsLoading: boolean;
+  onFavoriteButtonClick: (id: number, status: number) => void;
+  setFilmComments: (id: number) => void;
+  filmComments: Comment[];
+  onActiveItemChange: () => void;
+  activeItem: string;
+  children: React.ReactNode;
+}
+
+const MoviePage: React.FunctionComponent<Props> = (props: Props) => {
+  const {
+    film,
+    authorizationStatus,
+    isFilmsLoading,
+    onFavoriteButtonClick,
+    filmComments,
+    setFilmComments,
+    activeItem,
+    onActiveItemChange,
+    children
+  } = props;
   const {bgSrc, title, genre, releaseYear, posterSrc, isFavorite, id} = film;
-  useEffect(() => {
+  React.useEffect(() => {
     if (id) {
       setFilmComments(id);
     }
@@ -146,48 +159,6 @@ const MoviePage = ({
       {children}
     </div>
   );
-};
-
-MoviePage.propTypes = {
-  film: PropTypes.shape({
-    title: PropTypes.string,
-    genre: PropTypes.string,
-    releaseYear: PropTypes.number,
-    imgSrc: PropTypes.string,
-    bgSrc: PropTypes.string,
-    posterSrc: PropTypes.string,
-    ratingScore: PropTypes.number,
-    ratingCount: PropTypes.number,
-    description: PropTypes.arrayOf(PropTypes.string),
-    director: PropTypes.string,
-    starring: PropTypes.arrayOf(PropTypes.string),
-    id: PropTypes.number,
-    filmDuration: PropTypes.number,
-    reviews: PropTypes.array,
-    bgColor: PropTypes.string.isRequired
-  }),
-  authorizationStatus: PropTypes.string.isRequired,
-  isFilmsLoading: PropTypes.bool.isRequired,
-  onFavoriteButtonClick: PropTypes.func.isRequired,
-  setFilmComments: PropTypes.func.isRequired,
-  filmComments: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        user: PropTypes.shape({
-          id: PropTypes.number,
-          name: PropTypes.string
-        }),
-        rating: PropTypes.number,
-        comment: PropTypes.string,
-        data: PropTypes.string
-      })
-  ),
-  onActiveItemChange: PropTypes.func.isRequired,
-  activeItem: PropTypes.string.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.node.isRequired,
-    PropTypes.arrayOf(PropTypes.node)
-  ]).isRequired
 };
 
 export default MoviePage;

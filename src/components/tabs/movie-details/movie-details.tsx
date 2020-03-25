@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {Film} from "../../../types";
 
-const getStarsListHtml = (stars) => {
+const getStarsListHtml = (stars: string[]) => {
   let newStarsList = [];
   stars
     .map((star, i) => [`${star}, `, <br key={`${i}-${star}`}></br>])
@@ -15,13 +15,18 @@ const getStarsListHtml = (stars) => {
   return newStarsList;
 };
 
-const convertFilmDuration = (time) => {
+interface Props {
+  film: Film;
+}
+
+const convertFilmDuration = (time: number) => {
   const hours = Math.floor(time / 60);
   const minutes = time % 60;
   return `${hours}h ${minutes}m`;
 };
 
-const MovieDetails = ({film}) => {
+const MovieDetails: React.FunctionComponent<Props> = (props: Props) => {
+  const {film} = props;
   const {director, starring, filmDuration, genre, releaseYear} = film;
   let newStarsList = [];
   starring
@@ -66,25 +71,6 @@ const MovieDetails = ({film}) => {
       </div>
     </div>
   );
-};
-
-MovieDetails.propTypes = {
-  film: PropTypes.shape({
-    title: PropTypes.string,
-    genre: PropTypes.string,
-    releaseYear: PropTypes.number,
-    imgSrc: PropTypes.string,
-    bgSrc: PropTypes.string,
-    posterSrc: PropTypes.string,
-    ratingScore: PropTypes.number,
-    ratingCount: PropTypes.number,
-    description: PropTypes.arrayOf(PropTypes.string),
-    director: PropTypes.string,
-    starring: PropTypes.arrayOf(PropTypes.string),
-    id: PropTypes.number,
-    filmDuration: PropTypes.number,
-    reviews: PropTypes.array
-  })
 };
 
 export default MovieDetails;

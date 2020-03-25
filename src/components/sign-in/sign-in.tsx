@@ -1,14 +1,27 @@
-import React, {PureComponent, createRef} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../const";
 
-class SignIn extends PureComponent {
+type LoginData = {
+  login: string;
+  password: string;
+}
+
+interface Props {
+  onLoginFormSubmit: (loginData: LoginData) => void,
+  formErrorMessage: string,
+  isFormSending: boolean,
+  children: React.ReactNode
+}
+
+class SignIn extends React.PureComponent<Props, {}> {
+  loginRef: React.RefObject<HTMLInputElement>
+  passwordRef: React.RefObject<HTMLInputElement>
   constructor(props) {
     super(props);
 
-    this.loginRef = createRef();
-    this.passwordRef = createRef();
+    this.loginRef = React.createRef();
+    this.passwordRef = React.createRef();
 
     this._handleSubmit = this._handleSubmit.bind(this);
   }
@@ -103,15 +116,5 @@ class SignIn extends PureComponent {
     );
   }
 }
-
-SignIn.propTypes = {
-  onLoginFormSubmit: PropTypes.func.isRequired,
-  formErrorMessage: PropTypes.string,
-  isFormSending: PropTypes.bool.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.node.isRequired,
-    PropTypes.arrayOf(PropTypes.node)
-  ]).isRequired
-};
 
 export default SignIn;

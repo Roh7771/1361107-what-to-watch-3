@@ -1,7 +1,18 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
+import {Subtract} from "utility-types";
+
+interface State {
+  text: string;
+}
+
+interface InjectingProps {
+  onTextChange: (text: string) => void;
+}
 
 const withTextState = (Component) => {
-  class WithTextState extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+  class WithTextState extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 

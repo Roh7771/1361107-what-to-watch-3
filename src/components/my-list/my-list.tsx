@@ -1,13 +1,19 @@
-import React from "react";
-import PropTypes from "prop-types";
-import withActiveItem from "../../hocs/with-active-item/with-active-item.js";
-import MovieList from "../movie-list/movie-list.jsx";
+import * as React from "react";
+import withActiveItem from "../../hocs/with-active-item/with-active-item";
+import MovieList from "../movie-list/movie-list";
 import {Link} from "react-router-dom";
-import {AppRoute} from "../../const.js";
+import {AppRoute} from "../../const";
+import {Film} from "../../types";
 
 const MovieListWrapper = withActiveItem(MovieList);
 
-const MyList = ({userFavoriteFilms, children}) => {
+interface Props {
+  userFavoriteFilms: Film[]
+  children: React.ReactNode
+}
+
+const MyList: React.FunctionComponent<Props> = (props: Props) => {
+  const {userFavoriteFilms, children} = props;
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -44,31 +50,6 @@ const MyList = ({userFavoriteFilms, children}) => {
       {children}
     </div>
   );
-};
-
-MyList.propTypes = {
-  userFavoriteFilms: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string,
-        genre: PropTypes.string,
-        releaseYear: PropTypes.number,
-        imgSrc: PropTypes.string,
-        bgSrc: PropTypes.string,
-        posterSrc: PropTypes.string,
-        ratingScore: PropTypes.number,
-        ratingCount: PropTypes.number,
-        description: PropTypes.arrayOf(PropTypes.string),
-        director: PropTypes.string,
-        starring: PropTypes.arrayOf(PropTypes.string),
-        id: PropTypes.number,
-        filmDuration: PropTypes.number,
-        reviews: PropTypes.array
-      })
-  ).isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.node.isRequired,
-    PropTypes.arrayOf(PropTypes.node)
-  ]).isRequired
 };
 
 export default MyList;

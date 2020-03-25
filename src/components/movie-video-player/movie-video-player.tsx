@@ -1,5 +1,4 @@
-import React, {PureComponent, createRef, Fragment} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import history from "../../history";
 
 const convertVideoTime = (time) => {
@@ -26,11 +25,24 @@ const convertVideoTime = (time) => {
   return `${hours}:${minutes}:${seconds}`;
 };
 
-class MovieVideoPlayer extends PureComponent {
+interface Props {
+  onFullScreenButtonClick: () => void;
+  children: React.ReactNode;
+  progressInPercent: number,
+  progressInSeconds: number,
+  isPlaying: boolean,
+  title: string,
+  isFullScreen: boolean,
+  type: string,
+  onPlayButtonClick: () => void;
+}
+
+class MovieVideoPlayer extends React.PureComponent<Props, {}> {
+  private _rootElRef: React.RefObject<HTMLDivElement>;
   constructor(props) {
     super(props);
 
-    this._rootElRef = createRef();
+    this._rootElRef = React.createRef();
     this._handlerFullScreenChange = this._handlerFullScreenChange.bind(this);
   }
 
@@ -51,7 +63,7 @@ class MovieVideoPlayer extends PureComponent {
     } = this.props;
     switch (type) {
       case `trailer`:
-        return <Fragment>{children}</Fragment>;
+        return <React.Fragment>{children}</React.Fragment>;
 
       case `movie`:
         return (
@@ -95,19 +107,19 @@ class MovieVideoPlayer extends PureComponent {
                   className="player__play"
                 >
                   {isPlaying ? (
-                    <Fragment>
+                    <React.Fragment>
                       <svg viewBox="0 0 14 21" width="14" height="21">
                         <use xlinkHref="#pause"></use>
                       </svg>
                       <span>Pause</span>
-                    </Fragment>
+                    </React.Fragment>
                   ) : (
-                    <Fragment>
+                    <React.Fragment>
                       <svg viewBox="0 0 19 19" width="19" height="19">
                         <use xlinkHref="#play-s"></use>
                       </svg>
                       <span>Play</span>
-                    </Fragment>
+                    </React.Fragment>
                   )}
                 </button>
 
@@ -152,20 +164,5 @@ class MovieVideoPlayer extends PureComponent {
     return this._renderPlayer();
   }
 }
-
-MovieVideoPlayer.propTypes = {
-  onFullScreenButtonClick: PropTypes.func.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.node.isRequired,
-    PropTypes.arrayOf(PropTypes.node)
-  ]).isRequired,
-  progressInPercent: PropTypes.number.isRequired,
-  progressInSeconds: PropTypes.number.isRequired,
-  isPlaying: PropTypes.bool.isRequired,
-  title: PropTypes.string,
-  isFullScreen: PropTypes.bool.isRequired,
-  type: PropTypes.oneOf([`trailer`, `movie`]),
-  onPlayButtonClick: PropTypes.func.isRequired
-};
 
 export default MovieVideoPlayer;

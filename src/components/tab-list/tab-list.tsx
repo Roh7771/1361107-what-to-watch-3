@@ -1,10 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
-import MovieDetails from "../tabs/movie-details/movie-details.jsx";
-import MovieReviews from "../tabs/movie-reviews/movie-reviews.jsx";
-import MovieOverview from "../tabs/movie-overview/movie-overview.jsx";
+import * as React from "react";
+import MovieDetails from "../tabs/movie-details/movie-details";
+import MovieReviews from "../tabs/movie-reviews/movie-reviews";
+import MovieOverview from "../tabs/movie-overview/movie-overview";
+import { Film, Comment } from "../../types";
 
-const TabList = (props) => {
+interface Props {
+  film: Film;
+  activeItem: string,
+  changeTab: (tab: string) => void,
+  filmComments: Comment[]
+}
+
+const TabList: React.FunctionComponent<Props> = (props) => {
   const {film, activeItem, changeTab, filmComments} = props;
 
   const renderTab = () => {
@@ -80,37 +87,5 @@ const TabList = (props) => {
   );
 };
 
-TabList.propTypes = {
-  film: PropTypes.shape({
-    title: PropTypes.string,
-    genre: PropTypes.string,
-    releaseYear: PropTypes.number,
-    imgSrc: PropTypes.string,
-    bgSrc: PropTypes.string,
-    posterSrc: PropTypes.string,
-    ratingScore: PropTypes.number,
-    ratingCount: PropTypes.number,
-    description: PropTypes.arrayOf(PropTypes.string),
-    director: PropTypes.string,
-    starring: PropTypes.arrayOf(PropTypes.string),
-    id: PropTypes.number,
-    filmDuration: PropTypes.number,
-    reviews: PropTypes.array
-  }),
-  activeItem: PropTypes.string.isRequired,
-  changeTab: PropTypes.func.isRequired,
-  filmComments: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        user: PropTypes.shape({
-          id: PropTypes.number,
-          name: PropTypes.string
-        }),
-        rating: PropTypes.number,
-        comment: PropTypes.string,
-        data: PropTypes.string
-      })
-  )
-};
 
 export default TabList;

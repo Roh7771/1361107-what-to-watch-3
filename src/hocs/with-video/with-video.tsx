@@ -1,12 +1,32 @@
-import React, {PureComponent, createRef} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+import {Subtract} from "utility-types";
+
+interface State {
+  isPlaying: boolean;
+  isFullScreen: boolean;
+  progressInPercent: number,
+  progressInSeconds: number,
+}
+
+interface InjectingProps {
+  onFullScreenButtonClickthis: () => void;
+  onPlayButtonClick: () => void;
+  isPlaying: boolean;
+  isFullScreen: boolean;
+  progressInPercent: number,
+  progressInSeconds: number,
+}
 
 const withVideo = (Component) => {
-  class WithVideo extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+  class WithVideo extends React.PureComponent<T, State> {
+    _videoRef: React.RefObject<HTMLVideoElement>
+
     constructor(props) {
       super(props);
 
-      this._videoRef = createRef();
+      this._videoRef = React.createRef();
       this.state = {
         isPlaying: this.props.isPlaying,
         isFullScreen: false,
@@ -130,7 +150,6 @@ const withVideo = (Component) => {
             ref={this._videoRef}
             poster={posterSrc}
             src={videoSrc}
-            alt=""
             width={widthAtr}
             height={heightAtr}
           />
@@ -138,17 +157,6 @@ const withVideo = (Component) => {
       );
     }
   }
-
-  WithVideo.propTypes = {
-    isPlaying: PropTypes.bool.isRequired,
-    videoSrc: PropTypes.string.isRequired,
-    posterSrc: PropTypes.string.isRequired,
-    isMuted: PropTypes.bool,
-    heightAtr: PropTypes.number,
-    widthAtr: PropTypes.number,
-    className: PropTypes.string,
-    type: PropTypes.string.isRequired
-  };
 
   return WithVideo;
 };

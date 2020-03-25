@@ -1,7 +1,7 @@
 import {extend} from "../../utils";
 import history from "../../history";
-import {Operation as DataOperation} from "../data/data.js";
-import {ActionCreators as AppActionCreators} from "../appStatus/appStatus.js";
+import {Operation as DataOperation} from "../data/data";
+import {ActionCreators as AppActionCreators} from "../appStatus/appStatus";
 import {AppRoute} from "../../const";
 
 const AuthorizationStatus = {

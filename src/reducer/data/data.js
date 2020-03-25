@@ -1,6 +1,6 @@
 import {extend} from "../../utils";
 import adaptFilmsData from "./adaptFilmsData";
-import {ActionCreators as AppActionCreators} from "../appStatus/appStatus.js";
+import {ActionCreators as AppActionCreators} from "../appStatus/appStatus";
 import history from "../../history";
 import {AppRoute} from "../../const";
 

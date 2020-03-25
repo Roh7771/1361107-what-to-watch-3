@@ -1,19 +1,31 @@
-import React from "react";
-import PropTypes from "prop-types";
-import {Link} from "react-router-dom";
-import {AppRoute} from "../../const";
+import * as React from "react";
+import { Link } from "react-router-dom";
+import { AppRoute } from "../../const";
+import { Film } from "../../types";
 
-const AddReview = ({
-  onActiveItemChange,
-  activeItem: chosenStar,
-  onTextChange,
-  text,
-  reviewedFilm,
-  onReviewSend,
-  isFormSending,
-  formErrorMessage
-}) => {
-  const {id, title, posterSrc, bgSrc} = reviewedFilm;
+interface Props {
+  onActiveItemChange: (newActiveItem: number) => void;
+  onTextChange: (text: string) => void;
+  activeItem: number;
+  text: string;
+  reviewedFilm: Film;
+  onReviewSend: (id: number, comment: string, rating: number) => void;
+  isFormSending: boolean;
+  formErrorMessage: string;
+}
+
+const AddReview: React.FunctionComponent<Props> = (props: Props) => {
+  const {
+    onActiveItemChange,
+    activeItem: chosenStar,
+    onTextChange,
+    text,
+    reviewedFilm,
+    onReviewSend,
+    isFormSending,
+    formErrorMessage
+  } = props;
+  const { id, title, posterSrc, bgSrc } = reviewedFilm;
   return (
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
@@ -69,7 +81,7 @@ const AddReview = ({
 
       <div className="add-review">
         <form
-          onSubmit={(e) => {
+          onSubmit={e => {
             e.preventDefault();
             onReviewSend(id, text, chosenStar);
           }}
@@ -162,7 +174,7 @@ const AddReview = ({
 
           <div className="add-review__text">
             <textarea
-              onChange={(e) => onTextChange(e.target.value)}
+              onChange={e => onTextChange(e.target.value)}
               className="add-review__textarea"
               name="review-text"
               id="review-text"
@@ -189,22 +201,6 @@ const AddReview = ({
       </div>
     </section>
   );
-};
-
-AddReview.propTypes = {
-  onActiveItemChange: PropTypes.func.isRequired,
-  onTextChange: PropTypes.func.isRequired,
-  activeItem: PropTypes.number.isRequired,
-  text: PropTypes.string,
-  reviewedFilm: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    posterSrc: PropTypes.string.isRequired,
-    bgSrc: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired
-  }).isRequired,
-  onReviewSend: PropTypes.func.isRequired,
-  isFormSending: PropTypes.bool.isRequired,
-  formErrorMessage: PropTypes.string
 };
 
 export default AddReview;

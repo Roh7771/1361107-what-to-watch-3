@@ -1,15 +1,18 @@
-import React, {Fragment} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../const";
 
-const Footer = (props) => {
+interface Props {
+  withLink: boolean
+}
+
+const Footer: React.FunctionComponent<Props> = (props: Props) => {
   const logo = (
-    <Fragment>
+    <React.Fragment>
       <span className="logo__letter logo__letter--1">W</span>
       <span className="logo__letter logo__letter--2">T</span>
       <span className="logo__letter logo__letter--3">W</span>
-    </Fragment>
+    </React.Fragment>
   );
   return (
     <footer className="page-footer">
@@ -17,7 +20,7 @@ const Footer = (props) => {
         {props.withLink ? (
           <Link
             to={`${AppRoute.ROOT}`}
-            onClick={() => {
+            onClick={(): void => {
               window.scrollTo(0, 0);
             }}
             className="logo__link logo__link--light"
@@ -33,10 +36,6 @@ const Footer = (props) => {
       </div>
     </footer>
   );
-};
-
-Footer.propTypes = {
-  withLink: PropTypes.bool
 };
 
 export default Footer;
