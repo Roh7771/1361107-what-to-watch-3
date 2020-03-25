@@ -31,12 +31,11 @@ const MoviePage: React.FunctionComponent<Props> = (props: Props) => {
     onActiveItemChange,
     children
   } = props;
-  const {bgSrc, title, genre, releaseYear, posterSrc, isFavorite, id} = film;
   React.useEffect(() => {
-    if (id) {
-      setFilmComments(id);
+    if (film) {
+      setFilmComments(film.id);
     }
-  }, [id]);
+  }, [film]);
   return isFilmsLoading ? (
     <p>Идет загрузка фильмов, пожалуйста подождите...</p>
   ) : (
@@ -47,7 +46,7 @@ const MoviePage: React.FunctionComponent<Props> = (props: Props) => {
       >
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src={bgSrc} alt={title} />
+            <img src={film.bgSrc} alt={film.title} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -83,16 +82,16 @@ const MoviePage: React.FunctionComponent<Props> = (props: Props) => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{title}</h2>
+              <h2 className="movie-card__title">{film.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{releaseYear}</span>
+                <span className="movie-card__genre">{film.genre}</span>
+                <span className="movie-card__year">{film.releaseYear}</span>
               </p>
 
               <div className="movie-card__buttons">
                 <button
                   onClick={() => {
-                    history.push(`${AppRoute.PLAYER}/${id}`);
+                    history.push(`${AppRoute.PLAYER}/${film.id}`);
                   }}
                   className="btn btn--play movie-card__button"
                   type="button"
@@ -109,12 +108,12 @@ const MoviePage: React.FunctionComponent<Props> = (props: Props) => {
                     if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
                       history.push(`${AppRoute.LOGIN}`);
                     }
-                    return isFavorite
-                      ? onFavoriteButtonClick(id, 0)
-                      : onFavoriteButtonClick(id, 1);
+                    return film.isFavorite
+                      ? onFavoriteButtonClick(film.id, 0)
+                      : onFavoriteButtonClick(film.id, 1);
                   }}
                 >
-                  {isFavorite ? (
+                  {film.isFavorite ? (
                     <svg viewBox="0 0 18 14" width="18" height="14">
                       <use xlinkHref="#in-list"></use>
                     </svg>
@@ -126,7 +125,7 @@ const MoviePage: React.FunctionComponent<Props> = (props: Props) => {
                   <span>My list</span>
                 </button>
                 <Link
-                  to={`${AppRoute.FILM}/${id}/review`}
+                  to={`${AppRoute.FILM}/${film.id}/review`}
                   className="btn movie-card__button"
                 >
                   Add review
@@ -140,8 +139,8 @@ const MoviePage: React.FunctionComponent<Props> = (props: Props) => {
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
               <img
-                src={posterSrc}
-                alt={`${title} poster`}
+                src={film.posterSrc}
+                alt={`${film.title} poster`}
                 width="218"
                 height="327"
               />

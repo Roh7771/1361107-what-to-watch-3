@@ -164,12 +164,12 @@ const App: React.FunctionComponent<Props> = (props: Props) => {
           );
           return (
             <VideoPlayerWrapper
-              title={filmToWatch.title}
+              title={filmToWatch ? filmToWatch.title : ``}
               type={`movie`}
               className={`player__video`}
               isPlaying={false}
-              posterSrc={filmToWatch.imgSrc}
-              videoSrc={filmToWatch.videoSrc}
+              posterSrc={filmToWatch ? filmToWatch.imgSrc : ``}
+              videoSrc={filmToWatch ? filmToWatch.videoSrc : ``}
             />
           );
         }}
