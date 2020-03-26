@@ -1,9 +1,6 @@
 import {createSelector} from "reselect";
-import NameSpace from "../name-space.js";
-import {
-  getCurrentGenre,
-  getFilmsToShowCount
-} from "../appStatus/selectors.js";
+import NameSpace from "../name-space";
+import {getCurrentGenre, getFilmsToShowCount} from "../appStatus/selectors";
 
 export const getAllFilms = (state) => {
   return state[NameSpace.DATA].filmsList;

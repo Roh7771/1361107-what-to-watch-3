@@ -4,7 +4,7 @@ export default (data) => {
   const newData = data.map((film) => {
     const newFilm = extend(film, {
       title: film.name,
-      description: [film.description],
+      descriptionList: [film.description],
       releaseYear: film.released,
       imgSrc: film.preview_image,
       bgSrc: film.background_image,

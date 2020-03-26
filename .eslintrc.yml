@@ -4,7 +4,7 @@ env:
   commonjs: true
   jest: true
 
-extends: ["htmlacademy/es6", "plugin:react/recommended"]
+extends: ["htmlacademy/es6", "plugin:react/recommended", "plugin:@typescript-eslint/recommended"]
 
 parserOptions:
   ecmaFeatures:
@@ -17,3 +17,7 @@ plugins: ["react"]
 settings:
   react:
     version: "16"
+
+rules:
+  "@typescript-eslint/explicit-function-return-type": "off"
+  "@typescript-eslint/no-use-before-define": "off"

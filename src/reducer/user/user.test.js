@@ -3,8 +3,9 @@ import {AuthorizationStatus} from "./user";
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../api";
 import {AppRoute} from "../../const";
+import {noop} from "../../utils";
 
-const api = createAPI(() => {});
+const api = createAPI(noop);
 
 describe(`Reducer work correctly`, () => {
   it(`Reducer return initial state for the first time`, () => {
@@ -47,7 +48,7 @@ describe(`Operation`, () => {
 
     apiMock.onGet(`${AppRoute.LOGIN}`).reply(200);
 
-    return checkAuth(dispatch, () => {}, api).then(() => {
+    return checkAuth(dispatch, noop, api).then(() => {
       expect(dispatch).toHaveBeenCalledTimes(2);
       expect(dispatch).toHaveBeenNthCalledWith(
           1,
@@ -63,7 +64,7 @@ describe(`Operation`, () => {
 
     apiMock.onPost(`${AppRoute.LOGIN}`).reply(200);
 
-    return login(dispatch, () => {}, api).then(() => {
+    return login(dispatch, noop, api).then(() => {
       expect(dispatch).toHaveBeenCalledTimes(3);
       expect(dispatch).toHaveBeenNthCalledWith(
           1,

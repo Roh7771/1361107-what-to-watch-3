@@ -2,10 +2,11 @@ import {reducer, ActionCreators, ActionTypes, Operation} from "./data";
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../api";
 import {AppRoute} from "../../const";
+import {noop} from "../../utils";
 
 const api = createAPI(
-    () => {},
-    () => {}
+    noop,
+    noop
 );
 
 const mock = {
@@ -240,7 +241,7 @@ describe(`Operation`, () => {
 
     apiMock.onGet(`/comments/1`).reply(200, filmComments);
 
-    return commentsGetter(dispatch, () => {}, api).then(() => {
+    return commentsGetter(dispatch, noop, api).then(() => {
       expect(dispatch).toHaveBeenCalledTimes(1);
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionTypes.GET_FILM_COMMENTS,
@@ -256,7 +257,7 @@ describe(`Operation`, () => {
 
     apiMock.onGet(`/favorite`).reply(200, filmsFromServer);
 
-    return favoriteFilmsGetter(dispatch, () => {}, api).then(() => {
+    return favoriteFilmsGetter(dispatch, noop, api).then(() => {
       expect(dispatch).toHaveBeenCalledTimes(1);
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionTypes.GET_FAVORITE_FILMS,
@@ -272,7 +273,7 @@ describe(`Operation`, () => {
 
     apiMock.onGet(`${AppRoute.FILM}/promo`).reply(200, filmsFromServer[0]);
 
-    return promoFilmLoader(dispatch, () => {}, api).then(() => {
+    return promoFilmLoader(dispatch, noop, api).then(() => {
       expect(dispatch).toHaveBeenCalledTimes(1);
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionTypes.LOAD_PROMO_FILM,
@@ -288,7 +289,7 @@ describe(`Operation`, () => {
 
     apiMock.onGet(`${AppRoute.FILM}`).reply(200, filmsFromServer);
 
-    return filmsLoader(dispatch, () => {}, api).then(() => {
+    return filmsLoader(dispatch, noop, api).then(() => {
       expect(dispatch).toHaveBeenCalledTimes(2);
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionTypes.LOAD_FILMS,
@@ -304,7 +305,7 @@ describe(`Operation`, () => {
 
     apiMock.onPost(`/comments/1`).reply(200);
 
-    return reviewSender(dispatch, () => {}, api).then(() => {
+    return reviewSender(dispatch, noop, api).then(() => {
       expect(dispatch).toHaveBeenCalledTimes(1);
     });
   });
@@ -316,7 +317,7 @@ describe(`Operation`, () => {
 
     apiMock.onPost(`/favorite/2/1`).reply(200, filmsList[0]);
 
-    return filmFavoriteStatusSetter(dispatch, () => {}, api).then(() => {
+    return filmFavoriteStatusSetter(dispatch, noop, api).then(() => {
       expect(dispatch).toHaveBeenCalledTimes(2);
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ActionTypes.UPDATE_FILM_FAVORITE_STATUS,
