@@ -30,7 +30,8 @@ import MyList from "../my-list/my-list";
 import PrivateRoute from "../routes/private-route/private-route";
 import Footer from "../footer/footer";
 import {AppRoute} from "../../const";
-import {Film} from "../../types";
+import {Film, VideoPlayerType} from "../../types";
+import {DEFAULT_STARS_NUMBER} from '../../const';
 
 const VideoPlayerWrapper = withVideo(MovieVideoPlayer);
 const AddReviewWrapper = withTextState(withActiveItem(AddReview));
@@ -148,7 +149,7 @@ const App: React.FunctionComponent<Props> = (props: Props) => {
             <AddReviewWrapper
               onReviewSend={onReviewSend}
               reviewedFilm={reviewedFilm}
-              activeItem={3}
+              activeItem={DEFAULT_STARS_NUMBER}
               isFormSending={isFormSending}
               formErrorMessage={formErrorMessage}
             />
@@ -165,7 +166,7 @@ const App: React.FunctionComponent<Props> = (props: Props) => {
           return (
             <VideoPlayerWrapper
               title={filmToWatch ? filmToWatch.title : ``}
-              type={`movie`}
+              type={VideoPlayerType.MOVIE}
               className={`player__video`}
               isPlaying={false}
               posterSrc={filmToWatch ? filmToWatch.imgSrc : ``}

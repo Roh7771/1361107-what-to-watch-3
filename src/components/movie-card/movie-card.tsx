@@ -3,7 +3,7 @@ import Player from "../movie-video-player/movie-video-player";
 import withVideo from "../../hocs/with-video/with-video";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../const";
-import {Film} from "../../types";
+import {Film, VideoPlayerType} from "../../types";
 
 const VideoPlayer = withVideo(Player);
 
@@ -56,7 +56,7 @@ const MovieCard: React.FunctionComponent<Props> = (props: Props) => {
             isMuted
             widthAtr={280}
             heightAtr={175}
-            type={`trailer`}
+            type={VideoPlayerType.TRAILER}
           />
         </div>
       </Link>

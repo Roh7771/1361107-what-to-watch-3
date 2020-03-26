@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
 import withVideo from "./with-video";
+import {VideoPlayerType} from "../../types";
 
 interface Props {
   children: React.ReactNode;
@@ -24,7 +25,7 @@ it(`withVideo is rendered correctly`, () => {
       isPlaying={false}
       posterSrc=""
       videoSrc=""
-      type={`movie`}
+      type={VideoPlayerType.MOVIE}
     />
   ), {
     createNodeMock() {

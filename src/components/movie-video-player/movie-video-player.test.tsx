@@ -2,6 +2,7 @@ import * as React from "react";
 import * as renderer from "react-test-renderer";
 import MovieVideoPlayer from "./movie-video-player";
 import {noop} from '../../utils';
+import {VideoPlayerType} from "../../types";
 
 const mock: {
   progressInPercent: number;
@@ -24,7 +25,7 @@ it(`<MovieVideoPlayer /> should render trailer player`, () => {
           {...mock}
           onFullScreenButtonClick={noop}
           onPlayButtonClick={noop}
-          type={`trailer`}
+          type={VideoPlayerType.TRAILER}
         >
           <video />
         </MovieVideoPlayer>,
@@ -46,7 +47,7 @@ it(`<MovieVideoPlayer /> should render full movie player`, () => {
           {...mock}
           onFullScreenButtonClick={noop}
           onPlayButtonClick={noop}
-          type={`movie`}
+          type={VideoPlayerType.MOVIE}
         >
           <video />
         </MovieVideoPlayer>,

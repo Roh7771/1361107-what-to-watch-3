@@ -1,5 +1,6 @@
 import * as React from "react";
 import history from "../../history";
+import {VideoPlayerType} from "../../types";
 
 const convertVideoTime = (time) => {
   let seconds;
@@ -32,7 +33,7 @@ interface Props {
   isPlaying: boolean;
   title: string;
   isFullScreen: boolean;
-  type: string;
+  type: VideoPlayerType;
   onPlayButtonClick: () => void;
 }
 
@@ -61,10 +62,10 @@ class MovieVideoPlayer extends React.PureComponent<Props, {}> {
       type
     } = this.props;
     switch (type) {
-      case `trailer`:
+      case VideoPlayerType.TRAILER:
         return <React.Fragment>{children}</React.Fragment>;
 
-      case `movie`:
+      case VideoPlayerType.MOVIE:
         return (
           <div ref={this._rootElRef} className="player">
             {children}

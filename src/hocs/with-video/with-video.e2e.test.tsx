@@ -3,6 +3,7 @@ import {configure, mount} from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
 import withVideo from "./with-video";
 import {noop} from '../../utils';
+import {VideoPlayerType} from "../../types";
 
 configure({adapter: new Adapter()});
 
@@ -23,7 +24,7 @@ describe(`For trailer video player`, () => {
           isPlaying={false}
           posterSrc=""
           videoSrc=""
-          type={`trailer`}
+          type={VideoPlayerType.TRAILER}
         />
     );
 
@@ -47,7 +48,7 @@ describe(`For trailer video player`, () => {
           isPlaying={true}
           posterSrc=""
           videoSrc=""
-          type={`trailer`}
+          type={VideoPlayerType.TRAILER}
         />
     );
 
@@ -93,7 +94,7 @@ describe(`For movie video player`, () => {
       isPlaying={false}
       videoSrc=""
       posterSrc=""
-      type={`movie`}
+      type={VideoPlayerType.MOVIE}
     />);
 
     window.HTMLMediaElement.prototype.play = noop;
@@ -115,7 +116,7 @@ describe(`For movie video player`, () => {
       isPlaying={true}
       videoSrc=""
       posterSrc=""
-      type={`movie`}
+      type={VideoPlayerType.MOVIE}
     />);
 
     window.HTMLMediaElement.prototype.pause = noop;
@@ -137,7 +138,7 @@ describe(`For movie video player`, () => {
       isPlaying={false}
       videoSrc=""
       posterSrc=""
-      type={`movie`}
+      type={VideoPlayerType.MOVIE}
     />);
 
     wrapper.find(`button.fullscreen-button`).simulate(`click`);
@@ -151,7 +152,7 @@ describe(`For movie video player`, () => {
       isPlaying={false}
       videoSrc=""
       posterSrc=""
-      type={`movie`}
+      type={VideoPlayerType.MOVIE}
     />);
 
     wrapper.find(`button.fullscreen-button`).simulate(`click`);

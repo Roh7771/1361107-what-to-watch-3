@@ -2,6 +2,7 @@ import * as React from "react";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../const";
 import {Film} from "../../types";
+import {MIN_TEXT_LENGTH} from '../../const';
 
 interface Props {
   onActiveItemChange: (newActiveItem: number) => void;
@@ -183,7 +184,7 @@ const AddReview: React.FunctionComponent<Props> = (props: Props) => {
             ></textarea>
             <div className="add-review__submit">
               <button
-                disabled={text.length < 50 || isFormSending}
+                disabled={text.length < MIN_TEXT_LENGTH || isFormSending}
                 className="add-review__btn"
                 type="submit"
               >

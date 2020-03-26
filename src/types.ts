@@ -28,3 +28,9 @@ export interface Comment {
   comment: string;
   date: string;
 }
+
+export enum VideoPlayerType {
+  MOVIE,
+  TRAILER
+}
+

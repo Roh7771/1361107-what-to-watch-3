@@ -1,5 +1,6 @@
 import * as React from "react";
 import {Subtract} from "utility-types";
+import {VideoPlayerType} from "../../types";
 
 interface State {
   isPlaying: boolean;
@@ -67,7 +68,7 @@ const withVideo = (Component) => {
         });
       };
 
-      if (type === `movie`) {
+      if (type === VideoPlayerType.MOVIE) {
         video.onpause = () => {
           this.setState({
             isPlaying: false
@@ -92,7 +93,7 @@ const withVideo = (Component) => {
 
       const {isPlaying, type} = this.props;
 
-      if (type === `movie`) {
+      if (type === VideoPlayerType.MOVIE) {
         if (this.state.isPlaying) {
           video.play();
         } else {
@@ -100,7 +101,7 @@ const withVideo = (Component) => {
         }
       }
 
-      if (type === `trailer` && isPlaying !== this.state.isPlaying) {
+      if (type === VideoPlayerType.TRAILER && isPlaying !== this.state.isPlaying) {
         this.setState({isPlaying}, () => {
           if (isPlaying) {
             video.play();
