@@ -2,10 +2,10 @@ import * as React from "react";
 import history from "../../history";
 import {VideoPlayerType} from "../../types";
 
-const convertVideoTime = (time) => {
-  let seconds;
-  let minutes;
-  let timeLeft;
+const convertVideoTime = (time: number) => {
+  let seconds: number | string;
+  let minutes: number | string;
+  let timeLeft: number;
   const hours = Math.floor(time / 60 / 60);
 
   timeLeft = time - hours * 60 * 60;
@@ -39,7 +39,7 @@ interface Props {
 
 class MovieVideoPlayer extends React.PureComponent<Props, {}> {
   private _rootElRef: React.RefObject<HTMLDivElement>;
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
 
     this._rootElRef = React.createRef();

@@ -30,7 +30,7 @@ import MyList from "../my-list/my-list";
 import PrivateRoute from "../routes/private-route/private-route";
 import Footer from "../footer/footer";
 import {AppRoute} from "../../const";
-import {Film, VideoPlayerType} from "../../types";
+import {Film, VideoPlayerType, Tab} from "../../types";
 import {DEFAULT_STARS_NUMBER} from '../../const';
 
 const VideoPlayerWrapper = withVideo(MovieVideoPlayer);
@@ -97,7 +97,7 @@ const App: React.FunctionComponent<Props> = (props: Props) => {
           );
           return (
             <MoviePageWrapper
-              activeItem={`movieOverview`}
+              activeItem={Tab.MOVIE_OVERVIEW}
               film={filmToRender}
               authorizationStatus={authorizationStatus}
               isFilmsLoading={isFilmsLoading}

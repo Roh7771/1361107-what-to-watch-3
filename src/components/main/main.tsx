@@ -7,7 +7,7 @@ import {AuthorizationStatus} from "../../reducer/user/user";
 import {Link} from "react-router-dom";
 import history from "../../history";
 import {AppRoute} from "../../const";
-import {Film} from "../../types";
+import {Film, FavFilmSendStatus} from "../../types";
 
 const MovieListWrapper = withActiveItem(MovieList);
 
@@ -105,8 +105,8 @@ const Main: React.FunctionComponent<Props> = (props: Props) => {
                       history.push(`${AppRoute.LOGIN}`);
                     }
                     return isFavorite
-                      ? onFavoriteButtonClick(promoFilm.id, 0)
-                      : onFavoriteButtonClick(promoFilm.id, 1);
+                      ? onFavoriteButtonClick(promoFilm.id, FavFilmSendStatus.REMOVE)
+                      : onFavoriteButtonClick(promoFilm.id, FavFilmSendStatus.ADD);
                   }}
                 >
                   {isFavorite ? (

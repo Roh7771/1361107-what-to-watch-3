@@ -13,7 +13,7 @@ const withTextState = (Component) => {
   type P = React.ComponentProps<typeof Component>;
   type T = Subtract<P, InjectingProps>;
   class WithTextState extends React.PureComponent<T, State> {
-    constructor(props) {
+    constructor(props: T) {
       super(props);
 
       this.state = {
@@ -22,7 +22,7 @@ const withTextState = (Component) => {
       this._handleTextChange = this._handleTextChange.bind(this);
     }
 
-    _handleTextChange(newText) {
+    _handleTextChange(newText: string) {
       this.setState({text: newText});
     }
 

@@ -1,9 +1,9 @@
 import * as React from "react";
-import {Film} from "../../types";
+import {Film, Tab} from "../../types";
 import {Subtract} from "utility-types";
 
 interface State {
-  activeItem: string | Film;
+  activeItem: Tab | Film | number;
 }
 
 interface InjectingProps {

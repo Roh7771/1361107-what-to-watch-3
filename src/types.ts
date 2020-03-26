@@ -34,3 +34,14 @@ export enum VideoPlayerType {
   TRAILER
 }
 
+export enum FavFilmSendStatus {
+  ADD = 1,
+  REMOVE = 0
+}
+
+export enum Tab {
+  MOVIE_OVERVIEW,
+  MOVIE_DETAILS,
+  MOVIE_REVIEWS,
+}
+

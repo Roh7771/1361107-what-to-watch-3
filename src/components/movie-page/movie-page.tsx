@@ -5,7 +5,7 @@ import {AuthorizationStatus} from "../../reducer/user/user";
 import {Link} from "react-router-dom";
 import history from "../../history";
 import {AppRoute} from "../../const";
-import {Film, Comment} from "../../types";
+import {Film, Comment, FavFilmSendStatus, Tab} from "../../types";
 
 interface Props {
   film: Film;
@@ -15,7 +15,7 @@ interface Props {
   setFilmComments: (id: number) => void;
   filmComments: Comment[];
   onActiveItemChange: () => void;
-  activeItem: string;
+  activeItem: Tab;
   children: React.ReactNode;
 }
 
@@ -109,8 +109,8 @@ const MoviePage: React.FunctionComponent<Props> = (props: Props) => {
                       history.push(`${AppRoute.LOGIN}`);
                     }
                     return film.isFavorite
-                      ? onFavoriteButtonClick(film.id, 0)
-                      : onFavoriteButtonClick(film.id, 1);
+                      ? onFavoriteButtonClick(film.id, FavFilmSendStatus.REMOVE)
+                      : onFavoriteButtonClick(film.id, FavFilmSendStatus.ADD);
                   }}
                 >
                   {film.isFavorite ? (

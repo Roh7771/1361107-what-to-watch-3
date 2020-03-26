@@ -24,7 +24,7 @@ const withVideo = (Component) => {
   class WithVideo extends React.PureComponent<T, State> {
     _videoRef: React.RefObject<HTMLVideoElement>;
 
-    constructor(props) {
+    constructor(props: T) {
       super(props);
 
       this._videoRef = React.createRef();

@@ -2,7 +2,7 @@ import * as React from "react";
 import {configure, shallow} from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
 import MovieCard from "./movie-card";
-import {Film} from "../../types";
+import {Film, Tab} from "../../types";
 import {noop} from '../../utils';
 
 window.scrollTo = jest.fn();
@@ -53,7 +53,7 @@ it(`ChangeTab get correct data`, () => {
 
   setTimeout(() => {
     expect(changeTab.mock.calls.length).toBe(1);
-    expect(changeTab.mock.calls[0][0]).toBe(`movieOverview`);
+    expect(changeTab.mock.calls[0][0]).toBe(Tab.MOVIE_OVERVIEW);
   }, 1100);
 });
 

@@ -1,10 +1,11 @@
 import {ActionTypes, reducer, ActionCreators} from "./appStatus";
+import {INIT_FILMS_TO_SHOW_NUMBER} from '../../const.js';
 
 describe(`Reducer`, () => {
   it(`returns initial state for the first time`, () => {
     expect(reducer(void 0, {})).toEqual({
       currentGenre: `All genres`,
-      filmsToShowCount: 8,
+      filmsToShowCount: INIT_FILMS_TO_SHOW_NUMBER,
       isFormSending: false,
       formErrorMessage: null,
       isFilmsLoading: true
@@ -59,7 +60,7 @@ describe(`Reducer`, () => {
     expect(
         reducer({filmsToShowCount: 16}, {type: ActionTypes.RESET_FILMS_COUNT})
     ).toEqual({
-      filmsToShowCount: 8
+      filmsToShowCount: INIT_FILMS_TO_SHOW_NUMBER
     });
   });
 

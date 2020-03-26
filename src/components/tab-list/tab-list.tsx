@@ -2,12 +2,12 @@ import * as React from "react";
 import MovieDetails from "../tabs/movie-details/movie-details";
 import MovieReviews from "../tabs/movie-reviews/movie-reviews";
 import MovieOverview from "../tabs/movie-overview/movie-overview";
-import {Film, Comment} from "../../types";
+import {Film, Comment, Tab} from "../../types";
 
 interface Props {
   film: Film;
-  activeItem: string;
-  changeTab: (tab: string) => void;
+  activeItem: Tab;
+  changeTab: (tab: Tab) => void;
   filmComments: Comment[];
 }
 
@@ -16,13 +16,13 @@ const TabList: React.FunctionComponent<Props> = (props: Props) => {
 
   const renderTab = () => {
     switch (activeItem) {
-      case `movieOverview`:
+      case Tab.MOVIE_OVERVIEW:
         return <MovieOverview film={film} />;
 
-      case `movieDetails`:
+      case Tab.MOVIE_DETAILS:
         return <MovieDetails film={film} />;
 
-      case `movieReviews`:
+      case Tab.MOVIE_REVIEWS:
         return <MovieReviews filmComments={filmComments} />;
     }
     return <p>Что-то пошло не так :(</p>;
@@ -34,14 +34,14 @@ const TabList: React.FunctionComponent<Props> = (props: Props) => {
         <ul className="movie-nav__list">
           <li
             className={`movie-nav__item${
-              activeItem === `movieOverview` ? ` movie-nav__item--active` : ``
+              activeItem === Tab.MOVIE_OVERVIEW ? ` movie-nav__item--active` : ``
             }`}
           >
             <a
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                changeTab(`movieOverview`);
+                changeTab(Tab.MOVIE_OVERVIEW);
               }}
               className="movie-nav__link"
             >
@@ -50,14 +50,14 @@ const TabList: React.FunctionComponent<Props> = (props: Props) => {
           </li>
           <li
             className={`movie-nav__item${
-              activeItem === `movieDetails` ? ` movie-nav__item--active` : ``
+              activeItem === Tab.MOVIE_DETAILS ? ` movie-nav__item--active` : ``
             }`}
           >
             <a
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                changeTab(`movieDetails`);
+                changeTab(Tab.MOVIE_DETAILS);
               }}
               className="movie-nav__link"
             >
@@ -66,14 +66,14 @@ const TabList: React.FunctionComponent<Props> = (props: Props) => {
           </li>
           <li
             className={`movie-nav__item${
-              activeItem === `movieReviews` ? ` movie-nav__item--active` : ``
+              activeItem === Tab.MOVIE_REVIEWS ? ` movie-nav__item--active` : ``
             }`}
           >
             <a
               href="#"
               onClick={(e) => {
                 e.preventDefault();
-                changeTab(`movieReviews`);
+                changeTab(Tab.MOVIE_REVIEWS);
               }}
               className="movie-nav__link"
             >

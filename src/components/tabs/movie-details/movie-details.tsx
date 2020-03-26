@@ -28,16 +28,6 @@ const convertFilmDuration = (time: number) => {
 const MovieDetails: React.FunctionComponent<Props> = (props: Props) => {
   const {film} = props;
   const {director, starring, filmDuration, genre, releaseYear} = film;
-  let newStarsList = [];
-  starring
-    .map((star, i) => [`${star}, `, <br key={`${i}-${star}`}></br>])
-    .forEach((arr) => {
-      newStarsList = newStarsList.concat(arr);
-    });
-  newStarsList.pop();
-  newStarsList[newStarsList.length - 1] = newStarsList[
-    newStarsList.length - 1
-  ].slice(0, -2);
   return (
     <div className="movie-card__text movie-card__row">
       <div className="movie-card__text-col">

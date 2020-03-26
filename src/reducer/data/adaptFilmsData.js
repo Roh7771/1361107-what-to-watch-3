@@ -29,6 +29,7 @@ export default (data) => {
     delete newFilm.run_time;
     delete newFilm.is_favorite;
     delete newFilm.preview_video_link;
+    delete newFilm.description;
     return newFilm;
   });
   return newData;

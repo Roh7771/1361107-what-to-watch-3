@@ -6,7 +6,7 @@ import configureStore from "redux-mock-store";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Router} from "react-router-dom";
 import history from "../../history.js";
-import {Film} from "../../types.js";
+import {Film, Tab} from "../../types";
 import {noop} from '../../utils';
 
 const mockStore = configureStore([]);
@@ -99,7 +99,7 @@ it(`<MoviePage /> should render for unauthorized user correctly`, () => {
               onFavoriteButtonClick={noop}
               isFilmsLoading={false}
               setFilmComments={noop}
-              activeItem={`movieOverview`}
+              activeItem={Tab.MOVIE_OVERVIEW}
               film={film}
               filmComments={[]}
             >
@@ -133,7 +133,7 @@ it(`<MoviePage /> should render for authorized user correctly`, () => {
               onFavoriteButtonClick={noop}
               isFilmsLoading={false}
               setFilmComments={noop}
-              activeItem={`movieOverview`}
+              activeItem={Tab.MOVIE_OVERVIEW}
               film={film}
               filmComments={[]}
             >

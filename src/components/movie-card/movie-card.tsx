@@ -2,8 +2,8 @@ import * as React from "react";
 import Player from "../movie-video-player/movie-video-player";
 import withVideo from "../../hocs/with-video/with-video";
 import {Link} from "react-router-dom";
-import {AppRoute} from "../../const";
-import {Film, VideoPlayerType} from "../../types";
+import {AppRoute, TRAILER_APPEARANCE_DELAY} from "../../const";
+import {Film, VideoPlayerType, Tab} from "../../types";
 
 const VideoPlayer = withVideo(Player);
 
@@ -14,7 +14,7 @@ interface Props {
   onFilmMouseOver: (film: Film) => void;
   onFilmMouseOut: (film: {}) => void;
   activeCard: Film;
-  changeTab: (tab: string) => void;
+  changeTab: (tab: Tab) => void;
 }
 
 const MovieCard: React.FunctionComponent<Props> = (props: Props) => {
@@ -32,7 +32,7 @@ const MovieCard: React.FunctionComponent<Props> = (props: Props) => {
       onMouseEnter={() => {
         timer = setTimeout(() => {
           onFilmMouseOver(film);
-        }, 1000);
+        }, TRAILER_APPEARANCE_DELAY);
       }}
       onMouseLeave={() => {
         clearTimeout(timer);
@@ -41,7 +41,7 @@ const MovieCard: React.FunctionComponent<Props> = (props: Props) => {
       onClick={() => {
         clearTimeout(timer);
         if (changeTab) {
-          changeTab(`movieOverview`);
+          changeTab(Tab.MOVIE_OVERVIEW);
         }
         window.scrollTo(0, 0);
       }}

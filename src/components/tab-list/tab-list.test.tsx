@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
 import TabList from "./tab-list";
-import {Film} from "../../types.js";
+import {Film, Tab} from "../../types";
 import {noop} from '../../utils';
 
 const mock: { film: Film } = {
@@ -34,7 +34,7 @@ it(`<TabList /> should render correctly`, () => {
     .create(
         <TabList
           changeTab={noop}
-          activeItem={``}
+          activeItem={Tab.MOVIE_OVERVIEW}
           film={film}
           filmComments={[]}
         />

@@ -4,6 +4,7 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item";
 import {getAllFilms} from "../../reducer/data/selectors";
 import {connect} from "react-redux";
 import {Film} from "../../types";
+import {MORE_LIKE_THIS_FILMS_COUNT} from "../../const";
 
 const MovieListWrapper = withActiveItem(MovieList);
 
@@ -19,7 +20,7 @@ const MoreLikeThis: React.FunctionComponent<Props> = (props: Props) => {
     .filter(
         (film) => chosenFilm.genre === film.genre && film.title !== chosenFilm.title
     )
-    .slice(0, 4);
+    .slice(0, MORE_LIKE_THIS_FILMS_COUNT);
   return (
     <div className="page-content">
       <section className="catalog catalog--like-this">

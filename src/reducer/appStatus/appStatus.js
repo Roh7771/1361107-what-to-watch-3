@@ -1,8 +1,9 @@
 import {extend} from "../../utils";
+import {INIT_FILMS_TO_SHOW_NUMBER, FILMS_TO_ADD_NUMBER} from '../../const.js';
 
 const initialState = {
   currentGenre: `All genres`,
-  filmsToShowCount: 8,
+  filmsToShowCount: INIT_FILMS_TO_SHOW_NUMBER,
   isFormSending: false,
   formErrorMessage: null,
   isFilmsLoading: true
@@ -43,7 +44,7 @@ const ActionCreators = {
 
   showMoreFilms: () => ({
     type: ActionTypes.SHOW_MORE_FILMS,
-    payload: 8
+    payload: FILMS_TO_ADD_NUMBER
   })
 };
 
@@ -66,7 +67,7 @@ const reducer = (state = initialState, action) => {
 
     case ActionTypes.RESET_FILMS_COUNT:
       return extend(state, {
-        filmsToShowCount: 8
+        filmsToShowCount: INIT_FILMS_TO_SHOW_NUMBER
       });
     case ActionTypes.SHOW_MORE_FILMS:
       return extend(state, {
